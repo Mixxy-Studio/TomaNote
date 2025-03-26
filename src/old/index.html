@@ -1,0 +1,770 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Local-Notepad</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,200..900;1,200..900&display=swap">
+    <link rel="icon" href="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBzdGFuZGFsb25lPSJubyI/Pgo8IURPQ1RZUEUgc3ZnIFBVQkxJQyAiLS8vVzNDLy9EVEQgU1ZHIDIwMDEwOTA0Ly9FTiIKICJodHRwOi8vd3d3LnczLm9yZy9UUi8yMDAxL1JFQy1TVkctMjAwMTA5MDQvRFREL3N2ZzEwLmR0ZCI+CjxzdmcgdmVyc2lvbj0iMS4wIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciCiB3aWR0aD0iNTEyLjAwMDAwMHB0IiBoZWlnaHQ9IjUxMi4wMDAwMDBwdCIgdmlld0JveD0iMCAwIDUxMi4wMDAwMDAgNTEyLjAwMDAwMCIKIHByZXNlcnZlQXNwZWN0UmF0aW89InhNaWRZTWlkIG1lZXQiPgoKPGcgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoMC4wMDAwMDAsNTEyLjAwMDAwMCkgc2NhbGUoMC4xMDAwMDAsLTAuMTAwMDAwKSIKZmlsbD0iIzAwMDAwMCIgc3Ryb2tlPSJub25lIj4KPHBhdGggZD0iTTM4MTMgNDg4NSBjLTg5IC0yNCAtMTcxIC03MiAtMjM4IC0xNDAgLTE2MyAtMTYzIC0yMDIgLTQwMyAtOTkKLTYxMiBsMjYgLTU1IC0yNTAgLTI1MiBjLTE2MSAtMTYxIC0yNTMgLTI2MSAtMjU3IC0yNzggLTE3IC02OSAzMCAtMTI4IDEwMwotMTI4IGw0NSAwIDI1NiAyNTQgMjU2IDI1NSAzNSAtMTkgYzE2MSAtODcgMzYzIC04NiA1MTcgMiA2MyAzNSAxNjEgMTMxIDE5NgoxOTEgOTEgMTU1IDk1IDM1MyAxMCA1MjIgLTU5IDExNiAtMjE4IDIzNiAtMzUxIDI2NCAtNzEgMTUgLTE4NSAxMyAtMjQ5IC00eiIvPgo8L2c+Cjwvc3ZnPgo=">
+    <style>
+      /* Definición de variables en :root */
+      :root {/* Tamaños */
+          --font-size-base: 1rem;
+          --font-size-large: 1.5rem;
+          --font-family-mono: "Source Code Pro", monospace;
+          --padding-base: 10px;
+          --padding-block: 1rem;
+          --margin-base: 1rem;
+          --border-radius: 5px;
+          --border-radius-small: 4px;
+          --box-shadow-none: none;
+          --scrollbar-width: 2px; /* Ancho del scrollbar */
+          --scrollbar-height: 2px; /* Alto del scrollbar}*/
+          --sb-track-color: #2d2d2d;
+          --sb-thumb-color: #676767;
+          --sb-size: 18px;
+      }
+      @media (prefers-color-scheme: dark) {
+        html {
+          --color-background: #1c1b22;
+          --color-secondary-background: #141414;
+          --color-primary: #fff;
+          --color-secondary: #2d2d2d;
+          --color-button-background: #3a3939;
+          --color-button-delete: #dc3545;
+          --color-button-hover: #494949;
+          --color-scrollbar-thumb: #888; /* Color del thumb del scrollbar */
+          --color-scrollbar-track: #333; /* Color del track del scrollbar */
+          --color-scrollbar-hover: #555; /* Color del thumb del scrollbar en hover */
+        }
+      }
+      .source-code-pro-font {
+        font-family: "Source Code Pro", monospace;
+        font-optical-sizing: auto;
+        font-weight: 100;
+        font-style: normal;
+      }
+      /* Aplicación de variables en el código CSS */
+      body {
+          margin: 0;
+          padding: var(--padding-base);
+          color: var(--color-primary);
+          background-color: var(--color-background);
+          width: 100%;
+          height: auto;
+          min-height: 100vh;
+          overflow: hidden;
+          font-family: var(--font-family-mono);
+      }
+      body img {
+          max-width: 500px;
+      }
+      body button {
+          cursor: pointer;
+      }
+      .code-block {
+          background-color: var(--color-secondary-background);
+          color: rgba(255,255,255,.5);
+          font-family: var(--font-family-mono);
+          padding: var(--padding-block);
+          margin-bottom: var(--margin-base);
+          border-radius: var(--border-radius-small);
+      }
+      .tab-list {
+          display: flex;
+          flex-direction: row;
+          justify-content: space-between;
+          align-items: center;
+          width: 100%;
+          height: 100%;
+          max-width: 99%;
+          overflow-x: auto; /* Permite el desplazamiento horizontal */
+      }
+      .options-tab {
+        margin-left: auto;
+      }
+      .options-tab input{
+        width: 0;
+        height: 0;
+        visibility: hidden;
+        display: none;
+      }
+      .options-tab input:checked + label {
+        background-color: #242424;
+        transition: ease-in-out .3s all;
+      }
+      .options-tab input:checked + label::after {
+        left: 45px;
+        transform: translateX(-100%);
+        background: linear-gradient(180deg, #777, #3a3a3a);
+        transition: ease-in-out .3s all;
+      }
+      .options-tab label:active::after {
+        width: 25px;
+        transition: ease-in-out .3s all;
+      }
+      .options-tab label {
+        width: 50px;
+        height: 25px;
+        position: relative;
+        display: block;
+        background: var(--color-secondary-background);
+        border-radius: 50px;
+        box-shadow: inset 0px 5px 15px rgba(0,0,0,.4), inset 0px -5px 15px rgba(255,255,255,.4);
+        cursor: pointer;
+        transition: ease-in-out .3s all;
+      }
+      .options-tab label::after {
+        content: "";
+        width: 20px;
+        height: 20px;
+        position: absolute;
+        top: 2px;
+        left: 5px;
+        background: var(--color-secondary-background);
+        border-radius: 180px;
+        box-shadow: 0px 5px 10px rgba(0,0,0,.2);
+        transition: ease-in-out .3s all;
+      }
+      .info-tab {
+        margin-left: 10px;
+      }
+      .info-tab button {
+        padding: 5px 10px 7px 12px;
+        background: var(--color-secondary);
+        border-radius: 50px;
+        margin-bottom: 0;
+        margin-top: 0;
+        color: rgba(255,255,255,.5);
+        line-height: 1;
+        border: none;
+      }
+      .tab-list #create-tab {
+        padding: 1px 10px;
+        margin: 0 auto 0 0;
+        outline: 0;
+        border: 1px solid transparent;
+        border-radius: var(--border-radius);
+        background-color: var(--color-background);
+        font-size: var(--font-size-large);
+        margin-left: 0.5rem;
+        position: relative;
+        color: var(--color-secondary);
+        border-color: var(--color-secondary);
+        transition: ease-in-out .3s all;
+        font-weight: 100;
+        line-height: 27px;
+      }
+      .tab-list #create-tab:hover {
+        background-color: var(--color-secondary);
+        border-color: transparent;
+        color: var(--color-primary);
+      }
+      .tab-list__item {
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        flex-wrap: wrap;
+        height: auto;
+        margin-left: 10px;
+      }
+      .tab-list__item:first-child {
+        margin-left: 0;
+      }
+      .tab-list__item--content {
+        overflow-x: hidden;
+        overflow-y: scroll;
+        font-weight: 100;
+        font-family: var(--font-family-mono);
+      }
+      .tab-list__item--content::-webkit-scrollbar {
+        width: var(--sb-size);
+        cursor: pointer;
+      }
+      .tab-list__item--content::-webkit-scrollbar-track {
+        background: var(--sb-track-color);
+        border-radius: 8px;
+        cursor: pointer;
+      }
+      .tab-list__item--content::-webkit-scrollbar-thumb {
+        background: var(--sb-thumb-color);
+        border-radius: 8px;
+        border: 3px solid #282d2f;
+        cursor: pointer;
+      }
+      @supports not selector(::-webkit-scrollbar) {
+        .tab-list__item--content {          
+          scrollbar-color:  var(--sb-thumb-color)
+                            var(--sb-track-color);
+        }
+      }
+      .tab-list__item .tab-list__item--content {
+        display: none;
+        background-color: var(--color-secondary);
+        width: 100%;
+        height: 100%;
+        min-height: 92vh;
+        padding: var(--padding-base);
+        border: none;
+        outline: 0;
+        position: absolute;
+        top: 45px;
+        left: 10px;
+        width: 97%;
+        height: 91%;
+        min-width: 98vw;
+      }
+      .tab-list__item:last-child {
+        margin-right: 10px;
+        border-right: 1px solid var(--color-secondary) !important;
+      }
+      .tab-list__item label:hover button {
+        display: block;
+      }
+      .tab-list__item label {
+        background-color: var(--color-background);
+        width: 150px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 7px 5px 7px 10px;
+        border-top-left-radius: var(--border-radius);
+        border-top-right-radius: var(--border-radius);
+        cursor: pointer;
+      }
+      .tab-list__item label span {
+        color: var(--color-primary);
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        width: 80%;
+        overflow: hidden;
+      }
+      .tab-list__item label button {
+        background-color: var(--color-button-background);
+        border-radius: 50%;
+        box-shadow: var(--box-shadow-none);
+        outline: 0;
+        border: 0;
+        transition: ease .3s all;
+        display: none;
+        cursor: pointer;
+        padding: 8px 1px;
+        margin: 0;
+        height: 0;
+        line-height: 1px;
+        transform: rotate(-45deg);
+        color: var(--color-primary);
+      }
+      .tab-list__item label button.delete-tab {
+        background-color: transparent;
+        padding: 8px 5px;
+        margin: 0 5px;
+        transform: rotate(0deg);
+      }
+      .tab-list__item label button.delete-tab:hover {
+        background-color: var(--color-button-delete) !important;
+      }
+      .tab-list__item input[type="radio"] {
+        display: none;
+      }
+      .tab-list__item input:checked ~ .tab-list__item--content {
+        display: block;
+      }
+      .tab-list__item input:checked ~ label {
+        background-color: var(--color-secondary);
+        transition: background-color ease .3s;
+      }
+      .tab-list__item input:checked ~ label button:hover {
+        background-color: var(--color-button-hover);
+      }
+      *[contenteditable="true"]:focus, *[contenteditable="true"]:active {
+        border: none;
+        outline: none;
+      }
+      /* Estilos del scrollbar */
+      .tab-list::-webkit-scrollbar {
+        width: var(--scrollbar-width);
+        height: var(--scrollbar-height);
+      }
+      .tab-list::-webkit-scrollbar-track {
+        background: var(--color-secondary-background);
+      }
+      .tab-list::-webkit-scrollbar-thumb {
+        background: var(--color-scrollbar-thumb);
+        border-radius: var(--border-radius);
+      }
+      .tab-list::-webkit-scrollbar-thumb:hover {
+        background: var(--color-scrollbar-hover);
+      }
+      #modals {
+        @starting-style {
+          display: block;
+          opacity: 1;
+          scale: 0;
+          transition: ease-in-out 1s all;
+        }
+        *, *::before, *::after {
+          box-sizing: border-box;
+          padding: 0;
+        }
+        dialog {
+          padding: 0rem 1rem 0 1rem;
+          display: none;
+          opacity: 0;
+          scale: 1;
+          max-height: fit-content;
+          border-radius: 15px;
+          box-shadow: 0px 0px 10px rgba(0,0,0,.5);
+          overflow: hidden;
+          background-color: var(--color-background);
+          color: var(--color-primary) !important;
+          border: 0px;
+          .info-content__header {
+            text-align: center;
+            p {
+              text-align: justify;
+            }
+          }
+          .info-content__main {
+            padding: 0rem 1rem;
+            ol {
+              padding-left: 2rem;
+              li ul {
+                padding-left: 2rem;
+              }
+            }
+          }
+          .info-content__footer {
+            padding: 0 1rem 1rem 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            button {
+              padding: 10px 30px;
+              border: 1px solid var(--color-background);
+              background-color: var(--color-button-background);
+              color: var(--color-primary);
+              box-shadow: 0px 0px 10px rgba(0,0,0,.5);
+            }
+          }
+          .info-content__footer--column {
+            a {
+              color: var(--color-primary);
+            }
+          }
+        }
+        dialog[open] {
+          display: block;
+          opacity: 1;
+          scale: 1;
+          width: auto;
+          max-width: 600px;
+          height: auto;
+        }
+        #info-license form[method="dialog"],
+        #info-terms form[method="dialog"] {
+          width: 100%;
+          height: auto;
+          text-align: right;
+          button {
+            margin-top: 1rem;
+            background-color: transparent;
+            border: none;
+            color: var(--color-primary);
+          }
+        }
+      }
+    </style>
+  </head>
+  <body id="body">
+
+    <div dir="ltr" class="tab-list">
+      <button id="create-tab">+</button>
+      <!-- <div class="options-tab">
+        <input type="checkbox" name="dark-mode-toggle" id="dark-mode-toggle">
+        <label for="dark-mode-toggle"></label>
+      </div> -->
+      <div class="info-tab">
+        <button onclick="event.preventDefault(); document.querySelector('dialog#info-notepad').showModal()" id="open-modal-info">i</button>
+      </div>
+    </div>
+  
+    <section id="modals">
+      <dialog id="info-notepad" class="info">
+        <div class="info-container">
+          <div class="info-row">
+            <div class="info-content">
+              <div class="info-content__header">
+                <h1>Bloc de Notas Online Gratuito</h1>
+                <p>
+                  Este es un bloc de notas gratuito, sencillo y básico, que puedes
+                  usar directamente en tu navegador. Todos los cambios se guardan
+                  en el almacenamiento local del navegador, pero ten en cuenta que
+                  al recargar sin caché, se perderá la información. Haz un
+                  respaldo de tus notas antes de recargar.
+                </p>
+              </div>
+              <div class="info-content__main">
+                <h4>Funcionalidades</h4>
+                <ol>
+                  <li>Cursiva: CTRL + I</li>
+                  <li>Negrita: CTRL + B</li>
+                  <li>Subrayado: CTRL + U</li>
+                  <li>
+                    Guardado Automático: Los cambios se guardan en el Local
+                    Storage.
+                  </li>
+                  <li>
+                    Gestión de Pestañ
+                    <ul>
+                      <li>Editar nombre de pestañas</li>
+                      <li>Crear nuevas pestañas</li>
+                      <li>Eliminar pestañas existentes</li>
+                    </ul>
+                  </li>
+                </ol>
+              </div>
+              <div class="info-content__footer">
+                <div
+                  class="info-content__footer--left info-content__footer--column"
+                >
+                  <a
+                    href="#"
+                    onclick="event.preventDefault(); document.querySelector('dialog#info-license').showModal();"
+                    >Licencia</a
+                  >
+                </div>
+                <div
+                  class="info-content__footer--center info-content__footer--column"
+                >
+                  <a
+                    href="#"
+                    onclick="event.preventDefault(); document.querySelector('dialog#info-terms').showModal();"
+                    >Terminos de Uso</a
+                  >
+                </div>
+                <div
+                  class="info-content__footer--right info-content__footer--column"
+                >
+                  <form method="dialog">
+                    <button>Cerrar</button>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </dialog>
+  
+      <dialog id="info-license" class="info">
+        <form method="dialog">
+          <button>X</button>
+        </form>
+        <h3>Licencia GNU Affero General Public License (AGPL) v3.0</h3>
+        <p>
+          Este software está licenciado bajo la GNU Affero General Public License
+          (AGPL) v3.0. La licencia AGPL v3.0 garantiza a los usuarios la libertad
+          de usar, estudiar, modificar y distribuir el software, bajo las
+          siguientes condiciones:
+        </p>
+        <ol>
+          <li>
+            <p>
+              <strong>Libre Uso:</strong> El software puede ser utilizado para cualquier
+              propósito, sin restricciones.
+            </p>
+          </li>
+          <li>
+            <p>
+              <strong>Modificación:</strong> Los usuarios pueden modificar el software
+              y distribuir las versiones modificadas.
+            </p>
+          </li>
+          <li>
+            <p>
+              <strong>Distribución:</strong> Cualquier copia del software, ya sea en
+              su forma original o modificada, debe incluir la misma licencia AGPL v3.0.
+            </p>
+          </li>
+        </ol>
+        <h4>Cláusula Adicional: Restricción de Uso Comercial</h4>
+        <p>
+          Este software está licenciado bajo la GNU Affero General Public License
+          (AGPL) v3.0. Sin embargo, se incluye la siguiente cláusula adicional:
+        </p>
+        <p>
+          <strong>Uso Comercial Restringido:</strong>Se prohíbe la
+          comercialización directa o indirecta de este software, incluyendo pero
+          no limitado a la venta, arrendamiento, sublicenciamiento, o cualquier
+          otro uso con fines comerciales, sin el consentimiento expreso y por
+          escrito del titular original de los derechos de autor. Esta restricción
+          no afecta los derechos de los usuarios a modificar, mejorar o
+          redistribuir el software siempre que dichas actividades no impliquen un
+          uso comercial.
+        </p>
+        <p>
+          Para obtener permisos específicos relacionados con el uso comercial, por
+          favor contacta al titular de los derechos de autor.
+        </p>
+      </dialog>
+  
+      <dialog id="info-terms" class="info">
+        <form method="dialog">
+          <button>X</button>
+        </form>
+        <h3>Términos y Advertencias para el Uso del Bloc de Notas</h3>
+        <ol>
+          <li>
+            <p>
+              <strong>Límite de Almacenamiento <br /><br /></strong> Este Bloc de Notas
+              utiliza el LocalStorage de tu navegador para guardar la información.
+              Aunque el límite de almacenamiento es de 5 MB, te recomiendo no almacenar
+              grandes volúmenes de texto. Ten en cuenta que el almacenamiento en el
+              navegador es limitado y puede verse afectado si guardas grandes cantidades
+              de información. Si alcanzas el límite, podrías perder datos, por lo que
+              sugerimos realizar copias de seguridad regularmente.
+            </p>
+          </li>
+          <li>
+            <p>
+              <strong>Seguridad de la Información <br /><br /></strong> La información
+              que guardas en este Bloc de Notas no está encriptada y se almacena en
+              el LocalStorage de tu navegador, lo cual no garantiza su seguridad. Te
+              recomiendo no guardar información sensible o privada en esta herramienta,
+              ya que podría ser vulnerable a accesos no autorizados si otros usuarios
+              tienen acceso a tu dispositivo o navegador.
+            </p>
+          </li>
+          <li>
+            <p>
+              <strong>Precaución con la URL <br /><br /></strong> Asegúrate de que
+              estás utilizando una URL confiable y segura al acceder al Bloc de Notas.
+              Evita acceder desde enlaces sospechosos o en redes públicas no seguras,
+              ya que podrías exponerte a ataques de suplantación de identidad (phishing)
+              o robo de datos. Te recordamos que el equipo de desarrollo no se responsabiliza
+              por la pérdida de datos debido a usos inapropiados de la herramienta
+              o acceso no seguro.
+            </p>
+          </li>
+        </ol>
+      </dialog>
+    </section>
+    
+    <script>
+
+      let tabIdCounter = 1; // Contador global para generar IDs únicos
+
+      // Inicializa el contenido y eventos
+      function init() {
+        restoreContent();
+        initializeTabIdCounter(); // Ajusta el contador de IDs
+        setupEventListeners();
+      }
+
+      // Restaura el contenido guardado en localStorage al cargar la página
+      function restoreContent() {
+        const tabsData = JSON.parse(localStorage.getItem('tabsData')) || [];
+        const tabList = document.querySelector('.tab-list');
+
+        // Clear existing tabs
+        tabList.querySelectorAll('.tab-list__item').forEach(item => item.remove());
+
+        tabsData.forEach(({ id, content, name }) => {
+          const newTab = document.createElement('div');
+          newTab.className = 'tab-list__item';
+          newTab.innerHTML = `
+            <input type="radio" name="body-tab" id="${id}">
+            <label for="${id}">
+              <span>${name || 'Nuevo'}</span>
+              <button class="edit-name-tab">✏</button>
+              <button class="delete-tab">x</button>
+            </label>
+            <div class="tab-list__item--content" contenteditable="true">${content}</div>
+          `;
+          tabList.insertBefore(newTab, document.getElementById('create-tab'));
+        });
+
+        setupTabEditing();
+        setupTabContentEditing();
+        setupTabDeletion();
+      }
+
+      // Ajusta el contador de IDs basado en los existentes
+      function initializeTabIdCounter() {
+        const tabs = document.querySelectorAll('.tab-list__item');
+        if (tabs.length > 0) {
+          tabs.forEach(tab => {
+            const id = tab.querySelector('input').id;
+            const number = parseInt(id.split('-').pop());
+            if (number >= tabIdCounter) {
+              tabIdCounter = number + 1;
+            }
+          });
+        }
+      }
+
+      // Configura los eventos necesarios
+      function setupEventListeners() {
+        window.addEventListener('beforeunload', saveContent);
+        setupTabEditing();
+        setupTabContentEditing();
+        setupCreateTabButton();
+      }
+
+      // Guarda el contenido en localStorage cuando se cierra la página
+      function saveContent() {
+        const tabList = document.querySelector('.tab-list');
+        const tabs = tabList.querySelectorAll('.tab-list__item');
+        const tabsData = [];
+
+        tabs.forEach((item, index) => {
+          const content = item.querySelector('.tab-list__item--content').innerHTML;
+          const id = item.querySelector('input').id;
+          const name = item.querySelector('label span').innerText;
+          tabsData.push({ id, content, name });
+        });
+
+        localStorage.setItem('tabsData', JSON.stringify(tabsData));
+      }
+
+      // Reemplaza la función predeterminada del tabulador y aplica atajos de teclado
+      function setupTabContentEditing() {
+        document.querySelectorAll('.tab-list__item--content').forEach(editor => {
+          editor.addEventListener('keydown', function(event) {
+            if (event.key === 'Tab') {
+              event.preventDefault();
+              document.execCommand('insertText', false, '    ');
+            }
+          });
+
+          editor.addEventListener('keydown', function(event) {
+            if (event.ctrlKey) {
+              switch (event.key) {
+                case 'b':
+                  event.preventDefault();
+                  document.execCommand('bold', false, null);
+                  break;
+                case 'i':
+                  event.preventDefault();
+                  document.execCommand('italic', false, null);
+                  break;
+                case 'u':
+                  event.preventDefault();
+                  document.execCommand('underline', false, null);
+                  break;
+              }
+            }
+          });
+
+          editor.addEventListener('paste', cleanPasteContent);
+        });
+      }
+
+      // Limpia el contenido pegado
+      function cleanPasteContent(event) {
+        event.preventDefault();
+        const paste = (event.clipboardData || window.clipboardData).getData('text');
+        document.execCommand('insertText', false, paste);
+      }
+
+      // Configura los botones de edición de nombre de las pestañas
+      function setupTabEditing() {
+        document.querySelectorAll('.edit-name-tab').forEach(button => {
+          button.addEventListener('click', function(event) {
+            event.stopPropagation();
+            const tabItem = this.closest('.tab-list__item');
+            const label = tabItem.querySelector('label');
+            const span = label.querySelector('span');
+            label.setAttribute('contenteditable', 'true');
+            span.focus();
+            
+            // Seleccionar solo el texto dentro del span
+            const range = document.createRange();
+            range.selectNodeContents(span);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+
+            function handleClickOutside(event) {
+              if (!label.contains(event.target) && label.isContentEditable) {
+                label.removeAttribute('contenteditable');
+                saveContent(); // Guarda el contenido cuando se hace clic fuera
+              }
+            }
+            
+            document.addEventListener('click', handleClickOutside);
+            
+            label.addEventListener('keydown', function(event) {
+              if (event.key === 'Enter') {
+                event.preventDefault();
+                label.removeAttribute('contenteditable');
+                saveContent(); // Guarda el contenido cuando se presiona Enter
+                updateTabIds();
+              }
+            });
+          });
+        });
+      }
+
+      // Configura el botón de crear nueva pestaña
+      function setupCreateTabButton() {
+        document.getElementById('create-tab').addEventListener('click', function() {
+          const tabList = document.querySelector('.tab-list');
+          
+          // Usa el contador global para el nuevo ID
+          const newTabId = `body-tab-${tabIdCounter++}`;
+          
+          // Crea una nueva pestaña
+          const newTab = document.createElement('div');
+          newTab.className = 'tab-list__item';
+          newTab.innerHTML = `
+            <input type="radio" name="body-tab" id="${newTabId}">
+            <label for="${newTabId}">
+              <span>Nuevo</span>
+              <button class="edit-name-tab">✏</button>
+              <button class="delete-tab">x</button>
+            </label>
+            <div class="tab-list__item--content" contenteditable="true"></div>
+          `;
+          tabList.insertBefore(newTab, this);
+          
+          // Configura eventos para la nueva pestaña
+          setupTabEditing();
+          setupTabContentEditing();
+          setupTabDeletion(); // Configura eliminación para la nueva pestaña
+          
+          // Inicializa el contenido de la nueva pestaña en localStorage
+          saveContent();
+        });
+      }
+
+      // Actualiza los IDs de las pestañas existentes
+      function updateTabIds() {
+        document.querySelectorAll('.tab-list__item').forEach((item, index) => {
+          const input = item.querySelector('input');
+          const label = item.querySelector('label');
+          const newId = `body-tab-${index + 1}`;
+          input.id = newId;
+          label.setAttribute('for', newId);
+        });
+      }
+
+      // Configura los botones de eliminación de pestañas
+      function setupTabDeletion() {
+        document.querySelectorAll('.delete-tab').forEach(button => {
+          button.addEventListener('click', function(event) {
+            event.stopPropagation();
+            const tabItem = this.closest('.tab-list__item');
+            tabItem.remove();
+            saveContent(); // Guarda el estado actualizado de las pestañas
+          });
+        });
+      }
+
+      // Inicializa el script al cargar la página
+      window.onload = init;
+    </script>
+
+  </body>
+</html>

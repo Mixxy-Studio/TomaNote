@@ -1,0 +1,28 @@
+{
+  "name": "notepad-astro",
+  "type": "module",
+  "version": "0.0.4",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "deploy": "gh-pages -d dist",
+    "preview": "astro preview",
+    "astro": "astro",
+    "release": "standard-version",
+    "release:minor": "standard-version --release-as minor",
+    "release:patch": "standard-version --release-as patch",
+    "release:major": "standard-version --release-as major",
+    "postrelease": "node scripts/update-readme.js"
+  },
+  "dependencies": {
+    "@tailwindcss/vite": "^4.0.16",
+    "astro": "^5.5.4",
+    "sass": "^1.86.0",
+    "tailwindcss": "^4.0.16",
+    "vite": "^6.2.3"
+  },
+  "devDependencies": {
+    "gh-pages": "^6.3.0",
+    "standard-version": "^9.5.0"
+  }
+}
