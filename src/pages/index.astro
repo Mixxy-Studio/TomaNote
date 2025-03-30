@@ -904,93 +904,102 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // Configuración del menú contextual
-  const contextMenu = document.getElementById('context-menu');
-  const contentEditableAreas = document.querySelectorAll('.tab-list__item--content');
-  let activeEditableElement = null;
-  let activeSelection = null;
+  function initContextMenu() {
+    const contextMenu = document.getElementById('context-menu');
+    const contentEditableAreas = document.querySelectorAll('.tab-list__item--content');
+    let activeEditableElement = null;
+    let activeSelection = null;
 
-  // Prevenir el menú contextual por defecto
-  document.addEventListener('contextmenu', (e) => {
-    e.preventDefault();
-  });
+    // Prevenir el menú contextual por defecto
+    document.addEventListener('contextmenu', (e) => {
+      e.preventDefault();
+    });
 
-  // Mostrar menú contextual
-  document.addEventListener('contextmenu', (e) => {
-    const target = e.target;
-    const isContentEditable = target.closest('.tab-list__item--content');
-    
-    if (isContentEditable) {
-      // Guardar el elemento editable activo
-      activeEditableElement = target.closest('.tab-list__item--content');
+    // Mostrar menú contextual
+    document.addEventListener('contextmenu', (e) => {
+      const target = e.target;
+      const isContentEditable = target.closest('.tab-list__item--content');
       
-      // Verificar si hay selección
-      const selection = window.getSelection();
-      const hasSelection = selection.toString().length > 0;
-      
-      if (hasSelection) {
-        activeSelection = selection.getRangeAt(0).cloneRange();
-      }
-      
-      // Actualizar estado de los elementos del menú
-      contextMenu.querySelectorAll('.context-menu__item').forEach(item => {
-        if (item.dataset.requiresSelection === 'true') {
-          item.classList.toggle('disabled', !hasSelection);
-        }
-      });
-      
-      contextMenu.style.display = 'block';
-      contextMenu.style.left = `${e.pageX}px`;
-      contextMenu.style.top = `${e.pageY}px`;
-    }
-  });
-
-  // Ocultar menú contextual al hacer clic
-  document.addEventListener('click', () => {
-    contextMenu.style.display = 'none';
-  });
-
-  // Manejar acciones del menú contextual
-  contextMenu.addEventListener('click', (e) => {
-    const menuItem = e.target.closest('.context-menu__item');
-    if (menuItem && activeEditableElement && !menuItem.classList.contains('disabled')) {
-      const action = menuItem.dataset.action;
-      
-      // Asegurarse de que el elemento tenga el foco
-      activeEditableElement.focus();
-      
-      // Restaurar la selección si existe
-      if (activeSelection) {
+      if (isContentEditable) {
+        // Guardar el elemento editable activo
+        activeEditableElement = target.closest('.tab-list__item--content');
+        
+        // Verificar si hay selección
         const selection = window.getSelection();
-        selection.removeAllRanges();
-        selection.addRange(activeSelection);
+        const hasSelection = selection.toString().length > 0;
+        
+        if (hasSelection) {
+          activeSelection = selection.getRangeAt(0).cloneRange();
+        }
+        
+        // Actualizar estado de los elementos del menú
+        contextMenu.querySelectorAll('.context-menu__item').forEach(item => {
+          if (item.dataset.requiresSelection === 'true') {
+            item.classList.toggle('disabled', !hasSelection);
+          }
+        });
+        
+        contextMenu.style.display = 'block';
+        contextMenu.style.left = `${e.pageX}px`;
+        contextMenu.style.top = `${e.pageY}px`;
       }
-      
-      // Aplicar el formato o acción
-      switch (action) {
-        case 'copy':
-        case 'cut':
-          document.execCommand(action, false, null);
-          break;
-        case 'paste':
-          navigator.clipboard.readText().then(text => {
-            document.execCommand('insertText', false, text);
-          });
-          break;
-        case 'undo':
-        case 'redo':
-          document.execCommand(action, false, null);
-          break;
-        default:
-          document.execCommand(action, false, null);
-      }
-      
-      // Limpiar las variables
-      activeEditableElement = null;
-      activeSelection = null;
-      
+    });
+
+    // Ocultar menú contextual al hacer clic
+    document.addEventListener('click', () => {
       contextMenu.style.display = 'none';
-    }
-  });
+    });
+
+    // Manejar acciones del menú contextual
+    contextMenu.addEventListener('click', (e) => {
+      const menuItem = e.target.closest('.context-menu__item');
+      if (menuItem && activeEditableElement && !menuItem.classList.contains('disabled')) {
+        const action = menuItem.dataset.action;
+        
+        // Asegurarse de que el elemento tenga el foco
+        activeEditableElement.focus();
+        
+        // Restaurar la selección si existe
+        if (activeSelection) {
+          const selection = window.getSelection();
+          selection.removeAllRanges();
+          selection.addRange(activeSelection);
+        }
+        
+        // Aplicar el formato o acción
+        switch (action) {
+          case 'copy':
+          case 'cut':
+            document.execCommand(action, false, null);
+            break;
+          case 'paste':
+            navigator.clipboard.readText().then(text => {
+              document.execCommand('insertText', false, text);
+            });
+            break;
+          case 'undo':
+          case 'redo':
+            document.execCommand(action, false, null);
+            break;
+          default:
+            document.execCommand(action, false, null);
+        }
+        
+        // Limpiar las variables
+        activeEditableElement = null;
+        activeSelection = null;
+        
+        contextMenu.style.display = 'none';
+      }
+    });
+  }
+
+  // Inicializar el menú contextual cuando el DOM esté listo
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initContextMenu);
+  } else {
+    initContextMenu();
+  }
 
   // Inicializa el script al cargar la página
   window.onload = init;
