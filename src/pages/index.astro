@@ -177,9 +177,24 @@ import Layout from "../layouts/Layout.astro";
     </dialog>
   </section>
 
+  <div id="context-menu" class="context-menu">
+    <div class="context-menu__item" data-action="bold">
+      <span>Negrita</span>
+      <span class="shortcut">Ctrl + B</span>
+    </div>
+    <div class="context-menu__item" data-action="italic">
+      <span>Cursiva</span>
+      <span class="shortcut">Ctrl + I</span>
+    </div>
+    <div class="context-menu__item" data-action="underline">
+      <span>Subrayado</span>
+      <span class="shortcut">Ctrl + U</span>
+    </div>
+  </div>
+
 </Layout>
 
-<style lang="scss" is:global>
+<style lang="scss" is:global is:inline>
   :root.light-mode {
     --color-background: #ffffff;
     --color-secondary-background: #f0f0f0;
@@ -577,10 +592,53 @@ import Layout from "../layouts/Layout.astro";
       }
     }
   }
+
+  #context-menu {
+    display: none;
+    position: fixed;
+    background-color: var(--color-background);
+    border: 1px solid var(--color-secondary);
+    border-radius: var(--border-radius);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+    min-width: 200px;
+    padding: 5px 0;
+  }
+
+  .context-menu__item {
+    padding: 8px 12px;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: var(--color-primary);
+    transition: background-color 0.2s;
+  }
+
+  .context-menu__item:hover {
+    background-color: var(--color-secondary);
+  }
+
+  .context-menu__item .shortcut {
+    color: var(--color-primary);
+    opacity: 0.7;
+    font-size: 0.9em;
+  }
+
+  .context-menu__item[data-action="bold"] {
+    font-weight: bold;
+  }
+
+  .context-menu__item[data-action="italic"] {
+    font-style: italic;
+  }
+
+  .context-menu__item[data-action="underline"] {
+    text-decoration: underline;
+  }
 </style>
 
 <script is:inline>
-
 document.addEventListener('DOMContentLoaded', () => {
   const darkModeToggle = document.getElementById('dark-mode-toggle');
   
@@ -811,6 +869,68 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     });
   }
+
+  // Configuración del menú contextual
+  const contextMenu = document.getElementById('context-menu');
+  const contentEditableAreas = document.querySelectorAll('.tab-list__item--content');
+  let activeEditableElement = null;
+  let activeSelection = null;
+
+  // Prevenir el menú contextual por defecto
+  document.addEventListener('contextmenu', (e) => {
+    e.preventDefault();
+  });
+
+  // Mostrar menú contextual
+  document.addEventListener('contextmenu', (e) => {
+    const target = e.target;
+    const isContentEditable = target.closest('.tab-list__item--content');
+    
+    if (isContentEditable) {
+      const selection = window.getSelection();
+      const hasSelection = selection.toString().length > 0;
+      
+      if (hasSelection) {
+        // Guardar el elemento editable activo y la selección
+        activeEditableElement = target.closest('.tab-list__item--content');
+        activeSelection = selection.getRangeAt(0).cloneRange();
+        
+        contextMenu.style.display = 'block';
+        contextMenu.style.left = `${e.pageX}px`;
+        contextMenu.style.top = `${e.pageY}px`;
+      }
+    }
+  });
+
+  // Ocultar menú contextual al hacer clic
+  document.addEventListener('click', () => {
+    contextMenu.style.display = 'none';
+  });
+
+  // Manejar acciones del menú contextual
+  contextMenu.addEventListener('click', (e) => {
+    const menuItem = e.target.closest('.context-menu__item');
+    if (menuItem && activeEditableElement && activeSelection) {
+      const action = menuItem.dataset.action;
+      
+      // Restaurar la selección
+      const selection = window.getSelection();
+      selection.removeAllRanges();
+      selection.addRange(activeSelection);
+      
+      // Asegurarse de que el elemento tenga el foco
+      activeEditableElement.focus();
+      
+      // Aplicar el formato
+      document.execCommand(action, false, null);
+      
+      // Limpiar las variables
+      activeEditableElement = null;
+      activeSelection = null;
+      
+      contextMenu.style.display = 'none';
+    }
+  });
 
   // Inicializa el script al cargar la página
   window.onload = init;
