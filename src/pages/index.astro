@@ -178,17 +178,39 @@ import Layout from "../layouts/Layout.astro";
   </section>
 
   <div id="context-menu" class="context-menu">
-    <div class="context-menu__item" data-action="bold">
+    <div class="context-menu__item" data-action="copy" data-requires-selection="true">
+      <span>Copiar</span>
+      <span class="shortcut">Ctrl + C</span>
+    </div>
+    <div class="context-menu__item" data-action="cut" data-requires-selection="true">
+      <span>Cortar</span>
+      <span class="shortcut">Ctrl + X</span>
+    </div>
+    <div class="context-menu__item" data-action="paste">
+      <span>Pegar</span>
+      <span class="shortcut">Ctrl + V</span>
+    </div>
+    <div class="context-menu__separator"></div>
+    <div class="context-menu__item" data-action="bold" data-requires-selection="true">
       <span>Negrita</span>
       <span class="shortcut">Ctrl + B</span>
     </div>
-    <div class="context-menu__item" data-action="italic">
+    <div class="context-menu__item" data-action="italic" data-requires-selection="true">
       <span>Cursiva</span>
       <span class="shortcut">Ctrl + I</span>
     </div>
-    <div class="context-menu__item" data-action="underline">
+    <div class="context-menu__item" data-action="underline" data-requires-selection="true">
       <span>Subrayado</span>
       <span class="shortcut">Ctrl + U</span>
+    </div>
+    <div class="context-menu__separator"></div>
+    <div class="context-menu__item" data-action="undo">
+      <span>Deshacer</span>
+      <span class="shortcut">Ctrl + Z</span>
+    </div>
+    <div class="context-menu__item" data-action="redo">
+      <span>Rehacer</span>
+      <span class="shortcut">Ctrl + Y</span>
     </div>
   </div>
 
@@ -613,6 +635,7 @@ import Layout from "../layouts/Layout.astro";
     align-items: center;
     color: var(--color-primary);
     transition: background-color 0.2s;
+    font-size: 0.95rem;
   }
 
   .context-menu__item:hover {
@@ -621,8 +644,17 @@ import Layout from "../layouts/Layout.astro";
 
   .context-menu__item .shortcut {
     color: var(--color-primary);
-    opacity: 0.7;
-    font-size: 0.9em;
+    opacity: 0.6;
+    font-size: 0.8rem;
+    font-weight: 400;
+    margin-left: 12px;
+    padding: 2px 4px;
+    background-color: var(--color-secondary);
+    border-radius: 3px;
+  }
+
+  .context-menu__item:hover .shortcut {
+    opacity: 0.8;
   }
 
   .context-menu__item[data-action="bold"] {
@@ -635,6 +667,36 @@ import Layout from "../layouts/Layout.astro";
 
   .context-menu__item[data-action="underline"] {
     text-decoration: underline;
+  }
+
+  .context-menu__separator {
+    height: 1px;
+    background-color: var(--color-secondary);
+    margin: 5px 0;
+  }
+
+  .context-menu__item[data-action="undo"],
+  .context-menu__item[data-action="redo"] {
+    opacity: 0.7;
+  }
+
+  .context-menu__item[data-action="undo"]:hover,
+  .context-menu__item[data-action="redo"]:hover {
+    opacity: 1;
+  }
+
+  .context-menu__item[data-requires-selection="true"].disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    pointer-events: none;
+  }
+
+  .context-menu__item[data-requires-selection="true"].disabled:hover {
+    background-color: transparent;
+  }
+
+  .context-menu__item[data-requires-selection="true"].disabled .shortcut {
+    opacity: 0.3;
   }
 </style>
 
@@ -739,41 +801,14 @@ document.addEventListener('DOMContentLoaded', () => {
   // Reemplaza la función predeterminada del tabulador y aplica atajos de teclado
   function setupTabContentEditing() {
     document.querySelectorAll('.tab-list__item--content').forEach(editor => {
+      // Solo manejar el tabulador
       editor.addEventListener('keydown', function(event) {
         if (event.key === 'Tab') {
           event.preventDefault();
           document.execCommand('insertText', false, '    ');
         }
       });
-
-      editor.addEventListener('keydown', function(event) {
-        if (event.ctrlKey) {
-          switch (event.key) {
-            case 'b':
-              event.preventDefault();
-              document.execCommand('bold', false, null);
-              break;
-            case 'i':
-              event.preventDefault();
-              document.execCommand('italic', false, null);
-              break;
-            case 'u':
-              event.preventDefault();
-              document.execCommand('underline', false, null);
-              break;
-          }
-        }
-      });
-
-      editor.addEventListener('paste', cleanPasteContent);
     });
-  }
-
-  // Limpia el contenido pegado
-  function cleanPasteContent(event) {
-    event.preventDefault();
-    const paste = (event.clipboardData || window.clipboardData).getData('text');
-    document.execCommand('insertText', false, paste);
   }
 
   // Configura los botones de edición de nombre de las pestañas
@@ -887,18 +922,27 @@ document.addEventListener('DOMContentLoaded', () => {
     const isContentEditable = target.closest('.tab-list__item--content');
     
     if (isContentEditable) {
+      // Guardar el elemento editable activo
+      activeEditableElement = target.closest('.tab-list__item--content');
+      
+      // Verificar si hay selección
       const selection = window.getSelection();
       const hasSelection = selection.toString().length > 0;
       
       if (hasSelection) {
-        // Guardar el elemento editable activo y la selección
-        activeEditableElement = target.closest('.tab-list__item--content');
         activeSelection = selection.getRangeAt(0).cloneRange();
-        
-        contextMenu.style.display = 'block';
-        contextMenu.style.left = `${e.pageX}px`;
-        contextMenu.style.top = `${e.pageY}px`;
       }
+      
+      // Actualizar estado de los elementos del menú
+      contextMenu.querySelectorAll('.context-menu__item').forEach(item => {
+        if (item.dataset.requiresSelection === 'true') {
+          item.classList.toggle('disabled', !hasSelection);
+        }
+      });
+      
+      contextMenu.style.display = 'block';
+      contextMenu.style.left = `${e.pageX}px`;
+      contextMenu.style.top = `${e.pageY}px`;
     }
   });
 
@@ -910,19 +954,37 @@ document.addEventListener('DOMContentLoaded', () => {
   // Manejar acciones del menú contextual
   contextMenu.addEventListener('click', (e) => {
     const menuItem = e.target.closest('.context-menu__item');
-    if (menuItem && activeEditableElement && activeSelection) {
+    if (menuItem && activeEditableElement && !menuItem.classList.contains('disabled')) {
       const action = menuItem.dataset.action;
-      
-      // Restaurar la selección
-      const selection = window.getSelection();
-      selection.removeAllRanges();
-      selection.addRange(activeSelection);
       
       // Asegurarse de que el elemento tenga el foco
       activeEditableElement.focus();
       
-      // Aplicar el formato
-      document.execCommand(action, false, null);
+      // Restaurar la selección si existe
+      if (activeSelection) {
+        const selection = window.getSelection();
+        selection.removeAllRanges();
+        selection.addRange(activeSelection);
+      }
+      
+      // Aplicar el formato o acción
+      switch (action) {
+        case 'copy':
+        case 'cut':
+          document.execCommand(action, false, null);
+          break;
+        case 'paste':
+          navigator.clipboard.readText().then(text => {
+            document.execCommand('insertText', false, text);
+          });
+          break;
+        case 'undo':
+        case 'redo':
+          document.execCommand(action, false, null);
+          break;
+        default:
+          document.execCommand(action, false, null);
+      }
       
       // Limpiar las variables
       activeEditableElement = null;
