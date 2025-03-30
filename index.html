@@ -5,11 +5,11 @@ Este es un bloc de notas gratuito, sencillo y básico, que puedes
                 en el almacenamiento local del navegador, pero ten en cuenta que
                 al recargar sin caché, se perderá la información. Haz un
                 respaldo de tus notas antes de recargar.
-</p> </div> <div class="info-content__main"> <h4>Funcionalidades</h4> <ol> <li>Cursiva: CTRL + I</li> <li>Negrita: CTRL + B</li> <li>Subrayado: CTRL + U</li> <li>
+</p> </div> <div class="info-content__main"> <h4>Funcionalidades</h4> <ol> <li>Menu Contextual</li> <li>
 Guardado Automático: Los cambios se guardan en el Local
                   Storage.
 </li> <li>
-Gestión de Pestañ
+Gestión de Pestañas
 <ul> <li>Editar nombre de pestañas</li> <li>Crear nuevas pestañas</li> <li>Eliminar pestañas existentes</li> </ul> </li> </ol> </div> <div class="info-content__footer"> <div class="info-content__footer--left info-content__footer--column"> <a href="#" onclick="event.preventDefault(); document.querySelector('dialog#info-license').showModal();">Licencia</a> </div> <div class="info-content__footer--center info-content__footer--column"> <a href="#" onclick="event.preventDefault(); document.querySelector('dialog#info-terms').showModal();">Terminos de Uso</a> </div> <div class="info-content__footer--right info-content__footer--column"> <form method="dialog"> <button>Cerrar</button> </form> </div> </div> </div> </div> </div> </dialog> <dialog id="info-license" class="info"> <form method="dialog"> <button>X</button> </form> <h3>Licencia GNU Affero General Public License (AGPL) v3.0</h3> <p>
 Este software está licenciado bajo la GNU Affero General Public License
         (AGPL) v3.0. La licencia AGPL v3.0 garantiza a los usuarios la libertad
@@ -55,7 +55,7 @@ Para obtener permisos específicos relacionados con el uso comercial, por
             o robo de datos. Te recordamos que el equipo de desarrollo no se responsabiliza
             por la pérdida de datos debido a usos inapropiados de la herramienta
             o acceso no seguro.
-</p> </li> </ol> </dialog> </section>  </body></html> <style lang="scss" is:global>
+</p> </li> </ol> </dialog> </section> <div id="context-menu" class="context-menu"> <div class="context-menu__item" data-action="copy" data-requires-selection="true"> <span>Copiar</span> <span class="shortcut">Ctrl + C</span> </div> <div class="context-menu__item" data-action="cut" data-requires-selection="true"> <span>Cortar</span> <span class="shortcut">Ctrl + X</span> </div> <div class="context-menu__item" data-action="paste"> <span>Pegar</span> <span class="shortcut">Ctrl + V</span> </div> <div class="context-menu__separator"></div> <div class="context-menu__item" data-action="bold" data-requires-selection="true"> <span>Negrita</span> <span class="shortcut">Ctrl + B</span> </div> <div class="context-menu__item" data-action="italic" data-requires-selection="true"> <span>Cursiva</span> <span class="shortcut">Ctrl + I</span> </div> <div class="context-menu__item" data-action="underline" data-requires-selection="true"> <span>Subrayado</span> <span class="shortcut">Ctrl + U</span> </div> <div class="context-menu__separator"></div> <div class="context-menu__item" data-action="undo"> <span>Deshacer</span> <span class="shortcut">Ctrl + Z</span> </div> <div class="context-menu__item" data-action="redo"> <span>Rehacer</span> <span class="shortcut">Ctrl + Y</span> </div> </div>  </body></html> <style lang="scss" is:global>
   :root.light-mode {
     --color-background: #ffffff;
     --color-secondary-background: #f0f0f0;
@@ -453,8 +453,91 @@ Para obtener permisos específicos relacionados con el uso comercial, por
       }
     }
   }
-</style> <script>
 
+  #context-menu {
+    display: none;
+    position: fixed;
+    background-color: var(--color-background);
+    border: 1px solid var(--color-secondary);
+    border-radius: var(--border-radius);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+    min-width: 200px;
+    padding: 5px 0;
+  }
+
+  .context-menu__item {
+    padding: 8px 12px;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: var(--color-primary);
+    transition: background-color 0.2s;
+    font-size: 0.95rem;
+  }
+
+  .context-menu__item:hover {
+    background-color: var(--color-secondary);
+  }
+
+  .context-menu__item .shortcut {
+    color: var(--color-primary);
+    opacity: 0.6;
+    font-size: 0.8rem;
+    font-weight: 400;
+    margin-left: 12px;
+    padding: 2px 4px;
+    background-color: var(--color-secondary);
+    border-radius: 3px;
+  }
+
+  .context-menu__item:hover .shortcut {
+    opacity: 0.8;
+  }
+
+  .context-menu__item[data-action="bold"] {
+    font-weight: bold;
+  }
+
+  .context-menu__item[data-action="italic"] {
+    font-style: italic;
+  }
+
+  .context-menu__item[data-action="underline"] {
+    text-decoration: underline;
+  }
+
+  .context-menu__separator {
+    height: 1px;
+    background-color: var(--color-secondary);
+    margin: 5px 0;
+  }
+
+  .context-menu__item[data-action="undo"],
+  .context-menu__item[data-action="redo"] {
+    opacity: 0.7;
+  }
+
+  .context-menu__item[data-action="undo"]:hover,
+  .context-menu__item[data-action="redo"]:hover {
+    opacity: 1;
+  }
+
+  .context-menu__item[data-requires-selection="true"].disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    pointer-events: none;
+  }
+
+  .context-menu__item[data-requires-selection="true"].disabled:hover {
+    background-color: transparent;
+  }
+
+  .context-menu__item[data-requires-selection="true"].disabled .shortcut {
+    opacity: 0.3;
+  }
+</style> <script>
 document.addEventListener('DOMContentLoaded', () => {
   const darkModeToggle = document.getElementById('dark-mode-toggle');
   
@@ -555,41 +638,14 @@ document.addEventListener('DOMContentLoaded', () => {
   // Reemplaza la función predeterminada del tabulador y aplica atajos de teclado
   function setupTabContentEditing() {
     document.querySelectorAll('.tab-list__item--content').forEach(editor => {
+      // Solo manejar el tabulador
       editor.addEventListener('keydown', function(event) {
         if (event.key === 'Tab') {
           event.preventDefault();
           document.execCommand('insertText', false, '    ');
         }
       });
-
-      editor.addEventListener('keydown', function(event) {
-        if (event.ctrlKey) {
-          switch (event.key) {
-            case 'b':
-              event.preventDefault();
-              document.execCommand('bold', false, null);
-              break;
-            case 'i':
-              event.preventDefault();
-              document.execCommand('italic', false, null);
-              break;
-            case 'u':
-              event.preventDefault();
-              document.execCommand('underline', false, null);
-              break;
-          }
-        }
-      });
-
-      editor.addEventListener('paste', cleanPasteContent);
     });
-  }
-
-  // Limpia el contenido pegado
-  function cleanPasteContent(event) {
-    event.preventDefault();
-    const paste = (event.clipboardData || window.clipboardData).getData('text');
-    document.execCommand('insertText', false, paste);
   }
 
   // Configura los botones de edición de nombre de las pestañas
@@ -684,6 +740,104 @@ document.addEventListener('DOMContentLoaded', () => {
         saveContent(); // Guarda el estado actualizado de las pestañas
       });
     });
+  }
+
+  // Configuración del menú contextual
+  function initContextMenu() {
+    const contextMenu = document.getElementById('context-menu');
+    const contentEditableAreas = document.querySelectorAll('.tab-list__item--content');
+    let activeEditableElement = null;
+    let activeSelection = null;
+
+    // Prevenir el menú contextual por defecto
+    document.addEventListener('contextmenu', (e) => {
+      e.preventDefault();
+    });
+
+    // Mostrar menú contextual
+    document.addEventListener('contextmenu', (e) => {
+      const target = e.target;
+      const isContentEditable = target.closest('.tab-list__item--content');
+      
+      if (isContentEditable) {
+        // Guardar el elemento editable activo
+        activeEditableElement = target.closest('.tab-list__item--content');
+        
+        // Verificar si hay selección
+        const selection = window.getSelection();
+        const hasSelection = selection.toString().length > 0;
+        
+        if (hasSelection) {
+          activeSelection = selection.getRangeAt(0).cloneRange();
+        }
+        
+        // Actualizar estado de los elementos del menú
+        contextMenu.querySelectorAll('.context-menu__item').forEach(item => {
+          if (item.dataset.requiresSelection === 'true') {
+            item.classList.toggle('disabled', !hasSelection);
+          }
+        });
+        
+        contextMenu.style.display = 'block';
+        contextMenu.style.left = `${e.pageX}px`;
+        contextMenu.style.top = `${e.pageY}px`;
+      }
+    });
+
+    // Ocultar menú contextual al hacer clic
+    document.addEventListener('click', () => {
+      contextMenu.style.display = 'none';
+    });
+
+    // Manejar acciones del menú contextual
+    contextMenu.addEventListener('click', (e) => {
+      const menuItem = e.target.closest('.context-menu__item');
+      if (menuItem && activeEditableElement && !menuItem.classList.contains('disabled')) {
+        const action = menuItem.dataset.action;
+        
+        // Asegurarse de que el elemento tenga el foco
+        activeEditableElement.focus();
+        
+        // Restaurar la selección si existe
+        if (activeSelection) {
+          const selection = window.getSelection();
+          selection.removeAllRanges();
+          selection.addRange(activeSelection);
+        }
+        
+        // Aplicar el formato o acción
+        switch (action) {
+          case 'copy':
+          case 'cut':
+            document.execCommand(action, false, null);
+            break;
+          case 'paste':
+            navigator.clipboard.readText().then(text => {
+              document.execCommand('insertText', false, text);
+            });
+            break;
+          case 'undo':
+          case 'redo':
+            document.execCommand(action, false, null);
+            break;
+          default:
+            document.execCommand(action, false, null);
+        }
+        
+        // Limpiar las variables
+        activeEditableElement = null;
+        activeSelection = null;
+        
+        contextMenu.style.display = 'none';
+      }
+    });
+  }
+
+  // Inicializar el menú contextual cuando el DOM esté listo
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initContextMenu);
+  } else {
+    initContextMenu();
   }
 
   // Inicializa el script al cargar la página
