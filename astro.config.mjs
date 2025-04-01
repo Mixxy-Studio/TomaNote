@@ -1,5 +1,5 @@
 // @ts-check
-import { defineConfig } from 'astro/config';
+import { defineConfig } from 'astro';
 
 import tailwindcss from '@tailwindcss/vite';
 
@@ -9,5 +9,8 @@ export default defineConfig({
     plugins: [tailwindcss()]
   },
   site: 'https://camiicode.github.io',
-  base: 'notepad',
+  base: '/notepad',
+  build: {
+    assets: '_assets'
+  }
 });
