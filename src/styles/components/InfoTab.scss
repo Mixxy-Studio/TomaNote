@@ -1,0 +1,19 @@
+@use "../abstracts/Variables.scss";
+
+.info-tab {
+  margin-left: 10px;
+}
+.info-tab button {
+  background-color: transparent;
+  outline: 0px;
+  border: unset;
+  width: 30px;
+  height: 30px;
+  display: inline-block;
+  padding: 0;
+  svg {
+    color: var(--color-button-background);
+    width: 100%;
+    height: 100%;
+  }
+}

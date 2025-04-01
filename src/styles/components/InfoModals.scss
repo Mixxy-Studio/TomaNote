@@ -1,0 +1,100 @@
+@use "../abstracts/Variables.scss";
+
+#modals {
+  
+  @starting-style {
+    display: block;
+    opacity: 1;
+    scale: 0;
+    transition: ease-in-out 1s all;
+  }
+
+  dialog {
+    padding: 0rem 1rem 0 1rem;
+    display: none;
+    opacity: 0;
+    scale: 1;
+    max-height: fit-content;
+    border-radius: 15px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+    overflow: hidden;
+    background-color: var(--color-background);
+    color: var(--color-primary) !important;
+    border: 0px;
+    
+    .info-content__header {
+      text-align: center;
+
+      p {
+        text-align: justify;
+      }
+    }
+
+    .info-content__main {
+      padding: 0rem 1rem;
+
+      ol {
+        padding-left: 2rem;
+
+        li ul {
+          padding-left: 2rem;
+        }
+      }
+    }
+
+    .info-content__footer {
+      padding: 0 1rem 1rem 1rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      button {
+        padding: 10px 30px;
+        border: 1px solid var(--color-background);
+        background-color: var(--color-button-background);
+        color: var(--color-primary);
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+      }
+    }
+
+    .info-content__footer--column {
+
+      a {
+        color: var(--color-primary);
+      }
+    }
+
+    &[open] {
+      display: block;
+      opacity: 1;
+      scale: 1;
+      width: auto;
+      max-width: 600px;
+      height: auto;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      padding: 1rem;
+    }
+
+    &::backdrop {
+      background-color: rgba(0,0,0,.5);
+      transition: ease-in-out .3s all;
+    }
+  }
+
+  #info-license form[method="dialog"],
+  #info-terms form[method="dialog"] {
+    width: 100%;
+    height: auto;
+    text-align: right;
+    
+    button {
+      margin-top: 1rem;
+      background-color: transparent;
+      border: none;
+      color: var(--color-primary);
+    }
+  }
+}
