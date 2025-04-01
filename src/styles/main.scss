@@ -99,6 +99,7 @@ body button {
 .options-tab {
   margin-left: auto;
   padding-left: 50px;
+  margin-top: 2px;
 }
 .options-tab input {
   width: 0;
@@ -149,30 +150,33 @@ body button {
   margin-left: 10px;
 }
 .info-tab button {
-  padding: 5px 10px 7px 12px;
-  background: var(--color-secondary);
-  border-radius: 50px;
-  margin-bottom: 0;
-  margin-top: 0;
-  color: rgba(255, 255, 255, 0.5);
-  line-height: 1;
-  border: none;
+  background-color: transparent;
+  outline: 0px;
+  border: unset;
+  width: 30px;
+  height: 30px;
+  display: inline-block;
+  padding: 0;
+  svg {
+    color: var(--color-button-background);
+    width: 100%;
+    height: 100%;
+  }
 }
 .tab-list #create-tab {
-  padding: 1px 10px;
-  margin: 0;
-  outline: 0;
-  border: 1px solid transparent;
-  border-radius: var(--border-radius);
-  background-color: var(--color-background);
-  font-size: var(--font-size-large);
-  margin-left: 0.5rem;
-  position: relative;
-  color: var(--color-secondary);
-  border-color: var(--color-secondary);
-  transition: ease-in-out 0.3s all;
-  font-weight: 100;
-  line-height: 27px;
+  width: 30px;
+  height: 30px;
+  background-color: transparent;
+  outline: 0px;
+  border: unset;
+  border-radius: 5px;
+  margin-left: 6px;
+  margin-top: 2px;
+  color: var(--color-button-background);
+  svg {
+    width: 100%;
+    height: 100%;
+  }
 }
 .tab-list #create-tab:hover {
   background-color: var(--color-secondary);
