@@ -1,199 +1,53 @@
-<!DOCTYPE html>
-<html lang="en" data-astro-cid-sckkx6r4>
+<!DOCTYPE html><html lang="en" data-astro-cid-sckkx6r4> <head><meta charset="UTF-8"><meta name="viewport" content="width=device-width"><meta name="generator" content="Astro v5.5.6"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,200..900;1,200..900&display=swap"><link rel="icon" href="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBzdGFuZGFsb25lPSJubyI/Pgo8IURPQ1RZUEUgc3ZnIFBVQkxJQyAiLS8vVzNDLy9EVEQgU1ZHIDIwMDEwOTA0Ly9FTiIKICJodHRwOi8vd3d3LnczLm9yZy9UUi8yMDAxL1JFQy1TVkctMjAwMTA5MDQvRFREL3N2ZzEwLmR0ZCI+CjxzdmcgdmVyc2lvbj0iMS4wIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciCiB3aWR0aD0iNTEyLjAwMDAwMHB0IiBoZWlnaHQ9IjUxMi4wMDAwMDBwdCIgdmlld0JveD0iMCAwIDUxMi4wMDAwMDAgNTEyLjAwMDAwMCIKIHByZXNlcnZlQXNwZWN0UmF0aW89InhNaWRZTWlkIG1lZXQiPgoKPGcgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoMC4wMDAwMDAsNTEyLjAwMDAwMCkgc2NhbGUoMC4xMDAwMDAsLTAuMTAwMDAwKSIKZmlsbD0iIzAwMDAwMCIgc3Ryb2tlPSJub25lIj4KPHBhdGggZD0iTTM4MTMgNDg4NSBjLTg5IC0yNCAtMTcxIC03MiAtMjM4IC0xNDAgLTE2MyAtMTYzIC0yMDIgLTQwMyAtOTkKLTYxMiBsMjYgLTU1IC0yNTAgLTI1MiBjLTE2MSAtMTYxIC0yNTMgLTI2MSAtMjU3IC0yNzggLTE3IC02OSAzMCAtMTI4IDEwMwotMTI4IGw0NSAwIDI1NiAyNTQgMjU2IDI1NSAzNSAtMTkgYzE2MSAtODcgMzYzIC04NiA1MTcgMiA2MyAzNSAxNjEgMTMxIDE5NgoxOTEgOTEgMTU1IDk1IDM1MyAxMCA1MjIgLTU5IDExNiAtMjE4IDIzNiAtMzUxIDI2NCAtNzEgMTUgLTE4NSAxMyAtMjQ5IC00eiIvPgo8L2c+Cjwvc3ZnPgo="><title>Notepad</title><link rel="stylesheet" href="/notepad/_assets/index.CXFDyB2J.css"></head> <body id="body" data-astro-cid-sckkx6r4> <main data-astro-cid-sckkx6r4>  <div dir="ltr" class="tab-list"> <button id="create-tab"> <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-6"> <path fill-rule="evenodd" d="M12 3.75a.75.75 0 0 1 .75.75v6.75h6.75a.75.75 0 0 1 0 1.5h-6.75v6.75a.75.75 0 0 1-1.5 0v-6.75H4.5a.75.75 0 0 1 0-1.5h6.75V4.5a.75.75 0 0 1 .75-.75Z" clip-rule="evenodd"></path> </svg> </button> <div class="options-tab"> <input type="checkbox" name="dark-mode-toggle" id="dark-mode-toggle"> <label for="dark-mode-toggle"></label> </div> <div class="info-tab"> <button onclick="event.preventDefault(); document.querySelector('dialog#info-notepad').showModal()" id="open-modal-info"> <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-6"> <path fill-rule="evenodd" d="M11.828 2.25c-.916 0-1.699.663-1.85 1.567l-.091.549a.798.798 0 0 1-.517.608 7.45 7.45 0 0 0-.478.198.798.798 0 0 1-.796-.064l-.453-.324a1.875 1.875 0 0 0-2.416.2l-.243.243a1.875 1.875 0 0 0-.2 2.416l.324.453a.798.798 0 0 1 .064.796 7.448 7.448 0 0 0-.198.478.798.798 0 0 1-.608.517l-.55.092a1.875 1.875 0 0 0-1.566 1.849v.344c0 .916.663 1.699 1.567 1.85l.549.091c.281.047.508.25.608.517.06.162.127.321.198.478a.798.798 0 0 1-.064.796l-.324.453a1.875 1.875 0 0 0 .2 2.416l.243.243c.648.648 1.67.733 2.416.2l.453-.324a.798.798 0 0 1 .796-.064c.157.071.316.137.478.198.267.1.47.327.517.608l.092.55c.15.903.932 1.566 1.849 1.566h.344c.916 0 1.699-.663 1.85-1.567l.091-.549a.798.798 0 0 1 .517-.608 7.52 7.52 0 0 0 .478-.198.798.798 0 0 1 .796.064l.453.324a1.875 1.875 0 0 0 2.416-.2l.243-.243c.648-.648.733-1.67.2-2.416l-.324-.453a.798.798 0 0 1-.064-.796c.071-.157.137-.316.198-.478.1-.267.327-.47.608-.517l.55-.091a1.875 1.875 0 0 0 1.566-1.85v-.344c0-.916-.663-1.699-1.567-1.85l-.549-.091a.798.798 0 0 1-.608-.517 7.507 7.507 0 0 0-.198-.478.798.798 0 0 1 .064-.796l.324-.453a1.875 1.875 0 0 0-.2-2.416l-.243-.243a1.875 1.875 0 0 0-2.416-.2l-.453.324a.798.798 0 0 1-.796.064 7.462 7.462 0 0 0-.478-.198.798.798 0 0 1-.517-.608l-.091-.55a1.875 1.875 0 0 0-1.85-1.566h-.344ZM12 15.75a3.75 3.75 0 1 0 0-7.5 3.75 3.75 0 0 0 0 7.5Z" clip-rule="evenodd"></path> </svg> </button> </div> </div> <section id="modals"> <dialog id="info-notepad" class="settings-modal"> <div class="settings-container"> <!-- Sidebar izquierdo --> <div class="settings-sidebar"> <div class="user-section"> <h2>iNotePad</h2> <span class="version">v1.0</span> </div> <nav class="settings-nav"> <button class="nav-item active" data-tab="about"> <span class="icon">📄</span>
+Acerca de
+</button> <button class="nav-item" data-tab="license"> <span class="icon">📄</span>
+Licencia
+</button> <button class="nav-item" data-tab="terms"> <span class="icon">📋</span>
+Términos de uso
+</button> </nav> <form method="dialog" class="sidebar-footer"> <button class="save-button">Aceptar</button> </form> </div> <!-- Contenido principal --> <div class="settings-content"> <!-- Pestaña Acerca de --> <div class="settings-tab active" id="about-tab"> <div class="settings-header"> <h3>Acerca de</h3> </div> <div class="settings-body"> <!-- Contenido de la licencia existente --> <h4>Este es un bloc de notas gratuito, sencillo y básico, que puedes usar directamente en tu navegador. Todos los cambios se guardan en el almacenamiento local del navegador, pero ten en cuenta que al recargar sin caché, se perderá la información. Haz un respaldo de tus notas antes de borrar el cache.</h4><br> <h6>Funcionalidades</h6><br> <ol> <li>Menu contextual para copiar, cortar, pegar y eliminar texto.</li> <li>Guardado automático de las notas en el almacenamiento local del navegador.</li> <li>Gestion de pestañas, cambio de nombre, cerrar pestañas.</li> </ol> <!-- ... resto del contenido de la licencia ... --> </div> </div> <!-- Pestaña Licencia --> <div class="settings-tab" id="license-tab"> <div class="settings-header"> <h3>Licencia</h3> </div> <div class="settings-body"> <!-- Contenido de la licencia existente --> <h4><u>Licencia GNU Affero General Public License (AGPL) v3.0</u></h4><br> <p>Este software está licenciado bajo la GNU Affero General Public License (AGPL) v3.0. La licencia AGPL v3.0 garantiza a los usuarios la libertad de usar, estudiar, modificar y distribuir el software, bajo las siguientes condiciones:</p><br> <p><strong>Libre Uso:</strong> El software puede ser utilizado para cualquier propósito, sin restricciones.</p><br> <p><strong>Modificación:</strong> Los usuarios pueden modificar el software y distribuir las versiones modificadas.</p><br> <p><strong>Distribución:</strong> Cualquier copia del software, ya sea en su forma original o modificada, debe incluir la misma licencia AGPL v3.0.</p><br> <strong>Cláusula Adicional: Restricción de Uso Comercial</strong><br> <p>Los usuarios no pueden utilizar el software para fines comerciales, excepto si han obtenido autorización previa por escrito del desarrollador.</p><br> <p><strong>Uso Comercial Restringido:</strong> Se prohíbe la comercialización directa o indirecta de este software, incluyendo pero no limitado a la venta, arrendamiento, sublicenciamiento, o cualquier otro uso con fines comerciales, sin el consentimiento expreso y por escrito del titular original de los derechos de autor. Esta restricción no afecta los derechos de los usuarios a modificar, mejorar o redistribuir el software siempre que dichas actividades no impliquen un uso comercial.</p><br> <p>Para obtener permisos específicos relacionados con el uso comercial, por favor contacta al titular de los derechos de autor.</p><br> <!-- ... resto del contenido de la licencia ... --> </div> </div> <!-- Pestaña Términos --> <div class="settings-tab" id="terms-tab"> <div class="settings-header"> <h3>Términos de Uso</h3> <h6>Términos y Advertencias para el Uso del Bloc de Notas</h6> </div> <div class="settings-body"> <!-- Contenido de los términos existente --> <h4><u>Límite de Almacenamiento</u></h4><br> <p>Este Bloc de Notas utiliza el LocalStorage de tu navegador para guardar la información. Aunque el límite de almacenamiento es de 5 MB, te recomiendo no almacenar grandes volúmenes de texto. Ten en cuenta que el almacenamiento en el navegador es limitado y puede verse afectado si guardas grandes cantidades de información. Si alcanzas el límite, podrías perder datos, por lo que sugerimos realizar copias de seguridad regularmente.</p><br> <h4><u>Seguridad de la Información</u></h4><br> <p>La información que guardas en este Bloc de Notas no está encriptada y se almacena en el LocalStorage de tu navegador, lo cual no garantiza su seguridad. Te recomiendo no guardar información sensible o privada en esta herramienta, ya que podría ser vulnerable a accesos no autorizados si otros usuarios tienen acceso a tu dispositivo o navegador.</p><br> <h4><u>Precaución con la URL</u></h4><br> <p>Asegúrate de que estás utilizando una URL confiable y segura al acceder al Bloc de Notas. Evita acceder desde enlaces sospechosos o en redes públicas no seguras, ya que podrías exponerte a ataques de suplantación de identidad (phishing) o robo de datos. Te recordamos que el equipo de desarrollo no se responsabiliza por la pérdida de datos debido a usos inapropiados de la herramienta o acceso no seguro.</p> <!-- ... resto del contenido de los términos ... --> </div> </div> </div> </div> </dialog> </section> <script type="module">document.addEventListener("DOMContentLoaded",()=>{const e=document.getElementById("info-notepad"),s=e.querySelectorAll(".nav-item"),n=e.querySelectorAll(".settings-tab");function d(t){s.forEach(c=>c.classList.remove("active")),n.forEach(c=>c.classList.remove("active"));const a=e.querySelector(`#${t}-tab`),o=e.querySelector(`[data-tab="${t}"]`);a&&o&&(a.classList.add("active"),o.classList.add("active"))}s.forEach(t=>{t.addEventListener("click",()=>{const a=t.dataset.tab;d(a)})})});</script> <div id="context-menu" class="context-menu"> <div class="context-menu__item" data-action="copy" data-requires-selection="true"> <span>Copiar</span> <span class="shortcut">Ctrl + C</span> </div> <div class="context-menu__item" data-action="cut" data-requires-selection="true"> <span>Cortar</span> <span class="shortcut">Ctrl + X</span> </div> <div class="context-menu__item" data-action="paste"> <span>Pegar</span> <span class="shortcut">Ctrl + V</span> </div> <div class="context-menu__separator"></div> <div class="context-menu__item" data-action="bold" data-requires-selection="true"> <span>Negrita</span> <span class="shortcut">Ctrl + B</span> </div> <div class="context-menu__item" data-action="italic" data-requires-selection="true"> <span>Cursiva</span> <span class="shortcut">Ctrl + I</span> </div> <div class="context-menu__item" data-action="underline" data-requires-selection="true"> <span>Subrayado</span> <span class="shortcut">Ctrl + U</span> </div> <div class="context-menu__separator"></div> <div class="context-menu__item" data-action="undo"> <span>Deshacer</span> <span class="shortcut">Ctrl + Z</span> </div> <div class="context-menu__item" data-action="redo"> <span>Rehacer</span> <span class="shortcut">Ctrl + Y</span> </div> </div>  </main> </body></html> <script>
+document.addEventListener('DOMContentLoaded', () => {
+  const darkModeToggle = document.getElementById('dark-mode-toggle');
+  
+  // Verificar preferencia guardada o del sistema
+  const savedMode = localStorage.getItem('darkMode');
+  const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+  
+  if (savedMode !== null) {
+    document.documentElement.classList.toggle('light-mode', savedMode === 'false');
+    darkModeToggle.checked = savedMode === 'false';
+  } else if (!systemPrefersDark) {
+    document.documentElement.classList.add('light-mode');
+    darkModeToggle.checked = true;
+  }
+  
+  // Manejar el cambio
+  darkModeToggle.addEventListener('change', (e) => {
+    const isLightMode = e.target.checked;
+    document.documentElement.classList.toggle('light-mode', isLightMode);
+    localStorage.setItem('darkMode', !isLightMode);
+  });
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width">
-  <meta name="generator" content="Astro v5.5.4">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet"
-    href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,200..900;1,200..900&display=swap">
-  <link rel="icon"
-    href="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBzdGFuZGFsb25lPSJubyI/Pgo8IURPQ1RZUEUgc3ZnIFBVQkxJQyAiLS8vVzNDLy9EVEQgU1ZHIDIwMDEwOTA0Ly9FTiIKICJodHRwOi8vd3d3LnczLm9yZy9UUi8yMDAxL1JFQy1TVkctMjAwMTA5MDQvRFREL3N2ZzEwLmR0ZCI+CjxzdmcgdmVyc2lvbj0iMS4wIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciCiB3aWR0aD0iNTEyLjAwMDAwMHB0IiBoZWlnaHQ9IjUxMi4wMDAwMDBwdCIgdmlld0JveD0iMCAwIDUxMi4wMDAwMDAgNTEyLjAwMDAwMCIKIHByZXNlcnZlQXNwZWN0UmF0aW89InhNaWRZTWlkIG1lZXQiPgoKPGcgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoMC4wMDAwMDAsNTEyLjAwMDAwMCkgc2NhbGUoMC4xMDAwMDAsLTAuMTAwMDAwKSIKZmlsbD0iIzAwMDAwMCIgc3Ryb2tlPSJub25lIj4KPHBhdGggZD0iTTM4MTMgNDg4NSBjLTg5IC0yNCAtMTcxIC03MiAtMjM4IC0xNDAgLTE2MyAtMTYzIC0yMDIgLTQwMyAtOTkKLTYxMiBsMjYgLTU1IC0yNTAgLTI1MiBjLTE2MSAtMTYxIC0yNTMgLTI2MSAtMjU3IC0yNzggLTE3IC02OSAzMCAtMTI4IDEwMwotMTI4IGw0NSAwIDI1NiAyNTQgMjU2IDI1NSAzNSAtMTkgYzE2MSAtODcgMzYzIC04NiA1MTcgMiA2MyAzNSAxNjEgMTMxIDE5NgoxOTEgOTEgMTU1IDk1IDM1MyAxMCA1MjIgLTU5IDExNiAtMjE4IDIzNiAtMzUxIDI2NCAtNzEgMTUgLTE4NSAxMyAtMjQ5IC00eiIvPgo8L2c+Cjwvc3ZnPgo=">
-  <title>Notepad</title>
-  <link rel="stylesheet" href="./_astro/index.CXFDyB2J.css">
-</head>
+  let tabIdCounter = 1; // Contador global para generar IDs únicos
 
-<body id="body" data-astro-cid-sckkx6r4>
-  <main data-astro-cid-sckkx6r4>
-    <div dir="ltr" class="tab-list"> <button id="create-tab"> <svg xmlns="http://www.w3.org/2000/svg"
-          viewBox="0 0 24 24" fill="currentColor" class="size-6">
-          <path fill-rule="evenodd"
-            d="M12 3.75a.75.75 0 0 1 .75.75v6.75h6.75a.75.75 0 0 1 0 1.5h-6.75v6.75a.75.75 0 0 1-1.5 0v-6.75H4.5a.75.75 0 0 1 0-1.5h6.75V4.5a.75.75 0 0 1 .75-.75Z"
-            clip-rule="evenodd"></path>
-        </svg> </button>
-      <div class="options-tab"> <input type="checkbox" name="dark-mode-toggle" id="dark-mode-toggle"> <label
-          for="dark-mode-toggle"></label> </div>
-      <div class="info-tab"> <button
-          onclick="event.preventDefault(); document.querySelector('dialog#info-notepad').showModal()"
-          id="open-modal-info"> <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
-            class="size-6">
-            <path fill-rule="evenodd"
-              d="M11.828 2.25c-.916 0-1.699.663-1.85 1.567l-.091.549a.798.798 0 0 1-.517.608 7.45 7.45 0 0 0-.478.198.798.798 0 0 1-.796-.064l-.453-.324a1.875 1.875 0 0 0-2.416.2l-.243.243a1.875 1.875 0 0 0-.2 2.416l.324.453a.798.798 0 0 1 .064.796 7.448 7.448 0 0 0-.198.478.798.798 0 0 1-.608.517l-.55.092a1.875 1.875 0 0 0-1.566 1.849v.344c0 .916.663 1.699 1.567 1.85l.549.091c.281.047.508.25.608.517.06.162.127.321.198.478a.798.798 0 0 1-.064.796l-.324.453a1.875 1.875 0 0 0 .2 2.416l.243.243c.648.648 1.67.733 2.416.2l.453-.324a.798.798 0 0 1 .796-.064c.157.071.316.137.478.198.267.1.47.327.517.608l.092.55c.15.903.932 1.566 1.849 1.566h.344c.916 0 1.699-.663 1.85-1.567l.091-.549a.798.798 0 0 1 .517-.608 7.52 7.52 0 0 0 .478-.198.798.798 0 0 1 .796.064l.453.324a1.875 1.875 0 0 0 2.416-.2l.243-.243c.648-.648.733-1.67.2-2.416l-.324-.453a.798.798 0 0 1-.064-.796c.071-.157.137-.316.198-.478.1-.267.327-.47.608-.517l.55-.091a1.875 1.875 0 0 0 1.566-1.85v-.344c0-.916-.663-1.699-1.567-1.85l-.549-.091a.798.798 0 0 1-.608-.517 7.507 7.507 0 0 0-.198-.478.798.798 0 0 1 .064-.796l.324-.453a1.875 1.875 0 0 0-.2-2.416l-.243-.243a1.875 1.875 0 0 0-2.416-.2l-.453.324a.798.798 0 0 1-.796.064 7.462 7.462 0 0 0-.478-.198.798.798 0 0 1-.517-.608l-.091-.55a1.875 1.875 0 0 0-1.85-1.566h-.344ZM12 15.75a3.75 3.75 0 1 0 0-7.5 3.75 3.75 0 0 0 0 7.5Z"
-              clip-rule="evenodd"></path>
-          </svg> </button> </div>
-    </div>
-    <section id="modals">
-      <dialog id="info-notepad" class="settings-modal">
-        <div class="settings-container"> <!-- Sidebar izquierdo -->
-          <div class="settings-sidebar">
-            <div class="user-section">
-              <h2>iNotePad</h2> <span class="version">v1.0</span>
-            </div>
-            <nav class="settings-nav"> <button class="nav-item active" data-tab="about"> <span class="icon">📄</span>
-                Acerca de
-              </button> <button class="nav-item" data-tab="license"> <span class="icon">📄</span>
-                Licencia
-              </button> <button class="nav-item" data-tab="terms"> <span class="icon">📋</span>
-                Términos de uso
-              </button> </nav>
-            <form method="dialog" class="sidebar-footer"> <button class="save-button">Aceptar</button> </form>
-          </div> <!-- Contenido principal -->
-          <div class="settings-content"> <!-- Pestaña Acerca de -->
-            <div class="settings-tab active" id="about-tab">
-              <div class="settings-header">
-                <h3>Acerca de</h3>
-              </div>
-              <div class="settings-body"> <!-- Contenido de la licencia existente -->
-                <h4>Este es un bloc de notas gratuito, sencillo y básico, que puedes usar directamente en tu navegador.
-                  Todos los cambios se guardan en el almacenamiento local del navegador, pero ten en cuenta que al
-                  recargar sin caché, se perderá la información. Haz un respaldo de tus notas antes de borrar el cache.
-                </h4><br>
-                <h6>Funcionalidades</h6><br>
-                <ol>
-                  <li>Menu contextual para copiar, cortar, pegar y eliminar texto.</li>
-                  <li>Guardado automático de las notas en el almacenamiento local del navegador.</li>
-                  <li>Gestion de pestañas, cambio de nombre, cerrar pestañas.</li>
-                </ol> <!-- ... resto del contenido de la licencia ... -->
-              </div>
-            </div> <!-- Pestaña Licencia -->
-            <div class="settings-tab" id="license-tab">
-              <div class="settings-header">
-                <h3>Licencia</h3>
-              </div>
-              <div class="settings-body"> <!-- Contenido de la licencia existente -->
-                <h4><u>Licencia GNU Affero General Public License (AGPL) v3.0</u></h4><br>
-                <p>Este software está licenciado bajo la GNU Affero General Public License (AGPL) v3.0. La licencia AGPL
-                  v3.0 garantiza a los usuarios la libertad de usar, estudiar, modificar y distribuir el software, bajo
-                  las siguientes condiciones:</p><br>
-                <p><strong>Libre Uso:</strong> El software puede ser utilizado para cualquier propósito, sin
-                  restricciones.</p><br>
-                <p><strong>Modificación:</strong> Los usuarios pueden modificar el software y distribuir las versiones
-                  modificadas.</p><br>
-                <p><strong>Distribución:</strong> Cualquier copia del software, ya sea en su forma original o
-                  modificada, debe incluir la misma licencia AGPL v3.0.</p><br> <strong>Cláusula Adicional: Restricción
-                  de Uso Comercial</strong><br>
-                <p>Los usuarios no pueden utilizar el software para fines comerciales, excepto si han obtenido
-                  autorización previa por escrito del desarrollador.</p><br>
-                <p><strong>Uso Comercial Restringido:</strong> Se prohíbe la comercialización directa o indirecta de
-                  este software, incluyendo pero no limitado a la venta, arrendamiento, sublicenciamiento, o cualquier
-                  otro uso con fines comerciales, sin el consentimiento expreso y por escrito del titular original de
-                  los derechos de autor. Esta restricción no afecta los derechos de los usuarios a modificar, mejorar o
-                  redistribuir el software siempre que dichas actividades no impliquen un uso comercial.</p><br>
-                <p>Para obtener permisos específicos relacionados con el uso comercial, por favor contacta al titular de
-                  los derechos de autor.</p><br> <!-- ... resto del contenido de la licencia ... -->
-              </div>
-            </div> <!-- Pestaña Términos -->
-            <div class="settings-tab" id="terms-tab">
-              <div class="settings-header">
-                <h3>Términos de Uso</h3>
-                <h6>Términos y Advertencias para el Uso del Bloc de Notas</h6>
-              </div>
-              <div class="settings-body"> <!-- Contenido de los términos existente -->
-                <h4><u>Límite de Almacenamiento</u></h4><br>
-                <p>Este Bloc de Notas utiliza el LocalStorage de tu navegador para guardar la información. Aunque el
-                  límite de almacenamiento es de 5 MB, te recomiendo no almacenar grandes volúmenes de texto. Ten en
-                  cuenta que el almacenamiento en el navegador es limitado y puede verse afectado si guardas grandes
-                  cantidades de información. Si alcanzas el límite, podrías perder datos, por lo que sugerimos realizar
-                  copias de seguridad regularmente.</p><br>
-                <h4><u>Seguridad de la Información</u></h4><br>
-                <p>La información que guardas en este Bloc de Notas no está encriptada y se almacena en el LocalStorage
-                  de tu navegador, lo cual no garantiza su seguridad. Te recomiendo no guardar información sensible o
-                  privada en esta herramienta, ya que podría ser vulnerable a accesos no autorizados si otros usuarios
-                  tienen acceso a tu dispositivo o navegador.</p><br>
-                <h4><u>Precaución con la URL</u></h4><br>
-                <p>Asegúrate de que estás utilizando una URL confiable y segura al acceder al Bloc de Notas. Evita
-                  acceder desde enlaces sospechosos o en redes públicas no seguras, ya que podrías exponerte a ataques
-                  de suplantación de identidad (phishing) o robo de datos. Te recordamos que el equipo de desarrollo no
-                  se responsabiliza por la pérdida de datos debido a usos inapropiados de la herramienta o acceso no
-                  seguro.</p> <!-- ... resto del contenido de los términos ... -->
-              </div>
-            </div>
-          </div>
-        </div>
-      </dialog>
-    </section>
-    <script
-      type="module">document.addEventListener("DOMContentLoaded", () => { const e = document.getElementById("info-notepad"), s = e.querySelectorAll(".nav-item"), n = e.querySelectorAll(".settings-tab"); function d(t) { s.forEach(c => c.classList.remove("active")), n.forEach(c => c.classList.remove("active")); const a = e.querySelector(`#${t}-tab`), o = e.querySelector(`[data-tab="${t}"]`); a && o && (a.classList.add("active"), o.classList.add("active")) } s.forEach(t => { t.addEventListener("click", () => { const a = t.dataset.tab; d(a) }) }) });</script>
-    <div id="context-menu" class="context-menu">
-      <div class="context-menu__item" data-action="copy" data-requires-selection="true"> <span>Copiar</span> <span
-          class="shortcut">Ctrl + C</span> </div>
-      <div class="context-menu__item" data-action="cut" data-requires-selection="true"> <span>Cortar</span> <span
-          class="shortcut">Ctrl + X</span> </div>
-      <div class="context-menu__item" data-action="paste"> <span>Pegar</span> <span class="shortcut">Ctrl + V</span>
-      </div>
-      <div class="context-menu__separator"></div>
-      <div class="context-menu__item" data-action="bold" data-requires-selection="true"> <span>Negrita</span> <span
-          class="shortcut">Ctrl + B</span> </div>
-      <div class="context-menu__item" data-action="italic" data-requires-selection="true"> <span>Cursiva</span> <span
-          class="shortcut">Ctrl + I</span> </div>
-      <div class="context-menu__item" data-action="underline" data-requires-selection="true"> <span>Subrayado</span>
-        <span class="shortcut">Ctrl + U</span> </div>
-      <div class="context-menu__separator"></div>
-      <div class="context-menu__item" data-action="undo"> <span>Deshacer</span> <span class="shortcut">Ctrl + Z</span>
-      </div>
-      <div class="context-menu__item" data-action="redo"> <span>Rehacer</span> <span class="shortcut">Ctrl + Y</span>
-      </div>
-    </div>
-  </main>
-</body>
+  // Inicializa el contenido y eventos
+  function init() {
+    restoreContent();
+    initializeTabIdCounter(); // Ajusta el contador de IDs
+    setupEventListeners();
+  }
 
-</html>
-<script>
-  document.addEventListener('DOMContentLoaded', () => {
-    const darkModeToggle = document.getElementById('dark-mode-toggle');
+  // Restaura el contenido guardado en localStorage al cargar la página
+  function restoreContent() {
+    const tabsData = JSON.parse(localStorage.getItem('tabsData')) || [];
+    const tabList = document.querySelector('.tab-list');
 
-    // Verificar preferencia guardada o del sistema
-    const savedMode = localStorage.getItem('darkMode');
-    const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    // Clear existing tabs
+    tabList.querySelectorAll('.tab-list__item').forEach(item => item.remove());
 
-    if (savedMode !== null) {
-      document.documentElement.classList.toggle('light-mode', savedMode === 'false');
-      darkModeToggle.checked = savedMode === 'false';
-    } else if (!systemPrefersDark) {
-      document.documentElement.classList.add('light-mode');
-      darkModeToggle.checked = true;
-    }
-
-    // Manejar el cambio
-    darkModeToggle.addEventListener('change', (e) => {
-      const isLightMode = e.target.checked;
-      document.documentElement.classList.toggle('light-mode', isLightMode);
-      localStorage.setItem('darkMode', !isLightMode);
-    });
-
-    let tabIdCounter = 1; // Contador global para generar IDs únicos
-
-    // Inicializa el contenido y eventos
-    function init() {
-      restoreContent();
-      initializeTabIdCounter(); // Ajusta el contador de IDs
-      setupEventListeners();
-    }
-
-    // Restaura el contenido guardado en localStorage al cargar la página
-    function restoreContent() {
-      const tabsData = JSON.parse(localStorage.getItem('tabsData')) || [];
-      const tabList = document.querySelector('.tab-list');
-
-      // Clear existing tabs
-      tabList.querySelectorAll('.tab-list__item').forEach(item => item.remove());
-
-      tabsData.forEach(({ id, content, name }) => {
-        const newTab = document.createElement('div');
-        newTab.className = 'tab-list__item';
-        newTab.innerHTML = `
+    tabsData.forEach(({ id, content, name }) => {
+      const newTab = document.createElement('div');
+      newTab.className = 'tab-list__item';
+      newTab.innerHTML = `
         <input type="radio" name="body-tab" id="${id}">
         <label for="${id}">
           <span>${name || 'Nuevo'}</span>
@@ -202,116 +56,116 @@
         </label>
         <div class="tab-list__item--content" contenteditable="true">${content}</div>
       `;
-        tabList.insertBefore(newTab, document.getElementById('create-tab'));
+      tabList.insertBefore(newTab, document.getElementById('create-tab'));
+    });
+
+    setupTabEditing();
+    setupTabContentEditing();
+    setupTabDeletion();
+  }
+
+  // Ajusta el contador de IDs basado en los existentes
+  function initializeTabIdCounter() {
+    const tabs = document.querySelectorAll('.tab-list__item');
+    if (tabs.length > 0) {
+      tabs.forEach(tab => {
+        const id = tab.querySelector('input').id;
+        const number = parseInt(id.split('-').pop());
+        if (number >= tabIdCounter) {
+          tabIdCounter = number + 1;
+        }
       });
-
-      setupTabEditing();
-      setupTabContentEditing();
-      setupTabDeletion();
     }
+  }
 
-    // Ajusta el contador de IDs basado en los existentes
-    function initializeTabIdCounter() {
-      const tabs = document.querySelectorAll('.tab-list__item');
-      if (tabs.length > 0) {
-        tabs.forEach(tab => {
-          const id = tab.querySelector('input').id;
-          const number = parseInt(id.split('-').pop());
-          if (number >= tabIdCounter) {
-            tabIdCounter = number + 1;
+  // Configura los eventos necesarios
+  function setupEventListeners() {
+    window.addEventListener('beforeunload', saveContent);
+    setupTabEditing();
+    setupTabContentEditing();
+    setupCreateTabButton();
+  }
+
+  // Guarda el contenido en localStorage cuando se cierra la página
+  function saveContent() {
+    const tabList = document.querySelector('.tab-list');
+    const tabs = tabList.querySelectorAll('.tab-list__item');
+    const tabsData = [];
+
+    tabs.forEach((item, index) => {
+      const content = item.querySelector('.tab-list__item--content').innerHTML;
+      const id = item.querySelector('input').id;
+      const name = item.querySelector('label span').innerText;
+      tabsData.push({ id, content, name });
+    });
+
+    localStorage.setItem('tabsData', JSON.stringify(tabsData));
+  }
+
+  // Reemplaza la función predeterminada del tabulador y aplica atajos de teclado
+  function setupTabContentEditing() {
+    document.querySelectorAll('.tab-list__item--content').forEach(editor => {
+      // Solo manejar el tabulador
+      editor.addEventListener('keydown', function(event) {
+        if (event.key === 'Tab') {
+          event.preventDefault();
+          document.execCommand('insertText', false, '    ');
+        }
+      });
+    });
+  }
+
+  // Configura los botones de edición de nombre de las pestañas
+  function setupTabEditing() {
+    document.querySelectorAll('.edit-name-tab').forEach(button => {
+      button.addEventListener('click', function(event) {
+        event.stopPropagation();
+        const tabItem = this.closest('.tab-list__item');
+        const label = tabItem.querySelector('label');
+        const span = label.querySelector('span');
+        label.setAttribute('contenteditable', 'true');
+        span.focus();
+        
+        // Seleccionar solo el texto dentro del span
+        const range = document.createRange();
+        range.selectNodeContents(span);
+        const selection = window.getSelection();
+        selection.removeAllRanges();
+        selection.addRange(range);
+
+        function handleClickOutside(event) {
+          if (!label.contains(event.target) && label.isContentEditable) {
+            label.removeAttribute('contenteditable');
+            saveContent(); // Guarda el contenido cuando se hace clic fuera
           }
-        });
-      }
-    }
-
-    // Configura los eventos necesarios
-    function setupEventListeners() {
-      window.addEventListener('beforeunload', saveContent);
-      setupTabEditing();
-      setupTabContentEditing();
-      setupCreateTabButton();
-    }
-
-    // Guarda el contenido en localStorage cuando se cierra la página
-    function saveContent() {
-      const tabList = document.querySelector('.tab-list');
-      const tabs = tabList.querySelectorAll('.tab-list__item');
-      const tabsData = [];
-
-      tabs.forEach((item, index) => {
-        const content = item.querySelector('.tab-list__item--content').innerHTML;
-        const id = item.querySelector('input').id;
-        const name = item.querySelector('label span').innerText;
-        tabsData.push({ id, content, name });
-      });
-
-      localStorage.setItem('tabsData', JSON.stringify(tabsData));
-    }
-
-    // Reemplaza la función predeterminada del tabulador y aplica atajos de teclado
-    function setupTabContentEditing() {
-      document.querySelectorAll('.tab-list__item--content').forEach(editor => {
-        // Solo manejar el tabulador
-        editor.addEventListener('keydown', function (event) {
-          if (event.key === 'Tab') {
+        }
+        
+        document.addEventListener('click', handleClickOutside);
+        
+        label.addEventListener('keydown', function(event) {
+          if (event.key === 'Enter') {
             event.preventDefault();
-            document.execCommand('insertText', false, '    ');
+            label.removeAttribute('contenteditable');
+            saveContent(); // Guarda el contenido cuando se presiona Enter
+            updateTabIds();
           }
         });
       });
-    }
+    });
+  }
 
-    // Configura los botones de edición de nombre de las pestañas
-    function setupTabEditing() {
-      document.querySelectorAll('.edit-name-tab').forEach(button => {
-        button.addEventListener('click', function (event) {
-          event.stopPropagation();
-          const tabItem = this.closest('.tab-list__item');
-          const label = tabItem.querySelector('label');
-          const span = label.querySelector('span');
-          label.setAttribute('contenteditable', 'true');
-          span.focus();
-
-          // Seleccionar solo el texto dentro del span
-          const range = document.createRange();
-          range.selectNodeContents(span);
-          const selection = window.getSelection();
-          selection.removeAllRanges();
-          selection.addRange(range);
-
-          function handleClickOutside(event) {
-            if (!label.contains(event.target) && label.isContentEditable) {
-              label.removeAttribute('contenteditable');
-              saveContent(); // Guarda el contenido cuando se hace clic fuera
-            }
-          }
-
-          document.addEventListener('click', handleClickOutside);
-
-          label.addEventListener('keydown', function (event) {
-            if (event.key === 'Enter') {
-              event.preventDefault();
-              label.removeAttribute('contenteditable');
-              saveContent(); // Guarda el contenido cuando se presiona Enter
-              updateTabIds();
-            }
-          });
-        });
-      });
-    }
-
-    // Configura el botón de crear nueva pestaña
-    function setupCreateTabButton() {
-      document.getElementById('create-tab').addEventListener('click', function () {
-        const tabList = document.querySelector('.tab-list');
-
-        // Usa el contador global para el nuevo ID
-        const newTabId = `body-tab-${tabIdCounter++}`;
-
-        // Crea una nueva pestaña
-        const newTab = document.createElement('div');
-        newTab.className = 'tab-list__item';
-        newTab.innerHTML = `
+  // Configura el botón de crear nueva pestaña
+  function setupCreateTabButton() {
+    document.getElementById('create-tab').addEventListener('click', function() {
+      const tabList = document.querySelector('.tab-list');
+      
+      // Usa el contador global para el nuevo ID
+      const newTabId = `body-tab-${tabIdCounter++}`;
+      
+      // Crea una nueva pestaña
+      const newTab = document.createElement('div');
+      newTab.className = 'tab-list__item';
+      newTab.innerHTML = `
         <input type="radio" name="body-tab" id="${newTabId}">
         <label for="${newTabId}">
           <span>Nuevo</span>
@@ -320,140 +174,140 @@
         </label>
         <div class="tab-list__item--content" contenteditable="true"></div>
       `;
-        tabList.insertBefore(newTab, this);
+      tabList.insertBefore(newTab, this);
+      
+      // Configura eventos para la nueva pestaña
+      setupTabEditing();
+      setupTabContentEditing();
+      setupTabDeletion(); // Configura eliminación para la nueva pestaña
+      
+      // Inicializa el contenido de la nueva pestaña en localStorage
+      saveContent();
+    });
+  }
 
-        // Configura eventos para la nueva pestaña
-        setupTabEditing();
-        setupTabContentEditing();
-        setupTabDeletion(); // Configura eliminación para la nueva pestaña
+  // Actualiza los IDs de las pestañas existentes
+  function updateTabIds() {
+    document.querySelectorAll('.tab-list__item').forEach((item, index) => {
+      const input = item.querySelector('input');
+      const label = item.querySelector('label');
+      const newId = `body-tab-${index + 1}`;
+      input.id = newId;
+      label.setAttribute('for', newId);
+    });
+  }
 
-        // Inicializa el contenido de la nueva pestaña en localStorage
-        saveContent();
+  // Configura los botones de eliminación de pestañas
+  function setupTabDeletion() {
+    document.querySelectorAll('.delete-tab').forEach(button => {
+      button.addEventListener('click', function(event) {
+        event.stopPropagation();
+        const tabItem = this.closest('.tab-list__item');
+        tabItem.remove();
+        saveContent(); // Guarda el estado actualizado de las pestañas
       });
-    }
+    });
+  }
 
-    // Actualiza los IDs de las pestañas existentes
-    function updateTabIds() {
-      document.querySelectorAll('.tab-list__item').forEach((item, index) => {
-        const input = item.querySelector('input');
-        const label = item.querySelector('label');
-        const newId = `body-tab-${index + 1}`;
-        input.id = newId;
-        label.setAttribute('for', newId);
-      });
-    }
+  // Configuración del menú contextual
+  function initContextMenu() {
+    const contextMenu = document.getElementById('context-menu');
+    const contentEditableAreas = document.querySelectorAll('.tab-list__item--content');
+    let activeEditableElement = null;
+    let activeSelection = null;
 
-    // Configura los botones de eliminación de pestañas
-    function setupTabDeletion() {
-      document.querySelectorAll('.delete-tab').forEach(button => {
-        button.addEventListener('click', function (event) {
-          event.stopPropagation();
-          const tabItem = this.closest('.tab-list__item');
-          tabItem.remove();
-          saveContent(); // Guarda el estado actualizado de las pestañas
+    // Prevenir el menú contextual por defecto
+    document.addEventListener('contextmenu', (e) => {
+      e.preventDefault();
+    });
+
+    // Mostrar menú contextual
+    document.addEventListener('contextmenu', (e) => {
+      const target = e.target;
+      const isContentEditable = target.closest('.tab-list__item--content');
+      
+      if (isContentEditable) {
+        // Guardar el elemento editable activo
+        activeEditableElement = target.closest('.tab-list__item--content');
+        
+        // Verificar si hay selección
+        const selection = window.getSelection();
+        const hasSelection = selection.toString().length > 0;
+        
+        if (hasSelection) {
+          activeSelection = selection.getRangeAt(0).cloneRange();
+        }
+        
+        // Actualizar estado de los elementos del menú
+        contextMenu.querySelectorAll('.context-menu__item').forEach(item => {
+          if (item.dataset.requiresSelection === 'true') {
+            item.classList.toggle('disabled', !hasSelection);
+          }
         });
-      });
-    }
+        
+        contextMenu.style.display = 'block';
+        contextMenu.style.left = `${e.pageX}px`;
+        contextMenu.style.top = `${e.pageY}px`;
+      }
+    });
 
-    // Configuración del menú contextual
-    function initContextMenu() {
-      const contextMenu = document.getElementById('context-menu');
-      const contentEditableAreas = document.querySelectorAll('.tab-list__item--content');
-      let activeEditableElement = null;
-      let activeSelection = null;
+    // Ocultar menú contextual al hacer clic
+    document.addEventListener('click', () => {
+      contextMenu.style.display = 'none';
+    });
 
-      // Prevenir el menú contextual por defecto
-      document.addEventListener('contextmenu', (e) => {
-        e.preventDefault();
-      });
-
-      // Mostrar menú contextual
-      document.addEventListener('contextmenu', (e) => {
-        const target = e.target;
-        const isContentEditable = target.closest('.tab-list__item--content');
-
-        if (isContentEditable) {
-          // Guardar el elemento editable activo
-          activeEditableElement = target.closest('.tab-list__item--content');
-
-          // Verificar si hay selección
+    // Manejar acciones del menú contextual
+    contextMenu.addEventListener('click', (e) => {
+      const menuItem = e.target.closest('.context-menu__item');
+      if (menuItem && activeEditableElement && !menuItem.classList.contains('disabled')) {
+        const action = menuItem.dataset.action;
+        
+        // Asegurarse de que el elemento tenga el foco
+        activeEditableElement.focus();
+        
+        // Restaurar la selección si existe
+        if (activeSelection) {
           const selection = window.getSelection();
-          const hasSelection = selection.toString().length > 0;
-
-          if (hasSelection) {
-            activeSelection = selection.getRangeAt(0).cloneRange();
-          }
-
-          // Actualizar estado de los elementos del menú
-          contextMenu.querySelectorAll('.context-menu__item').forEach(item => {
-            if (item.dataset.requiresSelection === 'true') {
-              item.classList.toggle('disabled', !hasSelection);
-            }
-          });
-
-          contextMenu.style.display = 'block';
-          contextMenu.style.left = `${e.pageX}px`;
-          contextMenu.style.top = `${e.pageY}px`;
+          selection.removeAllRanges();
+          selection.addRange(activeSelection);
         }
-      });
-
-      // Ocultar menú contextual al hacer clic
-      document.addEventListener('click', () => {
+        
+        // Aplicar el formato o acción
+        switch (action) {
+          case 'copy':
+          case 'cut':
+            document.execCommand(action, false, null);
+            break;
+          case 'paste':
+            navigator.clipboard.readText().then(text => {
+              document.execCommand('insertText', false, text);
+            });
+            break;
+          case 'undo':
+          case 'redo':
+            document.execCommand(action, false, null);
+            break;
+          default:
+            document.execCommand(action, false, null);
+        }
+        
+        // Limpiar las variables
+        activeEditableElement = null;
+        activeSelection = null;
+        
         contextMenu.style.display = 'none';
-      });
+      }
+    });
+  }
 
-      // Manejar acciones del menú contextual
-      contextMenu.addEventListener('click', (e) => {
-        const menuItem = e.target.closest('.context-menu__item');
-        if (menuItem && activeEditableElement && !menuItem.classList.contains('disabled')) {
-          const action = menuItem.dataset.action;
+  // Inicializar el menú contextual cuando el DOM esté listo
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initContextMenu);
+  } else {
+    initContextMenu();
+  }
 
-          // Asegurarse de que el elemento tenga el foco
-          activeEditableElement.focus();
-
-          // Restaurar la selección si existe
-          if (activeSelection) {
-            const selection = window.getSelection();
-            selection.removeAllRanges();
-            selection.addRange(activeSelection);
-          }
-
-          // Aplicar el formato o acción
-          switch (action) {
-            case 'copy':
-            case 'cut':
-              document.execCommand(action, false, null);
-              break;
-            case 'paste':
-              navigator.clipboard.readText().then(text => {
-                document.execCommand('insertText', false, text);
-              });
-              break;
-            case 'undo':
-            case 'redo':
-              document.execCommand(action, false, null);
-              break;
-            default:
-              document.execCommand(action, false, null);
-          }
-
-          // Limpiar las variables
-          activeEditableElement = null;
-          activeSelection = null;
-
-          contextMenu.style.display = 'none';
-        }
-      });
-    }
-
-    // Inicializar el menú contextual cuando el DOM esté listo
-    if (document.readyState === 'loading') {
-      document.addEventListener('DOMContentLoaded', initContextMenu);
-    } else {
-      initContextMenu();
-    }
-
-    // Inicializa el script al cargar la página
-    window.onload = init;
-  });
+  // Inicializa el script al cargar la página
+  window.onload = init;
+});
 </script>
