@@ -3,162 +3,123 @@ import "../styles/components/InfoModals.scss";
 ---
 
 <section id="modals">
-    
-  <dialog id="info-notepad" class="info">
-    <div class="info-container">
-      <div class="info-row">
-        <div class="info-content">
-          <div class="info-content__header">
-            <h1>Bloc de Notas Online Gratuito</h1>
-            <p>
-              Este es un bloc de notas gratuito, sencillo y básico, que puedes
-              usar directamente en tu navegador. Todos los cambios se guardan
-              en el almacenamiento local del navegador, pero ten en cuenta que
-              al recargar sin caché, se perderá la información. Haz un
-              respaldo de tus notas antes de recargar.
-            </p>
+  <dialog id="info-notepad" class="settings-modal">
+    <div class="settings-container">
+      <!-- Sidebar izquierdo -->
+      <div class="settings-sidebar">
+        <div class="user-section">
+          <h2>iNotePad</h2>
+          <span class="version">v1.0</span>
+        </div>
+
+        <nav class="settings-nav">
+          <button class="nav-item active" data-tab="about">
+            <span class="icon">📄</span>
+            Acerca de
+          </button>
+          <button class="nav-item" data-tab="license">
+            <span class="icon">📄</span>
+            Licencia
+          </button>
+          <button class="nav-item" data-tab="terms">
+            <span class="icon">📋</span>
+            Términos de uso
+          </button>
+        </nav>
+
+        <form method="dialog" class="sidebar-footer">
+          <button class="save-button">Aceptar</button>
+        </form>
+      </div>
+
+      <!-- Contenido principal -->
+      <div class="settings-content">
+        <!-- Pestaña Acerca de -->
+        <div class="settings-tab active" id="about-tab">
+          <div class="settings-header">
+            <h3>Acerca de</h3>
           </div>
-          <div class="info-content__main">
-            <h4>Funcionalidades</h4>
+          <div class="settings-body">
+            <!-- Contenido de la licencia existente -->
+            <h4>Este es un bloc de notas gratuito, sencillo y básico, que puedes usar directamente en tu navegador. Todos los cambios se guardan en el almacenamiento local del navegador, pero ten en cuenta que al recargar sin caché, se perderá la información. Haz un respaldo de tus notas antes de borrar el cache.</h4><br>
+            <h6 >Funcionalidades</h6><br>
             <ol>
-              <li>Menu Contextual</li>
-              <li>
-                Guardado Automático: Los cambios se guardan en el Local
-                Storage.
-              </li>
-              <li>
-                Gestión de Pestañas
-                <ul>
-                  <li>Editar nombre de pestañas</li>
-                  <li>Crear nuevas pestañas</li>
-                  <li>Eliminar pestañas existentes</li>
-                </ul>
-              </li>
+              <li>Menu contextual para copiar, cortar, pegar y eliminar texto.</li>
+              <li>Guardado automático de las notas en el almacenamiento local del navegador.</li>
+              <li>Gestion de pestañas, cambio de nombre, cerrar pestañas.</li>
             </ol>
+            <!-- ... resto del contenido de la licencia ... -->
           </div>
-          <div class="info-content__footer">
-            <div
-              class="info-content__footer--left info-content__footer--column"
-            >
-              <a
-                href="#"
-                onclick="event.preventDefault(); document.querySelector('dialog#info-license').showModal();"
-                >Licencia</a
-              >
-            </div>
-            <div
-              class="info-content__footer--center info-content__footer--column"
-            >
-              <a
-                href="#"
-                onclick="event.preventDefault(); document.querySelector('dialog#info-terms').showModal();"
-                >Terminos de Uso</a
-              >
-            </div>
-            <div
-              class="info-content__footer--right info-content__footer--column"
-            >
-              <form method="dialog">
-                <button>Cerrar</button>
-              </form>
-            </div>
+        </div>
+
+        <!-- Pestaña Licencia -->
+        <div class="settings-tab" id="license-tab">
+          <div class="settings-header">
+            <h3>Licencia</h3>
+          </div>
+          <div class="settings-body">
+            <!-- Contenido de la licencia existente -->
+            <h4><u>Licencia GNU Affero General Public License (AGPL) v3.0</u></h4><br>
+            <p>Este software está licenciado bajo la GNU Affero General Public License (AGPL) v3.0. La licencia AGPL v3.0 garantiza a los usuarios la libertad de usar, estudiar, modificar y distribuir el software, bajo las siguientes condiciones:</p><br>
+            <p><strong>Libre Uso:</strong> El software puede ser utilizado para cualquier propósito, sin restricciones.</p><br>
+            <p><strong>Modificación:</strong> Los usuarios pueden modificar el software y distribuir las versiones modificadas.</p><br>
+            <p><strong>Distribución:</strong> Cualquier copia del software, ya sea en su forma original o modificada, debe incluir la misma licencia AGPL v3.0.</p><br>
+            <strong>Cláusula Adicional: Restricción de Uso Comercial</strong><br>
+            <p>Los usuarios no pueden utilizar el software para fines comerciales, excepto si han obtenido autorización previa por escrito del desarrollador.</p><br>
+            <p><strong>Uso Comercial Restringido:</strong> Se prohíbe la comercialización directa o indirecta de este software, incluyendo pero no limitado a la venta, arrendamiento, sublicenciamiento, o cualquier otro uso con fines comerciales, sin el consentimiento expreso y por escrito del titular original de los derechos de autor. Esta restricción no afecta los derechos de los usuarios a modificar, mejorar o redistribuir el software siempre que dichas actividades no impliquen un uso comercial.</p><br>  
+            <p>Para obtener permisos específicos relacionados con el uso comercial, por favor contacta al titular de los derechos de autor.</p><br>
+            <!-- ... resto del contenido de la licencia ... -->
+          </div>
+        </div>
+
+        <!-- Pestaña Términos -->
+        <div class="settings-tab" id="terms-tab">
+          <div class="settings-header">
+            <h3>Términos de Uso</h3>
+            <h6>Términos y Advertencias para el Uso del Bloc de Notas</h6>
+          </div>
+          <div class="settings-body">
+            <!-- Contenido de los términos existente -->
+            <h4><u>Límite de Almacenamiento</u></h4><br>
+            <p>Este Bloc de Notas utiliza el LocalStorage de tu navegador para guardar la información. Aunque el límite de almacenamiento es de 5 MB, te recomiendo no almacenar grandes volúmenes de texto. Ten en cuenta que el almacenamiento en el navegador es limitado y puede verse afectado si guardas grandes cantidades de información. Si alcanzas el límite, podrías perder datos, por lo que sugerimos realizar copias de seguridad regularmente.</p><br>
+            <h4><u>Seguridad de la Información</u></h4><br>
+            <p>La información que guardas en este Bloc de Notas no está encriptada y se almacena en el LocalStorage de tu navegador, lo cual no garantiza su seguridad. Te recomiendo no guardar información sensible o privada en esta herramienta, ya que podría ser vulnerable a accesos no autorizados si otros usuarios tienen acceso a tu dispositivo o navegador.</p><br>
+            <h4><u>Precaución con la URL</u></h4><br>
+            <p>Asegúrate de que estás utilizando una URL confiable y segura al acceder al Bloc de Notas. Evita acceder desde enlaces sospechosos o en redes públicas no seguras, ya que podrías exponerte a ataques de suplantación de identidad (phishing) o robo de datos. Te recordamos que el equipo de desarrollo no se responsabiliza por la pérdida de datos debido a usos inapropiados de la herramienta o acceso no seguro.</p>
+            <!-- ... resto del contenido de los términos ... -->
           </div>
         </div>
       </div>
     </div>
   </dialog>
-
-  <dialog id="info-license" class="info">
-    <form method="dialog">
-      <button>X</button>
-    </form>
-    <h3>Licencia GNU Affero General Public License (AGPL) v3.0</h3>
-    <p>
-      Este software está licenciado bajo la GNU Affero General Public License
-      (AGPL) v3.0. La licencia AGPL v3.0 garantiza a los usuarios la libertad
-      de usar, estudiar, modificar y distribuir el software, bajo las
-      siguientes condiciones:
-    </p>
-    <ol>
-      <li>
-        <p>
-          <strong>Libre Uso:</strong> El software puede ser utilizado para cualquier
-          propósito, sin restricciones.
-        </p>
-      </li>
-      <li>
-        <p>
-          <strong>Modificación:</strong> Los usuarios pueden modificar el software
-          y distribuir las versiones modificadas.
-        </p>
-      </li>
-      <li>
-        <p>
-          <strong>Distribución:</strong> Cualquier copia del software, ya sea en
-          su forma original o modificada, debe incluir la misma licencia AGPL v3.0.
-        </p>
-      </li>
-    </ol>
-    <h4>Cláusula Adicional: Restricción de Uso Comercial</h4>
-    <p>
-      Este software está licenciado bajo la GNU Affero General Public License
-      (AGPL) v3.0. Sin embargo, se incluye la siguiente cláusula adicional:
-    </p>
-    <p>
-      <strong>Uso Comercial Restringido:</strong>Se prohíbe la
-      comercialización directa o indirecta de este software, incluyendo pero
-      no limitado a la venta, arrendamiento, sublicenciamiento, o cualquier
-      otro uso con fines comerciales, sin el consentimiento expreso y por
-      escrito del titular original de los derechos de autor. Esta restricción
-      no afecta los derechos de los usuarios a modificar, mejorar o
-      redistribuir el software siempre que dichas actividades no impliquen un
-      uso comercial.
-    </p>
-    <p>
-      Para obtener permisos específicos relacionados con el uso comercial, por
-      favor contacta al titular de los derechos de autor.
-    </p>
-  </dialog>
-
-  <dialog id="info-terms" class="info">
-    <form method="dialog">
-      <button>X</button>
-    </form>
-    <h3>Términos y Advertencias para el Uso del Bloc de Notas</h3>
-    <ol>
-      <li>
-        <p>
-          <strong>Límite de Almacenamiento <br /><br /></strong> Este Bloc de Notas
-          utiliza el LocalStorage de tu navegador para guardar la información.
-          Aunque el límite de almacenamiento es de 5 MB, te recomiendo no almacenar
-          grandes volúmenes de texto. Ten en cuenta que el almacenamiento en el
-          navegador es limitado y puede verse afectado si guardas grandes cantidades
-          de información. Si alcanzas el límite, podrías perder datos, por lo que
-          sugerimos realizar copias de seguridad regularmente.
-        </p>
-      </li>
-      <li>
-        <p>
-          <strong>Seguridad de la Información <br /><br /></strong> La información
-          que guardas en este Bloc de Notas no está encriptada y se almacena en
-          el LocalStorage de tu navegador, lo cual no garantiza su seguridad. Te
-          recomiendo no guardar información sensible o privada en esta herramienta,
-          ya que podría ser vulnerable a accesos no autorizados si otros usuarios
-          tienen acceso a tu dispositivo o navegador.
-        </p>
-      </li>
-      <li>
-        <p>
-          <strong>Precaución con la URL <br /><br /></strong> Asegúrate de que
-          estás utilizando una URL confiable y segura al acceder al Bloc de Notas.
-          Evita acceder desde enlaces sospechosos o en redes públicas no seguras,
-          ya que podrías exponerte a ataques de suplantación de identidad (phishing)
-          o robo de datos. Te recordamos que el equipo de desarrollo no se responsabiliza
-          por la pérdida de datos debido a usos inapropiados de la herramienta
-          o acceso no seguro.
-        </p>
-      </li>
-    </ol>
-  </dialog>
-  
 </section>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const modal = document.getElementById('info-notepad');
+    const navItems = modal.querySelectorAll('.nav-item');
+    const tabs = modal.querySelectorAll('.settings-tab');
+
+    // Función para cambiar pestañas
+    function switchTab(tabId) {
+      navItems.forEach(item => item.classList.remove('active'));
+      tabs.forEach(tab => tab.classList.remove('active'));
+
+      const selectedTab = modal.querySelector(`#${tabId}-tab`);
+      const selectedNav = modal.querySelector(`[data-tab="${tabId}"]`);
+      
+      if (selectedTab && selectedNav) {
+        selectedTab.classList.add('active');
+        selectedNav.classList.add('active');
+      }
+    }
+
+    // Manejador de clics en la navegación
+    navItems.forEach(item => {
+      item.addEventListener('click', () => {
+        const tabId = item.dataset.tab;
+        switchTab(tabId);
+      });
+    });
+  });
+</script>
