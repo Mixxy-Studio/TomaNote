@@ -1,17 +1,33 @@
+// Variables SCSS
+$color-background:             #ffffff;
+$color-secondary-background:   #f0f0f0;
+$color-primary:                #333333;
+$color-secondary:              #e0e0e0;
+$color-button-background:      #e0e0e0;
+$color-button-delete:          #dc3545;
+$color-button-edit:            #4285F4;
+$color-button-hover:           #d0d0d0;
+$color-scrollbar-thumb:        #b0b0b0;
+$color-scrollbar-track:        #e0e0e0;
+$color-scrollbar-hover:        #a0a0a0;
+$sb-track-color:               #e0e0e0;
+$sb-thumb-color:               #b0b0b0;
 
+// Variables Root
 :root.light-mode {
-  --color-background: #ffffff;
-  --color-secondary-background: #f0f0f0;
-  --color-primary: #333333;
-  --color-secondary: #e0e0e0;
-  --color-button-background: #e0e0e0;
-  --color-button-delete: #dc3545;
-  --color-button-hover: #d0d0d0;
-  --color-scrollbar-thumb: #b0b0b0;
-  --color-scrollbar-track: #e0e0e0;
-  --color-scrollbar-hover: #a0a0a0;
-  --sb-track-color: #e0e0e0;
-  --sb-thumb-color: #b0b0b0;
+  --color-background:             #ffffff;
+  --color-secondary-background:   #f0f0f0;
+  --color-primary:                #333333;
+  --color-secondary:              #e0e0e0;
+  --color-button-background:      #e0e0e0;
+  --color-button-delete:          #dc3545;
+  --color-button-edit:            #4285F4;
+  --color-button-hover:           #d0d0d0;
+  --color-scrollbar-thumb:        #b0b0b0;
+  --color-scrollbar-track:        #e0e0e0;
+  --color-scrollbar-hover:        #a0a0a0;
+  --sb-track-color:               #e0e0e0;
+  --sb-thumb-color:               #b0b0b0;
 }
 :root {
   --font-size-base: 1rem;
@@ -36,6 +52,7 @@
     --color-primary: #fff;
     --color-secondary: #2d2d2d;
     --color-button-background: #3a3939;
+    --color-button-edit: #4285F4;
     --color-button-delete: #dc3545;
     --color-button-hover: #494949;
     --color-scrollbar-thumb: #888;

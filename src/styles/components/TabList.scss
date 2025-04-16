@@ -95,7 +95,7 @@
 
     label {
       background-color: var(--color-background);
-      width: 150px;
+      width: 200px;
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -105,7 +105,7 @@
       cursor: pointer;
 
       &:hover button {
-        display: block;
+        display: flex;
       }
 
       span {
@@ -117,32 +117,38 @@
       }
 
       button {
-        background-color: var(--color-button-background);
-        border-radius: 50%;
-        box-shadow: var(--box-shadow-none);
-        outline: 0;
-        border: 0;
-        transition: ease 0.3s all;
+        border: none;
+        outline: none;
+        width: 20px;
+        height: 20px;
+        justify-content: center;
+        align-items: center;
         display: none;
-        cursor: pointer;
-        padding: 8px 1px;
-        margin: 0;
-        height: 0;
-        line-height: 1px;
-        transform: rotate(-45deg);
-        color: var(--color-primary);
+        border-radius: 50%;
 
-        &.delete-tab {
-          background-color: transparent;
-          padding: 8px 5px;
-          margin: 0 5px;
-          transform: rotate(0deg);
-
-          &:hover {
-            background-color: var(--color-button-delete) !important;
-          }
+        svg {
+          width: 50%;
+          height: 50%;
         }
       }
+
+      .edit-name-tab,
+      .delete-tab {
+        &:hover {
+          background-color: rgba(224, 224, 224, .5);
+        }
+      }
+
+      .edit-name-tab:active,
+      .edit-name-tab:focus {
+        background-color: var(--color-button-edit);
+      }
+
+      .delete-tab:active,
+      .delete-tab:focus {
+        background-color: var(--color-button-delete);
+      }
+
     }
 
     input {
