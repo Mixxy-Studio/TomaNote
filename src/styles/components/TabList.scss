@@ -40,6 +40,47 @@
     flex-wrap: wrap;
     height: auto;
     margin-left: 10px;
+    &:not(.tab-list__item.pinned) label { 
+      position: relative;
+      &::before {
+        content: "";
+        position: absolute;
+        top: 50%;
+        left: -10px;
+        transform: translateY(-50%);
+        height: 70%;
+        border-right: 1px solid var(--color-button-background);
+      }
+    }
+
+    &.pinned { 
+      border: 1px solid var(--color-button-background);
+      border-radius: 5px;
+      label  {
+        border-radius: 5px;
+        width: 40px; 
+        overflow: hidden;
+        transition: ease-in-out .3s all;
+        padding: 7px 5px 5px 10px;
+        &:hover { background-color: var(--color-button-hover); }
+        button {
+          display: none !important;
+        }
+        span { 
+          position: relative;
+          color: transparent;
+          z-index: 1;
+          &::before {
+            content: attr(data-emoji);
+            position: absolute;
+            top: 50%;
+            left: 10px;
+            transform: translate(-50%, -50%);
+            color: white;
+          } 
+        }
+      }
+    }
 
     &:first-child {
       margin-left: 0;
@@ -114,6 +155,7 @@
         white-space: nowrap;
         width: 80%;
         overflow: hidden;
+        z-index: 2 !important;
       }
 
       button {

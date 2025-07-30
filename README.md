@@ -2,7 +2,7 @@
 
 <div align="center">
 
-![Version](https://img.shields.io/badge/version-0.0.5-blue.svg)
+![Version](https://img.shields.io/badge/version-0.1.0-blue.svg)
 ![License](https://img.shields.io/badge/license-AGPL%20v3-green.svg)
 ![Status](https://img.shields.io/badge/status-active-success.svg)
 ![Mobile](https://img.shields.io/badge/mobile-responsive-success)
@@ -22,6 +22,13 @@ TomaNote es un bloc de notas moderno y minimalista que funciona directamente en 
 - 📱 **Diseño Responsivo**: Optimizado para todos los dispositivos (desktop, tablet, móvil)
 - 💾 **Guardado Automático**: Tus notas se guardan automáticamente en el almacenamiento local
 - 🔄 **Sistema de Pestañas**: Organiza tus notas en múltiples pestañas
+- 📌 **Fijar Pestañas**: Puedes fijar pestañas importantes para destacarlas
+- 🧠 **Emojis Personalizados**: Usa un emoji en el nombre de la pestaña y se mostrará como favicon personalizado
+- 🎨 **Mejoras Visuales**:
+  - Hover en pestañas inactivas
+  - Bordes diferenciados
+  - Nuevas proporciones y tipografía más delicada
+  - Íconos más pequeños y sutiles para editar/cerrar
 - 🎨 **Formato de Texto**:
   - Negrita (`Ctrl + B`)
   - Cursiva (`Ctrl + I`)
@@ -30,17 +37,30 @@ TomaNote es un bloc de notas moderno y minimalista que funciona directamente en 
   - Renombrar pestañas
   - Crear nuevas pestañas
   - Eliminar pestañas existentes
+  - Fijar/Desfijar Pestañas
+  - Cerrar pestaña con MB3 (Mouse Button 3)
 - 🖱️ **Menú Contextual**: Acceso rápido a funciones comunes
+
+## ✅ Novedades en la versión 0.1.0
+- 📌 Fijar y desfijar pestañas con clic derecho (menú contextual).
+- 🎯 Las pestañas fijadas se mueven automáticamente:
+  - Si se fijan: se colocan justo después de la última pestaña ya fijada.
+  - Si se desfijan: se mueven al inicio de las pestañas normales.
+- 🖱️ Cerrar pestañas con botón central del mouse (MB3), incluso si están fijadas.
+- ✨ Al crear una pestaña nueva, el usuario es llevado automáticamente a ella.
+- 🧽 Se eliminan los separadores innecesarios del menú contextual según el tipo de clic (editor vs pestaña).
+- 📌 Las pestañas fijadas:
+  - Se identifican por su tamaño reducido (45px).
+  - Ocultan los botones de editar/cerrar.
+  - Pueden usar un emoji personalizado como favicon o uno por defecto (📝).
 
 ### 🚀 Próximas Funcionalidades
 
 - [ ] Soporte para Markdown
-- [ ] Fijado de pestañas importantes
 - [ ] Diagramas con MermaidJS
 - [ ] Temas personalizables
 - [ ] Exportación de notas
 - [ ] Sincronización en la nube
-- [ ] Cerrado de pestañas con ButtonMouse3
 
 ## 🛠️ Tecnologías Utilizadas
 
@@ -69,7 +89,7 @@ npm run dev
 ## ⚠️ Importante
 
 - Los datos se almacenan en el LocalStorage del navegador
-- Realiza copias de seguridad de tus notas importantes antes de ahcer borrado de cache
+- Realiza copias de seguridad de tus notas importantes antes de hacer borrado de cache
 - Al limpiar el caché del navegador, se perderán los datos
 
 ## 🔒 Seguridad
@@ -77,6 +97,11 @@ npm run dev
 - No almacenes información sensible
 - Los datos se guardan localmente en tu dispositivo
 - No hay transmisión de datos a servidores externos
+
+## ⭐ ¿Te gusta el proyecto?
+Si estás usando este bloc de notas y te parece útil, agrégale una estrellita en el repositorio de GitHub.
+No es obligatorio, ¡pero a mí me ayuda un montón y a ti no te toma más de 30 segunditos!
+👉 https://github.com/camiicode/notepad
 
 ## 📄 Licencia
 
@@ -95,9 +120,16 @@ Este proyecto está bajo la licencia GNU Affero General Public License v3.0 (AGP
 - 🔧 Enviando pull requests
 - ⭐ Dando una estrella al proyecto
 
-## 📬 Contacto
+## 📬 Contacto y Redes
 
 - GitHub: [@camiicode](https://github.com/camiicode)
+- Codepen: [@camiicode](https://codepen.io/camiicode)
+- Instagram: [@camiicode](https://www.instagram.com/camiicoode/)
+- Facebook: [@camiicode](https://www.facebook.com/camiicode)
+- Behance: [@camiicode](https://www.behance.net/camiicode)
+- Portafolio: [Portfolio](https://camiicode.github.io/portfolio/)
+- Youtube: [@camiicode](https://www.youtube.com/@camiicode)
+- Twitch: [@camiicode](https://www.twitch.tv/c4mii_c)
 - Email: [dftp93@gmail.com](mailto:dftp93@gmail.com)
 
 ## ☕ Apóyame
