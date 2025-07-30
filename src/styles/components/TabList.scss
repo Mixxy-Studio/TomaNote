@@ -41,6 +41,29 @@
     height: auto;
     margin-left: 10px;
 
+    &.pinned { 
+      label  {
+        width: 40px; 
+        overflow: hidden;
+        button {
+          display: none !important;
+        }
+        span { 
+          position: relative;
+          color: transparent;
+          z-index: 1;
+          &::before {
+            content: attr(data-emoji);
+            position: absolute;
+            top: 50%;
+            left: 10px;
+            transform: translate(-50%, -50%);
+            color: white;
+          } 
+        }
+      }
+    }
+
     &:first-child {
       margin-left: 0;
     }
@@ -114,6 +137,7 @@
         white-space: nowrap;
         width: 80%;
         overflow: hidden;
+        z-index: 2 !important;
       }
 
       button {

@@ -25,6 +25,38 @@ import ContextualMenu from "../components/ContextualMenu.astro";
 
 </Layout>
 
+<style>
+/* Estilos para pestañas fijadas del aplicativo */
+.tab-list__item.pinned label {
+  width: 35px;
+  min-width: 35px;
+  max-width: 35px;
+  padding: 6px;
+}
+
+.tab-list__item.pinned label span {
+  display: none;
+}
+
+.tab-list__item.pinned label::before {
+  content: attr(data-emoji);
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+}
+
+.tab-list__item.pinned .edit-name-tab {
+  display: none !important;
+}
+
+.tab-list__item.pinned .delete-tab {
+  display: none !important;
+}
+</style>
+
 <script is:inline>
 document.addEventListener('DOMContentLoaded', () => {
   const darkModeToggle = document.getElementById('dark-mode-toggle');
@@ -65,13 +97,20 @@ document.addEventListener('DOMContentLoaded', () => {
     // Clear existing tabs
     tabList.querySelectorAll('.tab-list__item').forEach(item => item.remove());
 
-    tabsData.forEach(({ id, content, name }) => {
+    tabsData.forEach(({ id, content, name, isPinned, emoji }) => {
       const newTab = document.createElement('div');
       newTab.className = 'tab-list__item';
+      if (isPinned) {
+        newTab.classList.add('pinned');
+      }
+      
+      const labelDataEmoji = emoji ? 'data-emoji="' + emoji + '"' : '';
+      const spanDataEmoji = emoji ? 'data-emoji="' + emoji + '"' : '';
+      
       newTab.innerHTML = `
         <input type="radio" name="body-tab" id="${id}">
-        <label for="${id}">
-          <span>${name || 'Nuevo'}</span>
+        <label for="${id}" ${labelDataEmoji}>
+          <span ${spanDataEmoji}>${name || 'Nuevo'}</span>
           <button class="edit-name-tab">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-6">
               <path d="M21.731 2.269a2.625 2.625 0 0 0-3.712 0l-1.157 1.157 3.712 3.712 1.157-1.157a2.625 2.625 0 0 0 0-3.712ZM19.513 8.199l-3.712-3.712-8.4 8.4a5.25 5.25 0 0 0-1.32 2.214l-.8 2.685a.75.75 0 0 0 .933.933l2.685-.8a5.25 5.25 0 0 0 2.214-1.32l8.4-8.4Z" />
@@ -126,7 +165,9 @@ document.addEventListener('DOMContentLoaded', () => {
       const content = item.querySelector('.tab-list__item--content').innerHTML;
       const id = item.querySelector('input').id;
       const name = item.querySelector('label span').innerText;
-      tabsData.push({ id, content, name });
+      const isPinned = item.classList.contains('pinned');
+      const emoji = item.querySelector('label span').dataset.emoji || null;
+      tabsData.push({ id, content, name, isPinned, emoji });
     });
 
     localStorage.setItem('tabsData', JSON.stringify(tabsData));
@@ -254,6 +295,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const contentEditableAreas = document.querySelectorAll('.tab-list__item--content');
     let activeEditableElement = null;
     let activeSelection = null;
+    let activeTabElement = null;
 
     // Prevenir el menú contextual por defecto
     document.addEventListener('contextmenu', (e) => {
@@ -264,6 +306,8 @@ document.addEventListener('DOMContentLoaded', () => {
     document.addEventListener('contextmenu', (e) => {
       const target = e.target;
       const isContentEditable = target.closest('.tab-list__item--content');
+      
+      const isTabLabel = target.closest('.tab-list__item label');
       
       if (isContentEditable) {
         // Guardar el elemento editable activo
@@ -287,6 +331,29 @@ document.addEventListener('DOMContentLoaded', () => {
         contextMenu.style.display = 'block';
         contextMenu.style.left = `${e.pageX}px`;
         contextMenu.style.top = `${e.pageY}px`;
+      } else if (isTabLabel) {
+        // Contexto de pestaña
+        activeTabElement = target.closest('.tab-list__item');
+        activeEditableElement = null;
+        activeSelection = null;
+        
+        // Verificar si la pestaña está fijada
+        const isPinned = activeTabElement.classList.contains('pinned');
+        const pinTabText = document.getElementById('pin-tab-text');
+        pinTabText.textContent = isPinned ? 'Desfijar' : 'Fijar';
+        
+        // Mostrar solo opciones de pestaña
+        contextMenu.querySelectorAll('.context-menu__item').forEach(item => {
+          if (item.dataset.context === 'tab') {
+            item.style.display = 'block';
+          } else {
+            item.style.display = 'none';
+          }
+        });
+        
+        contextMenu.style.display = 'block';
+        contextMenu.style.left = `${e.pageX}px`;
+        contextMenu.style.top = `${e.pageY}px`;
       }
     });
 
@@ -298,45 +365,100 @@ document.addEventListener('DOMContentLoaded', () => {
     // Manejar acciones del menú contextual
     contextMenu.addEventListener('click', (e) => {
       const menuItem = e.target.closest('.context-menu__item');
-      if (menuItem && activeEditableElement && !menuItem.classList.contains('disabled')) {
+      if (menuItem && !menuItem.classList.contains('disabled')) {
         const action = menuItem.dataset.action;
         
-        // Asegurarse de que el elemento tenga el foco
-        activeEditableElement.focus();
-        
-        // Restaurar la selección si existe
-        if (activeSelection) {
-          const selection = window.getSelection();
-          selection.removeAllRanges();
-          selection.addRange(activeSelection);
-        }
-        
-        // Aplicar el formato o acción
-        switch (action) {
-          case 'copy':
-          case 'cut':
-            document.execCommand(action, false, null);
-            break;
-          case 'paste':
-            navigator.clipboard.readText().then(text => {
-              document.execCommand('insertText', false, text);
-            });
-            break;
-          case 'undo':
-          case 'redo':
-            document.execCommand(action, false, null);
-            break;
-          default:
-            document.execCommand(action, false, null);
+        if (action === 'pin-tab' && activeTabElement) {
+          handlePinTab(activeTabElement);
+        } else if (activeEditableElement) {
+          // Asegurarse de que el elemento tenga el foco
+          activeEditableElement.focus();
+          
+          // Restaurar la selección si existe
+          if (activeSelection) {
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(activeSelection);
+          }
+          
+          // Aplicar el formato o acción
+          switch (action) {
+            case 'copy':
+            case 'cut':
+              document.execCommand(action, false, null);
+              break;
+            case 'paste':
+              navigator.clipboard.readText().then(text => {
+                document.execCommand('insertText', false, text);
+              });
+              break;
+            case 'undo':
+            case 'redo':
+              document.execCommand(action, false, null);
+              break;
+            default:
+              document.execCommand(action, false, null);
+          }
         }
         
         // Limpiar las variables
         activeEditableElement = null;
         activeSelection = null;
+        activeTabElement = null;
         
         contextMenu.style.display = 'none';
       }
     });
+  }
+
+  // Función para detectar emoticonos en texto
+  function detectEmojiInText(text) {
+    const emojiRegex = /[\u{1F600}-\u{1F64F}]|[\u{1F300}-\u{1F5FF}]|[\u{1F680}-\u{1F6FF}]|[\u{1F1E0}-\u{1F1FF}]|[\u{2600}-\u{26FF}]|[\u{2700}-\u{27BF}]/gu;
+    const matches = text.match(emojiRegex);
+    return matches ? matches[0] : null;
+  }
+
+  // Función para manejar el fijar/desfijar pestañas
+  function handlePinTab(tabElement) {
+    const isPinned = tabElement.classList.contains('pinned');
+    
+    if (isPinned) {
+      unfixTab(tabElement);
+    } else {
+      // Verificar si hay emoticono en el texto del nombre
+      const labelSpan = tabElement.querySelector('label span');
+      const tabName = labelSpan.textContent.trim();
+      const emojiInText = detectEmojiInText(tabName);
+      
+      if (emojiInText) {
+        pinTab(tabElement, emojiInText);
+      } else {
+        // Por ahora usar un emoticono por defecto
+        pinTab(tabElement, '📝');
+      }
+    }
+  }
+
+  // Función para fijar una pestaña
+  function pinTab(tabElement, emoji) {
+    tabElement.classList.add('pinned');
+    const label = tabElement.querySelector('label');
+    const labelSpan = tabElement.querySelector('label span');
+    label.setAttribute('data-emoji', emoji);
+    labelSpan.dataset.emoji = emoji;
+    
+    saveContent();
+  }
+
+  // Función para desfijar una pestaña
+  function unfixTab(tabElement) {
+    tabElement.classList.remove('pinned');
+    const label = tabElement.querySelector('label');
+    const labelSpan = tabElement.querySelector('label span');
+    label.removeAttribute('data-emoji');
+    delete labelSpan.dataset.emoji;
+    
+    saveContent();
   }
 
   // Inicializar el menú contextual cuando el DOM esté listo
