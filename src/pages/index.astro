@@ -321,11 +321,21 @@ document.addEventListener('DOMContentLoaded', () => {
           activeSelection = selection.getRangeAt(0).cloneRange();
         }
         
-        // Actualizar estado de los elementos del menú
+        // Mostrar solo opciones de texto
         contextMenu.querySelectorAll('.context-menu__item').forEach(item => {
           if (item.dataset.requiresSelection === 'true') {
             item.classList.toggle('disabled', !hasSelection);
           }
+          if (item.dataset.context === 'tab') {
+            item.style.display = 'none';
+          } else {
+            item.style.display = 'block';
+          }
+        });
+        
+        // Mostrar separadores en contexto de texto
+        contextMenu.querySelectorAll('.context-menu__separator').forEach(separator => {
+          separator.style.display = 'block';
         });
         
         contextMenu.style.display = 'block';
@@ -349,6 +359,11 @@ document.addEventListener('DOMContentLoaded', () => {
           } else {
             item.style.display = 'none';
           }
+        });
+        
+        // Ocultar separadores también
+        contextMenu.querySelectorAll('.context-menu__separator').forEach(separator => {
+          separator.style.display = 'none';
         });
         
         contextMenu.style.display = 'block';
@@ -409,6 +424,19 @@ document.addEventListener('DOMContentLoaded', () => {
         contextMenu.style.display = 'none';
       }
     });
+    
+    // Manejar clic del botón medio para cerrar pestañas
+    document.addEventListener('auxclick', (e) => {
+      if (e.button === 1) { // Botón medio del ratón
+        const isTabLabel = e.target.closest('.tab-list__item label');
+        if (isTabLabel) {
+          e.preventDefault();
+          const tabElement = e.target.closest('.tab-list__item');
+          tabElement.remove();
+          saveContent();
+        }
+      }
+    });
   }
 
   // Función para detectar emoticonos en texto
@@ -447,6 +475,8 @@ document.addEventListener('DOMContentLoaded', () => {
     label.setAttribute('data-emoji', emoji);
     labelSpan.dataset.emoji = emoji;
     
+    // Reorganizar pestañas: fijadas a la izquierda
+    reorderTabs();
     saveContent();
   }
 
@@ -458,7 +488,32 @@ document.addEventListener('DOMContentLoaded', () => {
     label.removeAttribute('data-emoji');
     delete labelSpan.dataset.emoji;
     
+    // Reorganizar pestañas: desfijadas a la derecha
+    reorderTabs();
     saveContent();
+  }
+
+  // Función para reorganizar pestañas: fijadas a la izquierda, normales a la derecha
+  function reorderTabs() {
+    const tabList = document.querySelector('.tab-list');
+    const createTabButton = document.getElementById('create-tab');
+    const allTabs = Array.from(tabList.querySelectorAll('.tab-list__item'));
+    
+    // Separar pestañas fijadas y normales
+    const pinnedTabs = allTabs.filter(tab => tab.classList.contains('pinned'));
+    const normalTabs = allTabs.filter(tab => !tab.classList.contains('pinned'));
+    
+    // Remover todas las pestañas del DOM
+    allTabs.forEach(tab => tab.remove());
+    
+    // Reinsertar en orden: primero las fijadas, luego las normales
+    pinnedTabs.forEach(tab => {
+      tabList.insertBefore(tab, createTabButton);
+    });
+    
+    normalTabs.forEach(tab => {
+      tabList.insertBefore(tab, createTabButton);
+    });
   }
 
   // Inicializar el menú contextual cuando el DOM esté listo
