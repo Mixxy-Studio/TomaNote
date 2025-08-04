@@ -275,13 +275,10 @@ document.addEventListener('DOMContentLoaded', () => {
     let activeSelection = null;
     let activeTabElement = null;
 
-    // Prevenir el menú contextual por defecto
-    document.addEventListener('contextmenu', (e) => {
-      e.preventDefault();
-    });
-
     // Mostrar menú contextual
     document.addEventListener('contextmenu', (e) => {
+      e.preventDefault();
+
       const target = e.target;
       const isContentEditable = target.closest('.tab-list__item--content');
       
