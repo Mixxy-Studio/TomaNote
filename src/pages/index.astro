@@ -25,61 +25,6 @@ import ContextualMenu from "../components/ContextualMenu.astro";
 
 </Layout>
 
-<style>
-/* Estilos para pestañas fijadas del aplicativo */
-.tab-list__item.pinned label {
-  width: 35px;
-  min-width: 35px;
-  max-width: 35px;
-  padding: 6px;
-}
-
-.tab-list__item.pinned label span {
-  display: none;
-}
-
-.tab-list__item.pinned label::before {
-  content: attr(data-emoji);
-  font-size: 16px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  height: 100%;
-}
-
-.tab-list__item.pinned .edit-name-tab {
-  display: none !important;
-}
-
-.tab-list__item.pinned .delete-tab {
-  display: none !important;
-}
-
-/* Estilos para pestañas desfijadas (normales) */
-.tab-list__item:not(.pinned) label {
-  border-right: 1px solid var(--border-color);
-  transition: background-color 0.2s ease, opacity 0.2s ease;
-}
-
-/* Quitar border de la última pestaña desfijada */
-.tab-list__item:not(.pinned):last-of-type label {
-  border-right: none;
-}
-
-/* Hover para pestañas no activas */
-.tab-list__item:not(.pinned) input[type="radio"]:not(:checked) + label:hover {
-  background-color: var(--bg-secondary);
-  opacity: 0.8;
-}
-
-/* Asegurar que la pestaña activa no tenga el hover */
-.tab-list__item:not(.pinned) input[type="radio"]:checked + label {
-  background-color: var(--bg-color);
-  opacity: 1;
-}
-</style>
-
 <script is:inline>
 document.addEventListener('DOMContentLoaded', () => {
   const darkModeToggle = document.getElementById('dark-mode-toggle');
