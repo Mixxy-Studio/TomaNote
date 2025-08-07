@@ -25,6 +25,10 @@ import "../styles/components/InfoModals.scss";
             <span class="icon">📋</span>
             Términos de uso
           </button>
+          <button class="nav-item" data-tab="fonts">
+            <span class="icon">🔤</span>
+            Fuentes
+          </button>
         </nav>
 
         <form method="dialog" class="sidebar-footer">
@@ -89,6 +93,37 @@ import "../styles/components/InfoModals.scss";
             <!-- ... resto del contenido de los términos ... -->
           </div>
         </div>
+
+        <!-- Pestaña Fuentes -->
+        <div class="settings-tab" id="fonts-tab">
+          <div class="settings-header">
+            <h3>Fuentes personalizadas</h3>
+          </div>
+          <div class="settings-body" style="max-height: 55vh; overflow-y: auto;">
+            <div class="settings-section">
+              <h4>URL de Google Fonts</h4>
+              <div style="display: flex; gap: 8px; align-items: center;">
+                <input id="font-url-input" type="text" placeholder="Pega aquí la URL de Google Fonts" style="flex:1; padding: 8px; border-radius: 6px; border: 1px solid #ccc;" />
+                <button id="save-font-url" style="padding: 8px 16px; border-radius: 6px; background: #4285F4; color: #fff; border: none; cursor: pointer;">Guardar fuente</button>
+              </div>
+              <div id="font-url-error" style="color: #dc3545; margin-top: 8px; display: none;"></div>
+            </div>
+            <div class="settings-section">
+              <h4>Paso a paso para cambiar la fuente</h4>
+              <ol style="padding-left: 20px;">
+                <li>Ve a <a href="https://fonts.google.com/" target="_blank">Google Fonts</a> y elige la fuente que desees.</li>
+                <li>Haz clic en "Get Embed code" o "Obtener código de inserción" y copia la URL que aparece en el <code>href</code> del &lt;link&gt; (debe empezar por <code>https://fonts.googleapis.com/</code>).</li>
+                <li>Pega la URL en el campo de arriba y haz clic en "Guardar fuente".</li>
+                <li>El bloc de notas se recargará y la fuente se aplicará automáticamente.</li>
+              </ol>
+              <div style="display: flex; gap: 16px; flex-wrap: wrap;">
+                <img src="/public/screenshots/placeholder1.png" alt="Paso 1" style="width: 120px; height: 80px; object-fit: cover; border: 1px solid #ccc; border-radius: 6px;" />
+                <img src="/public/screenshots/placeholder2.png" alt="Paso 2" style="width: 120px; height: 80px; object-fit: cover; border: 1px solid #ccc; border-radius: 6px;" />
+                <img src="/public/screenshots/placeholder3.png" alt="Paso 3" style="width: 120px; height: 80px; object-fit: cover; border: 1px solid #ccc; border-radius: 6px;" />
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </dialog>
@@ -96,18 +131,19 @@ import "../styles/components/InfoModals.scss";
 
 <script>
   document.addEventListener('DOMContentLoaded', () => {
-    const modal = document.getElementById('info-notepad');
+    const modal = document.getElementById('info-notepad') as HTMLElement | null;
+    if (!modal) return;
     const navItems = modal.querySelectorAll('.nav-item');
     const tabs = modal.querySelectorAll('.settings-tab');
 
     // Función para cambiar pestañas
-    function switchTab(tabId) {
+    function switchTab(tabId: string) {
+      if (!modal) return;
       navItems.forEach(item => item.classList.remove('active'));
       tabs.forEach(tab => tab.classList.remove('active'));
 
-      const selectedTab = modal.querySelector(`#${tabId}-tab`);
-      const selectedNav = modal.querySelector(`[data-tab="${tabId}"]`);
-      
+      const selectedTab = modal.querySelector(`#${tabId}-tab`) as HTMLElement | null;
+      const selectedNav = modal.querySelector(`[data-tab="${tabId}"]`) as HTMLElement | null;
       if (selectedTab && selectedNav) {
         selectedTab.classList.add('active');
         selectedNav.classList.add('active');
@@ -117,9 +153,43 @@ import "../styles/components/InfoModals.scss";
     // Manejador de clics en la navegación
     navItems.forEach(item => {
       item.addEventListener('click', () => {
-        const tabId = item.dataset.tab;
-        switchTab(tabId);
+        const tabId = (item as HTMLElement).dataset.tab;
+        if (tabId) switchTab(tabId);
       });
     });
+
+    // --- FUENTES PERSONALIZADAS ---
+    const fontInput = document.getElementById('font-url-input') as HTMLInputElement | null;
+    const saveFontBtn = document.getElementById('save-font-url') as HTMLButtonElement | null;
+    const fontError = document.getElementById('font-url-error') as HTMLDivElement | null;
+
+    // Cargar valor guardado si existe
+    if (fontInput && localStorage.getItem('customFontUrl')) {
+      fontInput.value = localStorage.getItem('customFontUrl') || '';
+    }
+
+    function isValidGoogleFontsUrl(url: string): boolean {
+      try {
+        const parsed = new URL(url);
+        return parsed.hostname === 'fonts.googleapis.com' && parsed.protocol === 'https:';
+      } catch {
+        return false;
+      }
+    }
+
+    if (saveFontBtn && fontInput && fontError) {
+      saveFontBtn.addEventListener('click', () => {
+        const url = fontInput.value.trim();
+        if (!isValidGoogleFontsUrl(url)) {
+          fontError.textContent = 'Por favor ingresa una URL válida de Google Fonts (https://fonts.googleapis.com/...)';
+          fontError.style.display = 'block';
+          return;
+        }
+        fontError.style.display = 'none';
+        localStorage.setItem('customFontUrl', url);
+        // Recargar para aplicar la fuente
+        location.reload();
+      });
+    }
   });
 </script>
