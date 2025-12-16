@@ -18,5 +18,4 @@ export default defineConfig({
   },
 
   site: 'https://tomanote.app',
-  // ❗ NO base
 });
