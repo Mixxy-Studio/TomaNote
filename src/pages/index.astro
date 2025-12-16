@@ -555,12 +555,17 @@ document.addEventListener('DOMContentLoaded', () => {
   window.onload = init;
 });
 
-if('serviceWorker' in navigator) {
-  navigator.serviceWorker.register('/service-worker.js').then(reg => {
-    console.log('Service Worker registrado con éxito.');
-  })
-  .catch((error) => {
-    console.error('Error al registrar el Service Worker:', error);
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker
+      .register('/service-worker.js')
+      .then(reg => {
+        console.log('Service Worker registrado', reg);
+      })
+      .catch(err => {
+        console.warn('SW no disponible en dev', err);
+      });
   });
 }
+
 </script>
