@@ -138,23 +138,48 @@ async function initializeBasicComponents() {
 async function initializeTabsSystem() {
   console.log('📑 Inicializando sistema de pestañas...');
   
-  // TODO: Mover esto a un módulo tabs.js
-  // Por ahora, solo verificamos que los elementos existan
-  const tabList = document.querySelector('.tab-list');
-  const createTabBtn = document.getElementById('create-tab');
-  
-  if (!tabList || !createTabBtn) {
-    throw new Error('Elementos críticos de pestañas no encontrados');
+  try {
+    // Importar dinámicamente para mejor performance
+    const { TabManager } = await import('./core/tabs.js');
+    
+    // Crear instancia con feature flags
+    // En entry.js, cambia estos flags:
+    window.tabManager = new TabManager({
+      enablePersistence: true,
+      enableCreation: true,
+      enableEditing: true,
+      enableDeletion: true,
+      enablePinning: true, 
+      enableContentEditing: true,
+      enableAutoSave: true,
+      debug: true
+    });
+    
+    // Inicializar
+    await window.tabManager.init();
+    
+    console.log('✅ TabManager listo. Debug:', window.tabManager.debug());
+    
+    // Reemplazar el evento click básico con el real
+    const createTabBtn = document.getElementById('create-tab');
+    if (createTabBtn) {
+      createTabBtn.onclick = null; // Remover el listener anterior
+    }
+    
+  } catch (error) {
+    console.error('❌ Error inicializando TabManager:', error);
+    
+    // Fallback al método básico
+    const createTabBtn = document.getElementById('create-tab');
+    if (createTabBtn) {
+      createTabBtn.addEventListener('click', () => {
+        console.log('➕ [FALLBACK] Botón crear pestaña clickeado');
+        alert('Funcionalidad de pestañas en modo fallback');
+      });
+    }
+    
+    throw error;
   }
-  
-  console.log('✅ Elementos de pestañas encontrados');
-  
-  // Aquí irá la lógica completa de pestañas cuando la movamos
-  // Por ahora solo un placeholder
-  createTabBtn.addEventListener('click', () => {
-    console.log('➕ Botón crear pestaña clickeado');
-    alert('Funcionalidad de crear pestaña pendiente de migrar');
-  });
 }
 
 async function initializeContextMenu() {
