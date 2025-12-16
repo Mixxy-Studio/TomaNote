@@ -20,12 +20,13 @@ export class TabManager {
     this.tabList = null;
     this.createTabButton = null;
     this.tabsData = [];
+
+    this.setupContextMenuIntegration();
     
     this.log('📑 TabManager creado con opciones:', this.options);
   }
   
   // ===== MÉTODOS PÚBLICOS =====
-  
   async init() {
     try {
       this.log('🚀 Inicializando TabManager...');
@@ -108,6 +109,78 @@ export class TabManager {
   }
   
   // ===== MÉTODOS INTERNOS =====
+
+  setupContextMenuIntegration() {
+    // Escuchar evento de clic medio del ContextMenu
+    document.addEventListener('middleClickTab', (e) => {
+      const { tabElement } = e.detail;
+      if (tabElement && this.options.enableDeletion) {
+        this.deleteTabElement(tabElement);
+      }
+    });
+    
+    // Escuchar evento de cambios en pestañas
+    document.addEventListener('tabsChanged', () => {
+      this.saveTabs();
+    });
+    
+    this.log('✅ Integración con ContextMenu configurada');
+  }
+
+  pinTab(tabElement, emoji = '📝') {
+    if (!this.options.enablePinning) return;
+    
+    tabElement.classList.add('pinned');
+    const label = tabElement.querySelector('label');
+    const labelSpan = tabElement.querySelector('label span');
+    
+    label.setAttribute('data-emoji', emoji);
+    labelSpan.dataset.emoji = emoji;
+    
+    this.reorderTabs();
+    this.saveTabs();
+    
+    this.log('📍 Pestaña fijada');
+  }
+
+  unpinTab(tabElement) {
+    if (!this.options.enablePinning) return;
+    
+    tabElement.classList.remove('pinned');
+    const label = tabElement.querySelector('label');
+    const labelSpan = tabElement.querySelector('label span');
+    
+    label.removeAttribute('data-emoji');
+    delete labelSpan.dataset.emoji;
+    
+    this.reorderTabs();
+    this.saveTabs();
+    
+    this.log('📍 Pestaña desfijada');
+  }
+
+  reorderTabs() {
+    const createTabButton = this.createTabButton;
+    const allTabs = Array.from(this.tabList.querySelectorAll('.tab-list__item'));
+    
+    // Separar pestañas fijadas y normales
+    const pinnedTabs = allTabs.filter(tab => tab.classList.contains('pinned'));
+    const normalTabs = allTabs.filter(tab => !tab.classList.contains('pinned'));
+    
+    // Remover todas las pestañas del DOM
+    allTabs.forEach(tab => tab.remove());
+    
+    // Reinsertar en orden: primero las fijadas, luego las normales
+    pinnedTabs.forEach(tab => {
+      this.tabList.insertBefore(tab, createTabButton);
+    });
+    
+    normalTabs.forEach(tab => {
+      this.tabList.insertBefore(tab, createTabButton);
+    });
+    
+    this.log('🔄 Pestañas reordenadas');
+  }
   
   async findDOMElements() {
     this.tabList = await this.waitForElement('.tab-list');

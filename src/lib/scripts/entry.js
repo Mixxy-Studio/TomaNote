@@ -185,14 +185,55 @@ async function initializeTabsSystem() {
 async function initializeContextMenu() {
   console.log('🖱️  Inicializando menú contextual...');
   
-  const contextMenu = document.getElementById('context-menu');
-  if (!contextMenu) {
-    console.warn('⚠️  Menú contextual no encontrado');
-    return;
+  try {
+    const { ContextMenu } = await import('./ui/contextMenu.js');
+    
+    // Crear instancia
+    window.contextMenu = new ContextMenu({
+      enableTextContext: true,
+      enableTabContext: true,
+      enableMiddleClickClose: true,
+      debug: true
+    });
+    
+    // Inicializar
+    await window.contextMenu.init();
+    
+    console.log('✅ ContextMenu listo. Debug:', window.contextMenu.debug());
+    
+    // ===== FIX CRÍTICO: Registrar event listener GLOBAL =====
+    // Esto asegura que el menú del navegador se bloquee INMEDIATAMENTE
+    document.addEventListener('contextmenu', (e) => {
+      console.log('🖱️  [GLOBAL] Clic derecho detectado en:', e.target.tagName, e.target.className);
+      
+      // IMPORTANTE: Solo prevenir si es en nuestras áreas
+      const isContentEditable = e.target.closest('.tab-list__item--content');
+      const isTabLabel = e.target.closest('.tab-list__item label');
+      
+      if (isContentEditable || isTabLabel) {
+        e.preventDefault();
+        console.log('🖱️  [GLOBAL] Menú del navegador bloqueado');
+      }
+    }, true); // Usar capture: true para capturar el evento temprano
+    
+    return window.contextMenu;
+    
+  } catch (error) {
+    console.error('❌ Error inicializando ContextMenu:', error);
+    
+    // Fallback mínimo
+    document.addEventListener('contextmenu', (e) => {
+      const isContentEditable = e.target.closest('.tab-list__item--content');
+      const isTabLabel = e.target.closest('.tab-list__item label');
+      
+      if (isContentEditable || isTabLabel) {
+        e.preventDefault();
+        console.log('🖱️  [FALLBACK] Menú contextual bloqueado');
+      }
+    });
+    
+    throw error;
   }
-  
-  console.log('✅ Menú contextual encontrado');
-  // La lógica completa irá aquí más adelante
 }
 
 // ===== MÓDULOS OPCIONALES =====
