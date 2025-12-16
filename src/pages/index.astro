@@ -520,7 +520,52 @@ document.addEventListener('DOMContentLoaded', () => {
     initContextMenu();
   }
 
+  function showUpdateModal() {
+    if (document.querySelector('.update-modal')) return;
+
+    const modal = document.createElement('div');
+    modal.className = 'update-modal';
+
+    modal.innerHTML = `
+      <div class="update-modal__content">
+        <h3>Actualización disponible</h3>
+        <p>
+          Hay una nueva versión del bloc de notas.
+          Guarda tus notas en un lugar seguro antes de actualizar.
+        </p>
+        <div class="update-modal__actions">
+          <button id="update-now">Actualizar</button>
+          <button id="update-later">Ahora no</button>
+        </div>
+      </div>
+    `;
+
+    document.body.appendChild(modal);
+
+    document.getElementById('update-now').onclick = () => {
+      window.location.reload(true);
+    };
+
+    document.getElementById('update-later').onclick = () => {
+      modal.remove();
+    };
+  }
+
   // Inicializa el script al cargar la página
   window.onload = init;
 });
+
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker
+      .register('/service-worker.js')
+      .then(reg => {
+        console.log('Service Worker registrado', reg);
+      })
+      .catch(err => {
+        console.warn('SW no disponible en dev', err);
+      });
+  });
+}
+
 </script>
