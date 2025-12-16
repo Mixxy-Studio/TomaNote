@@ -1,0 +1,58 @@
+{
+  "path": "cz-conventional-changelog",
+  "disableScopeLowerCase": false,
+  "disableSubjectLowerCase": false,
+  "maxHeaderWidth": 100,
+  "maxLineWidth": 100,
+  "defaultType": "",
+  "defaultScope": "",
+  "defaultSubject": "",
+  "defaultBody": "",
+  "defaultIssues": "",
+  "types": {
+    "feat": {
+      "description": "Una nueva característica",
+      "title": "Features"
+    },
+    "fix": {
+      "description": "Una corrección de bug",
+      "title": "Bug Fixes"
+    },
+    "docs": {
+      "description": "Cambios en la documentación",
+      "title": "Documentation"
+    },
+    "style": {
+      "description": "Cambios que no afectan el significado del código (espacios, formato, etc.)",
+      "title": "Styles"
+    },
+    "refactor": {
+      "description": "Un cambio de código que no corrige un bug ni agrega una feature",
+      "title": "Code Refactoring"
+    },
+    "perf": {
+      "description": "Un cambio que mejora el rendimiento",
+      "title": "Performance Improvements"
+    },
+    "test": {
+      "description": "Agregar o corregir tests",
+      "title": "Tests"
+    },
+    "build": {
+      "description": "Cambios en el sistema de build o dependencias",
+      "title": "Builds"
+    },
+    "ci": {
+      "description": "Cambios en la configuración de CI",
+      "title": "Continuous Integrations"
+    },
+    "chore": {
+      "description": "Otros cambios que no modifican código fuente o tests",
+      "title": "Chores"
+    },
+    "revert": {
+      "description": "Revertir un commit anterior",
+      "title": "Reverts"
+    }
+  }
+}

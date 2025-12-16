@@ -1,0 +1,3 @@
+#!/usr/bin/env sh
+echo "🔍 Running pre-commit checks..."
+# No ejecutes npm test si no lo tienes

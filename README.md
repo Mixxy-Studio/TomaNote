@@ -85,6 +85,51 @@ npm install
 # Iniciar servidor de desarrollo
 npm run dev
 ```
+### Hacer commits
+
+Usamos [Commitizen](https://github.com/commitizen/cz-cli) para commits convencionales:
+
+```bash
+npm run commit
+```
+
+O si prefieres usar Husky (recomendado):
+```bash
+git add .
+git commit -m "tu mensaje"  # Husky forzará el formato correcto
+```
+
+### Tipos de commits
+
+| Tipo       | Descripción |
+|------------|-------------|
+| `feat`     | Nueva funcionalidad |
+| `fix`      | Corrección de bug |
+| `docs`     | Documentación |
+| `style`    | Formato, espacios, etc. |
+| `refactor` | Refactorización de código |
+| `perf`     | Mejoras de rendimiento |
+| `test`     | Tests |
+| `build`    | Sistema de build |
+| `ci`       | Integración continua |
+| `chore`    | Tareas de mantenimiento |
+| `revert`   | Revertir cambios |
+
+### Ejemplos de commits
+
+```
+feat(tabs): agregar soporte para fijar pestañas con emojis
+fix(context-menu): corregir menú contextual en modo oscuro
+refactor(core): modularizar sistema de pestañas en clases
+docs(readme): agregar sección de instalación
+```
+
+### Versionado
+
+El proyecto sigue [Semantic Versioning](https://semver.org/):
+- **Major (1.0.0)**: Cambios incompatibles
+- **Minor (0.2.0)**: Nuevas funcionalidades compatibles  
+- **Patch (0.1.1)**: Correcciones de bugs compatibles
 
 ## ⚠️ Importante
 

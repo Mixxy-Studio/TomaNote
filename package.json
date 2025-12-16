@@ -12,7 +12,10 @@
     "release:minor": "standard-version --release-as minor",
     "release:patch": "standard-version --release-as patch",
     "release:major": "standard-version --release-as major",
-    "postrelease": "node scripts/update-readme.js"
+    "postrelease": "node scripts/update-readme.js",
+    "prepare": "husky",
+    "commit": "cz",
+    "test": "echo 'No tests yet' && exit 0"
   },
   "dependencies": {
     "@tailwindcss/vite": "^4.0.16",
@@ -22,7 +25,17 @@
     "vite": "^6.2.3"
   },
   "devDependencies": {
+    "@commitlint/cli": "^20.2.0",
+    "@commitlint/config-conventional": "^20.2.0",
+    "commitizen": "^4.3.1",
+    "cz-conventional-changelog": "^3.3.0",
     "gh-pages": "^6.3.0",
+    "husky": "^9.1.7",
     "standard-version": "^9.5.0"
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
   }
 }
