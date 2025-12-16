@@ -25,7 +25,16 @@ import ContextualMenu from "../components/ContextualMenu.astro";
 
 </Layout>
 
-<script is:inline>
+<!-- 
+  ESTRATEGIA SEGURA:
+  1. Mantener el script inline existente (comentado pero funcional)
+  2. Agregar el nuevo sistema modular gradualmente
+  3. Poder volver fácilmente si hay problemas
+-->
+
+<!-- SCRIPT INLINE EXISTENTE (lo mantendremos por ahora como backup) -->
+<!-- <script is:inline>
+// --- BACKUP: Código original ---
 // --- Cargar fuente personalizada de Google Fonts si existe ---
 (function() {
   const fontUrl = localStorage.getItem('customFontUrl');
@@ -568,4 +577,18 @@ if ('serviceWorker' in navigator) {
   });
 }
 
+</script> -->
+<!-- NUEVO SISTEMA MODULAR (agregamos progresivamente) -->
+<script>
+import { initNotepad } from '../lib/scripts/entry.js';
+
+// Inicializar de forma segura con timeout
+document.addEventListener('DOMContentLoaded', () => {
+  setTimeout(() => {
+    initNotepad().catch(error => {
+      console.error('Error en sistema modular:', error);
+      console.log('Continuando con funcionalidad inline...');
+    });
+  }, 100); // Pequeño delay para asegurar que el DOM está listo
+});
 </script>

@@ -1,0 +1,301 @@
+// src/lib/scripts/entry.js
+// Punto de entrada modular seguro para Notepad
+
+export async function initNotepad() {
+  console.log('🔧 Notepad App - Iniciando sistema modular...');
+  
+  // Verificación de seguridad: solo ejecutar en navegador
+  if (typeof window === 'undefined' || typeof document === 'undefined') {
+    console.warn('⚠️  Entorno no compatible (SSR o Node.js), omitiendo...');
+    return;
+  }
+  
+  try {
+    // 1. Cargar funciones CRÍTICAS primero (las que necesitan estar inmediatamente)
+    await loadCriticalFunctions();
+    
+    // 2. Inicializar componentes básicos
+    await initializeBasicComponents();
+    
+    // 3. Cargar módulos adicionales (menos críticos)
+    await loadOptionalModules();
+    
+    console.log('✅ Sistema modular inicializado correctamente');
+    
+    // 4. Verificar que todo funcione
+    await verifyFunctionality();
+    
+  } catch (error) {
+    console.error('❌ Error crítico en sistema modular:', error);
+    console.log('🔄 Intentando recuperación...');
+    
+    // Intentar funcionalidad mínima
+    try {
+      await emergencyFallback();
+    } catch (fallbackError) {
+      console.error('❌ Fallback también falló:', fallbackError);
+      showErrorMessage();
+    }
+  }
+}
+
+// ===== FUNCIONES CRÍTICAS (deben cargarse primero) =====
+async function loadCriticalFunctions() {
+  console.log('📦 Cargando funciones críticas...');
+  
+  // 1. Cargar fuente personalizada (parte más crítica)
+  loadCustomFont();
+  
+  // 2. Configurar modo oscuro/claro
+  setupDarkMode();
+  
+  // 3. Configurar Service Worker si está disponible
+  setupServiceWorker();
+}
+
+function loadCustomFont() {
+  const fontUrl = localStorage.getItem('customFontUrl');
+  if (!fontUrl) return;
+  
+  try {
+    const link = document.createElement('link');
+    link.rel = 'stylesheet';
+    link.href = fontUrl;
+    document.head.appendChild(link);
+    
+    const match = fontUrl.match(/[?&]family=([^:&]*)/);
+    if (match && match[1]) {
+      const family = decodeURIComponent(match[1].split(':')[0].replace(/\+/g, ' '));
+      document.documentElement.style.setProperty('--font-family-base', `'${family}', sans-serif`);
+      document.documentElement.style.setProperty('--font-family-mono', `'${family}', sans-serif`);
+      document.body.style.fontFamily = `'${family}', sans-serif`;
+    }
+    
+    console.log('✅ Fuente personalizada cargada:', fontUrl);
+  } catch (error) {
+    console.warn('⚠️  Error cargando fuente:', error);
+  }
+}
+
+function setupDarkMode() {
+  const darkModeToggle = document.getElementById('dark-mode-toggle');
+  if (!darkModeToggle) {
+    console.warn('⚠️  No se encontró el toggle de dark mode');
+    return;
+  }
+  
+  // Verificar preferencia guardada o del sistema
+  const savedMode = localStorage.getItem('darkMode');
+  const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+  
+  if (savedMode !== null) {
+    document.documentElement.classList.toggle('light-mode', savedMode === 'false');
+    darkModeToggle.checked = savedMode === 'false';
+  } else if (!systemPrefersDark) {
+    document.documentElement.classList.add('light-mode');
+    darkModeToggle.checked = true;
+  }
+  
+  // Manejar el cambio
+  darkModeToggle.addEventListener('change', (e) => {
+    const isLightMode = e.target.checked;
+    document.documentElement.classList.toggle('light-mode', isLightMode);
+    localStorage.setItem('darkMode', !isLightMode);
+  });
+  
+  console.log('✅ Dark mode configurado');
+}
+
+function setupServiceWorker() {
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+      navigator.serviceWorker
+        .register('/service-worker.js')
+        .then(reg => {
+          console.log('✅ Service Worker registrado', reg);
+        })
+        .catch(err => {
+          console.warn('⚠️  SW no disponible:', err);
+        });
+    });
+  }
+}
+
+// ===== COMPONENTES BÁSICOS =====
+async function initializeBasicComponents() {
+  console.log('⚙️  Inicializando componentes básicos...');
+  
+  // Estas son las funciones MÍNIMAS que necesitas para que la app funcione
+  // Las moveremos gradualmente a módulos separados
+  
+  // Por ahora, las ponemos aquí como funciones internas
+  await initializeTabsSystem();
+  await initializeContextMenu();
+  
+  console.log('✅ Componentes básicos listos');
+}
+
+async function initializeTabsSystem() {
+  console.log('📑 Inicializando sistema de pestañas...');
+  
+  // TODO: Mover esto a un módulo tabs.js
+  // Por ahora, solo verificamos que los elementos existan
+  const tabList = document.querySelector('.tab-list');
+  const createTabBtn = document.getElementById('create-tab');
+  
+  if (!tabList || !createTabBtn) {
+    throw new Error('Elementos críticos de pestañas no encontrados');
+  }
+  
+  console.log('✅ Elementos de pestañas encontrados');
+  
+  // Aquí irá la lógica completa de pestañas cuando la movamos
+  // Por ahora solo un placeholder
+  createTabBtn.addEventListener('click', () => {
+    console.log('➕ Botón crear pestaña clickeado');
+    alert('Funcionalidad de crear pestaña pendiente de migrar');
+  });
+}
+
+async function initializeContextMenu() {
+  console.log('🖱️  Inicializando menú contextual...');
+  
+  const contextMenu = document.getElementById('context-menu');
+  if (!contextMenu) {
+    console.warn('⚠️  Menú contextual no encontrado');
+    return;
+  }
+  
+  console.log('✅ Menú contextual encontrado');
+  // La lógica completa irá aquí más adelante
+}
+
+// ===== MÓDULOS OPCIONALES =====
+async function loadOptionalModules() {
+  console.log('📚 Cargando módulos opcionales...');
+  
+  try {
+    // Intentar cargar módulos de utilidad
+    const utilsModule = await import('./utils/domHelpers.js');
+    console.log('✅ Módulo domHelpers cargado');
+    
+    const emojiModule = await import('./utils/emojiDetector.js');
+    console.log('✅ Módulo emojiDetector cargado');
+    
+    // Aquí puedes agregar más imports dinámicos
+    // import('./core/tabs.js');
+    // import('./ui/contextMenu.js');
+    
+  } catch (error) {
+    console.warn('⚠️  Algunos módulos no pudieron cargarse:', error.message);
+    console.log('ℹ️  Continuando sin módulos opcionales...');
+  }
+}
+
+// ===== VERIFICACIÓN Y FALLBACK =====
+async function verifyFunctionality() {
+  console.log('🔍 Verificando funcionalidad...');
+  
+  // Verificar elementos críticos
+  const criticalElements = [
+    '.tab-list',
+    '#create-tab',
+    '#dark-mode-toggle',
+    '#context-menu'
+  ];
+  
+  const missingElements = [];
+  
+  criticalElements.forEach(selector => {
+    if (!document.querySelector(selector)) {
+      missingElements.push(selector);
+    }
+  });
+  
+  if (missingElements.length > 0) {
+    throw new Error(`Elementos críticos no encontrados: ${missingElements.join(', ')}`);
+  }
+  
+  console.log('✅ Todos los elementos críticos presentes');
+  
+  // Verificar localStorage
+  if (typeof localStorage === 'undefined') {
+    throw new Error('localStorage no disponible');
+  }
+  
+  console.log('✅ localStorage disponible');
+}
+
+async function emergencyFallback() {
+  console.log('🚨 Ejecutando modo de emergencia...');
+  
+  // Funcionalidad MÍNIMA para que la app no se rompa completamente
+  
+  // 1. Permitir crear pestañas básicas
+  const createTabBtn = document.getElementById('create-tab');
+  if (createTabBtn) {
+    createTabBtn.onclick = () => {
+      alert('Modo emergencia: Funcionalidad limitada. Por favor recarga la página.');
+    };
+  }
+  
+  // 2. Dark mode básico
+  const darkModeToggle = document.getElementById('dark-mode-toggle');
+  if (darkModeToggle) {
+    darkModeToggle.onchange = (e) => {
+      document.documentElement.classList.toggle('light-mode', e.target.checked);
+    };
+  }
+  
+  console.log('🆘 Modo emergencia activado');
+}
+
+function showErrorMessage() {
+  // Crear un mensaje de error visible pero no intrusivo
+  const errorDiv = document.createElement('div');
+  errorDiv.style.cssText = `
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    background: #f44336;
+    color: white;
+    padding: 10px 15px;
+    border-radius: 5px;
+    z-index: 9999;
+    font-family: sans-serif;
+    font-size: 14px;
+    max-width: 300px;
+  `;
+  errorDiv.innerHTML = `
+    <strong>⚠️ Error técnico</strong><br>
+    Algunas funciones pueden no estar disponibles.<br>
+    <small>Intenta recargar la página.</small>
+  `;
+  
+  document.body.appendChild(errorDiv);
+  
+  // Auto-eliminar después de 10 segundos
+  setTimeout(() => {
+    if (errorDiv.parentNode) {
+      errorDiv.parentNode.removeChild(errorDiv);
+    }
+  }, 10000);
+}
+
+// Exportar funciones para debugging
+export const debug = {
+  test: () => {
+    console.log('🔧 Debug: Sistema modular está funcionando');
+    return 'OK';
+  },
+  checkElements: () => {
+    const elements = {
+      tabList: document.querySelector('.tab-list'),
+      createTab: document.getElementById('create-tab'),
+      darkModeToggle: document.getElementById('dark-mode-toggle'),
+      contextMenu: document.getElementById('context-menu')
+    };
+    console.log('🔍 Elementos encontrados:', elements);
+    return elements;
+  }
+};
