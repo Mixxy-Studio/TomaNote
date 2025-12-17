@@ -131,3 +131,5 @@ dist
 
 # AI
 AGENT.md
+
+.astro/
