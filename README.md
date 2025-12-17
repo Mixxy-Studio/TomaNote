@@ -41,18 +41,17 @@ TomaNote es un bloc de notas moderno y minimalista que funciona directamente en 
   - Cerrar pestaña con MB3 (Mouse Button 3)
 - 🖱️ **Menú Contextual**: Acceso rápido a funciones comunes
 
-## ✅ Novedades en la versión 0.1.0
-- 📌 Fijar y desfijar pestañas con clic derecho (menú contextual).
-- 🎯 Las pestañas fijadas se mueven automáticamente:
-  - Si se fijan: se colocan justo después de la última pestaña ya fijada.
-  - Si se desfijan: se mueven al inicio de las pestañas normales.
-- 🖱️ Cerrar pestañas con botón central del mouse (MB3), incluso si están fijadas.
-- ✨ Al crear una pestaña nueva, el usuario es llevado automáticamente a ella.
-- 🧽 Se eliminan los separadores innecesarios del menú contextual según el tipo de clic (editor vs pestaña).
-- 📌 Las pestañas fijadas:
-  - Se identifican por su tamaño reducido (45px).
-  - Ocultan los botones de editar/cerrar.
-  - Pueden usar un emoji personalizado como favicon o uno por defecto (📝).
+✅ Novedades en la versión 0.2.1
+
+- 📝 Ajustes menores de texto y redacción en el modal de información.
+- 🧼 Mejoras internas de mantenimiento y organización del proyecto.
+- 🛡️ Endurecimiento del workflow de GitHub Actions:
+- Límites de ejecución para evitar procesos colgados.
+- Control de concurrencia en despliegues.
+- Mayor seguridad y estabilidad en el pipeline de CI/CD.
+- ⚙️ Actualización del versionado y normalización del CHANGELOG.
+
+***#### Nota: Esta versión no introduce cambios funcionales visibles para el usuario final.***
 
 ### 🚀 Próximas Funcionalidades
 
