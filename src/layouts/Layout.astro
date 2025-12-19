@@ -4,16 +4,60 @@ import "../styles/vendors/global.css"
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang="es">
 	<head>
+		<!-- === BASIC META TAGS === -->
 		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<meta name="generator" content={Astro.generator} />
+		
+		<!-- === SEO META TAGS === -->
+		<title>TomaNote App - Bloc de notas Online</title>
+		<meta name="description" content="Un bloc de notas moderno en el navegador con pestañas, modo oscuro, menú contextual y persistencia local. ¡Tus notas siempre disponibles!" />
+		<meta name="author" content="Camiicode" />
+		<meta name="keywords" content="notas, bloc de notas, pestañas, editor, offline, pwa, productividad, aplicación web, notas rápidas" />
+		
+		<!-- === CANONICAL & ROBOTS === -->
+		<link rel="canonical" href="https://tomanote.app" />
+		<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+		
+		<!-- === OPEN GRAPH / FACEBOOK === -->
+		<meta property="og:type" content="website" />
+		<meta property="og:url" content="https://tomanote.app" />
+		<meta property="og:title" content="TomaNote App - Bloc de notas con pestañas" />
+		<meta property="og:description" content="Un bloc de notas moderno en el navegador con pestañas, modo oscuro, menú contextual y persistencia local" />
+		<meta property="og:image" content="https://tomanote.app/og-image.png" />
+		<meta property="og:image:width" content="1200" />
+		<meta property="og:image:height" content="630" />
+		<meta property="og:image:alt" content="Captura de pantalla de TomaNote App mostrando el editor con pestañas" />
+		<meta property="og:locale" content="es_ES" />
+		<meta property="og:site_name" content="TomaNote App" />
+		
+		<!-- === TWITTER CARDS === -->
+		<meta name="twitter:card" content="summary_large_image" />
+		<meta name="twitter:url" content="https://tomanote.app" />
+		<meta name="twitter:title" content="TomaNote App - Bloc de notas con pestañas" />
+		<meta name="twitter:description" content="Un bloc de notas moderno en el navegador con pestañas, modo oscuro y persistencia local" />
+		<meta name="twitter:image" content="https://tomanote.app/og-image.png" />
+		<meta name="twitter:creator" content="@camiicode" />
+		<meta name="twitter:site" content="@camiicode" />
+		
+		<!-- === APP / PWA TAGS === -->
+		<meta name="apple-mobile-web-app-title" content="TomaNote" />
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+		<meta name="msapplication-TileColor" content="#1a1a1a" />
+		<meta name="msapplication-TileImage" content="/icon-144.png" />
+		<meta name="theme-color" content="#1a1a1a" />
+		<meta name="color-scheme" content="dark light" />
+		
+		<!-- === FONTS & ICONS === -->
 		<link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,200..900;1,200..900&display=swap">
-    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='gray' class='size-6'%3E%3Cpath fill-rule='evenodd' d='M17.663 3.118c.225.015.45.032.673.05C19.876 3.298 21 4.604 21 6.109v9.642a3 3 0 0 1-3 3V16.5c0-5.922-4.576-10.775-10.384-11.217.324-1.132 1.3-2.01 2.548-2.114.224-.019.448-.036.673-.051A3 3 0 0 1 13.5 1.5H15a3 3 0 0 1 2.663 1.618ZM12 4.5A1.5 1.5 0 0 1 13.5 3H15a1.5 1.5 0 0 1 1.5 1.5H12Z' clip-rule='evenodd' /%3E%3Cpath d='M3 8.625c0-1.036.84-1.875 1.875-1.875h.375A3.75 3.75 0 0 1 9 10.5v1.875c0 1.036.84 1.875 1.875 1.875h1.875A3.75 3.75 0 0 1 16.5 18v2.625c0 1.035-.84 1.875-1.875 1.875h-9.75A1.875 1.875 0 0 1 3 20.625v-12Z' /%3E%3Cpath d='M10.5 10.5a5.23 5.23 0 0 0-1.279-3.434 9.768 9.768 0 0 1 6.963 6.963 5.23 5.23 0 0 0-3.434-1.279h-1.875a.375.375 0 0 1-.375-.375V10.5Z' /%3E%3C/svg%3E%0A">
-		<title>Notepad</title>
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,200..900;1,200..900&display=swap">
+		<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='gray' class='size-6'%3E%3Cpath fill-rule='evenodd' d='M17.663 3.118c.225.015.45.032.673.05C19.876 3.298 21 4.604 21 6.109v9.642a3 3 0 0 1-3 3V16.5c0-5.922-4.576-10.775-10.384-11.217.324-1.132 1.3-2.01 2.548-2.114.224-.019.448-.036.673-.051A3 3 0 0 1 13.5 1.5H15a3 3 0 0 1 2.663 1.618ZM12 4.5A1.5 1.5 0 0 1 13.5 3H15a1.5 1.5 0 0 1 1.5 1.5H12Z' clip-rule='evenodd' /%3E%3Cpath d='M3 8.625c0-1.036.84-1.875 1.875-1.875h.375A3.75 3.75 0 0 1 9 10.5v1.875c0 1.036.84 1.875 1.875 1.875h1.875A3.75 3.75 0 0 1 16.5 18v2.625c0 1.035-.84 1.875-1.875 1.875h-9.75A1.875 1.875 0 0 1 3 20.625v-12Z' /%3E%3Cpath d='M10.5 10.5a5.23 5.23 0 0 0-1.279-3.434 9.768 9.768 0 0 1 6.963 6.963 5.23 5.23 0 0 0-3.434-1.279h-1.875a.375.375 0 0 1-.375-.375V10.5Z' /%3E%3C/svg%3E%0A">
+		
+		<!-- === SCHEMA.ORG === -->
 		<script type="application/ld+json">
 		{
 			"@context": "https://schema.org",
@@ -68,6 +112,7 @@ import "../styles/vendors/global.css"
 			}
 		}
 		</script>
+		
 		<script type="application/ld+json">
 		{
 			"@context": "https://schema.org",
