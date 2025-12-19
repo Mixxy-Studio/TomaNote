@@ -14,6 +14,108 @@ import "../styles/vendors/global.css"
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,200..900;1,200..900&display=swap">
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='gray' class='size-6'%3E%3Cpath fill-rule='evenodd' d='M17.663 3.118c.225.015.45.032.673.05C19.876 3.298 21 4.604 21 6.109v9.642a3 3 0 0 1-3 3V16.5c0-5.922-4.576-10.775-10.384-11.217.324-1.132 1.3-2.01 2.548-2.114.224-.019.448-.036.673-.051A3 3 0 0 1 13.5 1.5H15a3 3 0 0 1 2.663 1.618ZM12 4.5A1.5 1.5 0 0 1 13.5 3H15a1.5 1.5 0 0 1 1.5 1.5H12Z' clip-rule='evenodd' /%3E%3Cpath d='M3 8.625c0-1.036.84-1.875 1.875-1.875h.375A3.75 3.75 0 0 1 9 10.5v1.875c0 1.036.84 1.875 1.875 1.875h1.875A3.75 3.75 0 0 1 16.5 18v2.625c0 1.035-.84 1.875-1.875 1.875h-9.75A1.875 1.875 0 0 1 3 20.625v-12Z' /%3E%3Cpath d='M10.5 10.5a5.23 5.23 0 0 0-1.279-3.434 9.768 9.768 0 0 1 6.963 6.963 5.23 5.23 0 0 0-3.434-1.279h-1.875a.375.375 0 0 1-.375-.375V10.5Z' /%3E%3C/svg%3E%0A">
 		<title>Notepad</title>
+		<script type="application/ld+json">
+		{
+			"@context": "https://schema.org",
+			"@type": "WebApplication",
+			"name": "TomaNote App",
+			"description": "Un bloc de notas moderno en el navegador con pestañas, modo oscuro, menú contextual y persistencia local",
+			"url": "https://tomanote.app",
+			"applicationCategory": "ProductivityApplication",
+			"operatingSystem": "Any",
+			"browserRequirements": "Requires JavaScript. Requires HTML5.",
+			"featureList": [
+				"Multiple tabs",
+				"Dark/light mode", 
+				"Context menu",
+				"Auto-save",
+				"Local storage",
+				"PWA support"
+			],
+			"offers": {
+				"@type": "Offer",
+				"price": "0",
+				"priceCurrency": "USD"
+			},
+			"author": {
+				"@type": "Person",
+				"name": "Camiicode",
+				"url": "https://github.com/camiicode"
+			},
+			"publisher": {
+				"@type": "Organization",
+				"name": "TomaNote App",
+				"logo": {
+					"@type": "ImageObject",
+					"url": "https://tomanote.app/icon-512.png",
+					"width": "512",
+					"height": "512"
+				}
+			},
+			"screenshot": {
+				"@type": "ImageObject",
+				"url": "https://tomanote.app/screenshot.png",
+				"width": "1280",
+				"height": "720",
+				"caption": "TomaNote App interface"
+			},
+			"aggregateRating": {
+				"@type": "AggregateRating",
+				"ratingValue": "4.8",
+				"ratingCount": "1",
+				"bestRating": "5",
+				"worstRating": "1"
+			}
+		}
+		</script>
+		<script type="application/ld+json">
+		{
+			"@context": "https://schema.org",
+			"@type": "FAQPage",
+			"mainEntity": [
+				{
+					"@type": "Question",
+					"name": "¿Es TomaNote App gratuito?",
+					"acceptedAnswer": {
+						"@type": "Answer",
+						"text": "Sí, TomaNote App es completamente gratuito y de código abierto. No tiene planes de pago ni versiones premium."
+					}
+				},
+				{
+					"@type": "Question",
+					"name": "¿Mis notas son privadas?",
+					"acceptedAnswer": {
+						"@type": "Answer",
+						"text": "Absolutamente. Todas las notas se guardan localmente en tu navegador usando localStorage. No recolectamos, almacenamos ni transmitimos ningún dato."
+					}
+				},
+				{
+					"@type": "Question",
+					"name": "¿Necesito crear una cuenta?",
+					"acceptedAnswer": {
+						"@type": "Answer",
+						"text": "No, TomaNote App funciona completamente sin registro. Es 100% anónimo, no requiere email ni contraseña."
+					}
+				},
+				{
+					"@type": "Question",
+					"name": "¿Funciona sin conexión a internet?",
+					"acceptedAnswer": {
+						"@type": "Answer",
+						"text": "Sí, después de cargar la aplicación por primera vez, puedes usarla completamente offline. Todas las funciones están disponibles sin conexión."
+					}
+				},
+				{
+					"@type": "Question",
+					"name": "¿Puedo usar TomaNote en mi teléfono?",
+					"acceptedAnswer": {
+						"@type": "Answer",
+						"text": "Sí, TomaNote es una PWA (Progressive Web App). Puedes instalarla en tu teléfono como una aplicación nativa desde el navegador."
+					}
+				}
+			]
+		}
+		</script>
 	</head>
 	<body id="body">
 		<main>
