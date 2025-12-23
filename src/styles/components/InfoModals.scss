@@ -7,10 +7,10 @@
     scale: 1;
     max-height: fit-content;
     border-radius: 15px;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+    box-shadow: 0px 0px 10px rgba(Variables.$tn-neutral-primary-color, 0.5);
     overflow: hidden;
-    background-color: var(--color-background);
-    color: var(--color-primary) !important;
+    background-color: var(--tn-default-primary-color);
+    color: var(--tn-neutral-tertiary-color) !important;
     border: 0px;
 
     &[open] {
@@ -56,7 +56,7 @@
 
 .settings-sidebar {
   width: 260px;
-  background: var(--color-background);
+  background: var(--tn-default-secondary-color);
   border-right: 1px solid var(--color-border);
   padding: 24px 16px;
   display: flex;
@@ -82,6 +82,9 @@
 
 .settings-nav {
   margin-top: 16px;
+  background-color: var(--tn-default-accent-color);
+  border-radius: 5px;
+  padding: 0 5px;
 
   .nav-item {
     display: flex;
@@ -92,18 +95,19 @@
     color: var(--color-text);
     text-decoration: none;
     transition: background-color 0.2s;
+    transition: ease-in-out 0.3s all;
 
     .icon {
       margin-right: 12px;
     }
 
     &:hover {
-      background-color: var(--color-hover);
+      background-color: rgba(Variables.$tn-default-primary-color, 0.25);
     }
 
     &.active {
-      background-color: var(--color-selected);
-      color: var(--color-primary);
+      background-color: var(--tn-default-secondary-color);
+      color: var(--tn-neutral-tertiary-color);      
     }
   }
 }
@@ -240,7 +244,7 @@
   padding: 12px;
   border: none;
   border-radius: 8px;
-  background-color: var(--color-accent, #4CAF50);
+  background-color: var(--color-accent, var(--tn-default-contrast-color));
   color: white;
   cursor: pointer;
   font-size: 1rem;
@@ -249,4 +253,13 @@
   &:hover {
     opacity: 0.9;
   }
+}
+
+#save-font-url {
+  padding: 8px 16px; 
+  border-radius: 6px; 
+  background: var(--tn-default-contrast-color); 
+  color: var(--tn-neutral-tertiary-color); 
+  border: none; 
+  cursor: pointer;
 }

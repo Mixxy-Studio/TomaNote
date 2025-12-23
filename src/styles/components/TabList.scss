@@ -117,7 +117,7 @@
 
     .tab-list__item--content {
       display: none;
-      background-color: var(--color-secondary);
+      background-color: var(--tn-default-secondary-color);
       min-height: 92vh;
       padding: var(--padding-base);
       border: none;
@@ -135,7 +135,7 @@
     }
 
     label {
-      background-color: var(--color-background);
+      background-color: var(--tn-default-primary-color);
       width: 200px;
       display: flex;
       justify-content: space-between;
@@ -209,7 +209,7 @@
         }
 
         ~ label {
-          background-color: var(--color-secondary);
+          background-color: var(--tn-default-secondary-color);
           transition: background-color ease 0.3s;
 
           button:hover {
