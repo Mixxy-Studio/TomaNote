@@ -12,10 +12,10 @@ import "../styles/vendors/global.css"
 		<meta name="generator" content={Astro.generator} />
 		
 		<!-- === SEO META TAGS === -->
-		<title>TomaNote App - Bloc de notas Online</title>
-		<meta name="description" content="Un bloc de notas moderno en el navegador con pestañas, modo oscuro, menú contextual y persistencia local. ¡Tus notas siempre disponibles!" />
+		<title>TomaNote.app - Just Notes. Nothing Else. Write, Autosave, Done</title>
+		<meta name="description" content="A minimal notepad for people who just want to write. Fast, offline-first, and completely free." />
 		<meta name="author" content="Camiicode" />
-		<meta name="keywords" content="notas, bloc de notas, pestañas, editor, offline, pwa, productividad, aplicación web, notas rápidas" />
+		<meta name="keywords" content="notes, notepad, tabs, editor, offline, pwa, productivity, web-app, fast notes" />
 		
 		<!-- === CANONICAL & ROBOTS === -->
 		<link rel="canonical" href="https://tomanote.app" />
@@ -24,23 +24,26 @@ import "../styles/vendors/global.css"
 		<!-- === OPEN GRAPH / FACEBOOK === -->
 		<meta property="og:type" content="website" />
 		<meta property="og:url" content="https://tomanote.app" />
-		<meta property="og:title" content="TomaNote App - Bloc de notas con pestañas" />
-		<meta property="og:description" content="Un bloc de notas moderno en el navegador con pestañas, modo oscuro, menú contextual y persistencia local" />
+		<meta property="og:title" content="TomaNote.app - Just Notes. Nothing Else. Write, Autosave, Done" />
+		<meta property="og:description" content="A minimal notepad for people who just want to write. Fast, offline-first, and completely free." />
 		<meta property="og:image" content="https://tomanote.app/og-image.png" />
 		<meta property="og:image:width" content="1200" />
 		<meta property="og:image:height" content="630" />
-		<meta property="og:image:alt" content="Captura de pantalla de TomaNote App mostrando el editor con pestañas" />
+		<meta property="og:image:alt" content="Screenshot of TomaNote.app showing the editor with tabs" />
 		<meta property="og:locale" content="es_ES" />
 		<meta property="og:site_name" content="TomaNote App" />
 		
 		<!-- === TWITTER CARDS === -->
 		<meta name="twitter:card" content="summary_large_image" />
 		<meta name="twitter:url" content="https://tomanote.app" />
-		<meta name="twitter:title" content="TomaNote App - Bloc de notas con pestañas" />
-		<meta name="twitter:description" content="Un bloc de notas moderno en el navegador con pestañas, modo oscuro y persistencia local" />
+		<meta name="twitter:title" content="TomaNote.app - Just Notes. Nothing Else. Write, Autosave, Done" />
+		<meta name="twitter:description" content="A minimal notepad for people who just want to write. Fast, offline-first, and completely free." />
 		<meta name="twitter:image" content="https://tomanote.app/og-image.png" />
-		<meta name="twitter:creator" content="@camiicode" />
-		<meta name="twitter:site" content="@camiicode" />
+		<meta name="twitter:image:width" content="1200" />
+		<meta name="twitter:image:height" content="630" />
+		<meta name="twitter:image:alt" content="TomaNote.app - Just Notes. Nothing Else. Write, Autosave, Done" />
+		<meta name="twitter:creator" content="@camiicode_x" />
+		<meta name="twitter:site" content="@camiicode_x" />
 		
 		<!-- === APP / PWA TAGS === -->
 		<meta name="apple-mobile-web-app-title" content="TomaNote" />
@@ -66,7 +69,7 @@ import "../styles/vendors/global.css"
 			"@context": "https://schema.org",
 			"@type": "WebApplication",
 			"name": "TomaNote App",
-			"description": "Un bloc de notas moderno en el navegador con pestañas, modo oscuro, menú contextual y persistencia local",
+			"description": "A minimal notepad for people who just want to write. Fast, offline-first, and completely free.",
 			"url": "https://tomanote.app",
 			"applicationCategory": "ProductivityApplication",
 			"operatingSystem": "Any",
@@ -101,7 +104,7 @@ import "../styles/vendors/global.css"
 			},
 			"screenshot": {
 				"@type": "ImageObject",
-				"url": "https://tomanote.app/screenshot.png",
+				"url": "https://tomanote.app/screenshot-desktop.png",
 				"width": "1280",
 				"height": "720",
 				"caption": "TomaNote App interface"
@@ -123,34 +126,34 @@ import "../styles/vendors/global.css"
 			"mainEntity": [
 				{
 					"@type": "Question",
-					"name": "¿Es TomaNote App gratuito?",
+					"name": "¿Is TomaNote App free?",
 					"acceptedAnswer": {
 						"@type": "Answer",
-						"text": "Sí, TomaNote App es completamente gratuito y de código abierto. No tiene planes de pago ni versiones premium."
+						"text": "Yes, TomaNote App is completely free and open source. It has no paid plans or premium versions."
 					}
 				},
 				{
 					"@type": "Question",
-					"name": "¿Mis notas son privadas?",
+					"name": "¿Are my notes private?",
 					"acceptedAnswer": {
 						"@type": "Answer",
-						"text": "Absolutamente. Todas las notas se guardan localmente en tu navegador usando localStorage. No recolectamos, almacenamos ni transmitimos ningún dato."
+						"text": "Absolutely. All notes are saved locally in your browser using localStorage. We don't collect, store, or transmit any data."
 					}
 				},
 				{
 					"@type": "Question",
-					"name": "¿Necesito crear una cuenta?",
+					"name": "¿I need to create an account?",
 					"acceptedAnswer": {
 						"@type": "Answer",
-						"text": "No, TomaNote App funciona completamente sin registro. Es 100% anónimo, no requiere email ni contraseña."
+						"text": "No, TomaNote App works completely without registration. It is 100% anonymous, no email or password required."
 					}
 				},
 				{
 					"@type": "Question",
-					"name": "¿Funciona sin conexión a internet?",
+					"name": "¿Works offline?",
 					"acceptedAnswer": {
 						"@type": "Answer",
-						"text": "Sí, después de cargar la aplicación por primera vez, puedes usarla completamente offline. Todas las funciones están disponibles sin conexión."
+						"text": "Yes, after loading the app for the first time, you can use it completely offline. All features are available without connection."
 					}
 				},
 				{
@@ -158,7 +161,7 @@ import "../styles/vendors/global.css"
 					"name": "¿Puedo usar TomaNote en mi teléfono?",
 					"acceptedAnswer": {
 						"@type": "Answer",
-						"text": "Sí, TomaNote es una PWA (Progressive Web App). Puedes instalarla en tu teléfono como una aplicación nativa desde el navegador."
+						"text": "Yes, TomaNote is a PWA (Progressive Web App). You can install it on your phone as a native app from the browser."
 					}
 				}
 			]
