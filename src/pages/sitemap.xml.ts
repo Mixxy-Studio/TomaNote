@@ -1,12 +1,12 @@
 // src/pages/sitemap.xml.js
 export async function GET() {
-  const siteUrl = 'https://tomanote.app'; // Cambia esto
+  const siteUrl = 'https://tomanote.app';
   
   const pages = [
     { url: '', changefreq: 'daily', priority: 1.0 },
-    { url: '/about', changefreq: 'monthly', priority: 0.7 },
-    { url: '/privacy', changefreq: 'yearly', priority: 0.5 },
-    { url: '/terms', changefreq: 'yearly', priority: 0.5 }
+    // { url: '/about', changefreq: 'monthly', priority: 0.7 },
+    // { url: '/privacy', changefreq: 'yearly', priority: 0.5 },
+    // { url: '/terms', changefreq: 'yearly', priority: 0.5 }
   ];
   
   const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
