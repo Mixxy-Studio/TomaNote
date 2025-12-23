@@ -1,16 +1,19 @@
+@use "../abstracts/Variables.scss";
+
 *,
 *::before,
 *::after {
   box-sizing: border-box;
   padding: 0;
   margin: 0;
+  font-size: 16px; // 1rem
 }  
 
 body {
   margin: 0;
   padding: var(--padding-base);
-  color: var(--color-primary);
-  background-color: var(--color-background);
+  color: var(--tn-neutral-tertiary-color);
+  background-color: var(--tn-default-primary-color);
   width: 100%;
   height: auto;
   min-height: 100vh;
@@ -26,8 +29,8 @@ body {
   }
 }
 
-.source-code-pro-font {
-  font-family: "Source Code Pro", monospace;
+.default-font-family {
+  font-family: "Raleway", sans-serif, serif;
   font-optical-sizing: auto;
   font-weight: 100;
   font-style: normal;
@@ -55,4 +58,17 @@ button,
 input,
 select {
   font-family: var(--font-family-default);
+}
+
+a {
+  color: var(--tn-neutral-link-color);
+  text-decoration: underline;
+}
+
+code {
+  font-family: var(--font-family-default);
+  background-color: var(--tn-default-accent-color);
+  border-radius: var(--border-radius-small);
+  display: inline-block;
+  overflow: hidden;
 }

@@ -1,3 +1,120 @@
+/* =========================================== */
+/* =========== Nuevas Variables ============== */
+/* =========================================== */
+
+/* === Variables SCSS === */
+
+$tn-default-primary-color:        #181A1B;
+$tn-default-secondary-color:      #272E38;
+$tn-default-accent-color:         #465461;
+$tn-default-contrast-color:       #335484;
+$tn-light-primary-color:          #E0D3C2;
+$tn-light-secondary-color:        #F1EBE4;
+$tn-light-accent-color:           #CFA37E;
+$tn-light-contrast-color:         #FF893B;
+$tn-cozy-rose-primary-color:      #B85C80;
+$tn-cozy-rose-secondary-color:    #E6CBD5;
+$tn-cozy-rose-accent-color:       #ECA39D;
+$tn-cozy-rose-contrast-color:     #9657A8;
+$tn-chill-aqua-primary-color:     #76C9D4;
+$tn-chill-aqua-secondary-color:   #E1F7F9;
+$tn-chill-aqua-accent-color:      #77C8BF;
+$tn-chill-aqua-contrast-color:    #1F5869;
+$tn-wild-forest-primary-color:    #8EBF7A;
+$tn-wild-forest-secondary-color:  #C6DDBF;
+$tn-wild-forest-accent-color:     #3E6B3F;
+$tn-wild-forest-contrast-color:   #674A40;
+$tn-neon-orbit-primary-color:     #1A1A2E;
+$tn-neon-orbit-secondary-color:   #1F3365;
+$tn-neon-orbit-accent-color:      #EB5B72;
+$tn-neon-orbit-contrast-color:    #971C3C;
+$tn-neutral-primary-color:        #000000;
+$tn-neutral-secondary-color:      #C2C2C2;
+$tn-neutral-tertiary-color:       #FFFFFF;
+$tn-neutral-link-color:           #276FBF;
+
+/* === Variables Root === */
+
+// Default Theme
+:root {
+  --tn-default-primary-color:     #181A1B;
+  --tn-default-secondary-color:   #272E38;
+  --tn-default-accent-color:      #465461;
+  --tn-default-contrast-color:    #335484;
+}
+
+// Light Theme
+:root.light-mode {
+  --tn-light-primary-color:       #E0D3C2;
+  --tn-light-secondary-color:     #F1EBE4;
+  --tn-light-accent-color:        #CFA37E;
+  --tn-light-contrast-color:      #FF893B;
+}
+
+// Cozy Rose Theme
+:root.cozy-rose-mode {
+  --tn-cozy-rose-primary-color:    #B85C80;
+  --tn-cozy-rose-secondary-color:  #E6CBD5;
+  --tn-cozy-rose-accent-color:     #ECA39D;
+  --tn-cozy-rose-contrast-color:   #9657A8;
+}
+
+// Chill Aqua Theme
+:root.chill-aqua-mode {
+  --tn-chill-aqua-primary-color:    #76C9D4;
+  --tn-chill-aqua-secondary-color:  #E1F7F9;
+  --tn-chill-aqua-accent-color:     #77C8BF;
+  --tn-chill-aqua-contrast-color:   #1F5869;
+}
+
+// Wild Forest Theme
+:root.wild-forest-mode {
+  --tn-wild-forest-primary-color:    #8EBF7A;
+  --tn-wild-forest-secondary-color:  #C6DDBF;
+  --tn-wild-forest-accent-color:     #3E6B3F;
+  --tn-wild-forest-contrast-color:   #674A40;
+}
+
+// Neon Orbit Theme
+:root.neon-orbit-mode {
+  --tn-neon-orbit-primary-color:    #1A1A2E;
+  --tn-neon-orbit-secondary-color:  #1F3365;
+  --tn-neon-orbit-accent-color:     #EB5B72;
+  --tn-neon-orbit-contrast-color:   #971C3C;
+}
+
+// Neutral Colors
+:root {
+  --tn-neutral-primary-color:       #000000;
+  --tn-neutral-secondary-color:     #C2C2C2;
+  --tn-neutral-tertiary-color:      #FFFFFF;
+  --tn-neutral-link-color:          #276FBF;
+}
+
+// Fuentes y Espaciado
+:root {
+  --font-size-base: 1rem;
+  --font-size-large: 1.5rem;
+  --font-family-default: "Raleway", sans-serif, "Arial", "Helvetica Neue", Helvetica, serif;
+  --font-family-notes: var(--font-family-default);
+  --font-family-fallback: sans-serif, serif;
+  --padding-base: 10px;
+  --padding-block: 1rem;
+  --margin-base: 1rem;
+  --border-radius: 5px;
+  --border-radius-small: 4px;
+  --box-shadow-none: none;
+  --scrollbar-width: 2px;
+  --scrollbar-height: 2px;
+  --sb-track-color: #2d2d2d;
+  --sb-thumb-color: #676767;
+  --sb-size: 18px;
+}
+
+/* =========================================== */
+/* ============Variables Antiguas ============ */
+/* =========================================== */
+
 // Variables SCSS
 $color-background:             #ffffff;
 $color-secondary-background:   #f0f0f0;
@@ -29,24 +146,7 @@ $sb-thumb-color:               #b0b0b0;
   --sb-track-color:               #e0e0e0;
   --sb-thumb-color:               #b0b0b0;
 }
-:root {
-  --font-size-base: 1rem;
-  --font-size-large: 1.5rem;
-  --font-family-default: "Raleway", sans-serif, "Arial", "Helvetica Neue", Helvetica, serif;
-  --font-family-notes: var(--font-family-default);
-  --font-family-fallback: sans-serif, serif;
-  --padding-base: 10px;
-  --padding-block: 1rem;
-  --margin-base: 1rem;
-  --border-radius: 5px;
-  --border-radius-small: 4px;
-  --box-shadow-none: none;
-  --scrollbar-width: 2px;
-  --scrollbar-height: 2px;
-  --sb-track-color: #2d2d2d;
-  --sb-thumb-color: #676767;
-  --sb-size: 18px;
-}
+
 @media (prefers-color-scheme: dark) {
   html {
     --color-background: #1c1b22;
