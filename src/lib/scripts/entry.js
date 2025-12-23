@@ -44,37 +44,15 @@ async function loadCriticalFunctions() {
   console.log('📦 Cargando funciones críticas...');
   
   // 1. Cargar fuente personalizada (parte más crítica)
-  loadCustomFont();
+  const { FontManager } = await import('./core/fontManager.js');
+  window.fontManager = new FontManager();
+  window.fontManager.loadCustomFont();
   
   // 2. Configurar modo oscuro/claro
   setupDarkMode();
   
   // 3. Configurar Service Worker si está disponible
   setupServiceWorker();
-}
-
-function loadCustomFont() {
-  const fontUrl = localStorage.getItem('customFontUrl');
-  if (!fontUrl) return;
-  
-  try {
-    const link = document.createElement('link');
-    link.rel = 'stylesheet';
-    link.href = fontUrl;
-    document.head.appendChild(link);
-    
-    const match = fontUrl.match(/[?&]family=([^:&]*)/);
-    if (match && match[1]) {
-      const family = decodeURIComponent(match[1].split(':')[0].replace(/\+/g, ' '));
-      document.documentElement.style.setProperty('--font-family-base', `'${family}', sans-serif`);
-      document.documentElement.style.setProperty('--font-family-mono', `'${family}', sans-serif`);
-      document.body.style.fontFamily = `'${family}', sans-serif`;
-    }
-    
-    console.log('✅ Fuente personalizada cargada:', fontUrl);
-  } catch (error) {
-    console.warn('⚠️  Error cargando fuente:', error);
-  }
 }
 
 function setupDarkMode() {

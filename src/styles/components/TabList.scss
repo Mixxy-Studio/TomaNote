@@ -90,7 +90,7 @@
       overflow-x: hidden;
       overflow-y: scroll;
       font-weight: 100;
-      font-family: var(--font-family-mono);
+      font-family: var(--font-family-notes, var(--font-family-default));
 
       &::-webkit-scrollbar {
         width: var(--sb-size);
@@ -151,6 +151,7 @@
 
       span {
         color: var(--color-primary);
+        font-family: var(--font-family-notes, var(--font-family-default));
         text-overflow: ellipsis;
         white-space: nowrap;
         width: 80%;
