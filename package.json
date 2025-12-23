@@ -25,6 +25,7 @@
   },
   "devDependencies": {
     "gh-pages": "^6.3.0",
-    "standard-version": "^9.5.0"
+    "standard-version": "^9.5.0",
+    "terser": "^5.44.1"
   }
 }
