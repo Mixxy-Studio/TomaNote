@@ -1,0 +1,54 @@
+// Helper para usar las variables TN consistentemente
+@use "../abstracts/Variables.scss" as vars;
+
+// Mixin para transiciones de tema
+@mixin theme-transition {
+  transition: background-color 0.3s ease, 
+              border-color 0.3s ease,
+              color 0.3s ease;
+}
+
+// Clases helper para usar en cualquier lugar
+.tn-bg-primary {
+  background-color: var(--tn-color-background);
+  @include theme-transition;
+}
+
+.tn-bg-secondary {
+  background-color: var(--tn-color-secondary-background);
+  @include theme-transition;
+}
+
+.tn-text {
+  color: var(--tn-color-text);
+  @include theme-transition;
+}
+
+.tn-border {
+  border: 1px solid var(--tn-color-accent);
+  @include theme-transition;
+}
+
+.tn-border-contrast {
+  border: 1px solid var(--tn-color-contrast);
+  @include theme-transition;
+}
+
+.tn-button {
+  background-color: var(--tn-color-accent);
+  color: var(--tn-color-text);
+  border: none;
+  border-radius: var(--tn-border-radius-small);
+  padding: 8px 16px;
+  cursor: pointer;
+  @include theme-transition;
+  
+  &:hover {
+    background-color: var(--tn-color-contrast);
+  }
+  
+  &:focus {
+    outline: 2px solid var(--tn-color-contrast);
+    outline-offset: 2px;
+  }
+}
