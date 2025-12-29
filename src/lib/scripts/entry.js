@@ -48,21 +48,59 @@ async function loadCriticalFunctions() {
   window.fontManager = new FontManager();
   window.fontManager.loadCustomFont();
   
-  // 2. Configurar modo oscuro/claro
-  setupDarkMode();
+  // 2. Configurar sistema de temas (dark/light mode)
+  await setupThemeSystem();
   
   // 3. Configurar Service Worker si está disponible
   setupServiceWorker();
 }
 
-function setupDarkMode() {
-  const darkModeToggle = document.getElementById('dark-mode-toggle');
-  if (!darkModeToggle) {
-    console.warn('⚠️  No se encontró el toggle de dark mode');
-    return;
-  }
+// En tu entry.js, reemplaza setupDarkMode() con:
+async function setupThemeSystem() {
+  console.log('🎨 Configurando sistema de temas...');
   
-  // Verificar preferencia guardada o del sistema
+  try {
+    // Cargar ThemeManager
+    const { ThemeManager } = await import('./core/themeManager.js');
+    window.themeManager = new ThemeManager();
+    await window.themeManager.init();
+    
+    // Para retrocompatibilidad, mantener el toggle antiguo si existe
+    const oldDarkModeToggle = document.getElementById('dark-mode-toggle');
+    if (oldDarkModeToggle) {
+      console.log('🔗 Manteniendo compatibilidad con toggle antiguo...');
+      
+      // Sincronizar estado inicial
+      const isLightMode = window.themeManager.getCurrentTheme() === 'light';
+      oldDarkModeToggle.checked = isLightMode;
+      
+      // Manejar cambios desde el toggle antiguo
+      oldDarkModeToggle.addEventListener('change', (e) => {
+        window.themeManager.toggleLightMode(e.target.checked);
+      });
+      
+      // Escuchar cambios de tema para actualizar el toggle
+      window.addEventListener('themeChanged', (e) => {
+        const isLight = e.detail.theme === 'light';
+        oldDarkModeToggle.checked = isLight;
+      });
+    }
+    
+    console.log('✅ Sistema de temas configurado');
+    
+  } catch (error) {
+    console.error('❌ Error configurando temas:', error);
+    
+    // Fallback al sistema antiguo
+    console.log('🔄 Usando fallback de dark mode simple...');
+    setupDarkModeFallback();
+  }
+}
+
+function setupDarkModeFallback() {
+  const darkModeToggle = document.getElementById('dark-mode-toggle');
+  if (!darkModeToggle) return;
+  
   const savedMode = localStorage.getItem('darkMode');
   const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
   
@@ -74,14 +112,11 @@ function setupDarkMode() {
     darkModeToggle.checked = true;
   }
   
-  // Manejar el cambio
   darkModeToggle.addEventListener('change', (e) => {
     const isLightMode = e.target.checked;
     document.documentElement.classList.toggle('light-mode', isLightMode);
     localStorage.setItem('darkMode', !isLightMode);
   });
-  
-  console.log('✅ Dark mode configurado');
 }
 
 function setupServiceWorker() {
@@ -102,9 +137,6 @@ function setupServiceWorker() {
 // ===== COMPONENTES BÁSICOS =====
 async function initializeBasicComponents() {
   console.log('⚙️  Inicializando componentes básicos...');
-  
-  // Estas son las funciones MÍNIMAS que necesitas para que la app funcione
-  // Las moveremos gradualmente a módulos separados
   
   // Por ahora, las ponemos aquí como funciones internas
   await initializeTabsSystem();
@@ -227,8 +259,12 @@ async function loadOptionalModules() {
     console.log('✅ Módulo emojiDetector cargado');
     
     // Aquí puedes agregar más imports dinámicos
-    // import('./core/tabs.js');
-    // import('./ui/contextMenu.js');
+    import('./core/fontManager.js');
+    import('./core/tabs.js');
+    import('./core/themeManager.js');
+    import('./ui/contextMenu.js');
+    import('./utils/domHelpers.js');
+    import('./utils/emojiDetector.js');
     
   } catch (error) {
     console.warn('⚠️  Algunos módulos no pudieron cargarse:', error.message);
@@ -244,7 +280,6 @@ async function verifyFunctionality() {
   const criticalElements = [
     '.tab-list',
     '#create-tab',
-    '#dark-mode-toggle',
     '#context-menu'
   ];
   

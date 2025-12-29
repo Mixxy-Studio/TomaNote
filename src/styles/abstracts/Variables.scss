@@ -165,8 +165,8 @@ $tn-themes: (
   --tn-border-radius-small:         #{$tn-border-radius-small};
   
   // Scrollbar
-  --tn-scrollbar-thumb:             #{$tn-scrollbar-thumb};
-  --tn-scrollbar-track:             #{$tn-scrollbar-track};
+  --tn-scrollbar-thumb:             #{$tn-theme-primary-dark};
+  --tn-scrollbar-track:             #{$tn-theme-secondary-dark};
 }
 
 /* === Temas específicos === */
@@ -179,17 +179,23 @@ $tn-themes: (
 
 :root[data-theme="cozy-rose"] {
   @include tn-theme-styles(cozy-rose);
-  --tn-color-text:                  #{$tn-neutral-tertiary-color};
+  --tn-color-text:                  #{$tn-neutral-primary-color};
+  --tn-scrollbar-thumb:             #b0b0b0;
+  --tn-scrollbar-track:             #f0f0f0;
 }
 
 :root[data-theme="chill-aqua"] {
   @include tn-theme-styles(chill-aqua);
   --tn-color-text:                  #{$tn-neutral-primary-color};
+  --tn-scrollbar-thumb:             #b0b0b0;
+  --tn-scrollbar-track:             #f0f0f0;
 }
 
 :root[data-theme="wild-forest"] {
   @include tn-theme-styles(wild-forest);
   --tn-color-text:                  #{$tn-neutral-primary-color};
+  --tn-scrollbar-thumb:             #b0b0b0;
+  --tn-scrollbar-track:             #f0f0f0;
 }
 
 :root[data-theme="neon-orbit"] {
