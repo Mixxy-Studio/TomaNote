@@ -1,4 +1,4 @@
-@use "../abstracts/Variables.scss";
+@use "../abstracts/Variables.scss" as tn;
 
 .tab-list {
   display: flex;
@@ -9,17 +9,18 @@
   height: 100%;
   max-width: 100vw;
   overflow-x: auto;
+  z-index: 999;
   
   #create-tab {
     width: 30px;
     height: 30px;
-    background-color: transparent;
+    background-color: var(--tn-theme-secondary);
     outline: 0px;
     border: unset;
     border-radius: 5px;
     margin-left: 6px;
     margin-top: 2px;
-    color: var(--color-button-background);
+    color: var(--tn-neutral-tertiary-color);
     
     svg {
       width: 100%;
@@ -27,9 +28,9 @@
     }
 
     &:hover {
-      background-color: var(--color-secondary);
+      background-color: lighten(tn.$tn-theme-primary-dark, 10%);
       border-color: transparent;
-      color: var(--color-primary);
+      color: var(--tn-neutral-tertiary-color);
     }
   }
 
@@ -54,7 +55,7 @@
     }
 
     &.pinned { 
-      border: 1px solid var(--color-button-background);
+      border: 1px solid var(--tn-theme-secondary);
       border-radius: 5px;
       label  {
         border-radius: 5px;
@@ -62,7 +63,7 @@
         overflow: hidden;
         transition: ease-in-out .3s all;
         padding: 7px 5px 5px 10px;
-        &:hover { background-color: var(--color-button-hover); }
+        &:hover { background-color: var(--tn-theme-secondary); }
         button {
           display: none !important;
         }
@@ -90,59 +91,59 @@
       overflow-x: hidden;
       overflow-y: scroll;
       font-weight: 100;
-      font-family: var(--font-family-mono);
+      font-family: var(--font-family-notes, var(--font-family-default));
 
       &::-webkit-scrollbar {
-        width: var(--sb-size);
+        width: var(--tn-padding-base);
         cursor: pointer;
       }
 
       &::-webkit-scrollbar-track {
-        background: var(--sb-track-color);
+        background: var(--tn-scrollbar-track);
         border-radius: 8px;
         cursor: pointer;
       }
 
       &::-webkit-scrollbar-thumb {
-        background: var(--sb-thumb-color);
+        background: var(--tn-scrollbar-thumb);
         border-radius: 8px;
-        border: 3px solid #282d2f;
+        border: 3px solid var(--tn-scrollbar-thumb);
         cursor: pointer;
       }
 
       @supports not selector(::-webkit-scrollbar) {
-        scrollbar-color: var(--sb-thumb-color) var(--sb-track-color);
+        scrollbar-color: var(--tn-scrollbar-track) var(--tn-scrollbar-track);
       }
     }
 
     .tab-list__item--content {
       display: none;
-      background-color: var(--color-secondary);
+      background-color: var(--tn-theme-secondary);
       min-height: 92vh;
-      padding: var(--padding-base);
+      padding: var(--tn-padding-base);
       border: none;
       outline: 0;
       position: absolute;
       top: 50px;
       left: 10px;
       height: calc(100% - 60px);
-      width: calc(100% - calc(var(--padding-base) * 2));
+      width: calc(100% - calc(var(--tn-padding-base) * 2));
     }
 
     &:last-child {
       margin-right: 10px;
-      border-right: 1px solid var(--color-secondary) !important;
+      border-right: 1px solid var(--tn-theme-secondary) !important;
     }
 
     label {
-      background-color: var(--color-background);
-      width: 200px;
+      background-color: var(--tn-default-tertiary-color);
+      width: 250px;
       display: flex;
       justify-content: space-between;
       align-items: center;
       padding: 7px 5px 7px 10px;
-      border-top-left-radius: var(--border-radius);
-      border-top-right-radius: var(--border-radius);
+      border-top-left-radius: var(--tn-border-radius);
+      border-top-right-radius: var(--tn-border-radius);
       cursor: pointer;
 
       &:hover button {
@@ -150,14 +151,15 @@
       }
 
       span {
-        color: var(--color-primary);
+        // color: lighten(tn.$tn-theme-primary-light, 50%);
+        font-family: var(--font-family-notes, var(--tn-font-family-default));
         text-overflow: ellipsis;
         white-space: nowrap;
         width: 80%;
         overflow: hidden;
         z-index: 2 !important;
         font-size: 14px;
-        font-weight: 200;
+        font-weight: 600;
       }
 
       button {
@@ -179,18 +181,18 @@
       .edit-name-tab,
       .delete-tab {
         &:hover {
-          background-color: rgba(224, 224, 224, .5);
+          background-color: rgba(tn.$tn-neutral-tertiary-color, .25);
         }
       }
 
       .edit-name-tab:active,
       .edit-name-tab:focus {
-        background-color: var(--color-button-edit);
+        background-color: rgba(tn.$tn-neutral-tertiary-color, .5);
       }
 
       .delete-tab:active,
       .delete-tab:focus {
-        background-color: var(--color-button-delete);
+        background-color: rgba(tn.$tn-neutral-tertiary-color, .5);
       }
 
     }
@@ -208,11 +210,15 @@
         }
 
         ~ label {
-          background-color: var(--color-secondary);
+          background-color: var(--tn-theme-secondary);
           transition: background-color ease 0.3s;
 
+          span {
+            color: var(--tn-theme-primary);
+          }
+
           button:hover {
-            background-color: var(--color-button-hover);
+            background-color: lighten(tn.$tn-theme-primary-dark, 50%);
           }
         }
       }
@@ -220,16 +226,16 @@
   }
 
   &::-webkit-scrollbar {
-    width: var(--scrollbar-width);
-    height: var(--scrollbar-height);
+    width: 100%;
+    height: 5px;
   }
 
   &::-webkit-scrollbar-track {
-    background: var(--color-secondary-background);
+    background: var(--tn-theme-secondary);
   }
 
   &::-webkit-scrollbar-thumb {
-    background: var(--color-scrollbar-thumb);
+    background: pink;
     border-radius: var(--border-radius);
   }
 

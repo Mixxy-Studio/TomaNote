@@ -17,41 +17,27 @@
 
 TomaNote es un bloc de notas moderno y minimalista que funciona directamente en tu navegador. Diseñado para ser simple pero potente, con funcionalidades que facilitan la toma de notas y la organización de ideas.
 
-### ✨ Características Principales
+✅ 🚀 Novedades — v0.3.0
 
-- 📱 **Diseño Responsivo**: Optimizado para todos los dispositivos (desktop, tablet, móvil)
-- 💾 **Guardado Automático**: Tus notas se guardan automáticamente en el almacenamiento local
-- 🔄 **Sistema de Pestañas**: Organiza tus notas en múltiples pestañas
-- 📌 **Fijar Pestañas**: Puedes fijar pestañas importantes para destacarlas
-- 🧠 **Emojis Personalizados**: Usa un emoji en el nombre de la pestaña y se mostrará como favicon personalizado
-- 🎨 **Mejoras Visuales**:
-  - Hover en pestañas inactivas
-  - Bordes diferenciados
-  - Nuevas proporciones y tipografía más delicada
-  - Íconos más pequeños y sutiles para editar/cerrar
-- 🎨 **Formato de Texto**:
-  - Negrita (`Ctrl + B`)
-  - Cursiva (`Ctrl + I`)
-  - Subrayado (`Ctrl + U`)
-- 📑 **Gestión de Pestañas**:
-  - Renombrar pestañas
-  - Crear nuevas pestañas
-  - Eliminar pestañas existentes
-  - Fijar/Desfijar Pestañas
-  - Cerrar pestaña con MB3 (Mouse Button 3)
-- 🖱️ **Menú Contextual**: Acceso rápido a funciones comunes
+Esta versión marca un salto importante en la experiencia del aplicativo, enfocándose en personalización, accesibilidad y presentación profesional.
 
-✅ Novedades en la versión 0.2.1
+- 🎨 Personalización visual avanzada
+  Se incorpora un selector de temas con 6 estilos visuales distintos, Dark Theme el tema por defecto, se agrego Cozy-rose, Aqua Chill, Wild Forest y Neon Orbit, permitiendo adaptar la apariencia del aplicativo al gusto del usuario y a diferentes contextos de uso.
 
-- 📝 Ajustes menores de texto y redacción en el modal de información.
-- 🧼 Mejoras internas de mantenimiento y organización del proyecto.
-- 🛡️ Endurecimiento del workflow de GitHub Actions:
-- Límites de ejecución para evitar procesos colgados.
-- Control de concurrencia en despliegues.
-- Mayor seguridad y estabilidad en el pipeline de CI/CD.
-- ⚙️ Actualización del versionado y normalización del CHANGELOG.
+- 📱 Instalable como aplicación (PWA)
+  El aplicativo ahora puede instalarse localmente en PC y dispositivos móviles, ofreciendo una experiencia más cercana a una app nativa, con acceso rápido y mejor rendimiento percibido.
 
-***#### Nota: Esta versión no introduce cambios funcionales visibles para el usuario final.***
+- 🖥️ Rediseño enfocado en pantallas grandes
+  Se rediseñaron y ajustaron múltiples vistas para desktop y tablets, mejorando la legibilidad, el uso del espacio y la coherencia visual en dispositivos de mayor tamaño.
+
+- 🌈 Nueva identidad visual por defecto
+  Actualización de la paleta de colores del tema principal, buscando una experiencia más amable, moderna y consistente para nuevos usuarios.
+
+- 🔍 Mejoras de SEO
+  Optimización de metadatos y estructura del aplicativo para facilitar su descubrimiento y posicionamiento en buscadores.
+
+> Nota:
+> Esta versión introduce cambios visuales y de experiencia de usuario, pero no rompe compatibilidad con versiones anteriores.
 
 ### 🚀 Próximas Funcionalidades
 

@@ -1,62 +1,248 @@
-// Variables SCSS
-$color-background:             #ffffff;
-$color-secondary-background:   #f0f0f0;
-$color-primary:                #333333;
-$color-secondary:              #e0e0e0;
-$color-button-background:      #e0e0e0;
-$color-button-delete:          #dc3545;
-$color-button-edit:            #4285F4;
-$color-button-hover:           #d0d0d0;
-$color-scrollbar-thumb:        #b0b0b0;
-$color-scrollbar-track:        #e0e0e0;
-$color-scrollbar-hover:        #a0a0a0;
-$sb-track-color:               #e0e0e0;
-$sb-thumb-color:               #b0b0b0;
+/* =========================================== */
+/* =========== Variables de TomaNote ========= */
+/* =========================================== */
 
-// Variables Root
-:root.light-mode {
-  --color-background:             #ffffff;
-  --color-secondary-background:   #f0f0f0;
-  --color-primary:                #333333;
-  --color-secondary:              #e0e0e0;
-  --color-button-background:      #e0e0e0;
-  --color-button-delete:          #dc3545;
-  --color-button-edit:            #4285F4;
-  --color-button-hover:           #d0d0d0;
-  --color-scrollbar-thumb:        #b0b0b0;
-  --color-scrollbar-track:        #e0e0e0;
-  --color-scrollbar-hover:        #a0a0a0;
-  --sb-track-color:               #e0e0e0;
-  --sb-thumb-color:               #b0b0b0;
-}
-:root {
-  --font-size-base: 1rem;
-  --font-size-large: 1.5rem;
-  --font-family-mono: "Source Code Pro", monospace;
-  --padding-base: 10px;
-  --padding-block: 1rem;
-  --margin-base: 1rem;
-  --border-radius: 5px;
-  --border-radius-small: 4px;
-  --box-shadow-none: none;
-  --scrollbar-width: 2px;
-  --scrollbar-height: 2px;
-  --sb-track-color: #2d2d2d;
-  --sb-thumb-color: #676767;
-  --sb-size: 18px;
-}
-@media (prefers-color-scheme: dark) {
-  html {
-    --color-background: #1c1b22;
-    --color-secondary-background: #141414;
-    --color-primary: #fff;
-    --color-secondary: #2d2d2d;
-    --color-button-background: #3a3939;
-    --color-button-edit: #4285F4;
-    --color-button-delete: #dc3545;
-    --color-button-hover: #494949;
-    --color-scrollbar-thumb: #888;
-    --color-scrollbar-track: #333;
-    --color-scrollbar-hover: #555;
+/* === Variables SCSS (para usar en archivos .scss) === */
+
+// Variables neutrales (siempre disponibles)
+$tn-neutral-primary-color:      #000000;
+$tn-neutral-secondary-color:    #C2C2C2;
+$tn-neutral-tertiary-color:     #FFFFFF;
+$tn-neutral-link-color:         #276FBF;
+
+// Variables de tema por defecto (Dark Mode)
+$tn-theme-primary-dark:         #181A1B;
+$tn-theme-secondary-dark:       #272E38;
+$tn-theme-accent-dark:          #465461;
+$tn-theme-contrast-dark:        #335484;
+
+// Variables de tema Light
+$tn-theme-primary-light:        #E0D3C2;
+$tn-theme-secondary-light:      #F1EBE4;
+$tn-theme-accent-light:         #CFA37E;
+$tn-theme-contrast-light:       #FF893B;
+
+// Variables de tema Cozy Rose
+$tn-theme-primary-cozy-rose:    #B85C80;
+$tn-theme-secondary-cozy-rose:  #E6CBD5;
+$tn-theme-accent-cozy-rose:     #ECA39D;
+$tn-theme-contrast-cozy-rose:   #9657A8;
+
+// Variables de tema Chill Aqua
+$tn-theme-primary-chill-aqua:   #76C9D4;
+$tn-theme-secondary-chill-aqua: #E1F7F9;
+$tn-theme-accent-chill-aqua:    #77C8BF;
+$tn-theme-contrast-chill-aqua:  #1F5869;
+
+// Variables de tema Wild Forest
+$tn-theme-primary-wild-forest:  #8EBF7A;
+$tn-theme-secondary-wild-forest:#C6DDBF;
+$tn-theme-accent-wild-forest:   #3E6B3F;
+$tn-theme-contrast-wild-forest: #674A40;
+
+// Variables de tema Neon Orbit
+$tn-theme-primary-neon-orbit:   #1A1A2E;
+$tn-theme-secondary-neon-orbit: #1F3365;
+$tn-theme-accent-neon-orbit:    #EB5B72;
+$tn-theme-contrast-neon-orbit:  #971C3C;
+
+// Fuentes y Espaciado
+$tn-font-size-base:             1rem;
+$tn-font-size-large:            1.5rem;
+$tn-font-family-default:        "Raleway", sans-serif, "Arial", "Helvetica Neue", Helvetica, serif;
+$tn-padding-base:               10px;
+$tn-border-radius:              5px;
+$tn-border-radius-small:        4px;
+
+// Scrollbar
+$tn-scrollbar-thumb:            #676767;
+$tn-scrollbar-track:            #2d2d2d;
+
+// Mapa de temas para fácil acceso
+$tn-themes: (
+  dark: (
+    primary: $tn-theme-primary-dark,
+    secondary: $tn-theme-secondary-dark,
+    accent: $tn-theme-accent-dark,
+    contrast: $tn-theme-contrast-dark,
+    text-color: $tn-neutral-tertiary-color
+  ),
+  light: (
+    primary: $tn-theme-primary-light,
+    secondary: $tn-theme-secondary-light,
+    accent: $tn-theme-accent-light,
+    contrast: $tn-theme-contrast-light,
+    text-color: $tn-neutral-primary-color
+  ),
+  cozy-rose: (
+    primary: $tn-theme-primary-cozy-rose,
+    secondary: $tn-theme-secondary-cozy-rose,
+    accent: $tn-theme-accent-cozy-rose,
+    contrast: $tn-theme-contrast-cozy-rose,
+    text-color: $tn-neutral-tertiary-color
+  ),
+  chill-aqua: (
+    primary: $tn-theme-primary-chill-aqua,
+    secondary: $tn-theme-secondary-chill-aqua,
+    accent: $tn-theme-accent-chill-aqua,
+    contrast: $tn-theme-contrast-chill-aqua,
+    text-color: $tn-neutral-primary-color
+  ),
+  wild-forest: (
+    primary: $tn-theme-primary-wild-forest,
+    secondary: $tn-theme-secondary-wild-forest,
+    accent: $tn-theme-accent-wild-forest,
+    contrast: $tn-theme-contrast-wild-forest,
+    text-color: $tn-neutral-primary-color
+  ),
+  neon-orbit: (
+    primary: $tn-theme-primary-neon-orbit,
+    secondary: $tn-theme-secondary-neon-orbit,
+    accent: $tn-theme-accent-neon-orbit,
+    contrast: $tn-theme-contrast-neon-orbit,
+    text-color: $tn-neutral-tertiary-color
+  )
+);
+
+// Función helper para obtener valores de tema
+@function tn-theme($theme-name, $property) {
+  @if map-has-key($tn-themes, $theme-name) {
+    $theme: map-get($tn-themes, $theme-name);
+    @if map-has-key($theme, $property) {
+      @return map-get($theme, $property);
+    } @else {
+      @error "La propiedad '#{$property}' no existe en el tema '#{$theme-name}'";
+    }
+  } @else {
+    @error "El tema '#{$theme-name}' no existe";
   }
+}
+
+// Mixin para aplicar estilos de tema
+@mixin tn-theme-styles($theme-name) {
+  $theme: map-get($tn-themes, $theme-name);
+  
+  @if $theme {
+    --tn-theme-primary: #{map-get($theme, primary)};
+    --tn-theme-secondary: #{map-get($theme, secondary)};
+    --tn-theme-accent: #{map-get($theme, accent)};
+    --tn-theme-contrast: #{map-get($theme, contrast)};
+    --tn-color-text: #{map-get($theme, text-color)};
+  }
+}
+
+/* =========================================== */
+/* === Variables CSS (para usar en :root) ==== */
+/* =========================================== */
+
+/* === Variables Base (siempre presentes) === */
+:root {
+  // Variables neutrales (siempre disponibles)
+  --tn-neutral-primary-color:       #{$tn-neutral-primary-color};
+  --tn-neutral-secondary-color:     #{$tn-neutral-secondary-color};
+  --tn-neutral-tertiary-color:      #{$tn-neutral-tertiary-color};
+  --tn-neutral-link-color:          #{$tn-neutral-link-color};
+  
+  // Variables funcionales ALIAS (usar estas en CSS)
+  --tn-color-background:            var(--tn-theme-primary);
+  --tn-color-secondary-background:  var(--tn-theme-secondary);
+  --tn-color-accent:                var(--tn-theme-accent);
+  --tn-color-contrast:              var(--tn-theme-contrast);
+  --tn-color-text:                  var(--tn-neutral-tertiary-color);
+  
+  // Variables de tema por defecto (Dark Mode)
+  --tn-theme-primary:               #{$tn-theme-primary-dark};
+  --tn-theme-secondary:             #{$tn-theme-secondary-dark};
+  --tn-theme-accent:                #{$tn-theme-accent-dark};
+  --tn-theme-contrast:              #{$tn-theme-contrast-dark};
+  
+  // Fuentes y Espaciado
+  --tn-font-size-base:              #{$tn-font-size-base};
+  --tn-font-size-large:             #{$tn-font-size-large};
+  --tn-font-family-default:         #{$tn-font-family-default};
+  --tn-padding-base:                #{$tn-padding-base};
+  --tn-border-radius:               #{$tn-border-radius};
+  --tn-border-radius-small:         #{$tn-border-radius-small};
+  
+  // Scrollbar
+  --tn-scrollbar-thumb:             #{$tn-theme-primary-dark};
+  --tn-scrollbar-track:             #{$tn-theme-secondary-dark};
+}
+
+/* === Temas específicos === */
+:root[data-theme="light"] {
+  @include tn-theme-styles(light);
+  --tn-color-text:                  #{$tn-neutral-primary-color};
+  --tn-scrollbar-thumb:             #b0b0b0;
+  --tn-scrollbar-track:             #f0f0f0;
+}
+
+:root[data-theme="cozy-rose"] {
+  @include tn-theme-styles(cozy-rose);
+  --tn-color-text:                  #{$tn-neutral-primary-color};
+  --tn-scrollbar-thumb:             #b0b0b0;
+  --tn-scrollbar-track:             #f0f0f0;
+}
+
+:root[data-theme="chill-aqua"] {
+  @include tn-theme-styles(chill-aqua);
+  --tn-color-text:                  #{$tn-neutral-primary-color};
+  --tn-scrollbar-thumb:             #b0b0b0;
+  --tn-scrollbar-track:             #f0f0f0;
+}
+
+:root[data-theme="wild-forest"] {
+  @include tn-theme-styles(wild-forest);
+  --tn-color-text:                  #{$tn-neutral-primary-color};
+  --tn-scrollbar-thumb:             #b0b0b0;
+  --tn-scrollbar-track:             #f0f0f0;
+}
+
+:root[data-theme="neon-orbit"] {
+  @include tn-theme-styles(neon-orbit);
+  --tn-color-text:                  #{$tn-neutral-tertiary-color};
+}
+
+// Clases utilitarias para forzar temas (útil para testing)
+.tn-theme-dark {
+  @include tn-theme-styles(dark);
+}
+
+.tn-theme-light {
+  @include tn-theme-styles(light);
+  --tn-color-text: #{$tn-neutral-primary-color};
+}
+
+.tn-theme-cozy-rose {
+  @include tn-theme-styles(cozy-rose);
+  --tn-color-text: #{$tn-neutral-tertiary-color};
+}
+
+.tn-theme-chill-aqua {
+  @include tn-theme-styles(chill-aqua);
+  --tn-color-text: #{$tn-neutral-primary-color};
+}
+
+.tn-theme-wild-forest {
+  @include tn-theme-styles(wild-forest);
+  --tn-color-text: #{$tn-neutral-primary-color};
+}
+
+.tn-theme-neon-orbit {
+  @include tn-theme-styles(neon-orbit);
+  --tn-color-text: #{$tn-neutral-tertiary-color};
+}
+
+/* =========================================== */
+/* ==== Variables de compatibilidad (opcional) === */
+/* =========================================== */
+
+// Si necesitas mantener compatibilidad con variables antiguas
+:root {
+  --color-background:               var(--tn-color-background);
+  --color-secondary-background:     var(--tn-color-secondary-background);
+  --color-accent:                   var(--tn-color-accent);
+  --color-contrast:                 var(--tn-color-contrast);
+  --color-text:                     var(--tn-color-text);
+  --font-family-default:            var(--tn-font-family-default);
 }
