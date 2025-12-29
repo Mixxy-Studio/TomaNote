@@ -22,8 +22,8 @@
     background: var(--color-secondary-background);
     border-radius: 50px;
     box-shadow:
-      inset 0px 5px 15px rgba(0, 0, 0, 0.4),
-      inset 0px -5px 15px rgba(255, 255, 255, 0.4);
+      inset 0px 5px 15px rgba(Variables.$tn-neutral-primary-color, 0.4),
+      inset 0px -5px 15px rgba(Variables.$tn-neutral-tertiary-color, 0.4);
     cursor: pointer;
     transition: ease-in-out 0.3s all;
     
@@ -39,7 +39,7 @@
       position: absolute;
       top: 2px;
       left: 5px;
-      background: var(--color-secondary-background);
+      background: url("data:image/svg+xml,%3Csvg width='10' height='10' xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke-width='.5' stroke='%23ffffff'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' d='M21.752 15.002A9.72 9.72 0 0 1 18 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 0 0 3 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 0 0 9.002-5.998Z'/%3E%3C/svg%3E") no-repeat center center , var(--tn-default-contrast-color);
       border-radius: 180px;
       box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.2);
       transition: ease-in-out 0.3s all;
