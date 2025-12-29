@@ -1,0 +1,37 @@
+# ============================================
+  # TomaNote App - Robots.txt
+  # Generated: 2025-12-29T12:12:02.107Z
+  # ============================================
+
+  User-agent: *
+  Allow: /
+
+  # Sitemap
+  Sitemap: https://tomanote.app/sitemap.xml
+
+  # API and admin sections (if they exist)
+  Disallow: /admin/
+  Disallow: /api/
+  Disallow: /private/
+  Disallow: /tmp/
+
+  # Block AI crawlers that might use content for training
+  User-agent: GPTBot
+  Disallow: /
+
+  User-agent: ChatGPT-User
+  Disallow: / 
+
+  User-agent: Google-Extended
+  Disallow: /
+
+  User-agent: anthropic-ai
+  Disallow: /
+
+  User-agent: FacebookBot
+  Allow: /
+
+  # ============================================
+  # Development environment - BLOCK ALL
+  # ============================================
+  
