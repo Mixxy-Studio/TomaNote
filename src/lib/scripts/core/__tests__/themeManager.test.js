@@ -1,5 +1,5 @@
 import { describe, it, expect, beforeEach, vi } from 'vitest'
-import { ThemeManager } from './themeManager.js'
+import { ThemeManager } from '../themeManager.js'
 
 // Mock localStorage
 const localStorageMock = {

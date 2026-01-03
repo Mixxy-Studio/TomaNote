@@ -1,5 +1,5 @@
 import { describe, it, expect, beforeEach, vi } from 'vitest'
-import { FontManager } from './fontManager.js'
+import { FontManager } from '../fontManager.js'
 
 // Mock localStorage
 const localStorageMock = {

@@ -1,5 +1,5 @@
 import { describe, it, expect, beforeEach, vi } from 'vitest'
-import { TabManager } from './tabs.js'
+import { TabManager } from '../tabs.js'
 
 // Mock localStorage
 const localStorageMock = {
