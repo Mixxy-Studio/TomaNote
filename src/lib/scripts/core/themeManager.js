@@ -14,7 +14,6 @@ export class ThemeManager {
   }
   
   async init() {
-    console.log('🎨 ThemeManager - Inicializando para Astro...');
     
     // Cargar tema guardado
     this.loadSavedTheme();
@@ -27,8 +26,6 @@ export class ThemeManager {
     
     // Configurar listeners
     this.setupEventListeners();
-    
-    console.log(`✅ ThemeManager listo. Tema: ${this.currentTheme}`);
     
     return this;
   }
@@ -53,7 +50,6 @@ export class ThemeManager {
   createThemeSelectorUI() {
     // Verificar si ya existe
     if (document.querySelector('.theme-selector-container')) {
-      console.log('ℹ️  Selector de temas ya existe');
       return;
     }
     
@@ -63,7 +59,6 @@ export class ThemeManager {
                         document.querySelector('.tab-list');
     
     if (!themeWrapper) {
-      console.error('❌ No se encontró contenedor para el selector de temas');
       return;
     }
     
@@ -122,7 +117,6 @@ export class ThemeManager {
     const dropdown = document.getElementById('theme-dropdown');
     
     if (!toggleBtn || !dropdown) {
-      console.error('❌ Elementos del selector de temas no encontrados');
       return;
     }
     
@@ -208,9 +202,7 @@ export class ThemeManager {
       console.warn(`⚠️  Tema "${themeId}" no válido`);
       return;
     }
-    
-    console.log(`🎨 Cambiando a tema: ${themeId}`);
-    
+
     // Actualizar estado
     this.currentTheme = themeId;
     
@@ -220,9 +212,7 @@ export class ThemeManager {
     // Guardar preferencia
     try {
       localStorage.setItem('notepadTheme', themeId);
-    } catch (error) {
-      console.warn('⚠️  No se pudo guardar el tema:', error);
-    }
+    } catch (error) {}
     
     // Actualizar UI
     this.updateThemeUI();
@@ -320,7 +310,6 @@ export class ThemeManager {
   
   // Método para debug
   debugCSSVariables() {
-    console.group('🎨 Debug CSS Variables');
     
     const variables = [
       '--tn-color-background',
@@ -332,13 +321,9 @@ export class ThemeManager {
     
     variables.forEach(varName => {
       const value = getComputedStyle(document.documentElement).getPropertyValue(varName).trim();
-      console.log(`${varName}: ${value}`);
     });
     
     console.groupEnd();
-    
-    // También verificar data-theme attribute
-    console.log('📋 data-theme:', document.documentElement.getAttribute('data-theme'));
   }
   
   debug() {

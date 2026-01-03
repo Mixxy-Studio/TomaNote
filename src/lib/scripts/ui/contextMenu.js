@@ -18,12 +18,12 @@ export class ContextMenu {
     this.activeSelection = null;
     this.activeTabElement = null;
     
-    this.log('🖱️  ContextMenu creado');
+    // this.log('🖱️  ContextMenu creado');
   }
   
   async init() {
     try {
-      this.log('🚀 Inicializando menú contextual...');
+      // this.log('🚀 Inicializando menú contextual...');
       
       // 1. Encontrar el elemento del menú
       this.contextMenu = await this.waitForElement('#context-menu');
@@ -37,11 +37,11 @@ export class ContextMenu {
         this.setupMiddleClick();
       }
       
-      this.log('✅ ContextMenu inicializado correctamente');
+      // this.log('✅ ContextMenu inicializado correctamente');
       return this;
       
     } catch (error) {
-      this.log('❌ Error inicializando ContextMenu:', error);
+      // this.log('❌ Error inicializando ContextMenu:', error);
       throw error;
     }
   }
@@ -91,7 +91,7 @@ export class ContextMenu {
       this.handleMenuAction(e);
     });
     
-    this.log('✅ Eventos de menú contextual configurados');
+    // this.log('✅ Eventos de menú contextual configurados');
   }
   
   handleContextMenu(e) {
@@ -366,17 +366,17 @@ export class ContextMenu {
           });
           document.dispatchEvent(event);
           
-          this.log('🖱️  Clic medio detectado en pestaña');
+          // this.log('🖱️  Clic medio detectado en pestaña');
         }
       }
     });
     
-    this.log('✅ Clic medio configurado');
+    // this.log('✅ Clic medio configurado');
   }
   
   log(...args) {
     if (this.options.debug) {
-      console.log('[ContextMenu]', ...args);
+      // Logging disabled
     }
   }
   

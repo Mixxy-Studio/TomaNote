@@ -23,13 +23,13 @@ export class TabManager {
 
     this.setupContextMenuIntegration();
     
-    this.log('📑 TabManager creado con opciones:', this.options);
+    // this.log('📑 TabManager creado con opciones:', this.options);
   }
   
   // ===== MÉTODOS PÚBLICOS =====
   async init() {
     try {
-      this.log('🚀 Inicializando TabManager...');
+      // this.log('🚀 Inicializando TabManager...');
       
       // 1. Encontrar elementos DOM
       await this.findDOMElements();
@@ -66,7 +66,6 @@ export class TabManager {
       return this;
       
     } catch (error) {
-      this.log('❌ Error inicializando TabManager:', error);
       throw error;
     }
   }
@@ -123,8 +122,6 @@ export class TabManager {
     document.addEventListener('tabsChanged', () => {
       this.saveTabs();
     });
-    
-    this.log('✅ Integración con ContextMenu configurada');
   }
 
   pinTab(tabElement, emoji = '📝') {
@@ -185,7 +182,7 @@ export class TabManager {
   async findDOMElements() {
     this.tabList = await this.waitForElement('.tab-list');
     this.createTabButton = await this.waitForElement('#create-tab');
-    this.log('✅ Elementos DOM encontrados');
+    // this.log('✅ Elementos DOM encontrados');
   }
   
   async waitForElement(selector, timeout = 3000) {
@@ -221,8 +218,6 @@ export class TabManager {
       const savedData = localStorage.getItem('tabsData');
       this.tabsData = savedData ? JSON.parse(savedData) : [];
       
-      this.log('📂 Datos de pestañas cargados:', this.tabsData.length);
-      
       // Limpiar tabs existentes (excepto el botón crear)
       this.tabList.querySelectorAll('.tab-list__item').forEach(item => item.remove());
       
@@ -234,10 +229,10 @@ export class TabManager {
       // Actualizar contador de IDs
       this.updateTabIdCounter();
       
-      this.log('✅ Pestañas restauradas correctamente');
+      // this.log('✅ Pestañas restauradas correctamente');
       
     } catch (error) {
-      this.log('⚠️  Error restaurando pestañas:', error);
+      // this.log('⚠️  Error restaurando pestañas:', error);
       this.tabsData = [];
     }
   }
@@ -284,8 +279,6 @@ export class TabManager {
     this.createTabButton.addEventListener('click', () => {
       this.createTab();
     });
-    
-    this.log('✅ Creación de pestañas configurada');
   }
   
   setupContentEditing() {
@@ -296,8 +289,6 @@ export class TabManager {
         document.execCommand('insertText', false, '    ');
       }
     });
-    
-    this.log('✅ Edición de contenido configurada');
   }
   
   setupTabEditing() {
@@ -385,8 +376,6 @@ export class TabManager {
         }
       }
     });
-    
-    this.log('✅ Eliminación de pestañas configurada');
   }
   
   deleteTab(deleteButton) {
@@ -412,8 +401,6 @@ export class TabManager {
     
     // Guardar cambios
     this.saveTabs();
-    
-    this.log('🗑️ Pestaña eliminada:', tabId);
   }
   
   setupAutoSave() {
@@ -423,8 +410,6 @@ export class TabManager {
         setTimeout(() => this.saveTabs(), 500); // Debounce
       }
     });
-    
-    this.log('✅ Auto-guardado configurado');
   }
   
   saveTabs() {
@@ -455,11 +440,7 @@ export class TabManager {
       this.tabsData = tabsData;
       localStorage.setItem('tabsData', JSON.stringify(tabsData));
       
-      this.log('💾 Pestañas guardadas:', tabsData.length);
-      
-    } catch (error) {
-      this.log('⚠️  Error guardando pestañas:', error);
-    }
+    } catch (error) {}
   }
   
   updateTabIds() {
@@ -479,7 +460,6 @@ export class TabManager {
     
     // Actualizar contador
     this.tabIdCounter = tabElements.length + 1;
-    this.log('🆔 IDs de pestañas actualizados. Nuevo contador:', this.tabIdCounter);
   }
   
   updateTabIdCounter() {
@@ -496,7 +476,6 @@ export class TabManager {
         }
       });
     }
-    this.log('🔢 Contador de IDs actualizado:', this.tabIdCounter);
   }
   
   findTabById(id) {
@@ -504,9 +483,7 @@ export class TabManager {
   }
   
   log(...args) {
-    if (this.options.debug) {
-      console.log('[TabManager]', ...args);
-    }
+    if (this.options.debug) {}
   }
   
   // Métodos para debugging
