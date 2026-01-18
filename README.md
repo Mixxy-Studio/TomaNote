@@ -2,12 +2,12 @@
 
 <div align="center">
 
-![Version](https://img.shields.io/badge/version-0.1.0-blue.svg)
+![Version](https://img.shields.io/badge/version-0.3.1-blue.svg)
 ![License](https://img.shields.io/badge/license-AGPL%20v3-green.svg)
 ![Status](https://img.shields.io/badge/status-active-success.svg)
 ![Mobile](https://img.shields.io/badge/mobile-responsive-success)
 
-[Demo en vivo](https://camiicode.github.io/notepad) | [Reportar Bug](https://github.com/camiicode/notepad/issues) | [Solicitar Feature](https://github.com/camiicode/notepad/issues)
+[Demo en vivo](https://tomanote.app) | [Reportar Bug](https://github.com/camiicode/notepad/issues) | [Solicitar Feature](https://github.com/camiicode/notepad/issues)
 
 [!["Buy Me A Coffee"](https://img.shields.io/badge/Buy_Me_A_Coffee-FFDD00?style=for-the-badge&logo=buy-me-a-coffee&logoColor=black)](https://buymeacoffee.com/dftp930)
 
@@ -41,11 +41,11 @@ Esta versión marca un salto importante en la experiencia del aplicativo, enfoc�
 
 ### 🚀 Próximas Funcionalidades
 
-- [ ] Soporte para Markdown
-- [ ] Diagramas con MermaidJS
-- [ ] Temas personalizables
-- [ ] Exportación de notas
-- [ ] Sincronización en la nube
+- [ ] Estilos para contenido pegado → Las Listas, parrafos, titulos, blockquotes, etc, deben de actuar en consecuencia visualmente.
+- [ ] Resize de imágenes (max 500px) → Mejora el rendimiento y la capacidad del Local Storage 
+- [ ] Context menu móvil visible → Accesibilidad para dispositivos Mobiles 
+- [ ] FAB para nueva nota en mobile (+ posición) → Boton de agregar nota neuva en la parte inferior - Mobile 
+- [ ] Tamaños de fuente → Usuario deberia de poder elegir tamaño de fuentes, entre peque, normal y grande
 
 ## 🛠️ Tecnologías Utilizadas
 
@@ -94,16 +94,16 @@ Este proyecto está bajo la licencia GNU Affero General Public License v3.0 (AGP
 
 ### Restricciones Comerciales
 - Se prohíbe el uso comercial sin autorización expresa
-- Contactane usos comerciales
+- Contactame para usos comerciales
 
 ## 👥 Contribuir
 
 ¡Las contribuciones son bienvenidas! Puedes ayudar:
 
-- 🐛 Reportando bugs
+- 🐛 Reportando bugs o Reparando Issues
 - 💡 Sugiriendo nuevas funcionalidades
-- 🔧 Enviando pull requests
-- ⭐ Dando una estrella al proyecto
+- 🔧 Enviando pull requests o Features nuevas
+- ⭐ Regalando una estralla
 
 ## 📬 Contacto y Redes
 
