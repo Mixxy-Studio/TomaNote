@@ -1,80 +1,78 @@
 // src/lib/scripts/core/fontManager.js
 export class FontManager {
   constructor() {
-    this.defaultFont = 'Raleway';
-    this.fontFallback = 'sans-serif, serif';
+    this.defaultFont = "Raleway";
+    this.fontFallback = "sans-serif, serif";
   }
 
   loadCustomFont() {
-    const fontUrl = localStorage.getItem('customFontUrl');
-    
+    const fontUrl = localStorage.getItem("customFontUrl");
+
     if (!fontUrl) {
       this.applyFontToNotes(this.defaultFont);
       return;
     }
-    
+
     try {
-      const link = document.createElement('link');
-      link.rel = 'stylesheet';
+      const link = document.createElement("link");
+      link.rel = "stylesheet";
       link.href = fontUrl;
       document.head.appendChild(link);
-      
+
       const match = fontUrl.match(/[?&]family=([^:&]*)/);
       if (match && match[1]) {
-        const family = decodeURIComponent(match[1].split(':')[0].replace(/\+/g, ' '));
+        const family = decodeURIComponent(
+          match[1].split(":")[0].replace(/\+/g, " "),
+        );
         this.applyFontToNotes(family);
-        localStorage.setItem('customFontName', family);
+        localStorage.setItem("customFontName", family);
       }
-      
     } catch (error) {
-      console.warn('⚠️  Error cargando fuente personalizada:', error);
+      console.warn("⚠️  Error cargando fuente personalizada:", error);
       this.applyFontToNotes(this.defaultFont);
     }
   }
 
   applyFontToNotes(fontFamily) {
-    console.log('🎨 Aplicando fuente a notas:', fontFamily);
-    
     // Actualizar variable CSS
     document.documentElement.style.setProperty(
-      '--font-family-notes', 
-      `'${fontFamily}', ${this.fontFallback}`
+      "--font-family-notes",
+      `'${fontFamily}', ${this.fontFallback}`,
     );
-    
+
     // Aplicar a elementos existentes
     const noteElements = document.querySelectorAll(
-      '.tab-list__item--content, .tab-list__item label span'
+      ".tab-list__item--content, .tab-list__item label span",
     );
-    
-    noteElements.forEach(element => {
+
+    noteElements.forEach((element) => {
       element.style.fontFamily = `'${fontFamily}', ${this.fontFallback}`;
     });
   }
 
   changeNoteFont(fontUrl, fontName) {
     try {
-      localStorage.setItem('customFontUrl', fontUrl);
-      localStorage.setItem('customFontName', fontName);
-      
-      const link = document.createElement('link');
-      link.rel = 'stylesheet';
+      localStorage.setItem("customFontUrl", fontUrl);
+      localStorage.setItem("customFontName", fontName);
+
+      const link = document.createElement("link");
+      link.rel = "stylesheet";
       link.href = fontUrl;
       document.head.appendChild(link);
-      
+
       this.applyFontToNotes(fontName);
-      console.log('✅ Fuente de notas cambiada a:', fontName);
+      console.log("✅ Fuente de notas cambiada a:", fontName);
       return true;
-      
     } catch (error) {
-      console.error('❌ Error cambiando fuente:', error);
+      console.error("❌ Error cambiando fuente:", error);
       return false;
     }
   }
 
   resetNoteFont() {
-    localStorage.removeItem('customFontUrl');
-    localStorage.removeItem('customFontName');
+    localStorage.removeItem("customFontUrl");
+    localStorage.removeItem("customFontName");
     this.applyFontToNotes(this.defaultFont);
-    console.log('✅ Fuente de notas restablecida a', this.defaultFont);
+    console.log("✅ Fuente de notas restablecida a", this.defaultFont);
   }
 }
