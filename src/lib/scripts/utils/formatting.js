@@ -30,21 +30,16 @@ export class FormattingUtils {
     let element = range.commonAncestorContainer;
     if (element.nodeType === Node.TEXT_NODE) element = element.parentElement;
 
-    console.log('findBoldWrapper: starting from element:', element, 'tag:', element?.tagName, 'class:', element?.className);
-
     // Buscar hacia arriba hasta encontrar un wrapper o el contentEditable
     while (element && !element.hasAttribute("contenteditable")) {
-      console.log('Checking element:', element, 'tag:', element.tagName, 'class:', element.className);
       if (
         element.classList.contains("bold-semibold") ||
         element.classList.contains("bold-extrabold")
       ) {
-        console.log('Found wrapper:', element);
         return element;
       }
       element = element.parentElement;
     }
-    console.log('No wrapper found');
     return null;
   }
 
@@ -52,13 +47,10 @@ export class FormattingUtils {
    * Cicla un wrapper existente
    */
   static cycleExistingBold(wrapper) {
-    console.log("cycleExistingBold called, wrapper class:", wrapper.className);
     if (wrapper.classList.contains("bold-semibold")) {
-      console.log("Cycling semibold to extrabold");
       wrapper.classList.remove("bold-semibold");
       wrapper.classList.add("bold-extrabold");
     } else if (wrapper.classList.contains("bold-extrabold")) {
-      console.log("Cycling extrabold to normal, unwrapping");
       wrapper.classList.remove("bold-extrabold");
       // Vuelve a normal removiendo el wrapper
       this.unwrapBold(wrapper);
@@ -86,17 +78,10 @@ export class FormattingUtils {
    * Remueve el wrapper de negrita, moviendo el contenido arriba
    */
   static unwrapBold(wrapper) {
-    console.log(
-      "unwrapBold called, wrapper:",
-      wrapper,
-      "firstChild:",
-      wrapper.firstChild,
-    );
     const parent = wrapper.parentNode;
     while (wrapper.firstChild) {
       parent.insertBefore(wrapper.firstChild, wrapper);
     }
     parent.removeChild(wrapper);
-    console.log("unwrapBold completed");
   }
 }
