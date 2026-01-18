@@ -15,7 +15,7 @@ readmeContent = readmeContent.replace(/v`{{version}}`/g, `v\`${version}\``);
 
 // Guardar los cambios
 fs.writeFileSync(readmePath, readmeContent);
-console.log('✅ README.md actualizado con la versión:', version);
+// console.log('✅ README.md actualizado con la versión:', version);
 
 const changelogPath = path.join(__dirname, '../CHANGELOG.md');
 let changelogContent = fs.readFileSync(changelogPath, 'utf8');

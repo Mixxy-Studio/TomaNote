@@ -34,7 +34,6 @@ export class ContextMenu {
       }
       return this;
     } catch (error) {
-      this.log("❌ Error inicializando ContextMenu:", error);
       throw error;
     }
   }
@@ -365,8 +364,6 @@ export class ContextMenu {
             detail: { tabElement },
           });
           document.dispatchEvent(event);
-
-          this.log("🖱️  Clic medio detectado en pestaña");
         }
       }
     });
@@ -374,7 +371,6 @@ export class ContextMenu {
 
   log(...args) {
     if (this.options.debug) {
-      console.log("[ContextMenu]", ...args);
     }
   }
 

@@ -28,7 +28,6 @@ export class FontManager {
         localStorage.setItem("customFontName", family);
       }
     } catch (error) {
-      console.warn("⚠️  Error cargando fuente personalizada:", error);
       this.applyFontToNotes(this.defaultFont);
     }
   }
@@ -61,10 +60,8 @@ export class FontManager {
       document.head.appendChild(link);
 
       this.applyFontToNotes(fontName);
-      console.log("✅ Fuente de notas cambiada a:", fontName);
       return true;
     } catch (error) {
-      console.error("❌ Error cambiando fuente:", error);
       return false;
     }
   }
@@ -73,6 +70,5 @@ export class FontManager {
     localStorage.removeItem("customFontUrl");
     localStorage.removeItem("customFontName");
     this.applyFontToNotes(this.defaultFont);
-    console.log("✅ Fuente de notas restablecida a", this.defaultFont);
   }
 }

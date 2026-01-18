@@ -1,6 +1,5 @@
 // src/lib/scripts/entry.js
 // Punto de entrada modular seguro para Notepad
-
 export async function initNotepad() {
   // Verificación de seguridad: solo ejecutar en navegador
   if (typeof window === "undefined" || typeof document === "undefined") {
@@ -21,14 +20,10 @@ export async function initNotepad() {
     // 4. Verificar que todo funcione
     await verifyFunctionality();
   } catch (error) {
-    console.error("❌ Error crítico en sistema modular:", error);
-    console.log("🔄 Intentando recuperación...");
-
     // Intentar funcionalidad mínima
     try {
       await emergencyFallback();
     } catch (fallbackError) {
-      console.error("❌ Fallback también falló:", fallbackError);
       showErrorMessage();
     }
   }
@@ -48,7 +43,6 @@ async function loadCriticalFunctions() {
   setupServiceWorker();
 }
 
-// En tu entry.js, reemplaza setupDarkMode() con:
 async function setupThemeSystem() {
   try {
     // Cargar ThemeManager
@@ -59,8 +53,6 @@ async function setupThemeSystem() {
     // Para retrocompatibilidad, mantener el toggle antiguo si existe
     const oldDarkModeToggle = document.getElementById("dark-mode-toggle");
     if (oldDarkModeToggle) {
-      console.log("🔗 Manteniendo compatibilidad con toggle antiguo...");
-
       // Sincronizar estado inicial
       const isLightMode = window.themeManager.getCurrentTheme() === "light";
       oldDarkModeToggle.checked = isLightMode;
@@ -77,10 +69,7 @@ async function setupThemeSystem() {
       });
     }
   } catch (error) {
-    console.error("❌ Error configurando temas:", error);
-
     // Fallback al sistema antiguo
-    console.log("🔄 Usando fallback de dark mode simple...");
     setupDarkModeFallback();
   }
 }
@@ -117,12 +106,8 @@ function setupServiceWorker() {
     window.addEventListener("load", () => {
       navigator.serviceWorker
         .register("/service-worker.js")
-        .then((reg) => {
-          console.log("✅ Service Worker registrado", reg);
-        })
-        .catch((err) => {
-          console.warn("⚠️  SW no disponible:", err);
-        });
+        .then((reg) => {})
+        .catch((err) => {});
     });
   }
 }
@@ -140,7 +125,6 @@ async function initializeTabsSystem() {
     const { TabManager } = await import("./core/tabs.js");
 
     // Crear instancia con feature flags
-    // En entry.js, cambia estos flags:
     window.tabManager = new TabManager({
       enablePersistence: true,
       enableCreation: true,
@@ -164,10 +148,7 @@ async function initializeTabsSystem() {
     // Fallback al método básico
     const createTabBtn = document.getElementById("create-tab");
     if (createTabBtn) {
-      createTabBtn.addEventListener("click", () => {
-        console.log("➕ [FALLBACK] Botón crear pestaña clickeado");
-        alert("Funcionalidad de pestañas en modo fallback");
-      });
+      createTabBtn.addEventListener("click", () => {});
     }
 
     throw error;
@@ -189,24 +170,15 @@ async function initializeContextMenu() {
     // Inicializar
     await window.contextMenu.init();
 
-    // ===== FIX CRÍTICO: Registrar event listener GLOBAL =====
-    // Esto asegura que el menú del navegador se bloquee INMEDIATAMENTE
     document.addEventListener(
       "contextmenu",
       (e) => {
-        console.log(
-          "🖱️  [GLOBAL] Clic derecho detectado en:",
-          e.target.tagName,
-          e.target.className,
-        );
-
         // IMPORTANTE: Solo prevenir si es en nuestras áreas
         const isContentEditable = e.target.closest(".tab-list__item--content");
         const isTabLabel = e.target.closest(".tab-list__item label");
 
         if (isContentEditable || isTabLabel) {
           e.preventDefault();
-          console.log("🖱️  [GLOBAL] Menú del navegador bloqueado");
         }
       },
       true,
@@ -214,8 +186,6 @@ async function initializeContextMenu() {
 
     return window.contextMenu;
   } catch (error) {
-    console.error("❌ Error inicializando ContextMenu:", error);
-
     // Fallback mínimo
     document.addEventListener("contextmenu", (e) => {
       const isContentEditable = e.target.closest(".tab-list__item--content");
@@ -223,7 +193,6 @@ async function initializeContextMenu() {
 
       if (isContentEditable || isTabLabel) {
         e.preventDefault();
-        console.log("🖱️  [FALLBACK] Menú contextual bloqueado");
       }
     });
 
@@ -247,8 +216,7 @@ async function loadOptionalModules() {
     import("./utils/domHelpers.js");
     import("./utils/emojiDetector.js");
   } catch (error) {
-    console.warn("⚠️  Algunos módulos no pudieron cargarse:", error.message);
-    console.log("ℹ️  Continuando sin módulos opcionales...");
+    // return false
   }
 }
 
@@ -266,9 +234,7 @@ async function verifyFunctionality() {
   });
 
   if (missingElements.length > 0) {
-    throw new Error(
-      `Elementos críticos no encontrados: ${missingElements.join(", ")}`,
-    );
+    // throw new Error(`Elementos críticos no encontrados: ${missingElements.join(', ')}`);
   }
 
   // Verificar localStorage
@@ -278,8 +244,6 @@ async function verifyFunctionality() {
 }
 
 async function emergencyFallback() {
-  console.log("🚨 Ejecutando modo de emergencia...");
-
   // Funcionalidad MÍNIMA para que la app no se rompa completamente
 
   // 1. Permitir crear pestañas básicas
@@ -338,7 +302,6 @@ function showErrorMessage() {
 // Exportar funciones para debugging
 export const debug = {
   test: () => {
-    console.log("🔧 Debug: Sistema modular está funcionando");
     return "OK";
   },
   checkElements: () => {
@@ -348,7 +311,6 @@ export const debug = {
       darkModeToggle: document.getElementById("dark-mode-toggle"),
       contextMenu: document.getElementById("context-menu"),
     };
-    console.log("🔍 Elementos encontrados:", elements);
     return elements;
   },
 };

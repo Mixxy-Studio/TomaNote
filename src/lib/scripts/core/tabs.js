@@ -231,7 +231,6 @@ export class TabManager {
       // Actualizar contador de IDs
       this.updateTabIdCounter();
     } catch (error) {
-      this.log("⚠️  Error restaurando pestañas:", error);
       this.tabsData = [];
     }
   }
@@ -402,8 +401,6 @@ export class TabManager {
 
     // Guardar cambios
     this.saveTabs();
-
-    this.log("🗑️ Pestaña eliminada:", tabId);
   }
 
   setupAutoSave() {
@@ -442,11 +439,7 @@ export class TabManager {
 
       this.tabsData = tabsData;
       localStorage.setItem("tabsData", JSON.stringify(tabsData));
-
-      this.log("💾 Pestañas guardadas:", tabsData.length);
-    } catch (error) {
-      this.log("⚠️  Error guardando pestañas:", error);
-    }
+    } catch (error) {}
   }
 
   updateTabIds() {
@@ -466,10 +459,6 @@ export class TabManager {
 
     // Actualizar contador
     this.tabIdCounter = tabElements.length + 1;
-    this.log(
-      "🆔 IDs de pestañas actualizados. Nuevo contador:",
-      this.tabIdCounter,
-    );
   }
 
   updateTabIdCounter() {
@@ -494,7 +483,6 @@ export class TabManager {
 
   log(...args) {
     if (this.options.debug) {
-      console.log("[TabManager]", ...args);
     }
   }
 
