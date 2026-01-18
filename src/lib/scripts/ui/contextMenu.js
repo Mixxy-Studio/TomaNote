@@ -2,6 +2,7 @@
 // Sistema de menú contextual para texto y pestañas
 
 import { detectEmojiInText } from "../utils/emojiDetector.js";
+import { FormattingUtils } from "../utils/formatting.js";
 
 export class ContextMenu {
   constructor(options = {}) {
@@ -251,8 +252,12 @@ export class ContextMenu {
         document.execCommand(action, false, null);
         break;
 
+      case "bold":
+        FormattingUtils.cycleBold();
+        break;
+
       default:
-        // Bold, italic, underline, etc.
+        // italic, underline, etc.
         document.execCommand(action, false, null);
     }
 

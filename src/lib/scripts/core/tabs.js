@@ -1,5 +1,6 @@
 // src/lib/scripts/core/tabs.js
 // Sistema completo de gestión de pestañas con feature flags
+import { FormattingUtils } from "../utils/formatting.js";
 
 export class TabManager {
   constructor(options = {}) {
@@ -288,6 +289,16 @@ export class TabManager {
       ) {
         event.preventDefault();
         document.execCommand("insertText", false, "    ");
+      }
+
+      // Atajo para negrita: CTRL + B
+      if (
+        event.ctrlKey &&
+        event.key === "b" &&
+        event.target.classList.contains("tab-list__item--content")
+      ) {
+        event.preventDefault();
+        FormattingUtils.cycleBold();
       }
     });
   }

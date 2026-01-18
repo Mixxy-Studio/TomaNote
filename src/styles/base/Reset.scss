@@ -48,11 +48,15 @@ body {
   background-color: var(--tn-color-secondary-background);
   color: var(--tn-color-text);
   opacity: 0.8;
-  font-family: var(--tn-font-family-default);
-  padding: var(--tn-padding-base);
-  margin-bottom: var(--tn-padding-base);
-  border-radius: var(--tn-border-radius-small);
-  transition: background-color 0.3s ease;
+}
+
+// Clases para formateo de negrita
+.bold-semibold {
+  font-weight: 600;
+}
+
+.bold-extrabold {
+  font-weight: 800;
 }
 
 body, 
