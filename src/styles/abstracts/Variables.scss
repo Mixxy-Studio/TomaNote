@@ -2,6 +2,9 @@
 /* =========== Variables de TomaNote ========= */
 /* =========================================== */
 
+@use "sass:map";
+@use "sass:color";
+
 /* === Variables SCSS (para usar en archivos .scss) === */
 
 // Variables neutrales (siempre disponibles)
@@ -107,9 +110,9 @@ $tn-themes: (
 // Función helper para obtener valores de tema
 @function tn-theme($theme-name, $property) {
   @if map-has-key($tn-themes, $theme-name) {
-    $theme: map-get($tn-themes, $theme-name);
+    $theme: map.get($tn-themes, $theme-name);
     @if map-has-key($theme, $property) {
-      @return map-get($theme, $property);
+      @return map.get($theme, $property);
     } @else {
       @error "La propiedad '#{$property}' no existe en el tema '#{$theme-name}'";
     }
@@ -120,14 +123,14 @@ $tn-themes: (
 
 // Mixin para aplicar estilos de tema
 @mixin tn-theme-styles($theme-name) {
-  $theme: map-get($tn-themes, $theme-name);
-  
+  $theme: map.get($tn-themes, $theme-name);
+
   @if $theme {
-    --tn-theme-primary: #{map-get($theme, primary)};
-    --tn-theme-secondary: #{map-get($theme, secondary)};
-    --tn-theme-accent: #{map-get($theme, accent)};
-    --tn-theme-contrast: #{map-get($theme, contrast)};
-    --tn-color-text: #{map-get($theme, text-color)};
+    --tn-theme-primary: #{map.get($theme, primary)};
+    --tn-theme-secondary: #{map.get($theme, secondary)};
+    --tn-theme-accent: #{map.get($theme, accent)};
+    --tn-theme-contrast: #{map.get($theme, contrast)};
+    --tn-color-text: #{map.get($theme, text-color)};
   }
 }
 

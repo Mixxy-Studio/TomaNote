@@ -1,4 +1,5 @@
 @use "../abstracts/Variables.scss" as tn;
+@use "sass:color";
 
 .tab-list {
   display: flex;
@@ -28,7 +29,7 @@
     }
 
     &:hover {
-      background-color: lighten(tn.$tn-theme-primary-dark, 10%);
+      background-color: color.adjust(tn.$tn-theme-primary-dark, $lightness: 10%);
       border-color: transparent;
       color: var(--tn-neutral-tertiary-color);
     }
@@ -218,7 +219,7 @@
           }
 
           button:hover {
-            background-color: lighten(tn.$tn-theme-primary-dark, 50%);
+            background-color: color.adjust(tn.$tn-theme-primary-dark, $lightness: 50%);
           }
         }
       }
