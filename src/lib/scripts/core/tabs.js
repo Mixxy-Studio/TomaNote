@@ -106,13 +106,7 @@ export class TabManager {
   // ===== MÉTODOS INTERNOS =====
 
   setupContextMenuIntegration() {
-    // Escuchar evento de clic medio del ContextMenu
-    document.addEventListener("middleClickTab", (e) => {
-      const { tabElement } = e.detail;
-      if (tabElement && this.options.enableDeletion) {
-        this.deleteTabElement(tabElement);
-      }
-    });
+
 
     // Escuchar evento de cambios en pestañas
     document.addEventListener("tabsChanged", () => {

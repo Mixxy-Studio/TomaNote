@@ -30,9 +30,7 @@ export class ContextMenu {
         this.setupContextMenu();
       }
 
-      if (this.options.enableMiddleClickClose) {
-        this.setupMiddleClick();
-      }
+
       return this;
     } catch (error) {
       throw error;
@@ -354,25 +352,7 @@ export class ContextMenu {
     document.dispatchEvent(event);
   }
 
-  setupMiddleClick() {
-    // Cerrar pestañas con clic medio
-    document.addEventListener("auxclick", (e) => {
-      if (e.button === 1) {
-        // Botón medio del ratón
-        const isTabLabel = e.target.closest(".tab-list__item label");
-        if (isTabLabel) {
-          e.preventDefault();
-          const tabElement = e.target.closest(".tab-list__item");
 
-          // Disparar evento para que TabManager maneje la eliminación
-          const event = new CustomEvent("middleClickTab", {
-            detail: { tabElement },
-          });
-          document.dispatchEvent(event);
-        }
-      }
-    });
-  }
 
   log(...args) {
     if (this.options.debug) {
