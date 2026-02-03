@@ -166,8 +166,9 @@ import "../styles/components/InfoModals.scss";
           </div>
         </div>
 
-        <!-- Pestaña Fuentes -->
+        <!-- Pestaña Tipografia -->
         <div class="settings-tab" id="fonts-tab">
+          
           <div class="settings-header">
             <h3>Fuentes personalizadas</h3>
           </div>
@@ -177,7 +178,7 @@ import "../styles/components/InfoModals.scss";
               <h4>URL de Google Fonts</h4>
 
               <div class="settings-section__group">
-                <input id="font-url-input" type="text" placeholder="Introduce una URL válida de Google Fonts" />
+                <input id="font-url-input" type="text" placeholder="Introduce una URL válida de Google Fonts o deja vacío para fuente por defecto" />
                 <button id="save-font-url" class="flex items-center justify-center">
                   <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6 mr-5">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M17.593 3.322c1.1.128 1.907 1.077 1.907 2.185V21L12 17.25 4.5 21V5.507c0-1.108.806-2.057 1.907-2.185a48.507 48.507 0 0 1 11.186 0Z"></path>
@@ -211,6 +212,8 @@ import "../styles/components/InfoModals.scss";
             </div>
           </div>
         </div>
+
+
       </div>
     </div>
   </dialog>
@@ -267,15 +270,27 @@ import "../styles/components/InfoModals.scss";
     if (saveFontBtn && fontInput && fontError) {
       saveFontBtn.addEventListener("click", () => {
         const url = fontInput.value.trim();
-        if (!isValidGoogleFontsUrl(url)) {
-          fontError.textContent = "Por favor ingresa una URL válida de Google Fonts (https://fonts.googleapis.com/...)";
-          fontError.style.display = "block";
+        
+        // Caso 1: Input vacío = restaurar fuente por defecto
+        if (url === "") {
+          fontError.style.display = "none";
+          localStorage.removeItem("customFontUrl");
+          localStorage.removeItem("customFontName");
+          location.reload();
           return;
         }
-        fontError.style.display = "none";
-        localStorage.setItem("customFontUrl", url);
-        // Recargar para aplicar la fuente
-        location.reload();
+        
+        // Caso 2: URL válida de Google Fonts
+        if (isValidGoogleFontsUrl(url)) {
+          fontError.style.display = "none";
+          localStorage.setItem("customFontUrl", url);
+          location.reload();
+          return;
+        }
+        
+        // Caso 3: Input inválido
+        fontError.textContent = "Por favor ingresa una URL válida de Google Fonts o deja el campo vacío para usar la fuente por defecto.";
+        fontError.style.display = "block";
       });
     }
   });
