@@ -7,35 +7,30 @@ import Createtab from "../components/Createtab.astro";
 // Cambiar esta importación
 import ThemeSelector from "../components/ThemeSelector.astro";
 import InfoButton from "../components/InfoButton.astro";
-import Modalsinfo from "../components/Modalsinfo.astro";
+import Modalsinfo from "../components/Modalinfo.astro";
 import ContextualMenu from "../components/ContextualMenu.astro";
 ---
 
 <Layout>
-  
   <div dir="ltr" class="tab-list">
-    
     <Createtab />
     <ThemeSelector />
     <InfoButton />
-
   </div>
-  
+
   <Modalsinfo />
   <ContextualMenu />
-
 </Layout>
 
 <script>
-import { initNotepad } from '../lib/scripts/entry.js';
+  import { initNotepad } from "../lib/scripts/entry.js";
 
-// Inicializar de forma segura con timeout
-document.addEventListener('DOMContentLoaded', () => {
-  setTimeout(() => {
-    initNotepad().catch(error => {
-      console.error('Error en sistema modular:', error);
-      console.log('Continuando con funcionalidad inline...');
-    });
-  }, 100); // Pequeño delay para asegurar que el DOM está listo
-});
+  // Inicializar de forma segura con timeout
+  document.addEventListener("DOMContentLoaded", () => {
+    setTimeout(() => {
+      initNotepad().catch((error) => {
+        console.error("Error en sistema modular:", error);
+      });
+    }, 100); // Pequeño delay para asegurar que el DOM está listo
+  });
 </script>
