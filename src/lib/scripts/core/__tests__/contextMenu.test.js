@@ -1,12 +1,12 @@
-import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
-import { ContextMenu } from '../../ui/contextMenu.js';
+import { describe, it, expect, vi, beforeEach, afterEach } from "vitest";
+import { ContextMenu } from "../../ui/contextMenu.js";
 
 // Mockear dependencias
-vi.mock('../../utils/emojiDetector.js', () => ({
-  detectEmojiInText: vi.fn().mockReturnValue(false)
+vi.mock("../../utils/emojiDetector.js", () => ({
+  detectEmojiInText: vi.fn().mockReturnValue(false),
 }));
 
-describe('ContextMenu', () => {
+describe("ContextMenu", () => {
   let contextMenu;
   let mockElement;
   let mockEvent;
@@ -14,21 +14,21 @@ describe('ContextMenu', () => {
   beforeEach(() => {
     // Mock DOM elements
     mockElement = {
-      style: { display: 'none' },
+      style: { display: "none" },
       classList: { add: vi.fn(), remove: vi.fn(), contains: vi.fn() },
       getBoundingClientRect: vi.fn().mockReturnValue({ top: 100, left: 100 }),
       querySelectorAll: vi.fn().mockReturnValue([]),
       addEventListener: vi.fn(),
       removeEventListener: vi.fn(),
-      focus: vi.fn()
+      focus: vi.fn(),
     };
 
     mockEvent = {
       preventDefault: vi.fn(),
-      target: { tagName: 'DIV', textContent: 'test text' },
+      target: { tagName: "DIV", textContent: "test text" },
       clientX: 150,
       clientY: 150,
-      button: 0
+      button: 0,
     };
 
     // Mock document
@@ -40,25 +40,27 @@ describe('ContextMenu', () => {
       execCommand: vi.fn(),
       createElement: vi.fn().mockReturnValue(mockElement),
       body: { appendChild: vi.fn() },
-      elementFromPoint: vi.fn().mockReturnValue(mockElement)
+      elementFromPoint: vi.fn().mockReturnValue(mockElement),
     };
 
     // Mock window
     global.window = {
-      getComputedStyle: vi.fn().mockReturnValue({ position: 'static' }),
+      getComputedStyle: vi.fn().mockReturnValue({ position: "static" }),
       getSelection: vi.fn().mockReturnValue({
-        toString: vi.fn().mockReturnValue('selected text'),
+        toString: vi.fn().mockReturnValue("selected text"),
         isCollapsed: false,
         rangeCount: 1,
         getRangeAt: vi.fn().mockReturnValue({
-          getBoundingClientRect: vi.fn().mockReturnValue({ top: 100, left: 100 }),
-          cloneRange: vi.fn().mockReturnValue({})
+          getBoundingClientRect: vi
+            .fn()
+            .mockReturnValue({ top: 100, left: 100 }),
+          cloneRange: vi.fn().mockReturnValue({}),
         }),
         removeAllRanges: vi.fn(),
-        addRange: vi.fn()
+        addRange: vi.fn(),
       }),
       innerWidth: 1920,
-      innerHeight: 1080
+      innerHeight: 1080,
     };
 
     contextMenu = new ContextMenu({ debug: false });
@@ -68,87 +70,103 @@ describe('ContextMenu', () => {
     vi.clearAllMocks();
   });
 
-  describe('constructor', () => {
-    it('debe inicializar con opciones por defecto', () => {
+  describe("constructor", () => {
+    it("debe inicializar con opciones por defecto", () => {
       const menu = new ContextMenu();
       expect(menu.options.enableTextContext).toBe(true);
       expect(menu.options.enableTabContext).toBe(true);
     });
 
-    it('debe fusionar opciones personalizadas', () => {
+    it("debe fusionar opciones personalizadas", () => {
       const menu = new ContextMenu({ enableTextContext: false });
       expect(menu.options.enableTextContext).toBe(false);
       expect(menu.options.enableTabContext).toBe(true);
     });
   });
 
-  describe('init', () => {
-    it('debe inicializar correctamente si encuentra el elemento', async () => {
+  describe("init", () => {
+    it("debe inicializar correctamente si encuentra el elemento", async () => {
       await contextMenu.init();
       expect(contextMenu.contextMenu).toBe(mockElement);
     });
 
-    it('debe inicializar si encuentra el elemento inmediatamente', async () => {
+    it("debe inicializar si encuentra el elemento inmediatamente", async () => {
       await contextMenu.init();
       expect(contextMenu.contextMenu).toBe(mockElement);
     });
   });
 
-  describe('showTextContextMenu', () => {
+  describe("showTextContextMenu", () => {
     beforeEach(async () => {
       await contextMenu.init();
     });
 
-    it('debe mostrar el menú para texto editable', () => {
+    it("debe mostrar el menú para texto editable", () => {
       const mockEditable = { focus: vi.fn() };
       contextMenu.showTextContextMenu(mockEvent, mockEditable);
 
       expect(contextMenu.activeEditableElement).toBe(mockEditable);
-      expect(mockElement.style.display).toBe('block');
+      expect(mockElement.style.display).toBe("block");
     });
   });
 
-  describe('hideContextMenu', () => {
+  describe("hideContextMenu", () => {
     beforeEach(async () => {
       await contextMenu.init();
     });
 
-    it('debe ocultar el menú', () => {
+    it("debe ocultar el menú", () => {
       contextMenu.hideContextMenu();
 
-      expect(mockElement.style.display).toBe('none');
+      expect(mockElement.style.display).toBe("none");
     });
   });
 
-  describe('handleTextAction', () => {
+  describe("handleTextAction", () => {
     beforeEach(async () => {
       await contextMenu.init();
       contextMenu.activeEditableElement = { focus: vi.fn() };
     });
 
-    it('debe ejecutar comando copy', () => {
-      contextMenu.handleTextAction('copy');
+    it("debe ejecutar comando copy", () => {
+      contextMenu.handleTextAction("copy");
 
-      expect(global.document.execCommand).toHaveBeenCalledWith('copy', false, null);
+      expect(global.document.execCommand).toHaveBeenCalledWith(
+        "copy",
+        false,
+        null,
+      );
     });
 
-    it('debe ejecutar comando paste usando clipboard', async () => {
-      global.navigator = { clipboard: { readText: vi.fn().mockResolvedValue('pasted text') } };
-    contextMenu.activeEditableElement = { focus: vi.fn() };
+    it("debe ejecutar comando paste usando clipboard", async () => {
+      global.navigator = {
+        clipboard: { readText: vi.fn().mockResolvedValue("pasted text") },
+      };
+      contextMenu.activeEditableElement = { focus: vi.fn() };
 
-      await contextMenu.handleTextAction('paste');
+      await contextMenu.handleTextAction("paste");
 
       expect(global.navigator.clipboard.readText).toHaveBeenCalled();
-      expect(global.document.execCommand).toHaveBeenCalledWith('insertText', false, 'pasted text');
+      expect(global.document.execCommand).toHaveBeenCalledWith(
+        "insertText",
+        false,
+        "pasted text",
+      );
     });
   });
 
-  describe('setupContextMenu', () => {
-    it('debe agregar event listeners', async () => {
+  describe("setupContextMenu", () => {
+    it("debe agregar event listeners", async () => {
       await contextMenu.init();
 
-      expect(global.document.addEventListener).toHaveBeenCalledWith('contextmenu', expect.any(Function));
-      expect(global.document.addEventListener).toHaveBeenCalledWith('click', expect.any(Function));
+      expect(global.document.addEventListener).toHaveBeenCalledWith(
+        "contextmenu",
+        expect.any(Function),
+      );
+      expect(global.document.addEventListener).toHaveBeenCalledWith(
+        "click",
+        expect.any(Function),
+      );
     });
   });
 });

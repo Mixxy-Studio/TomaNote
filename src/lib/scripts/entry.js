@@ -1,26 +1,25 @@
 // src/lib/scripts/entry.js
 // Punto de entrada modular seguro para Notepad
-export async function initNotepad() {  
+export async function initNotepad() {
   // Verificación de seguridad: solo ejecutar en navegador
-  if (typeof window === 'undefined' || typeof document === 'undefined') {
-    console.warn('⚠️  Entorno no compatible (SSR o Node.js), omitiendo...');
+  if (typeof window === "undefined" || typeof document === "undefined") {
+    console.warn("⚠️  Entorno no compatible (SSR o Node.js), omitiendo...");
     return;
   }
-  
+
   try {
     // 1. Cargar funciones CRÍTICAS primero (las que necesitan estar inmediatamente)
     await loadCriticalFunctions();
-    
+
     // 2. Inicializar componentes básicos
     await initializeBasicComponents();
-    
+
     // 3. Cargar módulos adicionales (menos críticos)
     await loadOptionalModules();
-    
+
     // 4. Verificar que todo funcione
     await verifyFunctionality();
-    
-  } catch (error) {    
+  } catch (error) {
     // Intentar funcionalidad mínima
     try {
       await emergencyFallback();
@@ -32,196 +31,190 @@ export async function initNotepad() {
 
 // ===== FUNCIONES CRÍTICAS (deben cargarse primero) =====
 async function loadCriticalFunctions() {
-  
   // 1. Cargar fuente personalizada (parte más crítica)
-  const { FontManager } = await import('./core/fontManager.js');
+  const { FontManager } = await import("./core/fontManager.js");
   window.fontManager = new FontManager();
   window.fontManager.loadCustomFont();
-  
+
   // 2. Configurar sistema de temas (dark/light mode)
   await setupThemeSystem();
-  
+
   // 3. Configurar Service Worker si está disponible
   setupServiceWorker();
 }
 
 async function setupThemeSystem() {
-  
   try {
     // Cargar ThemeManager
-    const { ThemeManager } = await import('./core/themeManager.js');
+    const { ThemeManager } = await import("./core/themeManager.js");
     window.themeManager = new ThemeManager();
     await window.themeManager.init();
-    
+
     // Para retrocompatibilidad, mantener el toggle antiguo si existe
-    const oldDarkModeToggle = document.getElementById('dark-mode-toggle');
+    const oldDarkModeToggle = document.getElementById("dark-mode-toggle");
     if (oldDarkModeToggle) {
-      
       // Sincronizar estado inicial
-      const isLightMode = window.themeManager.getCurrentTheme() === 'light';
+      const isLightMode = window.themeManager.getCurrentTheme() === "light";
       oldDarkModeToggle.checked = isLightMode;
-      
+
       // Manejar cambios desde el toggle antiguo
-      oldDarkModeToggle.addEventListener('change', (e) => {
+      oldDarkModeToggle.addEventListener("change", (e) => {
         window.themeManager.toggleLightMode(e.target.checked);
       });
-      
+
       // Escuchar cambios de tema para actualizar el toggle
-      window.addEventListener('themeChanged', (e) => {
-        const isLight = e.detail.theme === 'light';
+      window.addEventListener("themeChanged", (e) => {
+        const isLight = e.detail.theme === "light";
         oldDarkModeToggle.checked = isLight;
       });
     }
-    
   } catch (error) {
-    
     // Fallback al sistema antiguo
     setupDarkModeFallback();
   }
 }
 
 function setupDarkModeFallback() {
-  const darkModeToggle = document.getElementById('dark-mode-toggle');
+  const darkModeToggle = document.getElementById("dark-mode-toggle");
   if (!darkModeToggle) return;
-  
-  const savedMode = localStorage.getItem('darkMode');
-  const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-  
+
+  const savedMode = localStorage.getItem("darkMode");
+  const systemPrefersDark = window.matchMedia(
+    "(prefers-color-scheme: dark)",
+  ).matches;
+
   if (savedMode !== null) {
-    document.documentElement.classList.toggle('light-mode', savedMode === 'false');
-    darkModeToggle.checked = savedMode === 'false';
+    document.documentElement.classList.toggle(
+      "light-mode",
+      savedMode === "false",
+    );
+    darkModeToggle.checked = savedMode === "false";
   } else if (!systemPrefersDark) {
-    document.documentElement.classList.add('light-mode');
+    document.documentElement.classList.add("light-mode");
     darkModeToggle.checked = true;
   }
-  
-  darkModeToggle.addEventListener('change', (e) => {
+
+  darkModeToggle.addEventListener("change", (e) => {
     const isLightMode = e.target.checked;
-    document.documentElement.classList.toggle('light-mode', isLightMode);
-    localStorage.setItem('darkMode', !isLightMode);
+    document.documentElement.classList.toggle("light-mode", isLightMode);
+    localStorage.setItem("darkMode", !isLightMode);
   });
 }
 
 function setupServiceWorker() {
-  if ('serviceWorker' in navigator) {
-    window.addEventListener('load', () => {
+  if ("serviceWorker" in navigator) {
+    window.addEventListener("load", () => {
       navigator.serviceWorker
-        .register('/service-worker.js')
-        .then(reg => {})
-        .catch(err => {});
+        .register("/service-worker.js")
+        .then((reg) => {})
+        .catch((err) => {});
     });
   }
 }
 
 // ===== COMPONENTES BÁSICOS =====
 async function initializeBasicComponents() {
-  
   // Por ahora, las ponemos aquí como funciones internas
   await initializeTabsSystem();
   await initializeContextMenu();
 }
 
 async function initializeTabsSystem() {
-  
   try {
     // Importar dinámicamente para mejor performance
-    const { TabManager } = await import('./core/tabs.js');
-    
+    const { TabManager } = await import("./core/tabs.js");
+
     // Crear instancia con feature flags
     window.tabManager = new TabManager({
       enablePersistence: true,
       enableCreation: true,
       enableEditing: true,
       enableDeletion: true,
-      enablePinning: true, 
+      enablePinning: true,
       enableContentEditing: true,
       enableAutoSave: true,
-      debug: true
+      debug: true,
     });
-    
+
     // Inicializar
     await window.tabManager.init();
-    
+
     // Reemplazar el evento click básico con el real
-    const createTabBtn = document.getElementById('create-tab');
+    const createTabBtn = document.getElementById("create-tab");
     if (createTabBtn) {
       createTabBtn.onclick = null; // Remover el listener anterior
     }
-    
   } catch (error) {
-    
     // Fallback al método básico
-    const createTabBtn = document.getElementById('create-tab');
+    const createTabBtn = document.getElementById("create-tab");
     if (createTabBtn) {
-      createTabBtn.addEventListener('click', () => {});
+      createTabBtn.addEventListener("click", () => {});
     }
-    
+
     throw error;
   }
 }
 
 async function initializeContextMenu() {
-  
   try {
-    const { ContextMenu } = await import('./ui/contextMenu.js');
-    
+    const { ContextMenu } = await import("./ui/contextMenu.js");
+
     // Crear instancia
     window.contextMenu = new ContextMenu({
       enableTextContext: true,
       enableTabContext: true,
       enableMiddleClickClose: true,
-      debug: true
+      debug: true,
     });
-    
+
     // Inicializar
     await window.contextMenu.init();
-    
-    document.addEventListener('contextmenu', (e) => {
-      
-      // IMPORTANTE: Solo prevenir si es en nuestras áreas
-      const isContentEditable = e.target.closest('.tab-list__item--content');
-      const isTabLabel = e.target.closest('.tab-list__item label');
-      
-      if (isContentEditable || isTabLabel) {
-        e.preventDefault();
-      }
-    }, true); // Usar capture: true para capturar el evento temprano
-    
+
+    document.addEventListener(
+      "contextmenu",
+      (e) => {
+        // IMPORTANTE: Solo prevenir si es en nuestras áreas
+        const isContentEditable = e.target.closest(".tab-list__item--content");
+        const isTabLabel = e.target.closest(".tab-list__item label");
+
+        if (isContentEditable || isTabLabel) {
+          e.preventDefault();
+        }
+      },
+      true,
+    ); // Usar capture: true para capturar el evento temprano
+
     return window.contextMenu;
-    
   } catch (error) {
-    
     // Fallback mínimo
-    document.addEventListener('contextmenu', (e) => {
-      const isContentEditable = e.target.closest('.tab-list__item--content');
-      const isTabLabel = e.target.closest('.tab-list__item label');
-      
+    document.addEventListener("contextmenu", (e) => {
+      const isContentEditable = e.target.closest(".tab-list__item--content");
+      const isTabLabel = e.target.closest(".tab-list__item label");
+
       if (isContentEditable || isTabLabel) {
         e.preventDefault();
       }
     });
-    
+
     throw error;
   }
 }
 
 // ===== MÓDULOS OPCIONALES =====
 async function loadOptionalModules() {
-  
   try {
     // Intentar cargar módulos de utilidad
-    const utilsModule = await import('./utils/domHelpers.js');
-    
-    const emojiModule = await import('./utils/emojiDetector.js');
-    
+    const utilsModule = await import("./utils/domHelpers.js");
+
+    const emojiModule = await import("./utils/emojiDetector.js");
+
     // Aquí puedes agregar más imports dinámicos
-    import('./core/fontManager.js');
-    import('./core/tabs.js');
-    import('./core/themeManager.js');
-    import('./ui/contextMenu.js');
-    import('./utils/domHelpers.js');
-    import('./utils/emojiDetector.js');
-    
+    import("./core/fontManager.js");
+    import("./core/tabs.js");
+    import("./core/themeManager.js");
+    import("./ui/contextMenu.js");
+    import("./utils/domHelpers.js");
+    import("./utils/emojiDetector.js");
   } catch (error) {
     // return false
   }
@@ -229,58 +222,54 @@ async function loadOptionalModules() {
 
 // ===== VERIFICACIÓN Y FALLBACK =====
 async function verifyFunctionality() {
-  
   // Verificar elementos críticos
-  const criticalElements = [
-    '.tab-list',
-    '#create-tab',
-    '#context-menu'
-  ];
-  
+  const criticalElements = [".tab-list", "#create-tab", "#context-menu"];
+
   const missingElements = [];
-  
-  criticalElements.forEach(selector => {
+
+  criticalElements.forEach((selector) => {
     if (!document.querySelector(selector)) {
       missingElements.push(selector);
     }
   });
-  
+
   if (missingElements.length > 0) {
     // throw new Error(`Elementos críticos no encontrados: ${missingElements.join(', ')}`);
   }
-  
+
   // Verificar localStorage
-  if (typeof localStorage === 'undefined') {
-    throw new Error('localStorage no disponible');
+  if (typeof localStorage === "undefined") {
+    throw new Error("localStorage no disponible");
   }
 }
 
 async function emergencyFallback() {
-  
   // Funcionalidad MÍNIMA para que la app no se rompa completamente
-  
+
   // 1. Permitir crear pestañas básicas
-  const createTabBtn = document.getElementById('create-tab');
+  const createTabBtn = document.getElementById("create-tab");
   if (createTabBtn) {
     createTabBtn.onclick = () => {
-      alert('Modo emergencia: Funcionalidad limitada. Por favor recarga la página.');
+      alert(
+        "Modo emergencia: Funcionalidad limitada. Por favor recarga la página.",
+      );
     };
   }
-  
+
   // 2. Dark mode básico
-  const darkModeToggle = document.getElementById('dark-mode-toggle');
+  const darkModeToggle = document.getElementById("dark-mode-toggle");
   if (darkModeToggle) {
     darkModeToggle.onchange = (e) => {
-      document.documentElement.classList.toggle('light-mode', e.target.checked);
+      document.documentElement.classList.toggle("light-mode", e.target.checked);
     };
   }
-  
-  console.log('🆘 Modo emergencia activado');
+
+  console.log("🆘 Modo emergencia activado");
 }
 
 function showErrorMessage() {
   // Crear un mensaje de error visible pero no intrusivo
-  const errorDiv = document.createElement('div');
+  const errorDiv = document.createElement("div");
   errorDiv.style.cssText = `
     position: fixed;
     top: 10px;
@@ -299,9 +288,9 @@ function showErrorMessage() {
     Algunas funciones pueden no estar disponibles.<br>
     <small>Intenta recargar la página.</small>
   `;
-  
+
   document.body.appendChild(errorDiv);
-  
+
   // Auto-eliminar después de 10 segundos
   setTimeout(() => {
     if (errorDiv.parentNode) {
@@ -313,15 +302,15 @@ function showErrorMessage() {
 // Exportar funciones para debugging
 export const debug = {
   test: () => {
-    return 'OK';
+    return "OK";
   },
   checkElements: () => {
     const elements = {
-      tabList: document.querySelector('.tab-list'),
-      createTab: document.getElementById('create-tab'),
-      darkModeToggle: document.getElementById('dark-mode-toggle'),
-      contextMenu: document.getElementById('context-menu')
+      tabList: document.querySelector(".tab-list"),
+      createTab: document.getElementById("create-tab"),
+      darkModeToggle: document.getElementById("dark-mode-toggle"),
+      contextMenu: document.getElementById("context-menu"),
     };
     return elements;
-  }
+  },
 };

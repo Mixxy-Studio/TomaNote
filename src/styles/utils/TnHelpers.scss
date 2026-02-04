@@ -3,9 +3,9 @@
 
 // Mixin para transiciones de tema
 @mixin theme-transition {
-  transition: background-color 0.3s ease, 
-              border-color 0.3s ease,
-              color 0.3s ease;
+  transition: background-color 0.3s ease,
+    border-color 0.3s ease,
+    color 0.3s ease;
 }
 
 // Clases helper para usar en cualquier lugar
@@ -42,11 +42,11 @@
   padding: 8px 16px;
   cursor: pointer;
   @include theme-transition;
-  
+
   &:hover {
     background-color: var(--tn-color-contrast);
   }
-  
+
   &:focus {
     outline: 2px solid var(--tn-color-contrast);
     outline-offset: 2px;

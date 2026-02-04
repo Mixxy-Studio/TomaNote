@@ -1,40 +1,40 @@
-import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
-import { initNotepad, debug } from '../../entry.js';
+import { describe, it, expect, vi, beforeEach, afterEach } from "vitest";
+import { initNotepad, debug } from "../../entry.js";
 
 // Mockear módulos importados
-vi.mock('../fontManager.js', () => ({
+vi.mock("../fontManager.js", () => ({
   FontManager: vi.fn().mockImplementation(() => ({
-    loadCustomFont: vi.fn()
-  }))
+    loadCustomFont: vi.fn(),
+  })),
 }));
 
-vi.mock('../themeManager.js', () => ({
+vi.mock("../themeManager.js", () => ({
   ThemeManager: vi.fn().mockImplementation(() => ({
-    init: vi.fn().mockResolvedValue()
-  }))
+    init: vi.fn().mockResolvedValue(),
+  })),
 }));
 
-vi.mock('../tabs.js', () => ({
+vi.mock("../tabs.js", () => ({
   TabManager: vi.fn().mockImplementation(() => ({
-    init: vi.fn().mockResolvedValue()
-  }))
+    init: vi.fn().mockResolvedValue(),
+  })),
 }));
 
-vi.mock('../../ui/contextMenu.js', () => ({
+vi.mock("../../ui/contextMenu.js", () => ({
   ContextMenu: vi.fn().mockImplementation(() => ({
-    init: vi.fn().mockResolvedValue()
-  }))
+    init: vi.fn().mockResolvedValue(),
+  })),
 }));
 
-vi.mock('../../utils/domHelpers.js', () => ({
-  default: {}
+vi.mock("../../utils/domHelpers.js", () => ({
+  default: {},
 }));
 
-vi.mock('../../utils/emojiDetector.js', () => ({
-  default: {}
+vi.mock("../../utils/emojiDetector.js", () => ({
+  default: {},
 }));
 
-describe('entry.js', () => {
+describe("entry.js", () => {
   let originalWindow;
   let originalDocument;
   let originalConsole;
@@ -53,7 +53,7 @@ describe('entry.js', () => {
       contextMenu: null,
       addEventListener: vi.fn(),
       dispatchEvent: vi.fn(),
-      matchMedia: vi.fn().mockReturnValue({ matches: false })
+      matchMedia: vi.fn().mockReturnValue({ matches: false }),
     };
     global.document = {
       querySelector: vi.fn(),
@@ -62,20 +62,20 @@ describe('entry.js', () => {
       documentElement: {
         classList: { toggle: vi.fn() },
         setAttribute: vi.fn(),
-        getAttribute: vi.fn()
+        getAttribute: vi.fn(),
       },
       body: {
-        appendChild: vi.fn()
+        appendChild: vi.fn(),
       },
       createElement: vi.fn().mockReturnValue({
         style: {},
-        appendChild: vi.fn()
-      })
+        appendChild: vi.fn(),
+      }),
     };
     global.console = {
       warn: vi.fn(),
       log: vi.fn(),
-      error: vi.fn()
+      error: vi.fn(),
     };
   });
 
@@ -87,17 +87,19 @@ describe('entry.js', () => {
     vi.clearAllMocks();
   });
 
-  describe('initNotepad', () => {
-    it('no debe hacer nada en entorno no navegador', async () => {
+  describe("initNotepad", () => {
+    it("no debe hacer nada en entorno no navegador", async () => {
       delete global.window;
       delete global.document;
 
       await initNotepad();
 
-      expect(console.warn).toHaveBeenCalledWith('⚠️  Entorno no compatible (SSR o Node.js), omitiendo...');
+      expect(console.warn).toHaveBeenCalledWith(
+        "⚠️  Entorno no compatible (SSR o Node.js), omitiendo...",
+      );
     });
 
-    it('debe inicializar correctamente en navegador', async () => {
+    it("debe inicializar correctamente en navegador", async () => {
       // Mock elementos DOM necesarios
       global.document.querySelector.mockReturnValue({});
       global.document.getElementById.mockReturnValue({});
@@ -108,27 +110,27 @@ describe('entry.js', () => {
       expect(global.window.themeManager).toBeDefined();
     });
 
-    it('debe activar modo emergencia si falla inicialización', async () => {
+    it("debe activar modo emergencia si falla inicialización", async () => {
       // Forzar error en loadCriticalFunctions
-      vi.doMock('./core/fontManager.js', () => {
-        throw new Error('Test error');
+      vi.doMock("./core/fontManager.js", () => {
+        throw new Error("Test error");
       });
 
       await initNotepad();
 
-      expect(console.log).toHaveBeenCalledWith('🆘 Modo emergencia activado');
+      expect(console.log).toHaveBeenCalledWith("🆘 Modo emergencia activado");
     });
   });
 
-  describe('debug', () => {
+  describe("debug", () => {
     it('debe retornar "OK" en test', () => {
-      expect(debug.test()).toBe('OK');
+      expect(debug.test()).toBe("OK");
     });
 
-    it('debe verificar elementos DOM', () => {
+    it("debe verificar elementos DOM", () => {
       const elements = debug.checkElements();
-      expect(elements).toHaveProperty('tabList');
-      expect(elements).toHaveProperty('createTab');
+      expect(elements).toHaveProperty("tabList");
+      expect(elements).toHaveProperty("createTab");
     });
   });
 });
