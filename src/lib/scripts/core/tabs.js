@@ -69,13 +69,11 @@ export class TabManager {
   }
 
   getActiveTab() {
-    const activeInput = this.tabList.querySelector(
-      'input[type="radio"]:checked',
-    );
+    const activeInput = this.tabList.querySelector('input[type="radio"]:checked');
     return activeInput ? this.findTabById(activeInput.id) : null;
   }
 
-  createTab(name = "Nuevo", content = "", isPinned = false, emoji = null) {
+  createTab(name = "New", content = "", isPinned = false, emoji = null) {
     if (!this.options.enableCreation) {
       this.log("⚠️  Creación de pestañas deshabilitada");
       return null;
@@ -106,8 +104,6 @@ export class TabManager {
   // ===== MÉTODOS INTERNOS =====
 
   setupContextMenuIntegration() {
-
-
     // Escuchar evento de cambios en pestañas
     document.addEventListener("tabsChanged", () => {
       this.saveTabs();
@@ -148,17 +144,11 @@ export class TabManager {
 
   reorderTabs() {
     const createTabButton = this.createTabButton;
-    const allTabs = Array.from(
-      this.tabList.querySelectorAll(".tab-list__item"),
-    );
+    const allTabs = Array.from(this.tabList.querySelectorAll(".tab-list__item"));
 
     // Separar pestañas fijadas y normales
-    const pinnedTabs = allTabs.filter((tab) =>
-      tab.classList.contains("pinned"),
-    );
-    const normalTabs = allTabs.filter(
-      (tab) => !tab.classList.contains("pinned"),
-    );
+    const pinnedTabs = allTabs.filter((tab) => tab.classList.contains("pinned"));
+    const normalTabs = allTabs.filter((tab) => !tab.classList.contains("pinned"));
 
     // Remover todas las pestañas del DOM
     allTabs.forEach((tab) => tab.remove());
@@ -214,9 +204,7 @@ export class TabManager {
       this.tabsData = savedData ? JSON.parse(savedData) : [];
 
       // Limpiar tabs existentes (excepto el botón crear)
-      this.tabList
-        .querySelectorAll(".tab-list__item")
-        .forEach((item) => item.remove());
+      this.tabList.querySelectorAll(".tab-list__item").forEach((item) => item.remove());
 
       // Crear elementos para cada tab
       this.tabsData.forEach((tabData) => {
@@ -244,7 +232,7 @@ export class TabManager {
     tabElement.innerHTML = `
       <input type="radio" name="body-tab" id="${id}">
       <label for="${id}" ${labelDataEmoji}>
-        <span ${spanDataEmoji}>${name || "Nuevo"}</span>
+        <span ${spanDataEmoji}>${name || "New"}</span>
         <button class="edit-name-tab" aria-label="Editar nombre">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-6">
             <path d="M21.731 2.269a2.625 2.625 0 0 0-3.712 0l-1.157 1.157 3.712 3.712 1.157-1.157a2.625 2.625 0 0 0 0-3.712ZM19.513 8.199l-3.712-3.712-8.4 8.4a5.25 5.25 0 0 0-1.32 2.214l-.8 2.685a.75.75 0 0 0 .933.933l2.685-.8a5.25 5.25 0 0 0 2.214-1.32l8.4-8.4Z" />
@@ -277,20 +265,13 @@ export class TabManager {
   setupContentEditing() {
     // Configurar manejo de tabulador en editores de contenido
     this.tabList.addEventListener("keydown", (event) => {
-      if (
-        event.key === "Tab" &&
-        event.target.classList.contains("tab-list__item--content")
-      ) {
+      if (event.key === "Tab" && event.target.classList.contains("tab-list__item--content")) {
         event.preventDefault();
         document.execCommand("insertText", false, "    ");
       }
 
       // Atajo para negrita: CTRL + B
-      if (
-        event.ctrlKey &&
-        event.key === "b" &&
-        event.target.classList.contains("tab-list__item--content")
-      ) {
+      if (event.ctrlKey && event.key === "b" && event.target.classList.contains("tab-list__item--content")) {
         event.preventDefault();
         FormattingUtils.cycleBold();
       }

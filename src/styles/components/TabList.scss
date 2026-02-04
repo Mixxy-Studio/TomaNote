@@ -13,19 +13,24 @@
   z-index: 999;
 
   #create-tab {
-    width: 30px;
-    height: 30px;
-    background-color: var(--tn-theme-secondary);
-    outline: 0px;
-    border: unset;
-    border-radius: 5px;
-    margin-left: 6px;
-    margin-top: 2px;
-    color: var(--tn-neutral-tertiary-color);
+    position: fixed;
+    background-color: var(--tn-theme-contrast);
+    bottom: 2rem;
+    right: 2rem;
+    height: 50px;
+    border-radius: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    span {
+      margin-inline: 1rem 0;
+    }
 
     svg {
-      width: 100%;
-      height: 100%;
+      width: 25px;
+      height: 25px;
+      margin-inline: .5rem;
     }
 
     &:hover {
