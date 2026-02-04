@@ -1,0 +1,47 @@
+// Breakpoints
+$breakpoints: (
+  'xs': 476px,
+  // xs: 667px móviles pequeños (iPhone SE)
+  'sm': 640px,
+  // sm: 800px móviles grandes
+  'md': 768px,
+  // md: 1024px tablets vertical
+  'lg': 1024px,
+  // lg: 768px tablets horizontal / laptops chicos
+  'xl': 1280px,
+  // xl: 800px laptops comunes
+  '2xl': 1536px) !default; // 2xl: 900px pantallas grandes
+
+// Mixin para media queries usando el mapa de breakpoints
+@mixin respond-to($breakpoint) {
+
+  // Verificar si el breakpoint existe en el mapa
+  @if map-has-key($breakpoints, $breakpoint) {
+    // Obtener el valor del breakpoint
+    $bp-value: map-get($breakpoints, $breakpoint
+    );
+
+  // Crear la media query (usando mobile-first: min-width)
+  @media (min-width: $bp-value) {
+    @content;
+  }
+}
+
+@else {
+  // Si el breakpoint no existe, mostrar advertencia
+  @warn "El breakpoint '#{$breakpoint}' no existe en el mapa $breakpoints. Breakpoints disponibles: #{map-keys($breakpoints)}";
+}
+}
+
+// Uso:
+// .elemento {
+//   padding: 1rem;
+
+//   @include respond-to('sm') {
+//     padding: 1.5rem;
+//   }
+
+//   @include respond-to('lg') {
+//     padding: 2rem;
+//   }
+// }

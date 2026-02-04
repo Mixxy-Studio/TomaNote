@@ -1,4 +1,5 @@
-@use "../abstracts/Variables.scss" as tn;
+@use "../abstracts/Variables.scss" as vars;
+@use "sass:color";
 
 .tab-list {
   display: flex;
@@ -10,25 +11,30 @@
   max-width: 100vw;
   overflow-x: auto;
   z-index: 999;
-  
+
   #create-tab {
-    width: 30px;
-    height: 30px;
-    background-color: var(--tn-theme-secondary);
-    outline: 0px;
-    border: unset;
-    border-radius: 5px;
-    margin-left: 6px;
-    margin-top: 2px;
-    color: var(--tn-neutral-tertiary-color);
-    
+    position: fixed;
+    background-color: var(--tn-theme-contrast);
+    bottom: 2rem;
+    right: 2rem;
+    height: 50px;
+    border-radius: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    span {
+      margin-inline: 1rem 0;
+    }
+
     svg {
-      width: 100%;
-      height: 100%;
+      width: 25px;
+      height: 25px;
+      margin-inline: .5rem;
     }
 
     &:hover {
-      background-color: lighten(tn.$tn-theme-primary-dark, 10%);
+      background-color: color.adjust(vars.$tn-theme-primary-dark, $lightness: 10%);
       border-color: transparent;
       color: var(--tn-neutral-tertiary-color);
     }
@@ -41,8 +47,10 @@
     flex-wrap: wrap;
     height: auto;
     margin-left: 10px;
-    &:not(.tab-list__item.pinned) label { 
+
+    &:not(.tab-list__item.pinned) label {
       position: relative;
+
       &::before {
         content: "";
         position: absolute;
@@ -54,23 +62,30 @@
       }
     }
 
-    &.pinned { 
+    &.pinned {
       border: 1px solid var(--tn-theme-secondary);
       border-radius: 5px;
-      label  {
+
+      label {
         border-radius: 5px;
-        width: 40px; 
+        width: 40px;
         overflow: hidden;
         transition: ease-in-out .3s all;
         padding: 7px 5px 5px 10px;
-        &:hover { background-color: var(--tn-theme-secondary); }
+
+        &:hover {
+          background-color: var(--tn-theme-secondary);
+        }
+
         button {
           display: none !important;
         }
-        span { 
+
+        span {
           position: relative;
           color: transparent;
           z-index: 1;
+
           &::before {
             content: attr(data-emoji);
             position: absolute;
@@ -78,7 +93,7 @@
             left: 10px;
             transform: translate(-50%, -50%);
             color: white;
-          } 
+          }
         }
       }
     }
@@ -151,7 +166,7 @@
       }
 
       span {
-        // color: lighten(tn.$tn-theme-primary-light, 50%);
+        // color: lighten(vars.$tn-theme-primary-light, 50%);
         font-family: var(--font-family-notes, var(--tn-font-family-default));
         text-overflow: ellipsis;
         white-space: nowrap;
@@ -181,18 +196,18 @@
       .edit-name-tab,
       .delete-tab {
         &:hover {
-          background-color: rgba(tn.$tn-neutral-tertiary-color, .25);
+          background-color: rgba(vars.$tn-neutral-tertiary-color, .25);
         }
       }
 
       .edit-name-tab:active,
       .edit-name-tab:focus {
-        background-color: rgba(tn.$tn-neutral-tertiary-color, .5);
+        background-color: rgba(vars.$tn-neutral-tertiary-color, .5);
       }
 
       .delete-tab:active,
       .delete-tab:focus {
-        background-color: rgba(tn.$tn-neutral-tertiary-color, .5);
+        background-color: rgba(vars.$tn-neutral-tertiary-color, .5);
       }
 
     }
@@ -205,11 +220,11 @@
 
       &:checked {
 
-        ~ .tab-list__item--content {
+        ~.tab-list__item--content {
           display: block;
         }
 
-        ~ label {
+        ~label {
           background-color: var(--tn-theme-secondary);
           transition: background-color ease 0.3s;
 
@@ -218,7 +233,7 @@
           }
 
           button:hover {
-            background-color: lighten(tn.$tn-theme-primary-dark, 50%);
+            background-color: color.adjust(vars.$tn-theme-primary-dark, $lightness: 50%);
           }
         }
       }
