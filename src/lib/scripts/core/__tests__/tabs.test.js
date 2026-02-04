@@ -45,7 +45,7 @@ describe("TabManager - Lógica Básica", () => {
 
   it("Crear una pestaña con datos por defecto", () => {
     const tab = tabManager.createTab();
-    expect(tab.name).toBe("Nuevo");
+    expect(tab.name).toBe("New");
     expect(tab.content).toBe("");
     expect(tab.id).toMatch(/^body-tab-\d+$/);
   });

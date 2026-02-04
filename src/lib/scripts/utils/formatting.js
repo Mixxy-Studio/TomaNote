@@ -32,10 +32,7 @@ export class FormattingUtils {
 
     // Buscar hacia arriba hasta encontrar un wrapper o el contentEditable
     while (element && !element.hasAttribute("contenteditable")) {
-      if (
-        element.classList.contains("bold-semibold") ||
-        element.classList.contains("bold-extrabold")
-      ) {
+      if (element.classList.contains("bold-semibold") || element.classList.contains("bold-extrabold")) {
         return element;
       }
       element = element.parentElement;
