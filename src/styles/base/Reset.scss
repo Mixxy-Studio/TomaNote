@@ -1,33 +1,38 @@
+@use "../abstracts/Variables.scss" as vars;
+
 *,
 *::before,
 *::after {
   box-sizing: border-box;
   padding: 0;
   margin: 0;
-}  
+  font-size: var(--tn-font-size-base);
+}
 
 body {
   margin: 0;
-  padding: var(--padding-base);
-  color: var(--color-primary);
-  background-color: var(--color-background);
+  padding: var(--tn-padding-base);
+  color: var(--tn-color-text);
+  background-color: var(--tn-theme-primary);
   width: 100%;
   height: auto;
   min-height: 100vh;
   overflow: hidden;
-  font-family: var(--font-family-mono);
-  
+  font-family: var(--tn-font-family-default);
+  transition: background-color 0.3s ease, color 0.3s ease;
+
   img {
     max-width: 500px;
   }
 
   button {
     cursor: pointer;
+    font-family: var(--tn-font-family-default);
   }
 }
 
-.source-code-pro-font {
-  font-family: "Source Code Pro", monospace;
+.default-font-family {
+  font-family: var(--tn-font-family-default);
   font-optical-sizing: auto;
   font-weight: 100;
   font-style: normal;
@@ -40,10 +45,129 @@ body {
 }
 
 .code-block {
-  background-color: var(--color-secondary-background);
-  color: rgba(255, 255, 255, 0.5);
-  font-family: var(--font-family-mono);
-  padding: var(--padding-block);
-  margin-bottom: var(--margin-base);
-  border-radius: var(--border-radius-small);
+  background-color: var(--tn-color-secondary-background);
+  color: var(--tn-color-text);
+  opacity: 0.8;
+}
+
+// Clases para formateo de negrita
+.bold-semibold {
+  font-weight: 600;
+}
+
+.bold-extrabold {
+  font-weight: 800;
+}
+
+body,
+.modal,
+.context-menu,
+button,
+input,
+select {
+  font-family: var(--tn-font-family-default);
+}
+
+a {
+  color: var(--tn-neutral-link-color);
+  text-decoration: underline;
+}
+
+code {
+  font-family: var(--tn-font-family-default);
+  background-color: var(--tn-theme-accent);
+  border-radius: var(--tn-border-radius-small);
+  display: inline-block;
+  overflow: hidden;
+  padding: 2px 6px;
+  transition: background-color 0.3s ease;
+  color: var(--tn-theme-secondary);
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: var(--tn-scrollbar-width, 12px);
+  height: var(--tn-scrollbar-height, 12px);
+}
+
+::-webkit-scrollbar-track {
+  background: var(--tn-scrollbar-track);
+  border-radius: var(--tn-border-radius-small);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--tn-scrollbar-thumb);
+  border-radius: var(--tn-border-radius-small);
+
+  &:hover {
+    background: var(--tn-color-accent);
+  }
+}
+
+/* Smooth transitions para cambios de tema */
+* {
+  transition: background-color 0.3s ease,
+    border-color 0.3s ease,
+    color 0.3s ease;
+}
+
+// Colores especificos segun el tema
+html[data-theme="dark"] .tab-list__item {
+  label span {
+    color: var(--tn-neutral-tertiary-color);
+  }
+
+  input:checked~label span {
+    color: var(--tn-neutral-tertiary-color);
+  }
+}
+
+html[data-theme="light"] .tab-list__item {
+  label span {
+    color: var(--tn-neutral-primary-color);
+  }
+
+  input:checked~label span {
+    color: var(--tn-neutral-primary-color);
+  }
+}
+
+html[data-theme="cozy-rose"] .tab-list__item {
+  label span {
+    color: var(--tn-neutral-tertiary-color);
+  }
+
+  input:checked~label span {
+    color: var(--tn-theme-primary);
+  }
+}
+
+html[data-theme="chill-aqua"] .tab-list__item {
+  label span {
+    color: var(--tn-theme-contrast);
+  }
+
+  input:checked~label span {
+    color: var(--tn-theme-contrast);
+  }
+}
+
+html[data-theme="wild-forest"] .tab-list__item {
+  label span {
+    color: var(--tn-theme-accent);
+  }
+
+  input:checked~label span {
+    color: var(--tn-theme-accent);
+  }
+}
+
+html[data-theme="neon-orbit"] .tab-list__item {
+  label span {
+    color: var(--tn-neutral-tertiary-color);
+  }
+
+  input:checked~label span {
+    color: var(--tn-neutral-tertiary-color);
+  }
 }

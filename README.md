@@ -2,12 +2,12 @@
 
 <div align="center">
 
-![Version](https://img.shields.io/badge/version-0.1.0-blue.svg)
+![Version](https://img.shields.io/badge/version-0.3.1-blue.svg)
 ![License](https://img.shields.io/badge/license-AGPL%20v3-green.svg)
 ![Status](https://img.shields.io/badge/status-active-success.svg)
 ![Mobile](https://img.shields.io/badge/mobile-responsive-success)
 
-[Demo en vivo](https://camiicode.github.io/notepad) | [Reportar Bug](https://github.com/camiicode/notepad/issues) | [Solicitar Feature](https://github.com/camiicode/notepad/issues)
+[Demo en vivo](https://tomanote.app) | [Reportar Bug](https://github.com/camiicode/notepad/issues) | [Solicitar Feature](https://github.com/camiicode/notepad/issues)
 
 [!["Buy Me A Coffee"](https://img.shields.io/badge/Buy_Me_A_Coffee-FFDD00?style=for-the-badge&logo=buy-me-a-coffee&logoColor=black)](https://buymeacoffee.com/dftp930)
 
@@ -17,50 +17,64 @@
 
 TomaNote es un bloc de notas moderno y minimalista que funciona directamente en tu navegador. Diseñado para ser simple pero potente, con funcionalidades que facilitan la toma de notas y la organización de ideas.
 
-### ✨ Características Principales
+✅ 🚀 Novedades — v0.3.2
 
-- 📱 **Diseño Responsivo**: Optimizado para todos los dispositivos (desktop, tablet, móvil)
-- 💾 **Guardado Automático**: Tus notas se guardan automáticamente en el almacenamiento local
-- 🔄 **Sistema de Pestañas**: Organiza tus notas en múltiples pestañas
-- 📌 **Fijar Pestañas**: Puedes fijar pestañas importantes para destacarlas
-- 🧠 **Emojis Personalizados**: Usa un emoji en el nombre de la pestaña y se mostrará como favicon personalizado
-- 🎨 **Mejoras Visuales**:
-  - Hover en pestañas inactivas
-  - Bordes diferenciados
-  - Nuevas proporciones y tipografía más delicada
-  - Íconos más pequeños y sutiles para editar/cerrar
-- 🎨 **Formato de Texto**:
-  - Negrita (`Ctrl + B`)
-  - Cursiva (`Ctrl + I`)
-  - Subrayado (`Ctrl + U`)
-- 📑 **Gestión de Pestañas**:
-  - Renombrar pestañas
-  - Crear nuevas pestañas
-  - Eliminar pestañas existentes
-  - Fijar/Desfijar Pestañas
-  - Cerrar pestaña con MB3 (Mouse Button 3)
-- 🖱️ **Menú Contextual**: Acceso rápido a funciones comunes
+Esta versión se enfoca en estabilidad, calidad de código y experiencia de usuario, haciendo que la app sea más confiable, rápida y accesible.
 
-## ✅ Novedades en la versión 0.1.0
-- 📌 Fijar y desfijar pestañas con clic derecho (menú contextual).
-- 🎯 Las pestañas fijadas se mueven automáticamente:
-  - Si se fijan: se colocan justo después de la última pestaña ya fijada.
-  - Si se desfijan: se mueven al inicio de las pestañas normales.
-- 🖱️ Cerrar pestañas con botón central del mouse (MB3), incluso si están fijadas.
-- ✨ Al crear una pestaña nueva, el usuario es llevado automáticamente a ella.
-- 🧽 Se eliminan los separadores innecesarios del menú contextual según el tipo de clic (editor vs pestaña).
-- 📌 Las pestañas fijadas:
-  - Se identifican por su tamaño reducido (45px).
-  - Ocultan los botones de editar/cerrar.
-  - Pueden usar un emoji personalizado como favicon o uno por defecto (📝).
+🐛 Correcciones críticas
+
+Se resolvieron múltiples errores que afectaban usabilidad y consistencia:
+
+- Mejor accesibilidad del botón de nueva pestaña (ahora como botón flotante)
+- Corrección de problemas de visualización en modales móviles
+- Formato en negrita más confiable
+- Solucionado el reinicio y eliminación de fuentes personalizadas
+- Persistencia correcta de dominio personalizado en despliegues de GitHub Pages
+- Eliminadas alertas duplicadas al cerrar pestañas
+- Eliminadas advertencias por meta etiquetas Apple obsoletas
+
+🧪 Infraestructura de pruebas
+
+- Integración de Vitest con entorno jsdom
+- Tests para gestores de temas, fuentes, pestañas y menú contextual
+- Organización centralizada de pruebas en carpetas dedicadas
+
+🔧 Calidad y estándares de código
+
+- Configuración de Prettier para formato consistente
+- Actualización de reglas ESLint + SASS para compatibilidad moderna
+- Eliminación de logs de depuración
+- Optimización de configuración de Astro para producción
+
+🌐 Internacionalización y accesibilidad
+
+- Idioma por defecto cambiado a inglés
+- Etiquetas de interfaz y nombres de pestañas actualizados
+- Mejora en etiquetado accesible de elementos
+
+🛡️ Seguridad
+
+- Actualización de dependencias críticas
+- Inclusión de política SECURITY.md
+- Eliminación de console logs en builds de producción
+
+📱 Rendimiento y experiencia
+
+- Mejoras de rendimiento en build (minificación y tree-shaking)
+- Experiencia móvil más fluida
+- Eliminación de listeners duplicados (menos consumo de memoria)
+- Carga de fuentes optimizada con preconexión a Google Fonts
+
+> Nota:
+> Esta versión no introduce cambios que rompan compatibilidad, pero mejora significativamente la estabilidad y calidad general del proyecto.
 
 ### 🚀 Próximas Funcionalidades
 
-- [ ] Soporte para Markdown
-- [ ] Diagramas con MermaidJS
-- [ ] Temas personalizables
-- [ ] Exportación de notas
-- [ ] Sincronización en la nube
+- [ ] Estilos para contenido pegado → Las Listas, parrafos, titulos, blockquotes, etc, deben de actuar en consecuencia visualmente.
+- [ ] Resize de imágenes (max 500px) → Mejora el rendimiento y la capacidad del Local Storage
+- [ ] Context menu móvil visible → Accesibilidad para dispositivos Mobiles
+- [ ] FAB para nueva nota en mobile (+ posición) → Boton de agregar nota neuva en la parte inferior - Mobile
+- [ ] Tamaños de fuente → Usuario deberia de poder elegir tamaño de fuentes, entre peque, normal y grande
 
 ## 🛠️ Tecnologías Utilizadas
 
@@ -71,10 +85,12 @@ TomaNote es un bloc de notas moderno y minimalista que funciona directamente en 
 ## 📦 Instalación y Uso
 
 ### Uso Online
+
 1. Visita [TomaNote](https://camiicode.github.io/notepad)
 2. ¡Comienza a escribir!
 
 ### Instalación Local
+
 ```bash
 # Clonar el repositorio
 git clone https://github.com/camiicode/notepad.git
@@ -99,6 +115,7 @@ npm run dev
 - No hay transmisión de datos a servidores externos
 
 ## ⭐ ¿Te gusta el proyecto?
+
 Si estás usando este bloc de notas y te parece útil, agrégale una estrellita en el repositorio de GitHub.
 No es obligatorio, ¡pero a mí me ayuda un montón y a ti no te toma más de 30 segunditos!
 👉 https://github.com/camiicode/notepad
@@ -108,17 +125,18 @@ No es obligatorio, ¡pero a mí me ayuda un montón y a ti no te toma más de 30
 Este proyecto está bajo la licencia GNU Affero General Public License v3.0 (AGPL-3.0)
 
 ### Restricciones Comerciales
+
 - Se prohíbe el uso comercial sin autorización expresa
-- Contactane usos comerciales
+- Contactame para usos comerciales
 
 ## 👥 Contribuir
 
 ¡Las contribuciones son bienvenidas! Puedes ayudar:
 
-- 🐛 Reportando bugs
+- 🐛 Reportando bugs o Reparando Issues
 - 💡 Sugiriendo nuevas funcionalidades
-- 🔧 Enviando pull requests
-- ⭐ Dando una estrella al proyecto
+- 🔧 Enviando pull requests o Features nuevas
+- ⭐ Regalando una estralla
 
 ## 📬 Contacto y Redes
 
