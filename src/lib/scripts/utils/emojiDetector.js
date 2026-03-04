@@ -1,4 +1,10 @@
 // src/lib/scripts/utils/emojiDetector.js
+const PIN_EMOJIS = ["🔴", "🟠", "🟡", "🟢", "🔵", "🟣", "🟤", "⚫", "⚪", "📌", "📍", "🔒", "🌟", "💫", "📎", "🏷️", "🔖", "📑", "📋", "✨", "💼", "🎯", "✅"];
+
+export function getRandomPinEmoji() {
+  return PIN_EMOJIS[Math.floor(Math.random() * PIN_EMOJIS.length)];
+}
+
 export function detectEmojiInText(text) {
   if (!text || typeof text !== "string") return null;
 
