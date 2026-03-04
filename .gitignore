@@ -133,3 +133,4 @@ dist
 AGENT.md
 
 .astro/
+.astro/**
