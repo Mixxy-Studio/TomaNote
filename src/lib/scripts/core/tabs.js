@@ -13,6 +13,7 @@ export class TabManager {
       enablePinning: false, // Fijar/desfijar (desactivado por ahora)
       enableContentEditing: true, // Editar contenido
       enableAutoSave: true, // Guardar automáticamente
+      anchorSelector: "#tab-list-anchor", // Selector ancla para insertar pestañas
       debug: true, // Modo debug
       ...options,
     };
@@ -20,6 +21,7 @@ export class TabManager {
     this.tabIdCounter = 1;
     this.tabList = null;
     this.createTabButton = null;
+    this.tabAnchor = null;
     this.tabsData = [];
 
     this.setupContextMenuIntegration();
@@ -98,6 +100,9 @@ export class TabManager {
     this.log("➕ Pestaña creada:", { id, name });
     this.saveTabs();
 
+    // Notificar cambio de pestañas
+    document.dispatchEvent(new CustomEvent("tabsChanged"));
+
     return tabData;
   }
 
@@ -110,7 +115,7 @@ export class TabManager {
     });
   }
 
-  pinTab(tabElement, emoji = "📝") {
+  pinTab(tabElement, emoji = "📄") {
     if (!this.options.enablePinning) return;
 
     tabElement.classList.add("pinned");
@@ -118,12 +123,10 @@ export class TabManager {
     const labelSpan = tabElement.querySelector("label span");
 
     label.setAttribute("data-emoji", emoji);
-    labelSpan.dataset.emoji = emoji;
+    labelSpan.setAttribute("data-emoji", emoji);
 
     this.reorderTabs();
     this.saveTabs();
-
-    this.log("📍 Pestaña fijada");
   }
 
   unpinTab(tabElement) {
@@ -134,12 +137,10 @@ export class TabManager {
     const labelSpan = tabElement.querySelector("label span");
 
     label.removeAttribute("data-emoji");
-    delete labelSpan.dataset.emoji;
+    labelSpan.removeAttribute("data-emoji");
 
     this.reorderTabs();
     this.saveTabs();
-
-    this.log("📍 Pestaña desfijada");
   }
 
   reorderTabs() {
@@ -153,21 +154,36 @@ export class TabManager {
     // Remover todas las pestañas del DOM
     allTabs.forEach((tab) => tab.remove());
 
+    // Obtener el elemento de referencia para insertBefore
+    const referenceElement = this.tabAnchor || createTabButton;
+
     // Reinsertar en orden: primero las fijadas, luego las normales
-    pinnedTabs.forEach((tab) => {
-      this.tabList.insertBefore(tab, createTabButton);
-    });
+    if (referenceElement && this.tabList.contains(referenceElement)) {
+      pinnedTabs.forEach((tab) => {
+        this.tabList.insertBefore(tab, referenceElement);
+      });
 
-    normalTabs.forEach((tab) => {
-      this.tabList.insertBefore(tab, createTabButton);
-    });
+      normalTabs.forEach((tab) => {
+        this.tabList.insertBefore(tab, referenceElement);
+      });
+    } else {
+      // Si no hay referencia válida, usar appendChild
+      pinnedTabs.forEach((tab) => {
+        this.tabList.appendChild(tab);
+      });
 
-    this.log("🔄 Pestañas reordenadas");
+      normalTabs.forEach((tab) => {
+        this.tabList.appendChild(tab);
+      });
+    }
   }
 
   async findDOMElements() {
     this.tabList = await this.waitForElement(".tab-list");
     this.createTabButton = await this.waitForElement("#create-tab");
+    if (this.options.anchorSelector) {
+      this.tabAnchor = await this.waitForElement(this.options.anchorSelector);
+    }
   }
 
   async waitForElement(selector, timeout = 3000) {
@@ -222,7 +238,7 @@ export class TabManager {
     const { id, name, content, isPinned, emoji } = tabData;
 
     const tabElement = document.createElement("div");
-    tabElement.className = "tab-list__item";
+    tabElement.className = "tab-list__item flex justify-start items-center flex-wrap h-auto ml-[5px]! first:ml-0! [&:not(.pinned)_label]:relative! border border-(--tn-theme-secondary) rounded";
     if (isPinned) tabElement.classList.add("pinned");
 
     // Usar template literal para el HTML (igual al original)
@@ -231,25 +247,31 @@ export class TabManager {
 
     tabElement.innerHTML = `
       <input type="radio" name="body-tab" id="${id}">
-      <label for="${id}" ${labelDataEmoji}>
-        <span ${spanDataEmoji}>${name || "New"}</span>
-        <button class="edit-name-tab" aria-label="Editar nombre">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-6">
+      <label class="bg-(--tn-default-tertiary-color) w-[250px] flex justify-between items-center py-[7px]! pr-[5px]! pl-[10px]! rounded cursor-pointer" for="${id}" ${labelDataEmoji}>
+        <span class="text-ellipsis whitespace-nowrap w-[80%] overflow-hidden z-10 text-[14px]! font-bold" ${spanDataEmoji}>${name || "New"}</span>
+        <button class="edit-name-tab border-0 outline-0 w-[20px] h-[20px] justify-center items-center hidden rounded-full" aria-label="Editar nombre">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-1 w-1/2 h-1/2">
             <path d="M21.731 2.269a2.625 2.625 0 0 0-3.712 0l-1.157 1.157 3.712 3.712 1.157-1.157a2.625 2.625 0 0 0 0-3.712ZM19.513 8.199l-3.712-3.712-8.4 8.4a5.25 5.25 0 0 0-1.32 2.214l-.8 2.685a.75.75 0 0 0 .933.933l2.685-.8a5.25 5.25 0 0 0 2.214-1.32l8.4-8.4Z" />
             <path d="M5.25 5.25a3 3 0 0 0-3 3v10.5a3 3 0 0 0 3 3h10.5a3 3 0 0 0 3-3V13.5a.75.75 0 0 0-1.5 0v5.25a1.5 1.5 0 0 1-1.5 1.5H5.25a1.5 1.5 0 0 1-1.5-1.5V8.25a1.5 1.5 0 0 1 1.5-1.5h5.25a.75.75 0 0 0 0-1.5H5.25Z" />
           </svg>
         </button>
-        <button class="delete-tab" aria-label="Eliminar pestaña">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-6">
+        <button class="delete-tab border-0 outline-0 w-[20px] h-[20px] justify-center items-center hidden rounded-full" aria-label="Eliminar pestaña">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-1 w-1/2 h-1/2">
             <path fill-rule="evenodd" d="M5.47 5.47a.75.75 0 0 1 1.06 0L12 10.94l5.47-5.47a.75.75 0 1 1 1.06 1.06L13.06 12l5.47 5.47a.75.75 0 1 1-1.06 1.06L12 13.06l-5.47 5.47a.75.75 0 0 1-1.06-1.06L10.94 12 5.47 6.53a.75.75 0 0 1 0-1.06Z" clip-rule="evenodd" />
           </svg>
         </button>
       </label>
-      <div class="tab-list__item--content" contenteditable="true">${content || ""}</div>
+      <div class="tab-list__item--content overflow-x-hidden overflow-y-scroll font-thin hidden bg-(--tn-theme-secondary) min-h-[92dvh] p-(--tn-padding-base)! border-0 outline-0 absolute top-[50px] left-[10px] h-[calc(100%-60px)] w-[calc(100%-(var(--tn-padding-base)*2))] first:mr-[10px] border-r border-(--tn-theme-secondary)! rounded-md" contenteditable="true">${content || ""}</div>
     `;
 
-    // Insertar antes del botón crear
-    this.tabList.insertBefore(tabElement, this.createTabButton);
+    // Insertar usando el ancla o el botón como referencia
+    if (this.tabAnchor) {
+      this.tabList.insertBefore(tabElement, this.tabAnchor);
+    } else if (this.createTabButton && this.tabList.contains(this.createTabButton)) {
+      this.tabList.insertBefore(tabElement, this.createTabButton);
+    } else {
+      this.tabList.appendChild(tabElement);
+    }
 
     return tabElement;
   }
@@ -289,7 +311,7 @@ export class TabManager {
     });
   }
 
-  startEditingTabName(editButton) {
+  startEditingTabName(editButton, skipClickOutside = false) {
     const tabItem = editButton.closest(".tab-list__item");
     const label = tabItem.querySelector("label");
     const span = label.querySelector("span");
@@ -312,15 +334,23 @@ export class TabManager {
       this.updateTabIds();
     };
 
-    // Handler para clic fuera
-    const clickOutsideHandler = (e) => {
-      if (!label.contains(e.target) && label.isContentEditable) {
-        finishEditing();
-        document.removeEventListener("click", clickOutsideHandler);
-      }
-    };
+    // Handler para clic fuera (solo si no se omite)
+    if (!skipClickOutside) {
+      const clickOutsideHandler = (e) => {
+        const floatingMenu = document.querySelector(".tn-navbar");
+        const clickFromFloatingMenu = floatingMenu?.contains(e.target);
 
-    document.addEventListener("click", clickOutsideHandler);
+        if (!label.contains(e.target) && !clickFromFloatingMenu && label.isContentEditable) {
+          finishEditing();
+          document.removeEventListener("click", clickOutsideHandler);
+        }
+      };
+
+      // Delay para evitar que el click que abre la edición se cierre inmediatamente
+      setTimeout(() => {
+        document.addEventListener("click", clickOutsideHandler);
+      }, 100);
+    }
 
     // Handler para Enter
     const keydownHandler = (e) => {
@@ -335,7 +365,9 @@ export class TabManager {
 
     // Auto-remover handlers después de 30 segundos (safety)
     setTimeout(() => {
-      document.removeEventListener("click", clickOutsideHandler);
+      if (!skipClickOutside) {
+        document.removeEventListener("click", clickOutsideHandler);
+      }
       label.removeEventListener("keydown", keydownHandler);
     }, 30000);
   }
@@ -387,6 +419,9 @@ export class TabManager {
 
     // Guardar cambios
     this.saveTabs();
+
+    // Notificar cambio de pestañas
+    document.dispatchEvent(new CustomEvent("tabsChanged"));
   }
 
   setupAutoSave() {

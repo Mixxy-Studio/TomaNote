@@ -56,9 +56,7 @@ export class ThemeManager {
         this.currentTheme = savedTheme;
       } else {
         // Comprobar preferencia del sistema
-        const systemPrefersDark = window.matchMedia(
-          "(prefers-color-scheme: dark)",
-        ).matches;
+        const systemPrefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
         this.currentTheme = systemPrefersDark ? "dark" : "light";
         localStorage.setItem("notepadTheme", this.currentTheme);
       }
@@ -75,10 +73,7 @@ export class ThemeManager {
     }
 
     // Encontrar donde insertar (junto al toggle antiguo)
-    const themeWrapper =
-      document.querySelector(".theme-selector-wrapper") ||
-      document.querySelector(".options-tab") ||
-      document.querySelector(".tab-list");
+    const themeWrapper = document.querySelector(".theme-selector-wrapper") || document.querySelector(".options-tab") || document.querySelector(".tab-list");
 
     if (!themeWrapper) {
       return;
@@ -122,7 +117,7 @@ export class ThemeManager {
                 <span class="theme-name">${theme.name}</span>
                 <div class="theme-preview" data-theme="${theme.id}"></div>
               </button>
-            `,
+            `
               )
               .join("")}
           </div>
@@ -253,7 +248,7 @@ export class ThemeManager {
           theme: themeId,
           themeName: this.themes.find((t) => t.id === themeId)?.name,
         },
-      }),
+      })
     );
   }
 
@@ -338,18 +333,10 @@ export class ThemeManager {
 
   // Método para debug
   debugCSSVariables() {
-    const variables = [
-      "--tn-color-background",
-      "--tn-color-text",
-      "--tn-color-accent",
-      "--tn-theme-primary",
-      "--tn-theme-secondary",
-    ];
+    const variables = ["--tn-color-background", "--tn-color-text", "--tn-color-accent", "--tn-theme-primary", "--tn-theme-secondary"];
 
     variables.forEach((varName) => {
-      const value = getComputedStyle(document.documentElement)
-        .getPropertyValue(varName)
-        .trim();
+      const value = getComputedStyle(document.documentElement).getPropertyValue(varName).trim();
     });
 
     console.groupEnd();
@@ -361,8 +348,7 @@ export class ThemeManager {
       availableThemes: this.themes,
       savedTheme: localStorage.getItem("notepadTheme"),
       dataThemeAttr: document.documentElement.getAttribute("data-theme"),
-      hasLightModeClass:
-        document.documentElement.classList.contains("light-mode"),
+      hasLightModeClass: document.documentElement.classList.contains("light-mode"),
     };
   }
 }

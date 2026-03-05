@@ -117,6 +117,9 @@ async function initializeBasicComponents() {
   // Por ahora, las ponemos aquí como funciones internas
   await initializeTabsSystem();
   await initializeContextMenu();
+  await initializeFloatingMenu();
+  await initializeKeyboardShortcuts();
+  await initializeTabDragDrop();
 }
 
 async function initializeTabsSystem() {
@@ -133,6 +136,7 @@ async function initializeTabsSystem() {
       enablePinning: true,
       enableContentEditing: true,
       enableAutoSave: true,
+      anchorSelector: "#tab-list-anchor",
       debug: true,
     });
 
@@ -197,6 +201,54 @@ async function initializeContextMenu() {
     });
 
     throw error;
+  }
+}
+
+async function initializeFloatingMenu() {
+  try {
+    const { FloatingMenu } = await import("./ui/floatingMenu.js");
+
+    window.floatingMenu = new FloatingMenu({
+      debug: true,
+    });
+
+    await window.floatingMenu.init();
+
+    return window.floatingMenu;
+  } catch (error) {
+    console.error("❌ Error inicializando FloatingMenu:", error);
+  }
+}
+
+async function initializeKeyboardShortcuts() {
+  try {
+    const { KeyboardShortcuts } = await import("./ui/keyboardShortcuts.js");
+
+    window.keyboardShortcuts = new KeyboardShortcuts({
+      debug: true,
+    });
+
+    await window.keyboardShortcuts.init();
+
+    return window.keyboardShortcuts;
+  } catch (error) {
+    console.error("❌ Error inicializando KeyboardShortcuts:", error);
+  }
+}
+
+async function initializeTabDragDrop() {
+  try {
+    const { TabDragDrop } = await import("./ui/tabDragDrop.js");
+
+    window.tabDragDrop = new TabDragDrop({
+      debug: true,
+    });
+
+    await window.tabDragDrop.init();
+
+    return window.tabDragDrop;
+  } catch (error) {
+    console.error("❌ Error inicializando TabDragDrop:", error);
   }
 }
 

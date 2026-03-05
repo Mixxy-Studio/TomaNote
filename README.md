@@ -86,7 +86,7 @@ Se resolvieron múltiples errores que afectaban usabilidad y consistencia:
 
 ### Uso Online
 
-1. Visita [TomaNote](https://camiicode.github.io/notepad)
+1. Visita [TomaNote](https://tomanote.app/) 
 2. ¡Comienza a escribir!
 
 ### Instalación Local

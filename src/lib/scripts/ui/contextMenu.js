@@ -1,7 +1,7 @@
 // src/lib/scripts/ui/contextMenu.js
 // Sistema de menú contextual para texto y pestañas
 
-import { detectEmojiInText } from "../utils/emojiDetector.js";
+import { detectEmojiInText, getRandomPinEmoji } from "../utils/emojiDetector.js";
 import { FormattingUtils } from "../utils/formatting.js";
 
 export class ContextMenu {
@@ -66,6 +66,12 @@ export class ContextMenu {
   }
 
   setupContextMenu() {
+    // No agregar listener en dispositivos touch (mobile)
+    if ("ontouchstart" in window) {
+      this.log("📱 Menú contextual deshabilitado en mobile");
+      return;
+    }
+
     // Mostrar menú contextual al hacer clic derecho
     document.addEventListener("contextmenu", (e) => {
       e.preventDefault();
@@ -278,14 +284,14 @@ export class ContextMenu {
     const tabName = labelSpan.textContent.trim();
     const emojiInText = detectEmojiInText(tabName);
 
-    // Usar emoji detectado o uno por defecto
-    const emoji = emojiInText || "📝";
+    // Usar emoji detectado o uno aleatorio
+    const emoji = emojiInText || getRandomPinEmoji();
 
     // Marcar como fijada
     tabElement.classList.add("pinned");
     const label = tabElement.querySelector("label");
     label.setAttribute("data-emoji", emoji);
-    labelSpan.dataset.emoji = emoji;
+    labelSpan.setAttribute("data-emoji", emoji);
 
     // Reorganizar pestañas
     this.reorderTabs();
@@ -303,7 +309,7 @@ export class ContextMenu {
     const labelSpan = tabElement.querySelector("label span");
 
     label.removeAttribute("data-emoji");
-    delete labelSpan.dataset.emoji;
+    labelSpan.removeAttribute("data-emoji");
 
     // Reorganizar pestañas
     this.reorderTabs();
@@ -317,8 +323,9 @@ export class ContextMenu {
   reorderTabs() {
     const tabList = document.querySelector(".tab-list");
     const createTabButton = document.getElementById("create-tab");
+    const tabAnchor = document.querySelector("#tab-list-anchor");
 
-    if (!tabList || !createTabButton) return;
+    if (!tabList) return;
 
     const allTabs = Array.from(tabList.querySelectorAll(".tab-list__item"));
 
@@ -333,14 +340,28 @@ export class ContextMenu {
     // Remover todas las pestañas del DOM
     allTabs.forEach((tab) => tab.remove());
 
-    // Reinsertar en orden: primero las fijadas, luego las normales
-    pinnedTabs.forEach((tab) => {
-      tabList.insertBefore(tab, createTabButton);
-    });
+    // Obtener el elemento de referencia para insertBefore
+    const referenceElement = tabAnchor || createTabButton;
 
-    normalTabs.forEach((tab) => {
-      tabList.insertBefore(tab, createTabButton);
-    });
+    // Reinsertar en orden: primero las fijadas, luego las normales
+    if (referenceElement) {
+      pinnedTabs.forEach((tab) => {
+        tabList.insertBefore(tab, referenceElement);
+      });
+
+      normalTabs.forEach((tab) => {
+        tabList.insertBefore(tab, referenceElement);
+      });
+    } else {
+      // Si no hay referencia, usar appendChild
+      pinnedTabs.forEach((tab) => {
+        tabList.appendChild(tab);
+      });
+
+      normalTabs.forEach((tab) => {
+        tabList.appendChild(tab);
+      });
+    }
 
     this.log("🔄 Pestañas reordenadas");
   }
