@@ -16,7 +16,7 @@ import Icon from "../components/icons/Icon.astro";
             <Icon name="tomanote" className="size-1 md:size-6" />
             TomaNote
           </h2>
-          <span class="version">v 0.3.2</span>
+          <span class="version">v 0.4.0</span>
         </div>
 
         <nav class="settings-nav">
@@ -85,7 +85,7 @@ import Icon from "../components/icons/Icon.astro";
             <h4>TomaNote es un bloc de notas simple, rápido y gratuito, diseñado para escribir sin distracciones.</h4><br />
             <h4>Funciona directamente en tu navegador y no requiere cuentas ni registro. Todas tus notas se guardan localmente en tu dispositivo, lo que significa que tú mantienes el control total de tu información.</h4><br />
             <h6>TomaNote prioriza:</h6><br />
-            <ul class="list-disc list-inside">
+            <ul class="list-disc list-inside pl-5!">
               <li>Simplicidad</li>
               <li>Velocidad</li>
               <li>Privacidad</li>
@@ -100,7 +100,7 @@ import Icon from "../components/icons/Icon.astro";
             <div class="settings-header">
               <h3><u>Funcionalidades principales</u></h3>
             </div>
-            <ul class="list-disc list-inside">
+            <ul class="list-disc list-inside pl-5!">
               <li>Edición de texto libre y sin distracciones</li>
               <li>Pestañas persistentes</li>
               <li>Guardado automático local</li>
@@ -181,45 +181,78 @@ import Icon from "../components/icons/Icon.astro";
         <div class="settings-tab" id="fonts-tab">
           
           <div class="settings-header">
-            <h3>Fuentes personalizadas</h3>
+            <h3 class="font-black underline">Configuracion Tipografica</h3>
           </div>
 
           <div class="settings-body">
             <div class="settings-section">
-              <h4>URL de Google Fonts</h4>
+              <h4 class="font-medium! text-xl!">Fuente personalizada (Google Fonts)</h4>
 
               <div class="settings-section__group">
-                <input id="font-url-input" type="text" placeholder="Introduce una URL válida de Google Fonts o deja vacío para fuente por defecto" />
+                <input id="font-url-input" class="placeholder:text-(--tn-neutral-tertiary-color)! placeholder:opacity-40" type="text" placeholder="Introduce una URL válida de Google Fonts o deja vacío para fuente por defecto" />
                 <button id="save-font-url" class="flex items-center justify-center">
-                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6 mr-5">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M17.593 3.322c1.1.128 1.907 1.077 1.907 2.185V21L12 17.25 4.5 21V5.507c0-1.108.806-2.057 1.907-2.185a48.507 48.507 0 0 1 11.186 0Z"></path>
-                  </svg>
-                  Guardar fuente
+                  <Icon name="save" className="size-1 md:size-6 mr-2!" />
+                  Guardar Fuente
                 </button>
               </div>
 
-              <div id="font-url-error" style="color: #dc3545; margin-top: 8px; display: none;"></div>
+              <div id="font-url-error" class="bg-red-600 mt-4! hidden text-white rounded-md px-3!"></div>
             </div>
 
             <div class="settings-section">
               <h4>Configuración de fuentes</h4>
 
-              <ol class="list-decimal pl-[2rem]!">
-                <li>
-                  Accede a <a href="https://fonts.google.com/" target="_blank">Google Fonts</a> y selecciona la fuente que deseas utilizar.
+              <ul role="list" class="list-disc pl-3!">
+                <li class="block md:inline-flex items-center my-2! before:content-['·'] before:text-inherit! md:before:text-6xl! before:leading-0! before:mr-3!">
+                  Accede a <a href="https://fonts.google.com/" target="_blank" class="mx-1!">Google Fonts</a> y seleccionas la fuente que deseas utilizar.
                 </li>
-                <li>
-                  Obtén la URL de carga desde la opción <code>Get embed code</code> / <code>Obtener código de inserción</code>.
+                <li class="block md:inline-flex items-center my-2! before:content-['·'] before:text-inherit! md:before:text-6xl! before:leading-0! before:mr-3!">
+                  Obtén la URL de carga desde la opción <code class="mx-1!">Get embed code</code> / <code class="mx-1!">Obtener código de inserción</code>.
                 </li>
-                <li>
-                  Copia la URL correspondiente al elemento <code>&lt;link&gt;</code> (debe comenzar con <code>https://fonts.googleapis.com/</code>).
+                <li class="block md:inline-flex items-center my-2! before:content-['·'] before:text-inherit! md:before:text-6xl! before:leading-0! before:mr-3!">
+                  Copia la URL correspondiente al elemento <code class="mx-1!">&lt;link&gt;</code>. (Debe comenzar con <code class="mx-1!">https://fonts.googleapis.com/</code>).
                 </li>
-                <li>
+                <li class="block md:inline-flex items-center my-2! before:content-['·'] before:text-inherit! md:before:text-6xl! before:leading-0! before:mr-3!">
                   Pega la URL en el campo superior y selecciona <strong>Guardar fuente</strong>.
                 </li>
-              </ol>
+              </ul>
 
-              <p style="margin-top: 0.75rem; opacity: 0.85;">La configuración de la fuente se guarda localmente en este navegador y se aplica automáticamente.</p>
+              <p class="mt-3!">La configuración de la fuente se guarda localmente en este navegador y se aplica automáticamente.</p>
+            </div>
+
+            <hr />
+
+            <div class="settings-section mt-5!">
+              <h4 class="font-medium! text-xl!">Tamaño de fuente</h4>
+              <p>Controla el tamaño del texto en el editor</p>
+
+              <div class="settings-form grid grid-rows-3 md:grid-rows-1 md:grid-cols-3 gap-5">
+
+                <div class="group flex flex-col gap-2 mb-5!">
+                  <h4 class="mb-0! mt-3!">Base</h4>
+                  <input type="radio" name="options-font-size" class="hidden peer" id="option-compact-text" checked>
+                  <label for="option-compact-text" class="w-full max-w-[300px] h-[100px] md:h-[300px] overflow-hidden text-ellipsis! flex items-start justify-center p-5! border-2 border-(--tn-theme-accent) rounded-lg cursor-pointer peer-checked:border-(--tn-theme-contrast)">
+                    <p class="base-text text-(--color-text)">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ea at quos quaerat est aliquid fugit, iusto blanditiis, sunt omnis culpa pariatur optio magnam minima cumque! Ipsa nisi, iste aperiam a officiis voluptatem quis repellendus distinctio minus! Voluptas omnis perspiciatis porro animi fugit ullam commodi, voluptates officia obcaecati harum maiores quisquam.</p>
+                  </label>
+                </div>
+
+                <div class="group flex flex-col gap-2 mb-5!">
+                  <h4 class="mb-0! mt-3!">Medium</h4>
+                  <input type="radio" name="options-font-size" class="hidden peer" id="option-normal-text">
+                  <label for="option-normal-text" class="w-full max-w-[300px] h-[100px] md:h-[300px] overflow-hidden text-ellipsis! flex items-start justify-center p-5! border-2 border-(--tn-theme-accent) rounded-lg cursor-pointer peer-checked:border-(--tn-theme-contrast)">
+                    <p class="medium-text text-(--color-text)">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas delectus ratione accusantium est vel quis, ut autem eos minima nam enim assumenda ea nesciunt blanditiis, dolor voluptas voluptate dolores officiis. Est ex ipsam odio temporibus. Distinctio, earum est cum at in quia, praesentium quod commodi exercitationem mollitia, ex cupiditate omnis?</p>
+                  </label>
+                </div>
+
+                <div class="group flex flex-col gap-2 mb-5!">
+                  <h4 class="mb-0! mt-3!">Large</h4>
+                  <input type="radio" name="options-font-size" class="hidden peer" id="option-large-text">
+                  <label for="option-large-text" class="w-full max-w-[300px] h-[100px] md:h-[300px] overflow-hidden text-ellipsis! flex items-start justify-center p-5! border-2 border-(--tn-theme-accent) rounded-lg cursor-pointer peer-checked:border-(--tn-theme-contrast)">
+                    <p class="large-text text-(--color-text)">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas delectus ratione accusantium est vel quis, ut autem eos minima nam enim assumenda ea nesciunt blanditiis, dolor voluptas voluptate dolores officiis. Est ex ipsam odio temporibus. Distinctio, earum est cum at in quia, praesentium quod commodi exercitationem mollitia, ex cupiditate omnis?</p>
+                  </label>
+                </div>
+
+              </div>
             </div>
           </div>
         </div>
@@ -324,7 +357,7 @@ import Icon from "../components/icons/Icon.astro";
         
         // Caso 3: Input inválido
         fontError.textContent = "Por favor ingresa una URL válida de Google Fonts o deja el campo vacío para usar la fuente por defecto.";
-        fontError.style.display = "block";
+        fontError.style.display = "inline-block";
       });
     }
   });

@@ -10,7 +10,7 @@
     box-shadow: 0px 0px 10px rgba(vars.$tn-theme-primary-dark, 0.5);
     overflow: hidden;
     background-color: vars.$tn-theme-primary-dark;
-    color: var(--tn-theme-accent) !important;
+    color: var(--color-text) !important;
     border: 0px;
 
     // First Mobile
@@ -85,18 +85,18 @@
 
     .user-section {
       padding: 0 12px 6px;
-      border-bottom: 1px solid var(--tn-theme-primary);
+      border-bottom: 1px solid var(--color-text);
 
       h2 {
         font-size: 1.25rem;
         font-weight: 600;
         margin: 0;
-        color: var(--tn-theme-secondary);
+        color: var(--color-text);
       }
 
       .version {
         font-size: 0.875rem;
-        color: var(--tn-theme-secondary);
+        color: var(--color-text);
       }
     }
   }
@@ -133,7 +133,7 @@
 
       &.active {
         background-color: var(--tn-theme-secondary);
-        color: var(--tn-theme-accent);
+        color: var(--color-text);
       }
     }
   }
