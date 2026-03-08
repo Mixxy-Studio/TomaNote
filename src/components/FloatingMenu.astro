@@ -1,0 +1,121 @@
+---
+// Styles
+import "../styles/components/FloatingMenu.scss";
+
+// Icons
+import Icon from "./icons/Icon.astro";
+
+// Create Tab
+import CreateTab from "../components/Createtab.astro"
+---
+
+<nav class="tn-navbar absolute bg-(--tn-theme-primary)/2! bottom-3 right-0 md:right-5 md:bottom-7 flex flex-column items-center justify-center rounded-2xl py-2max-w-[95vw] overflow-x-autoscrollbar-hide">
+
+  <div dir="rtl" class="tn-navbar-btns tn-navbar-checked flex flex-col-reverse items-center justify-between gap-1 h-auto">
+
+    <CreateTab />
+
+    <input type="checkbox" name="menu" id="tn-open-options" class="peer/menu hidden">
+    <label for="tn-open-options" id="tn-tools-button" class="tn-btn p-4! text-(--tn-theme-contrast) bg-(--tn-theme-primary) rounded-2xl hover:text-(--tn-neutral-tertiary) hover:bg-(--tn-theme-primary)/80! mx-1! cursor-pointer peer-checked/menu:bg-(--tn-theme-contrast) peer-checked/menu:text-(--tn-neutral-tertiary)! peer-checked/menu:hover:bg-(--tn-theme-contrast) flex justify-center items-center min-w-[56px]">
+      <Icon name="tools" />
+    </label>
+    
+    <div class="max-h-0 relative overflow-hidden peer-checked/menu:overflow-visible peer-checked/menu:max-h-[300px]! max-w-[60px] transition-all duration-300 ease-in-out flex flex-col mb-5 items-center justify-center gap-1">
+      
+      <div class="tn-horizontal-buttons relative">
+        <input type="radio" name="options" id="tn-open-options__content" class="peer/tn-open-options__content hidden">
+        <label for="tn-open-options__content" class="tn-btn border border-transparent p-4! bg-(--tn-theme-primary) rounded-2xl hover:bg-(--tn-theme-secondary) peer-checked/tn-open-options__content:border peer-checked/tn-open-options__content:border-(--tn-theme-contrast) tn-undo cursor-pointer peer-checked:bg-(--tn-theme-contrast) peer-checked:hover:bg-(--tn-theme-contrast) flex justify-center items-center min-w-[56px]">
+          <Icon name="clipboard" className="text-(--tn-theme-contrast)" />
+        </label>
+        <div id="tn-navbar__content"  class="tn-navbar-btns">
+          <div class="group relative">
+            <button class="tn-btn p-3! rounded-2xl hover:bg-(--tn-theme-secondary) tn-redo border border-transparent hover:border-1 hover:border-(--tn-theme-contrast)" data-floating-action="redo">
+              <Icon name="redo" className="text-(--tn-theme-contrast)"/>
+            </button>
+            <span class="pointer-events-none absolute -top-6 left-1/2 -translate-x-1/2 whitespace-nowrap rounded bg-(--tn-theme-primary) px-1! py-1/2! text-xs! text-(--tn-neutral-tertiary-color) opacity-0 transition-opacity group-hover:opacity-100 border border-(--tn-theme-contrast)! z-50">Redo</span>
+          </div>
+          <div class="group relative">
+            <button class="tn-btn p-3! rounded-2xl hover:bg-(--tn-theme-secondary) tn-undo border border-transparent hover:border-1 hover:border-(--tn-theme-contrast)" data-floating-action="undo">
+              <Icon name="undo" className="text-(--tn-theme-contrast)" />
+            </button>
+            <span class="pointer-events-none absolute -top-6 left-1/2 -translate-x-1/2 whitespace-nowrap rounded bg-(--tn-theme-primary) px-1! py-1/2! text-xs! text-(--tn-neutral-tertiary-color) opacity-0 transition-opacity group-hover:opacity-100 border border-(--tn-theme-contrast)! z-50">Undo</span>
+          </div>
+          <div class="group relative">
+            <button class="tn-btn p-3! rounded-2xl hover:bg-(--tn-theme-secondary) tn-copy border border-transparent hover:border-1 hover:border-(--tn-theme-contrast)" data-floating-action="copy">
+              <Icon name="copy" className="text-(--tn-theme-contrast)" />
+            </button>
+            <span class="pointer-events-none absolute -top-6 left-1/2 -translate-x-1/2 whitespace-nowrap rounded bg-(--tn-theme-primary) px-1! py-1/2! text-xs! text-(--tn-neutral-tertiary-color) opacity-0 transition-opacity group-hover:opacity-100 border border-(--tn-theme-contrast)! z-50">Copy</span>
+          </div>
+          <div class="group relative">
+            <button class="tn-btn p-3! rounded-2xl hover:bg-(--tn-theme-secondary) tn-paste border border-transparent hover:border-1 hover:border-(--tn-theme-contrast)" data-floating-action="paste">
+              <Icon name="paste" className="text-(--tn-theme-contrast)" />
+            </button>
+            <span class="pointer-events-none absolute -top-6 left-1/2 -translate-x-1/2 whitespace-nowrap rounded bg-(--tn-theme-primary) px-1! py-1/2! text-xs! text-(--tn-neutral-tertiary-color) opacity-0 transition-opacity group-hover:opacity-100 border border-(--tn-theme-contrast)! z-50">Paste</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="tn-horizontal-buttons relative">
+        <input type="radio" name="options" id="tn-open-options__font" class="peer/tn-open-options__font hidden">
+        <label for="tn-open-options__font" class="tn-btn border border-transparent p-4! bg-(--tn-theme-primary) rounded-2xl hover:bg-(--tn-theme-secondary) peer-checked/tn-open-options__font:border peer-checked/tn-open-options__font:border-(--tn-theme-contrast) tn-undo cursor-pointer peer-checked:bg-(--tn-theme-contrast) peer-checked:hover:bg-(--tn-theme-contrast) flex justify-center items-center min-w-[56px]">
+          <Icon name="font" className="text-(--tn-theme-contrast)" strokeWidth="12.5"/>
+        </label>
+        <div id="tn-navbar__font"     class="tn-navbar-btns">
+          <div class="group relative">
+            <button class="tn-btn p-3! rounded-2xl hover:bg-(--tn-theme-secondary) tn-bold border border-transparent hover:border-1 hover:border-(--tn-theme-contrast)" data-floating-action="bold">
+              <Icon name="bold" className="text-(--tn-theme-contrast)" />
+            </button>
+            <span class="pointer-events-none absolute -top-6 left-1/2 -translate-x-1/2 whitespace-nowrap rounded bg-(--tn-theme-primary) px-1! py-1/2! text-xs! text-(--tn-neutral-tertiary-color) opacity-0 transition-opacity group-hover:opacity-100 border border-(--tn-theme-contrast)!">Bold</span>
+          </div>
+          <div class="group relative">
+            <button class="tn-btn p-3! rounded-2xl hover:bg-(--tn-theme-secondary) tn-under border border-transparent hover:border-1 hover:border-(--tn-theme-contrast)" data-floating-action="underline">
+              <Icon name="underline" className="text-(--tn-theme-contrast)" />
+            </button>
+            <span class="pointer-events-none absolute -top-6 left-1/2 -translate-x-1/2 whitespace-nowrap rounded bg-(--tn-theme-primary) px-1! py-1/2! text-xs! text-(--tn-neutral-tertiary-color) opacity-0 transition-opacity group-hover:opacity-100 border border-(--tn-theme-contrast)!">Underline</span>
+          </div>
+          <div class="group relative">
+            <button class="tn-btn p-3! rounded-2xl hover:bg-(--tn-theme-secondary) tn-italic border border-transparent hover:border-1 hover:border-(--tn-theme-contrast)" data-floating-action="italic">
+              <Icon name="italic" className="text-(--tn-theme-contrast)" />
+            </button>
+            <span class="pointer-events-none absolute -top-6 left-1/2 -translate-x-1/2 whitespace-nowrap rounded bg-(--tn-theme-primary) px-1! py-1/2! text-xs! text-(--tn-neutral-tertiary-color) opacity-0 transition-opacity group-hover:opacity-100 border border-(--tn-theme-contrast)!">Italic</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="tn-horizontal-buttons relative">
+        <input type="radio" name="options" id="tn-open-options__tab" class="peer/tn-open-options__tab hidden">
+        <label for="tn-open-options__tab" class="tn-btn border border-transparent p-4! bg-(--tn-theme-primary) rounded-2xl hover:bg-(--tn-theme-secondary) peer-checked/tn-open-options__tab:border peer-checked/tn-open-options__tab:border-(--tn-theme-contrast) tn-undo cursor-pointer peer-checked:bg-(--tn-theme-contrast) peer-checked:hover:bg-(--tn-theme-contrast) flex justify-center items-center min-w-[56px]">
+          <Icon name="tab" className="text-(--tn-theme-contrast)"/>
+        </label>
+        <div id="tn-navbar__tab"      class="tn-navbar-btns">
+          <div class="group relative">
+            <button class="tn-btn p-3! rounded-2xl hover:bg-(--tn-theme-secondary) tn-pin border border-transparent hover:border-1 hover:border-(--tn-theme-contrast)" data-floating-action="pin-tab">
+              <Icon name="pin" className="text-(--tn-theme-contrast)" />
+            </button>
+            <span class="pointer-events-none absolute -top-6 left-1/2 -translate-x-1/2 whitespace-nowrap rounded bg-(--tn-theme-primary) px-1! py-1/2! text-xs! text-(--tn-neutral-tertiary-color) opacity-0 transition-opacity group-hover:opacity-100 border border-(--tn-theme-contrast)!">Pin Tab</span>
+          </div>
+          <div class="group relative">
+            <button class="tn-btn p-3! rounded-2xl hover:bg-(--tn-theme-secondary) tn-edit border border-transparent hover:border-1 hover:border-(--tn-theme-contrast)" data-floating-action="edit-name-tab">
+              <Icon name="edit" className="text-(--tn-theme-contrast)" />
+            </button>
+            <span class="pointer-events-none absolute -top-6 left-1/2 -translate-x-1/2 whitespace-nowrap rounded bg-(--tn-theme-primary) px-1! py-1/2! text-xs! text-(--tn-neutral-tertiary-color) opacity-0 transition-opacity group-hover:opacity-100 border border-(--tn-theme-contrast)!">Edit Name Tab</span>
+          </div>
+          <div class="group relative">
+            <button class="tn-btn p-3! rounded-2xl hover:bg-(--tn-theme-secondary) tn-delete border border-transparent hover:border-1 hover:border-(--tn-theme-contrast)" data-floating-action="delete-tab">
+              <Icon name="delete" className="text-(--tn-theme-contrast)" />
+            </button>
+            <span class="pointer-events-none absolute -top-6 left-1/2 -translate-x-1/2 whitespace-nowrap rounded bg-(--tn-theme-primary) px-1! py-1/2! text-xs! text-(--tn-neutral-tertiary-color) opacity-0 transition-opacity group-hover:opacity-100 border border-(--tn-theme-contrast)!">Delete Tab</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="group relative">
+        <button onclick="event.preventDefault(); document.querySelector('dialog#info-notepad').showModal()" class="tn-btn p-4! rounded-2xl hover:bg-(--tn-theme-secondary) border border-(--tn-theme-contrast) tn-setting w-[56px]" data-floating-action="settings">
+          <Icon name="settings" className="text-(--tn-theme-contrast)"/>
+        </button>
+        <span class="pointer-events-none absolute top-[75%] left-[-55%] -translate-y-[125%] -translate-x-1/2 whitespace-nowrap rounded bg-(--tn-theme-primary) px-1! py-1/2! text-xs! text-(--tn-neutral-tertiary-color) opacity-0 transition-opacity group-hover:opacity-100 border border-(--tn-theme-contrast)!">Settings</span>      
+      </div>
+
+    </div>
+  </div>
+</nav>

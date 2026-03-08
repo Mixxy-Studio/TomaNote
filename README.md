@@ -2,12 +2,12 @@
 
 <div align="center">
 
-![Version](https://img.shields.io/badge/version-0.1.0-blue.svg)
+![Version](https://img.shields.io/badge/version-0.3.1-blue.svg)
 ![License](https://img.shields.io/badge/license-AGPL%20v3-green.svg)
 ![Status](https://img.shields.io/badge/status-active-success.svg)
 ![Mobile](https://img.shields.io/badge/mobile-responsive-success)
 
-[Demo en vivo](https://camiicode.github.io/notepad) | [Reportar Bug](https://github.com/camiicode/notepad/issues) | [Solicitar Feature](https://github.com/camiicode/notepad/issues)
+[Demo en vivo](https://tomanote.app) | [Reportar Bug](https://github.com/camiicode/notepad/issues) | [Solicitar Feature](https://github.com/camiicode/notepad/issues)
 
 [!["Buy Me A Coffee"](https://img.shields.io/badge/Buy_Me_A_Coffee-FFDD00?style=for-the-badge&logo=buy-me-a-coffee&logoColor=black)](https://buymeacoffee.com/dftp930)
 
@@ -17,35 +17,64 @@
 
 TomaNote es un bloc de notas moderno y minimalista que funciona directamente en tu navegador. Diseñado para ser simple pero potente, con funcionalidades que facilitan la toma de notas y la organización de ideas.
 
-✅ 🚀 Novedades — v0.3.0
+✅ 🚀 Novedades — v0.3.2
 
-Esta versión marca un salto importante en la experiencia del aplicativo, enfocándose en personalización, accesibilidad y presentación profesional.
+Esta versión se enfoca en estabilidad, calidad de código y experiencia de usuario, haciendo que la app sea más confiable, rápida y accesible.
 
-- 🎨 Personalización visual avanzada
-  Se incorpora un selector de temas con 6 estilos visuales distintos, Dark Theme el tema por defecto, se agrego Cozy-rose, Aqua Chill, Wild Forest y Neon Orbit, permitiendo adaptar la apariencia del aplicativo al gusto del usuario y a diferentes contextos de uso.
+🐛 Correcciones críticas
 
-- 📱 Instalable como aplicación (PWA)
-  El aplicativo ahora puede instalarse localmente en PC y dispositivos móviles, ofreciendo una experiencia más cercana a una app nativa, con acceso rápido y mejor rendimiento percibido.
+Se resolvieron múltiples errores que afectaban usabilidad y consistencia:
 
-- 🖥️ Rediseño enfocado en pantallas grandes
-  Se rediseñaron y ajustaron múltiples vistas para desktop y tablets, mejorando la legibilidad, el uso del espacio y la coherencia visual en dispositivos de mayor tamaño.
+- Mejor accesibilidad del botón de nueva pestaña (ahora como botón flotante)
+- Corrección de problemas de visualización en modales móviles
+- Formato en negrita más confiable
+- Solucionado el reinicio y eliminación de fuentes personalizadas
+- Persistencia correcta de dominio personalizado en despliegues de GitHub Pages
+- Eliminadas alertas duplicadas al cerrar pestañas
+- Eliminadas advertencias por meta etiquetas Apple obsoletas
 
-- 🌈 Nueva identidad visual por defecto
-  Actualización de la paleta de colores del tema principal, buscando una experiencia más amable, moderna y consistente para nuevos usuarios.
+🧪 Infraestructura de pruebas
 
-- 🔍 Mejoras de SEO
-  Optimización de metadatos y estructura del aplicativo para facilitar su descubrimiento y posicionamiento en buscadores.
+- Integración de Vitest con entorno jsdom
+- Tests para gestores de temas, fuentes, pestañas y menú contextual
+- Organización centralizada de pruebas en carpetas dedicadas
+
+🔧 Calidad y estándares de código
+
+- Configuración de Prettier para formato consistente
+- Actualización de reglas ESLint + SASS para compatibilidad moderna
+- Eliminación de logs de depuración
+- Optimización de configuración de Astro para producción
+
+🌐 Internacionalización y accesibilidad
+
+- Idioma por defecto cambiado a inglés
+- Etiquetas de interfaz y nombres de pestañas actualizados
+- Mejora en etiquetado accesible de elementos
+
+🛡️ Seguridad
+
+- Actualización de dependencias críticas
+- Inclusión de política SECURITY.md
+- Eliminación de console logs en builds de producción
+
+📱 Rendimiento y experiencia
+
+- Mejoras de rendimiento en build (minificación y tree-shaking)
+- Experiencia móvil más fluida
+- Eliminación de listeners duplicados (menos consumo de memoria)
+- Carga de fuentes optimizada con preconexión a Google Fonts
 
 > Nota:
-> Esta versión introduce cambios visuales y de experiencia de usuario, pero no rompe compatibilidad con versiones anteriores.
+> Esta versión no introduce cambios que rompan compatibilidad, pero mejora significativamente la estabilidad y calidad general del proyecto.
 
 ### 🚀 Próximas Funcionalidades
 
-- [ ] Soporte para Markdown
-- [ ] Diagramas con MermaidJS
-- [ ] Temas personalizables
-- [ ] Exportación de notas
-- [ ] Sincronización en la nube
+- [ ] Estilos para contenido pegado → Las Listas, parrafos, titulos, blockquotes, etc, deben de actuar en consecuencia visualmente.
+- [ ] Resize de imágenes (max 500px) → Mejora el rendimiento y la capacidad del Local Storage
+- [ ] Context menu móvil visible → Accesibilidad para dispositivos Mobiles
+- [ ] FAB para nueva nota en mobile (+ posición) → Boton de agregar nota neuva en la parte inferior - Mobile
+- [ ] Tamaños de fuente → Usuario deberia de poder elegir tamaño de fuentes, entre peque, normal y grande
 
 ## 🛠️ Tecnologías Utilizadas
 
@@ -56,10 +85,12 @@ Esta versión marca un salto importante en la experiencia del aplicativo, enfoc�
 ## 📦 Instalación y Uso
 
 ### Uso Online
-1. Visita [TomaNote](https://camiicode.github.io/notepad)
+
+1. Visita [TomaNote](https://tomanote.app/) 
 2. ¡Comienza a escribir!
 
 ### Instalación Local
+
 ```bash
 # Clonar el repositorio
 git clone https://github.com/camiicode/notepad.git
@@ -84,6 +115,7 @@ npm run dev
 - No hay transmisión de datos a servidores externos
 
 ## ⭐ ¿Te gusta el proyecto?
+
 Si estás usando este bloc de notas y te parece útil, agrégale una estrellita en el repositorio de GitHub.
 No es obligatorio, ¡pero a mí me ayuda un montón y a ti no te toma más de 30 segunditos!
 👉 https://github.com/camiicode/notepad
@@ -93,17 +125,18 @@ No es obligatorio, ¡pero a mí me ayuda un montón y a ti no te toma más de 30
 Este proyecto está bajo la licencia GNU Affero General Public License v3.0 (AGPL-3.0)
 
 ### Restricciones Comerciales
+
 - Se prohíbe el uso comercial sin autorización expresa
-- Contactane usos comerciales
+- Contactame para usos comerciales
 
 ## 👥 Contribuir
 
 ¡Las contribuciones son bienvenidas! Puedes ayudar:
 
-- 🐛 Reportando bugs
+- 🐛 Reportando bugs o Reparando Issues
 - 💡 Sugiriendo nuevas funcionalidades
-- 🔧 Enviando pull requests
-- ⭐ Dando una estrella al proyecto
+- 🔧 Enviando pull requests o Features nuevas
+- ⭐ Regalando una estralla
 
 ## 📬 Contacto y Redes
 

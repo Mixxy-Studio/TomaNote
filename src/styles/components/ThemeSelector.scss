@@ -1,4 +1,4 @@
-@use "../abstracts/Variables.scss";
+@use "../abstracts/Variables.scss" as vars;
 
 .theme-selector-wrapper {
   margin-left: auto;
@@ -11,7 +11,7 @@
 
 .theme-selector-container {
   position: relative;
-  
+
   .theme-toggle-btn {
     background: var(--tn-color-secondary-background);
     color: var(--tn-color-text);
@@ -28,32 +28,32 @@
     outline: none;
     padding: 0;
     justify-self: end;
-    
+
     &:hover {
       background: var(--tn-color-accent);
       transform: scale(1.05);
       box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
     }
-    
+
     &:active {
       transform: scale(0.98);
     }
-    
+
     &:focus-visible {
       outline: 2px solid var(--tn-color-contrast);
       outline-offset: 2px;
     }
-    
+
     #theme-current-icon {
       display: block;
       transition: transform 0.3s ease;
     }
-    
+
     &:hover #theme-current-icon {
       transform: rotate(15deg);
     }
   }
-  
+
   .theme-dropdown {
     position: relative;
     margin-top: 1rem;
@@ -67,18 +67,18 @@
     opacity: 0;
     visibility: hidden;
     transition: all 0.2s ease-out;
-    
+
     &.show {
       opacity: 1;
       visibility: visible;
       transform: translateY(0);
     }
-    
+
     .theme-dropdown-header {
       padding: 0 10px 10px;
       margin-bottom: 10px;
       border-bottom: 1px solid var(--tn-color-accent);
-      
+
       h4 {
         margin: 0;
         color: var(--tn-color-text);
@@ -87,12 +87,12 @@
         opacity: 0.9;
       }
     }
-    
+
     .theme-list {
       display: flex;
       flex-direction: column;
       gap: 6px;
-      
+
       .theme-option {
         display: flex;
         align-items: center;
@@ -107,65 +107,65 @@
         text-align: left;
         font-family: inherit;
         font-size: 0.9rem;
-        
+
         &:hover {
           background: var(--tn-color-accent);
           padding-left: 16px;
         }
-        
+
         &:focus {
           outline: 2px solid var(--tn-color-contrast);
           outline-offset: -1px;
         }
-        
+
         &.active {
           background: var(--tn-color-contrast);
           color: var(--tn-neutral-tertiary-color);
           font-weight: 600;
           border-color: var(--tn-color-contrast);
-          
+
           .theme-icon {
             transform: scale(1.2);
           }
         }
-        
+
         .theme-icon {
           font-size: 1.1rem;
           width: 20px;
           text-align: center;
           transition: transform 0.2s ease;
         }
-        
+
         .theme-name {
           flex: 1;
         }
-        
+
         .theme-preview {
           width: 16px;
           height: 16px;
           border-radius: 4px;
           border: 1px solid rgba(255, 255, 255, 0.3);
-          
+
           &[data-theme="dark"] {
             background: linear-gradient(135deg, #181A1B, #272E38);
           }
-          
+
           &[data-theme="light"] {
             background: linear-gradient(135deg, #E0D3C2, #F1EBE4);
           }
-          
+
           &[data-theme="cozy-rose"] {
             background: linear-gradient(135deg, #B85C80, #E6CBD5);
           }
-          
+
           &[data-theme="chill-aqua"] {
             background: linear-gradient(135deg, #76C9D4, #E1F7F9);
           }
-          
+
           &[data-theme="wild-forest"] {
             background: linear-gradient(135deg, #8EBF7A, #C6DDBF);
           }
-          
+
           &[data-theme="neon-orbit"] {
             background: linear-gradient(135deg, #1A1A2E, #1F3365);
           }
@@ -182,9 +182,17 @@
 
 /* Animación para el cambio de tema */
 @keyframes themeChangePulse {
-  0% { transform: scale(1); }
-  50% { transform: scale(1.1); }
-  100% { transform: scale(1); }
+  0% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.1);
+  }
+
+  100% {
+    transform: scale(1);
+  }
 }
 
 .theme-changing {
@@ -196,7 +204,7 @@
   .theme-selector-wrapper {
     padding-left: 20px;
   }
-  
+
   .theme-selector-container .theme-dropdown {
     position: fixed;
     top: auto;
@@ -214,7 +222,7 @@
     background: var(--tn-theme-secondary);
     border-color: var(--tn-theme-accent);
     color: #333;
-    
+
     &:hover {
       background: var(--tn-theme-accent);
       color: white;
