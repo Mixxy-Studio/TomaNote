@@ -168,7 +168,6 @@ import "../styles/components/InfoModals.scss";
 
         <!-- Pestaña Tipografia -->
         <div class="settings-tab" id="fonts-tab">
-          
           <div class="settings-header">
             <h3>Fuentes personalizadas</h3>
           </div>
@@ -212,8 +211,6 @@ import "../styles/components/InfoModals.scss";
             </div>
           </div>
         </div>
-
-
       </div>
     </div>
   </dialog>
@@ -270,7 +267,7 @@ import "../styles/components/InfoModals.scss";
     if (saveFontBtn && fontInput && fontError) {
       saveFontBtn.addEventListener("click", () => {
         const url = fontInput.value.trim();
-        
+
         // Caso 1: Input vacío = restaurar fuente por defecto
         if (url === "") {
           fontError.style.display = "none";
@@ -279,7 +276,7 @@ import "../styles/components/InfoModals.scss";
           location.reload();
           return;
         }
-        
+
         // Caso 2: URL válida de Google Fonts
         if (isValidGoogleFontsUrl(url)) {
           fontError.style.display = "none";
@@ -287,7 +284,7 @@ import "../styles/components/InfoModals.scss";
           location.reload();
           return;
         }
-        
+
         // Caso 3: Input inválido
         fontError.textContent = "Por favor ingresa una URL válida de Google Fonts o deja el campo vacío para usar la fuente por defecto.";
         fontError.style.display = "block";

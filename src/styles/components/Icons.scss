@@ -1,0 +1,40 @@
+.tn {
+  &-svg {
+
+    &-animated,
+    &:hover {
+      -webkit-animation: animate-svg-stroke-1 1s cubic-bezier(0.47, 0, 0.745, 0.715) 0s both;
+      animation: animate-svg-stroke-1 1s cubic-bezier(0.47, 0, 0.745, 0.715) 0s both;
+    }
+  }
+}
+
+body:hover:has(#tn-empty-state) #tn-empty-state {
+  -webkit-animation: animate-svg-stroke-1 1s cubic-bezier(0.47, 0, 0.745, 0.715) 0s both;
+  animation: animate-svg-stroke-1 1s cubic-bezier(0.47, 0, 0.745, 0.715) 0s both;
+}
+
+button,
+.button,
+.btn,
+a,
+span,
+li,
+ul,
+ol p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+svg,
+label,
+input,
+g {
+
+  &:hover path {
+    -webkit-animation: animate-svg-stroke-1 1s cubic-bezier(0.47, 0, 0.745, 0.715) 0s both;
+    animation: animate-svg-stroke-1 1s cubic-bezier(0.47, 0, 0.745, 0.715) 0s both;
+  }
+}

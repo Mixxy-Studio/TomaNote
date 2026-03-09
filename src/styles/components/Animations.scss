@@ -1,0 +1,27 @@
+/***************************************************
+                Svg ICon Animations
+ **************************************************/
+
+@-webkit-keyframes animate-svg-stroke-1 {
+  0% {
+    stroke-dashoffset: 109.18800354003906px;
+    stroke-dasharray: 109.18800354003906px;
+  }
+
+  100% {
+    stroke-dashoffset: 0;
+    stroke-dasharray: 109.18800354003906px;
+  }
+}
+
+@keyframes animate-svg-stroke-1 {
+  0% {
+    stroke-dashoffset: 109.18800354003906px;
+    stroke-dasharray: 109.18800354003906px;
+  }
+
+  100% {
+    stroke-dashoffset: 0;
+    stroke-dasharray: 109.18800354003906px;
+  }
+}
