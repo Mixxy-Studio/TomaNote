@@ -1,187 +1,191 @@
 ---
+// Styles
 import "../styles/base/Reset.scss";
-import "../styles/vendors/global.css"
+import "../styles/vendors/global.css";
 import "../styles/components/ThemeSelector.scss";
+import "../styles/components/Animations.scss";
+import "../styles/components/Icons.scss";
+
+// Components
+import EmptyState from "../components/EmptyState.astro";
 ---
 
 <!doctype html>
 <html lang="es">
-	<head>
-		<!-- === BASIC META TAGS === -->
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<meta name="generator" content={Astro.generator} />
-		
-		<!-- === SEO META TAGS === -->
-		<title>TomaNote.app - Just Notes. Nothing Else. Write, Autosave, Done</title>
-		<meta name="description" content="A minimal notepad for people who just want to write. Fast, offline-first, and completely free." />
-		<meta name="author" content="Camiicode" />
-		<meta name="keywords" content="notes, notepad, tabs, editor, offline, pwa, productivity, web-app, fast notes" />
-		
-		<!-- === CANONICAL & ROBOTS === -->
-		<link rel="canonical" href="https://tomanote.app" />
-		<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
-		
-		<!-- === OPEN GRAPH / FACEBOOK === -->
-		<meta property="og:type" content="website" />
-		<meta property="og:url" content="https://tomanote.app" />
-		<meta property="og:title" content="TomaNote.app - Just Notes. Nothing Else. Write, Autosave, Done" />
-		<meta property="og:description" content="A minimal notepad for people who just want to write. Fast, offline-first, and completely free." />
-		<meta property="og:image" content="https://tomanote.app/og-image.png" />
-		<meta property="og:image:width" content="1200" />
-		<meta property="og:image:height" content="630" />
-		<meta property="og:image:alt" content="Screenshot of TomaNote.app showing the editor with tabs" />
-		<meta property="og:locale" content="es_ES" />
-		<meta property="og:site_name" content="TomaNote App" />
-		
-		<!-- === TWITTER CARDS === -->
-		<meta name="twitter:card" content="summary_large_image" />
-		<meta name="twitter:url" content="https://tomanote.app" />
-		<meta name="twitter:title" content="TomaNote.app - Just Notes. Nothing Else. Write, Autosave, Done" />
-		<meta name="twitter:description" content="A minimal notepad for people who just want to write. Fast, offline-first, and completely free." />
-		<meta name="twitter:image" content="https://tomanote.app/og-image.png" />
-		<meta name="twitter:image:width" content="1200" />
-		<meta name="twitter:image:height" content="630" />
-		<meta name="twitter:image:alt" content="TomaNote.app - Just Notes. Nothing Else. Write, Autosave, Done" />
-		<meta name="twitter:creator" content="@camiicode_x" />
-		<meta name="twitter:site" content="@camiicode_x" />
-		
-		<!-- === APP / PWA TAGS === -->
-		<meta name="apple-mobile-web-app-title" content="TomaNote" />
-		<meta name="apple-mobile-web-app-capable" content="yes" />
-		<meta name="mobile-web-app-capable" content="yes" />
-		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-		<meta name="msapplication-TileColor" content="#1a1a1a" />
-		<meta name="msapplication-TileImage" content="/icon-144.png" />
-		<meta name="theme-color" content="#1a1a1a" />
-		<meta name="color-scheme" content="dark light" />
-		
-		<!-- === FONTS & ICONS === -->
-		<link rel="preconnect" href="https://fonts.googleapis.com">
-		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-		<link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
-		<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='gray' class='size-6'%3E%3Cpath fill-rule='evenodd' d='M17.663 3.118c.225.015.45.032.673.05C19.876 3.298 21 4.604 21 6.109v9.642a3 3 0 0 1-3 3V16.5c0-5.922-4.576-10.775-10.384-11.217.324-1.132 1.3-2.01 2.548-2.114.224-.019.448-.036.673-.051A3 3 0 0 1 13.5 1.5H15a3 3 0 0 1 2.663 1.618ZM12 4.5A1.5 1.5 0 0 1 13.5 3H15a1.5 1.5 0 0 1 1.5 1.5H12Z' clip-rule='evenodd' /%3E%3Cpath d='M3 8.625c0-1.036.84-1.875 1.875-1.875h.375A3.75 3.75 0 0 1 9 10.5v1.875c0 1.036.84 1.875 1.875 1.875h1.875A3.75 3.75 0 0 1 16.5 18v2.625c0 1.035-.84 1.875-1.875 1.875h-9.75A1.875 1.875 0 0 1 3 20.625v-12Z' /%3E%3Cpath d='M10.5 10.5a5.23 5.23 0 0 0-1.279-3.434 9.768 9.768 0 0 1 6.963 6.963 5.23 5.23 0 0 0-3.434-1.279h-1.875a.375.375 0 0 1-.375-.375V10.5Z' /%3E%3C/svg%3E%0A">
+  <head>
+    <!-- === BASIC META TAGS === -->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="generator" content={Astro.generator} />
 
-		<!-- === PWA Manifest === -->
-		<link rel="manifest" href="/manifest.webmanifest" />
-		
-		<!-- === SCHEMA.ORG === -->
-		<script type="application/ld+json">
-		{
-			"@context": "https://schema.org",
-			"@type": "WebApplication",
-			"name": "TomaNote App",
-			"description": "A minimal notepad for people who just want to write. Fast, offline-first, and completely free.",
-			"url": "https://tomanote.app",
-			"applicationCategory": "ProductivityApplication",
-			"operatingSystem": "Any",
-			"browserRequirements": "Requires JavaScript. Requires HTML5.",
-			"featureList": [
-				"Multiple tabs",
-				"Dark/light mode", 
-				"Context menu",
-				"Auto-save",
-				"Local storage",
-				"PWA support"
-			],
-			"offers": {
-				"@type": "Offer",
-				"price": "0",
-				"priceCurrency": "USD"
-			},
-			"author": {
-				"@type": "Person",
-				"name": "Camiicode",
-				"url": "https://github.com/camiicode"
-			},
-			"publisher": {
-				"@type": "Organization",
-				"name": "TomaNote App",
-				"logo": {
-					"@type": "ImageObject",
-					"url": "https://tomanote.app/icon-512.png",
-					"width": "512",
-					"height": "512"
-				}
-			},
-			"screenshot": {
-				"@type": "ImageObject",
-				"url": "https://tomanote.app/screenshot-desktop.png",
-				"width": "1280",
-				"height": "720",
-				"caption": "TomaNote App interface"
-			},
-			"aggregateRating": {
-				"@type": "AggregateRating",
-				"ratingValue": "4.8",
-				"ratingCount": "1",
-				"bestRating": "5",
-				"worstRating": "1"
-			}
-		}
-		</script>
-		
-		<script type="application/ld+json">
-		{
-			"@context": "https://schema.org",
-			"@type": "FAQPage",
-			"mainEntity": [
-				{
-					"@type": "Question",
-					"name": "¿Is TomaNote App free?",
-					"acceptedAnswer": {
-						"@type": "Answer",
-						"text": "Yes, TomaNote App is completely free and open source. It has no paid plans or premium versions."
-					}
-				},
-				{
-					"@type": "Question",
-					"name": "¿Are my notes private?",
-					"acceptedAnswer": {
-						"@type": "Answer",
-						"text": "Absolutely. All notes are saved locally in your browser using localStorage. We don't collect, store, or transmit any data."
-					}
-				},
-				{
-					"@type": "Question",
-					"name": "¿I need to create an account?",
-					"acceptedAnswer": {
-						"@type": "Answer",
-						"text": "No, TomaNote App works completely without registration. It is 100% anonymous, no email or password required."
-					}
-				},
-				{
-					"@type": "Question",
-					"name": "¿Works offline?",
-					"acceptedAnswer": {
-						"@type": "Answer",
-						"text": "Yes, after loading the app for the first time, you can use it completely offline. All features are available without connection."
-					}
-				},
-				{
-					"@type": "Question",
-					"name": "¿Puedo usar TomaNote en mi teléfono?",
-					"acceptedAnswer": {
-						"@type": "Answer",
-						"text": "Yes, TomaNote is a PWA (Progressive Web App). You can install it on your phone as a native app from the browser."
-					}
-				}
-			]
-		}
-		</script>
-	</head>
-	<body id="body">
-		<main>
-			<slot />
-		</main>
-	</body>
+    <!-- === SEO META TAGS === -->
+    <title>TomaNote.app - Just Notes. Nothing Else. Write, Autosave, Done</title>
+    <meta name="description" content="A minimal notepad for people who just want to write. Fast, offline-first, and completely free." />
+    <meta name="author" content="Camiicode" />
+    <meta name="keywords" content="notes, notepad, tabs, editor, offline, pwa, productivity, web-app, fast notes" />
+
+    <!-- === CANONICAL & ROBOTS === -->
+    <link rel="canonical" href="https://tomanote.app" />
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+
+    <!-- === OPEN GRAPH / FACEBOOK === -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://tomanote.app" />
+    <meta property="og:title" content="TomaNote.app - Just Notes. Nothing Else. Write, Autosave, Done" />
+    <meta property="og:description" content="A minimal notepad for people who just want to write. Fast, offline-first, and completely free." />
+    <meta property="og:image" content="https://tomanote.app/og-image.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Screenshot of TomaNote.app showing the editor with tabs" />
+    <meta property="og:locale" content="es_ES" />
+    <meta property="og:site_name" content="TomaNote App" />
+
+    <!-- === TWITTER CARDS === -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:url" content="https://tomanote.app" />
+    <meta name="twitter:title" content="TomaNote.app - Just Notes. Nothing Else. Write, Autosave, Done" />
+    <meta name="twitter:description" content="A minimal notepad for people who just want to write. Fast, offline-first, and completely free." />
+    <meta name="twitter:image" content="https://tomanote.app/og-image.png" />
+    <meta name="twitter:image:width" content="1200" />
+    <meta name="twitter:image:height" content="630" />
+    <meta name="twitter:image:alt" content="TomaNote.app - Just Notes. Nothing Else. Write, Autosave, Done" />
+    <meta name="twitter:creator" content="@camiicode_x" />
+    <meta name="twitter:site" content="@camiicode_x" />
+
+    <!-- === APP / PWA TAGS === -->
+    <meta name="apple-mobile-web-app-title" content="TomaNote" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="msapplication-TileColor" content="#1a1a1a" />
+    <meta name="msapplication-TileImage" content="/icon-144.png" />
+    <meta name="theme-color" content="#1a1a1a" />
+    <meta name="color-scheme" content="dark light" />
+
+    <!-- === FONTS & ICONS === -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet" />
+    <link
+      rel="icon"
+      type="image/svg+xml"
+      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='gray' class='size-6'%3E%3Cpath fill-rule='evenodd' d='M17.663 3.118c.225.015.45.032.673.05C19.876 3.298 21 4.604 21 6.109v9.642a3 3 0 0 1-3 3V16.5c0-5.922-4.576-10.775-10.384-11.217.324-1.132 1.3-2.01 2.548-2.114.224-.019.448-.036.673-.051A3 3 0 0 1 13.5 1.5H15a3 3 0 0 1 2.663 1.618ZM12 4.5A1.5 1.5 0 0 1 13.5 3H15a1.5 1.5 0 0 1 1.5 1.5H12Z' clip-rule='evenodd' /%3E%3Cpath d='M3 8.625c0-1.036.84-1.875 1.875-1.875h.375A3.75 3.75 0 0 1 9 10.5v1.875c0 1.036.84 1.875 1.875 1.875h1.875A3.75 3.75 0 0 1 16.5 18v2.625c0 1.035-.84 1.875-1.875 1.875h-9.75A1.875 1.875 0 0 1 3 20.625v-12Z' /%3E%3Cpath d='M10.5 10.5a5.23 5.23 0 0 0-1.279-3.434 9.768 9.768 0 0 1 6.963 6.963 5.23 5.23 0 0 0-3.434-1.279h-1.875a.375.375 0 0 1-.375-.375V10.5Z' /%3E%3C/svg%3E%0A"
+    />
+
+    <!-- === PWA Manifest === -->
+    <link rel="manifest" href="/manifest.webmanifest" />
+
+    <!-- === SCHEMA.ORG === -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "TomaNote App",
+        "description": "A minimal notepad for people who just want to write. Fast, offline-first, and completely free.",
+        "url": "https://tomanote.app",
+        "applicationCategory": "ProductivityApplication",
+        "operatingSystem": "Any",
+        "browserRequirements": "Requires JavaScript. Requires HTML5.",
+        "featureList": ["Multiple tabs", "Dark/light mode", "Context menu", "Auto-save", "Local storage", "PWA support"],
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "USD"
+        },
+        "author": {
+          "@type": "Person",
+          "name": "Camiicode",
+          "url": "https://github.com/camiicode"
+        },
+        "publisher": {
+          "@type": "Organization",
+          "name": "TomaNote App",
+          "logo": {
+            "@type": "ImageObject",
+            "url": "https://tomanote.app/icon-512.png",
+            "width": "512",
+            "height": "512"
+          }
+        },
+        "screenshot": {
+          "@type": "ImageObject",
+          "url": "https://tomanote.app/screenshot-desktop.png",
+          "width": "1280",
+          "height": "720",
+          "caption": "TomaNote App interface"
+        },
+        "aggregateRating": {
+          "@type": "AggregateRating",
+          "ratingValue": "4.8",
+          "ratingCount": "1",
+          "bestRating": "5",
+          "worstRating": "1"
+        }
+      }
+    </script>
+
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "¿Is TomaNote App free?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes, TomaNote App is completely free and open source. It has no paid plans or premium versions."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "¿Are my notes private?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Absolutely. All notes are saved locally in your browser using localStorage. We don't collect, store, or transmit any data."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "¿I need to create an account?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "No, TomaNote App works completely without registration. It is 100% anonymous, no email or password required."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "¿Works offline?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes, after loading the app for the first time, you can use it completely offline. All features are available without connection."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "¿Puedo usar TomaNote en mi teléfono?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes, TomaNote is a PWA (Progressive Web App). You can install it on your phone as a native app from the browser."
+            }
+          }
+        ]
+      }
+    </script>
+  </head>
+  <body id="body" class="h-screen relative">
+    <EmptyState />
+    <main>
+      <slot />
+    </main>
+  </body>
 </html>
 
 <style>
-	html,
-	body {
-		margin: 0;
-		width: 100%;
-		height: 100%;
-	}
+  html,
+  body {
+    margin: 0;
+    width: 100%;
+    height: 100%;
+  }
 </style>
