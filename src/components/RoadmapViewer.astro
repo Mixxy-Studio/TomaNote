@@ -1,0 +1,58 @@
+---
+//Styles
+import "../styles/components/MarkDown.scss";
+
+// Scripts
+import { marked } from "marked";
+import fs from "fs";
+import path from "path";
+
+interface Version {
+  version: string;
+  slug: string;
+}
+
+const roadmapBase = path.join(process.cwd(), "public", "ROADMAP");
+
+function getVersions(): Version[] {
+  const langPath = path.join(roadmapBase, "es");
+  if (!fs.existsSync(langPath)) return [];
+
+  return fs
+    .readdirSync(langPath)
+    .filter((file) => file.endsWith(".md"))
+    .map((file) => {
+      const slug = file.replace(".md", "");
+      return { version: slug, slug };
+    })
+    .sort((a, b) => b.slug.localeCompare(a.slug));
+}
+
+function getContent(lang: string, slug: string): string {
+  const filePath = path.join(roadmapBase, lang, `${slug}.md`);
+  if (!fs.existsSync(filePath)) return "";
+
+  const markdown = fs.readFileSync(filePath, "utf-8");
+  return marked.parse(markdown) as string;
+}
+
+const versions = getVersions();
+const defaultLang = "es";
+---
+
+<div class="roadmap-viewer flex-column gap-2">
+  <div class="roadmap-header w-full text-center">
+    <h1 class="m-0 text-2xl! font-semibold">Roadmap de Desarrollo</h1>
+    <h2 class="m-0 text-2xl! font-semibold">TomaNote</h2>
+  </div>
+
+  <div class="roadmap-list flex-column ga-2 overflow-y-auto w-[60%] m-auto! rounded-2xl bg-white/2 p-5! mt-5!" id="roadmap-list">
+    {
+      versions.map((v) => (
+        <div class="roadmap-item border-b-[1px] border-solid border-[oklch(var(--bc)/0.1)] last:border-b-0" data-version={v.slug}>
+          <div class="roadmap-content" set:html={getContent(defaultLang, v.slug)} />
+        </div>
+      ))
+    }
+  </div>
+</div>
