@@ -4,10 +4,13 @@ import "../styles/components/InfoModals.scss";
 
 // Icons
 import Icon from "../components/icons/Icon.astro";
+
+// Components
+import RoadmapViewer from "./RoadmapViewer.astro";
 ---
 
 <section id="modals">
-  <dialog id="info-notepad" class="settings-modal">
+  <dialog id="info-notepad" class="settings-modal" open>
     <div class="settings-container">
       <!-- Sidebar izquierdo -->
       <div class="settings-sidebar">
@@ -165,13 +168,7 @@ import Icon from "../components/icons/Icon.astro";
 
         <!-- Pestaña Roadmap -->
         <div class="settings-tab" id="roadmap-tab">
-          <div class="settings-header">
-            <h3>Roadmap de Desarrollo Tomanote</h3>
-          </div>
-
-          <div class="settings-body">
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim, consequatur.</p>
-          </div>
+          <RoadmapViewer defaultLang="es" />
         </div>
 
         <!-- Pestaña Tipografia -->
