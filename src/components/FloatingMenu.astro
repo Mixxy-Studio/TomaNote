@@ -36,16 +36,16 @@ const tabButtons = [
 
     <div class="max-h-0 relative overflow-hidden peer-checked/menu:overflow-visible peer-checked/menu:max-h-[300px]! max-w-[60px] transition-all duration-300 ease-in-out flex flex-col mb-5 items-center justify-center gap-1">
       <!-- Grupo Content -->
-      <FloatingButtonGroup id="tn-navbar__content" radioName="options" radioId="tn-open-options__content" iconName="clipboard" buttons={contentButtons} />
+      <FloatingButtonGroup id="tn-navbar__content" radioName="options" radioId="tn-open-options__content" iconName="clipboard" buttons={contentButtons} iconStrokeWidth="1.5" />
 
       <!-- Grupo Font -->
-      <FloatingButtonGroup id="tn-navbar__font" radioName="options" radioId="tn-open-options__font" iconName="font" buttons={fontButtons} />
+      <FloatingButtonGroup id="tn-navbar__font" radioName="options" radioId="tn-open-options__font" iconName="font" buttons={fontButtons} iconStrokeWidth="10" />
 
       <!-- Grupo Tab -->
-      <FloatingButtonGroup id="tn-navbar__tab" radioName="options" radioId="tn-open-options__tab" iconName="tab" buttons={tabButtons} />
+      <FloatingButtonGroup id="tn-navbar__tab" radioName="options" radioId="tn-open-options__tab" iconName="tab" buttons={tabButtons} iconStrokeWidth="1.5" />
 
       <!-- Botón Settings individual -->
-      <FloatingButton action="settings" iconName="settings" tooltip="Settings" className="tn-setting" onClick="event.preventDefault(); document.querySelector('dialog#info-notepad').showModal()" />
+      <FloatingButton action="settings" iconName="settings" tooltip="Settings" className="tn-setting border-(--tn-theme-contrast)! p-4!" onClick="event.preventDefault(); document.querySelector('dialog#info-notepad').showModal()" />
     </div>
   </div>
 </nav>
