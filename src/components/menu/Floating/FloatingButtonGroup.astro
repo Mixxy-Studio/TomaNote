@@ -1,0 +1,36 @@
+---
+// Astro Props
+import FloatingButton from "./FloatingButton.astro";
+
+interface ButtonItem {
+  action: string;
+  iconName: string;
+  tooltip: string;
+  className?: string;
+}
+
+interface Props {
+  id: string;
+  radioName: string;
+  radioId: string;
+  iconName: string;
+  tooltip?: string;
+  buttons: ButtonItem[];
+}
+
+const { id, radioName, radioId, iconName, tooltip, buttons } = Astro.props;
+
+// Icons
+import Icon from "../../icons/Icon.astro";
+---
+
+<div class="tn-horizontal-buttons relative">
+  <input type="radio" name={radioName} id={radioId} class="peer hidden" />
+  <label for={radioId} class={`tn-btn border border-transparent p-4! bg-(--tn-theme-primary) rounded-2xl hover:bg-(--tn-theme-secondary) peer-checked/${radioId}:border peer-checked/${radioId}:border-(--tn-theme-contrast) tn-undo cursor-pointer peer-checked/${radioId}:bg-(--tn-theme-contrast) peer-checked/${radioId}:hover:bg-(--tn-theme-contrast) flex justify-center items-center min-w-[56px]`}>
+    <Icon name={iconName} className="text-(--tn-theme-contrast)" />
+  </label>
+
+  <div id={id} class="tn-navbar-btns">
+    {buttons.map((btn) => <FloatingButton action={btn.action} iconName={btn.iconName} tooltip={btn.tooltip} className={btn.className} />)}
+  </div>
+</div>
