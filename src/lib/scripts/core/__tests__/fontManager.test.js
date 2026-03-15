@@ -37,7 +37,7 @@ describe("FontManager - Lógica Básica", () => {
     fontManager.loadCustomFont();
     expect(document.documentElement.style.setProperty).toHaveBeenCalledWith(
       "--font-family-notes",
-      `'Raleway', sans-serif, serif`,
+      `'Inter', sans-serif, serif`,
     );
   });
 
@@ -75,7 +75,7 @@ describe("FontManager - Lógica Básica", () => {
     expect(localStorageMock.removeItem).toHaveBeenCalledWith("customFontName");
     expect(document.documentElement.style.setProperty).toHaveBeenCalledWith(
       "--font-family-notes",
-      `'Raleway', sans-serif, serif`,
+      `'Inter', sans-serif, serif`,
     );
   });
 });

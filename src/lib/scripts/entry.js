@@ -35,6 +35,8 @@ async function loadCriticalFunctions() {
   const { FontManager } = await import("./core/fontManager.js");
   window.fontManager = new FontManager();
   window.fontManager.loadCustomFont();
+  window.fontManager.loadFontSize();
+  window.fontManager.initFontSettingsUI();
 
   // 2. Configurar sistema de temas (dark/light mode)
   await setupThemeSystem();
