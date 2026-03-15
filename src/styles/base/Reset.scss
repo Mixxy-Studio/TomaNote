@@ -182,14 +182,18 @@ html[data-theme="neon-orbit"] .tab-list__item {
   }
 }
 
-.base-text {
+.tab-list__item--content {
+  font-size: var(--tn-editor-font-size);
+}
+
+.base-text * {
   font-size: vars.$tn-font-size-base !important;
 }
 
-.medium-text {
+.medium-text * {
   font-size: vars.$tn-font-size-medium !important;
 }
 
-.large-text {
+.large-text * {
   font-size: vars.$tn-font-size-large !important;
 }

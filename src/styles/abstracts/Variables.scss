@@ -155,7 +155,9 @@ $tn-themes: (
 
   // Fuentes y Espaciado
   --tn-font-size-base: #{$tn-font-size-base};
+  --tn-font-size-medium: #{$tn-font-size-medium};
   --tn-font-size-large: #{$tn-font-size-large};
+  --tn-editor-font-size: var(--tn-font-size-base);
   --tn-font-family-default: #{$tn-font-family-default};
   --tn-padding-base: #{$tn-padding-base};
   --tn-border-radius: #{$tn-border-radius};
