@@ -13,6 +13,7 @@ import AboutTab from "./modals/settings/tabs/AboutTab.astro";
 import LicenseTab from "./modals/settings/tabs/LicenseTab.astro";
 import TermsTab from "./modals/settings/tabs/TermsTab.astro";
 import FontTab from "./modals/settings/tabs/FontTab.astro";
+import ThemeTab from "./modals/settings/tabs/ThemeTab.astro";
 ---
 
 <section id="modals">
@@ -101,15 +102,7 @@ import FontTab from "./modals/settings/tabs/FontTab.astro";
         <FontTab />
 
         <!-- Pestaña Theme -->
-        <div class="settings-tab hidden [&.active]:block" id="theme-tab">
-          <div class="settings-header">
-            <h3>Selecciona tu tema favorito</h3>
-          </div>
-
-          <div class="settings-body">
-            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sed, dolorem.</p>
-          </div>
-        </div>
+        <ThemeTab />
 
         <!-- Pestaña Language -->
         <div class="settings-tab hidden [&.active]:block" id="lang-tab">
