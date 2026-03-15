@@ -10,56 +10,56 @@ import RoadmapViewer from "./RoadmapViewer.astro";
 ---
 
 <section id="modals">
-  <dialog id="info-notepad" class="settings-modal" open>
-    <div class="settings-container">
+  <dialog id="info-notepad" class="settings-modal open:block open:opacity-100 open:scale-100 open:absolute open:top-1/2 open:left-1/2 open:-translate-1/2 lg:h-[80vh] md:w-[70%] md:max-w-[70%] md:h-auto md:min-h-[unset] w-[90%] h-auto max-w-[90vw] min-h-[600px] max-h-[70vh] text-(--color-text)! bg-(--tn-theme-primary-dark) overflow-hidden shadow-2xl rounded-2xl scale-100 opacity-0 hidden border-0 p-0!">
+    <div class="settings-container md:flex-row flex h-full flex-col">
       <!-- Sidebar izquierdo -->
-      <div class="settings-sidebar">
-        <div class="user-section">
-          <h2 class="flex items-center justify-start">
+      <div class="settings-sidebar lg:justify-between md:w-auto w-full bg-(--tn-theme-accent) flex flex-col min-h-auto pt-[20px]! pb-[12px]! px-[16px]!">
+        <div class="user-section border-b border-(--color-text) text-center pt-0! px-[12px]! pb-[6px]!">
+          <h2 class="flex items-center justify-start text-xl! font-semibold m-0! text-(--color-text)">
             <Icon name="tomanote" className="size-1 md:size-6" />
             TomaNote
           </h2>
-          <span class="version">v 0.4.0</span>
+          <span class="version text-sm! text-(--color-text)">v 0.4.0</span>
         </div>
 
-        <nav class="settings-nav">
-          <button class="nav-item active" data-tab="about">
-            <span class="icon">
+        <nav class="settings-nav bg-(--tn-neutral-tertiary-color)/10 rounded-lg mt-[16px]! px-[5px]!">
+          <button class="nav-item bg-transparent border-0 w-auto text-start cursor-pointer lg:w-full hover:bg-(--tn-theme-primary-dark)/25 inline-flex items-center rounded-sm text-(--color-text) lg:flex [&.active]:bg-(--tn-theme-secondary)! [&.active]:text-(--color-text)! text-sm! py-[5px]! px-[10px]! my-[4px]! mx-0! transition-colors duration-200 active" data-tab="about">
+            <span class="icon mr-[12px]!">
               <Icon name="about" className="size-1 md:size-6" />
             </span>
             About
           </button>
-          <button class="nav-item" data-tab="license">
+          <button class="nav-item bg-transparent border-0 w-auto text-start cursor-pointer lg:w-full hover:bg-(--tn-theme-primary-dark)/25 inline-flex items-center rounded-sm text-(--color-text) lg:flex [&.active]:bg-(--tn-theme-secondary)! [&.active]:text-(--color-text)! text-sm! py-[5px]! px-[10px]! my-[4px]! mx-0! transition-colors duration-200" data-tab="license">
             <span class="icon">
               <Icon name="license" className="size-1 md:size-6" />
             </span>
             Licence
           </button>
-          <button class="nav-item" data-tab="terms">
+          <button class="nav-item bg-transparent border-0 w-auto text-start cursor-pointer lg:w-full hover:bg-(--tn-theme-primary-dark)/25 inline-flex items-center rounded-sm text-(--color-text) lg:flex [&.active]:bg-(--tn-theme-secondary)! [&.active]:text-(--color-text)! text-sm! py-[5px]! px-[10px]! my-[4px]! mx-0! transition-colors duration-200" data-tab="terms">
             <span class="icon">
               <Icon name="terms" className="size-1 md:size-6" />
             </span>
             Terms
           </button>
-          <button class="nav-item" data-tab="roadmap">
+          <button class="nav-item bg-transparent border-0 w-auto text-start cursor-pointer lg:w-full hover:bg-(--tn-theme-primary-dark)/25 inline-flex items-center rounded-sm text-(--color-text) lg:flex [&.active]:bg-(--tn-theme-secondary)! [&.active]:text-(--color-text)! text-sm! py-[5px]! px-[10px]! my-[4px]! mx-0! transition-colors duration-200" data-tab="roadmap">
             <span class="icon">
               <Icon name="roadmap" className="size-1 md:size-6" />
             </span>
             Roadmap
           </button>
-          <button class="nav-item" data-tab="fonts">
+          <button class="nav-item bg-transparent border-0 w-auto text-start cursor-pointer lg:w-full hover:bg-(--tn-theme-primary-dark)/25 inline-flex items-center rounded-sm text-(--color-text) lg:flex [&.active]:bg-(--tn-theme-secondary)! [&.active]:text-(--color-text)! text-sm! py-[5px]! px-[10px]! my-[4px]! mx-0! transition-colors duration-200" data-tab="fonts">
             <span class="icon">
               <Icon name="tipo" className="size-1 md:size-6" />
             </span>
             Typography
           </button>
-          <button class="nav-item" data-tab="theme">
+          <button class="nav-item bg-transparent border-0 w-auto text-start cursor-pointer lg:w-full hover:bg-(--tn-theme-primary-dark)/25 inline-flex items-center rounded-sm text-(--color-text) lg:flex [&.active]:bg-(--tn-theme-secondary)! [&.active]:text-(--color-text)! text-sm! py-[5px]! px-[10px]! my-[4px]! mx-0! transition-colors duration-200" data-tab="theme">
             <span class="icon">
               <Icon name="theme" className="size-1 md:size-6" />
             </span>
             Theme
           </button>
-          <button class="nav-item" data-tab="lang">
+          <button class="nav-item bg-transparent border-0 w-auto text-start cursor-pointer lg:w-full hover:bg-(--tn-theme-primary-dark)/25 inline-flex items-center rounded-sm text-(--color-text) lg:flex [&.active]:bg-(--tn-theme-secondary)! [&.active]:text-(--color-text)! text-sm! py-[5px]! px-[10px]! my-[4px]! mx-0! transition-colors duration-200" data-tab="lang">
             <span class="icon">
               <Icon name="lang" className="size-1 md:size-6" />
             </span>
@@ -68,7 +68,7 @@ import RoadmapViewer from "./RoadmapViewer.astro";
         </nav>
 
         <form enctype="application/x-www-form-urlencoded" method="dialog" class="sidebar-footer">
-          <button class="save-button flex items-center justify-center gap-2">
+          <button class="save-button w-full p-[12px]! border-0 rounded-sm bg-(--tn-theme-contrast) text-(--tn-neutral-tertiary-color)! cursor-pointer text-normal! transition-all hover:bg-(--tn-theme-contrast)/85! hover flex items-center justify-center gap-2">
             <Icon name="check" className="size-1 md:size-6" />
             Aceptar
           </button>
@@ -76,10 +76,10 @@ import RoadmapViewer from "./RoadmapViewer.astro";
       </div>
 
       <!-- Contenido principal -->
-      <div class="settings-content">
+      <div class="settings-content flex-1 p-[24px]! overflow-y-scroll bg-(--tn-theme-secondary)">
         <!-- Pestaña Acerca de -->
-        <div class="settings-tab active" id="about-tab">
-          <div class="settings-header">
+        <div class="settings-tab hidden [&.active]:block active" id="about-tab">
+          <div class="settings-header mb-[24px]!">
             <h3><u>Acerca de TomaNote</u></h3>
           </div>
           <div class="settings-body">
@@ -119,7 +119,7 @@ import RoadmapViewer from "./RoadmapViewer.astro";
         </div>
 
         <!-- Pestaña Licencia -->
-        <div class="settings-tab" id="license-tab">
+        <div class="settings-tab hidden [&.active]:block" id="license-tab">
           <div class="settings-header">
             <h3>Licencia</h3>
           </div>
@@ -149,7 +149,7 @@ import RoadmapViewer from "./RoadmapViewer.astro";
         </div>
 
         <!-- Pestaña Términos -->
-        <div class="settings-tab" id="terms-tab">
+        <div class="settings-tab hidden [&.active]:block" id="terms-tab">
           <div class="settings-header">
             <h3>Términos de Uso</h3>
             <h6>Términos y Advertencias para el Uso del Bloc de Notas</h6>
@@ -167,50 +167,54 @@ import RoadmapViewer from "./RoadmapViewer.astro";
         </div>
 
         <!-- Pestaña Roadmap -->
-        <div class="settings-tab" id="roadmap-tab">
+        <div class="settings-tab hidden [&.active]:block" id="roadmap-tab">
           <RoadmapViewer defaultLang="es" />
         </div>
 
         <!-- Pestaña Tipografia -->
-        <div class="settings-tab" id="fonts-tab">
+        <div class="settings-tab hidden [&.active]:block" id="fonts-tab">
           <div class="settings-header">
             <h3 class="font-black underline">Configuracion Tipografica</h3>
           </div>
 
           <div class="settings-body">
             <div class="settings-section">
-              <h4 class="font-medium! text-xl!">Fuente personalizada (Google Fonts)</h4>
+              <h4 class="font-medium! text-xl!">Fuente</h4>
 
               <div class="settings-section__group">
-                <input id="font-url-input" class="placeholder:text-(--tn-neutral-tertiary-color)! placeholder:opacity-40" type="text" placeholder="Introduce una URL válida de Google Fonts o deja vacío para fuente por defecto" />
-                <button id="save-font-url" class="flex items-center justify-center">
-                  <Icon name="save" className="size-1 md:size-6 mr-2!" />
-                  Guardar Fuente
-                </button>
+                <select id="font-select" class="font-select w-full py-[10px]! px-[12px]! rounded-sm border-2 border-(--tn-theme-primary) bg-(--tn-theme-secondary) text-(--color-text)! text-normal cursor-pointer transition-all hover:border-(--tn-theme-accent) focus:outline-0 focus:border-(--tn-theme-contrast)">
+                  <option value="Inter">Inter (Por defecto)</option>
+                  <option value="Poppins">Poppins</option>
+                  <option value="Raleway">Raleway</option>
+                  <option value="Open Sans">Open Sans</option>
+                  <option value="Roboto">Roboto</option>
+                  <option value="Montserrat">Montserrat</option>
+                  <option value="custom">Personalizada</option>
+                </select>
               </div>
 
-              <div id="font-url-error" class="bg-red-600 mt-4! hidden text-white rounded-md px-3!"></div>
-            </div>
+              <div id="custom-font-url-wrapper" class="settings-section__group mt-4! hidden" style="display: none;">
+                <input id="font-url-input" class="placeholder:text-(--color-text)! flex-1 w-full py-[10px]! px-[12px]! rounded-sm border-2 border-(--tn-theme-primary) bg-(--tn-theme-secondary) text-(--color-text) text-normal cursor-pointer transition-all hover:border-(--tn-theme-accent) focus:outline-0 focus:border-(--tn-theme-contrast)" type="text" placeholder="Introduce una URL válida de Google Fonts o deja vacío para fuente por defecto" />
+                <div id="font-url-error" class="bg-red-600 mt-4! hidden text-white rounded-md px-3!"></div>
+              </div>
 
-            <div class="settings-section">
-              <h4>Configuración de fuentes</h4>
+              <div id="custom-font-instructions" class="settings-section mt-4! hidden">
+                <ul role="list" class="list-disc pl-3!">
+                  <li class="block md:inline-flex items-center my-2! before:content-['·'] before:text-inherit! md:before:text-6xl! before:leading-0! before:mr-3!">
+                    Para fuente personalizada, Obtén la URL desde <a href="https://fonts.google.com/" target="_blank" class="mx-1!">Google Fonts</a> con la opción <code class="mx-1!">Get embed code</code>.
+                  </li>
+                  <li class="block md:inline-flex items-center my-2! before:content-['·'] before:text-inherit! md:before:text-6xl! before:leading-0! before:mr-3!">
+                    Copia la URL del elemento <code class="mx-1!">&lt;link&gt;</code> (debe comenzar con <code class="mx-1!">https://fonts.googleapis.com/</code>).
+                  </li>
+                </ul>
+                <p class="mt-3!">La configuración de la fuente se guarda localmente en este navegador y se aplica automáticamente.</p>
+              </div>
 
-              <ul role="list" class="list-disc pl-3!">
-                <li class="block md:inline-flex items-center my-2! before:content-['·'] before:text-inherit! md:before:text-6xl! before:leading-0! before:mr-3!">
-                  Accede a <a href="https://fonts.google.com/" target="_blank" class="mx-1!">Google Fonts</a> y seleccionas la fuente que deseas utilizar.
-                </li>
-                <li class="block md:inline-flex items-center my-2! before:content-['·'] before:text-inherit! md:before:text-6xl! before:leading-0! before:mr-3!">
-                  Obtén la URL de carga desde la opción <code class="mx-1!">Get embed code</code> / <code class="mx-1!">Obtener código de inserción</code>.
-                </li>
-                <li class="block md:inline-flex items-center my-2! before:content-['·'] before:text-inherit! md:before:text-6xl! before:leading-0! before:mr-3!">
-                  Copia la URL correspondiente al elemento <code class="mx-1!">&lt;link&gt;</code>. (Debe comenzar con <code class="mx-1!">https://fonts.googleapis.com/</code>).
-                </li>
-                <li class="block md:inline-flex items-center my-2! before:content-['·'] before:text-inherit! md:before:text-6xl! before:leading-0! before:mr-3!">
-                  Pega la URL en el campo superior y selecciona <strong>Guardar fuente</strong>.
-                </li>
-              </ul>
-
-              <p class="mt-3!">La configuración de la fuente se guarda localmente en este navegador y se aplica automáticamente.</p>
+              <div class="settings-section mt-4!">
+                <ul role="list" class="list-disc pl-3!">
+                  <li class="block md:inline-flex items-center my-2! before:content-['·'] before:text-inherit! md:before:text-6xl! before:leading-0! before:mr-3!">Selecciona una fuente de la lista o elige <strong>Personalizada</strong> para usar otra.</li>
+                </ul>
+              </div>
             </div>
 
             <hr />
@@ -244,12 +248,19 @@ import RoadmapViewer from "./RoadmapViewer.astro";
                   </label>
                 </div>
               </div>
+
+              <div class="mt-6!">
+                <button id="save-font-styles" class="flex items-center justify-center px-[16px]! py-[8px]! bg-(--tn-theme-contrast) text-(--tn-neutral-tertiary-color) border-0 cursor-pointer rounded-sm">
+                  <Icon name="save" className="size-1 md:size-6 mr-2!" />
+                  Guardar Estilos de Fuente
+                </button>
+              </div>
             </div>
           </div>
         </div>
 
         <!-- Pestaña Theme -->
-        <div class="settings-tab" id="theme-tab">
+        <div class="settings-tab hidden [&.active]:block" id="theme-tab">
           <div class="settings-header">
             <h3>Selecciona tu tema favorito</h3>
           </div>
@@ -260,7 +271,7 @@ import RoadmapViewer from "./RoadmapViewer.astro";
         </div>
 
         <!-- Pestaña Language -->
-        <div class="settings-tab" id="lang-tab">
+        <div class="settings-tab hidden [&.active]:block" id="lang-tab">
           <div class="settings-header">
             <h3>Idioma</h3>
           </div>
@@ -272,81 +283,33 @@ import RoadmapViewer from "./RoadmapViewer.astro";
       </div>
     </div>
   </dialog>
-</section>
 
-<script>
-  document.addEventListener("DOMContentLoaded", () => {
-    const modal = document.getElementById("info-notepad") as HTMLElement | null;
-    if (!modal) return;
-    const navItems = modal.querySelectorAll(".nav-item");
-    const tabs = modal.querySelectorAll(".settings-tab");
-
-    // Función para cambiar pestañas
-    function switchTab(tabId: string) {
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const modal = document.getElementById("info-notepad") as HTMLElement | null;
       if (!modal) return;
-      navItems.forEach((item) => item.classList.remove("active"));
-      tabs.forEach((tab) => tab.classList.remove("active"));
+      const navItems = modal.querySelectorAll(".nav-item");
+      const tabs = modal.querySelectorAll(".settings-tab");
 
-      const selectedTab = modal.querySelector(`#${tabId}-tab`) as HTMLElement | null;
-      const selectedNav = modal.querySelector(`[data-tab="${tabId}"]`) as HTMLElement | null;
-      if (selectedTab && selectedNav) {
-        selectedTab.classList.add("active");
-        selectedNav.classList.add("active");
+      function switchTab(tabId: string) {
+        if (!modal) return;
+        navItems.forEach((item) => item.classList.remove("active"));
+        tabs.forEach((tab) => tab.classList.remove("active"));
+
+        const selectedTab = modal.querySelector(`#${tabId}-tab`) as HTMLElement | null;
+        const selectedNav = modal.querySelector(`[data-tab="${tabId}"]`) as HTMLElement | null;
+        if (selectedTab && selectedNav) {
+          selectedTab.classList.add("active");
+          selectedNav.classList.add("active");
+        }
       }
-    }
 
-    // Manejador de clics en la navegación
-    navItems.forEach((item) => {
-      item.addEventListener("click", () => {
-        const tabId = (item as HTMLElement).dataset.tab;
-        if (tabId) switchTab(tabId);
+      navItems.forEach((item) => {
+        item.addEventListener("click", () => {
+          const tabId = (item as HTMLElement).dataset.tab;
+          if (tabId) switchTab(tabId);
+        });
       });
     });
-
-    // --- FUENTES PERSONALIZADAS ---
-    const fontInput = document.getElementById("font-url-input") as HTMLInputElement | null;
-    const saveFontBtn = document.getElementById("save-font-url") as HTMLButtonElement | null;
-    const fontError = document.getElementById("font-url-error") as HTMLDivElement | null;
-
-    // Cargar valor guardado si existe
-    if (fontInput && localStorage.getItem("customFontUrl")) {
-      fontInput.value = localStorage.getItem("customFontUrl") || "";
-    }
-
-    function isValidGoogleFontsUrl(url: string): boolean {
-      try {
-        const parsed = new URL(url);
-        return parsed.hostname === "fonts.googleapis.com" && parsed.protocol === "https:";
-      } catch {
-        return false;
-      }
-    }
-
-    if (saveFontBtn && fontInput && fontError) {
-      saveFontBtn.addEventListener("click", () => {
-        const url = fontInput.value.trim();
-
-        // Caso 1: Input vacío = restaurar fuente por defecto
-        if (url === "") {
-          fontError.style.display = "none";
-          localStorage.removeItem("customFontUrl");
-          localStorage.removeItem("customFontName");
-          location.reload();
-          return;
-        }
-
-        // Caso 2: URL válida de Google Fonts
-        if (isValidGoogleFontsUrl(url)) {
-          fontError.style.display = "none";
-          localStorage.setItem("customFontUrl", url);
-          location.reload();
-          return;
-        }
-
-        // Caso 3: Input inválido
-        fontError.textContent = "Por favor ingresa una URL válida de Google Fonts o deja el campo vacío para usar la fuente por defecto.";
-        fontError.style.display = "inline-block";
-      });
-    }
-  });
-</script>
+  </script>
+</section>
