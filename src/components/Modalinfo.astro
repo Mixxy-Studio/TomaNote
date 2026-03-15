@@ -6,15 +6,26 @@ import "../styles/components/InfoModals.scss";
 import Icon from "../components/icons/Icon.astro";
 
 // Components
-import RoadmapViewer from "./RoadmapViewer.astro";
+import SettingsNavItem from "./modals/SettingsNavItem.astro";
 
 // Settings Tabs
+import RoadmapViewer from "./RoadmapViewer.astro";
 import AboutTab from "./modals/settings/tabs/AboutTab.astro";
 import LicenseTab from "./modals/settings/tabs/LicenseTab.astro";
 import TermsTab from "./modals/settings/tabs/TermsTab.astro";
 import FontTab from "./modals/settings/tabs/FontTab.astro";
 import ThemeTab from "./modals/settings/tabs/ThemeTab.astro";
 import LangTab from "./modals/settings/tabs/LangTab.astro";
+
+const navItems = [
+  { tabId: "about", iconName: "about", label: "About" },
+  { tabId: "license", iconName: "license", label: "Licence" },
+  { tabId: "terms", iconName: "terms", label: "Terms" },
+  { tabId: "roadmap", iconName: "roadmap", label: "Roadmap" },
+  { tabId: "fonts", iconName: "tipo", label: "Typography" },
+  { tabId: "theme", iconName: "theme", label: "Theme" },
+  { tabId: "lang", iconName: "lang", label: "Language" },
+];
 ---
 
 <section id="modals">
@@ -31,48 +42,7 @@ import LangTab from "./modals/settings/tabs/LangTab.astro";
         </div>
 
         <nav class="settings-nav bg-(--tn-neutral-tertiary-color)/10 rounded-lg mt-[16px]! px-[5px]!">
-          <button class="nav-item bg-transparent border-0 w-auto text-start cursor-pointer lg:w-full hover:bg-(--tn-theme-primary-dark)/25 inline-flex items-center rounded-sm text-(--color-text) lg:flex [&.active]:bg-(--tn-theme-secondary)! [&.active]:text-(--color-text)! text-sm! py-[5px]! px-[10px]! my-[4px]! mx-0! transition-colors duration-200 active" data-tab="about">
-            <span class="icon mr-[12px]!">
-              <Icon name="about" className="size-1 md:size-6" />
-            </span>
-            About
-          </button>
-          <button class="nav-item bg-transparent border-0 w-auto text-start cursor-pointer lg:w-full hover:bg-(--tn-theme-primary-dark)/25 inline-flex items-center rounded-sm text-(--color-text) lg:flex [&.active]:bg-(--tn-theme-secondary)! [&.active]:text-(--color-text)! text-sm! py-[5px]! px-[10px]! my-[4px]! mx-0! transition-colors duration-200" data-tab="license">
-            <span class="icon mr-[12px]!">
-              <Icon name="license" className="size-1 md:size-6" />
-            </span>
-            Licence
-          </button>
-          <button class="nav-item bg-transparent border-0 w-auto text-start cursor-pointer lg:w-full hover:bg-(--tn-theme-primary-dark)/25 inline-flex items-center rounded-sm text-(--color-text) lg:flex [&.active]:bg-(--tn-theme-secondary)! [&.active]:text-(--color-text)! text-sm! py-[5px]! px-[10px]! my-[4px]! mx-0! transition-colors duration-200" data-tab="terms">
-            <span class="icon mr-[12px]!">
-              <Icon name="terms" className="size-1 md:size-6" />
-            </span>
-            Terms
-          </button>
-          <button class="nav-item bg-transparent border-0 w-auto text-start cursor-pointer lg:w-full hover:bg-(--tn-theme-primary-dark)/25 inline-flex items-center rounded-sm text-(--color-text) lg:flex [&.active]:bg-(--tn-theme-secondary)! [&.active]:text-(--color-text)! text-sm! py-[5px]! px-[10px]! my-[4px]! mx-0! transition-colors duration-200" data-tab="roadmap">
-            <span class="icon mr-[12px]!">
-              <Icon name="roadmap" className="size-1 md:size-6" />
-            </span>
-            Roadmap
-          </button>
-          <button class="nav-item bg-transparent border-0 w-auto text-start cursor-pointer lg:w-full hover:bg-(--tn-theme-primary-dark)/25 inline-flex items-center rounded-sm text-(--color-text) lg:flex [&.active]:bg-(--tn-theme-secondary)! [&.active]:text-(--color-text)! text-sm! py-[5px]! px-[10px]! my-[4px]! mx-0! transition-colors duration-200" data-tab="fonts">
-            <span class="icon mr-[12px]!">
-              <Icon name="tipo" className="size-1 md:size-6" />
-            </span>
-            Typography
-          </button>
-          <button class="nav-item bg-transparent border-0 w-auto text-start cursor-pointer lg:w-full hover:bg-(--tn-theme-primary-dark)/25 inline-flex items-center rounded-sm text-(--color-text) lg:flex [&.active]:bg-(--tn-theme-secondary)! [&.active]:text-(--color-text)! text-sm! py-[5px]! px-[10px]! my-[4px]! mx-0! transition-colors duration-200" data-tab="theme">
-            <span class="icon mr-[12px]!">
-              <Icon name="theme" className="size-1 md:size-6" />
-            </span>
-            Theme
-          </button>
-          <button class="nav-item bg-transparent border-0 w-auto text-start cursor-pointer lg:w-full hover:bg-(--tn-theme-primary-dark)/25 inline-flex items-center rounded-sm text-(--color-text) lg:flex [&.active]:bg-(--tn-theme-secondary)! [&.active]:text-(--color-text)! text-sm! py-[5px]! px-[10px]! my-[4px]! mx-0! transition-colors duration-200" data-tab="lang">
-            <span class="icon mr-[12px]!">
-              <Icon name="lang" className="size-1 md:size-6" />
-            </span>
-            Language
-          </button>
+          {navItems.map((item) => <SettingsNavItem tabId={item.tabId} iconName={item.iconName} label={item.label} />)}
         </nav>
 
         <form enctype="application/x-www-form-urlencoded" method="dialog" class="sidebar-footer">

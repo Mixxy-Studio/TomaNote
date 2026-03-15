@@ -1,0 +1,20 @@
+---
+// Astro Props
+interface Props {
+  tabId: string;
+  iconName: string;
+  label: string;
+}
+
+const { tabId, iconName, label } = Astro.props;
+
+// Icons
+import Icon from "../icons/Icon.astro";
+---
+
+<button class="nav-item bg-transparent border-0 w-auto text-start cursor-pointer lg:w-full hover:bg-(--tn-theme-primary-dark)/25 inline-flex items-center rounded-sm text-(--color-text) lg:flex [&.active]:bg-(--tn-theme-secondary)! [&.active]:text-(--color-text)! text-sm! py-[5px]! px-[10px]! my-[4px]! mx-0! transition-colors duration-200" data-tab={tabId}>
+  <span class="icon mr-[12px]!">
+    <Icon name={iconName} className="size-1 md:size-6" />
+  </span>
+  {label}
+</button>
