@@ -2,72 +2,46 @@
 // Styles
 import "../styles/components/ContextMenu.scss";
 
-// Icons
-import Icon from "../components/icons/Icon.astro";
+// Components
+import ContextMenuItem from "./menu/ContextMenuItem.astro";
+import ContextMenuSeparator from "./menu/ContextMenuSeparator.astro";
+
+const editItems = [
+  { action: "copy", iconName: "copy", label: "Copiar", shortcut: "Ctrl + C", requiresSelection: true },
+  { action: "cut", iconName: "cut", label: "Cortar", shortcut: "Ctrl + X", requiresSelection: true },
+  { action: "paste", iconName: "paste", label: "Pegar", shortcut: "Ctrl + V" },
+];
+
+const formatItems = [
+  { action: "bold", iconName: "bold", label: "Negrita", shortcut: "Ctrl + B", requiresSelection: true },
+  { action: "italic", iconName: "italic", label: "Italica", shortcut: "Ctrl + I", requiresSelection: true },
+  { action: "underline", iconName: "underline", label: "Subrayado", shortcut: "Ctrl + U", requiresSelection: true },
+];
+
+const historyItems = [
+  { action: "undo", iconName: "undo", label: "Deshacer", shortcut: "Ctrl + Z" },
+  { action: "redo", iconName: "redo", label: "Rehacer", shortcut: "Ctrl + Y" },
+];
+
+const tabItems = [{ action: "pin-tab", iconName: "pin", label: "Fijar" }];
 ---
 
 <div id="context-menu" class="context-menu hidden fixed bg-(--tn-theme-primary) border border-(--tn-theme-contrast) rounded-lg shadow-2xl z-50 min-w-[200px] w-auto">
-  <div class="context-menu__item group context-menu__item:hover py-[8px]! px-[12px]! cursor-pointer flex! justify-start items-center hover:bg-(--tn-neutral-tertiary-color)/20 hover:text-(--tn-theme-contrast) text-md" data-action="copy" data-requires-selection="true">
-    <Icon name="copy" className="size-1 text-(--tn-theme-contrast) mr-1!" />
-    <div class="flex justify-between items-center w-full">
-      <span class="font-semibold text-(--tn-neutral-tertiary-color) text-shadow-lg! text-shadow-white">Copiar</span>
-      <span class="font-black shortcut group-hover:text-(--tn-theme-primary) group-hover:opacity-80 transition-opacity ml-[auto]! text-(--tn-theme-contrast) opacity-[0.6] py-[2px] px-[4px] text-xs!">Ctrl + C</span>
-    </div>
-  </div>
-  <div class="context-menu__item group context-menu__item:hover py-[8px]! px-[12px]! cursor-pointer flex! justify-between items-center hover:bg-(--tn-neutral-tertiary-color)/20 hover:text-(--tn-theme-contrast) text-md" data-action="cut" data-requires-selection="true">
-    <Icon name="cut" className="size-1 text-(--tn-theme-contrast) mr-1!"/>
-    <div class="flex justify-between items-center w-full">
-      <span class="font-semibold text-(--tn-neutral-tertiary-color) text-shadow-lg! text-shadow-white">Cortar</span>
-      <span class="font-black shortcut group-hover:text-(--tn-theme-primary) group-hover:opacity-80 transition-opacity ml-[auto]! text-(--tn-theme-contrast) opacity-[0.6] py-[2px] px-[4px] text-xs!">Ctrl + X</span>
-    </div>
-  </div>
-  <div class="context-menu__item group context-menu__item:hover py-[8px]! px-[12px]! cursor-pointer flex! justify-between items-center hover:bg-(--tn-neutral-tertiary-color)/20 hover:text-(--tn-theme-contrast) text-md" data-action="paste">
-    <Icon name="paste" className="size-1 text-(--tn-theme-contrast) mr-1!"/>
-    <div class="flex justify-between items-center w-full">
-      <span class="font-semibold text-(--tn-neutral-tertiary-color) text-shadow-lg! text-shadow-white">Pegar</span>
-      <span class="font-black shortcut group-hover:text-(--tn-theme-primary) group-hover:opacity-80 transition-opacity ml-[auto]! text-(--tn-theme-contrast) opacity-[0.6] py-[2px] px-[4px] text-xs!">Ctrl + V</span>
-    </div>
-  </div>
-  <div class="context-menu__separator h-[1px] bg-(--tn-theme-accent) my-5 mx-0 w-[180px] m-auto!"></div>
-  <div class="context-menu__item group context-menu__item:hover py-[8px]! px-[12px]! cursor-pointer flex! justify-between items-center hover:bg-(--tn-neutral-tertiary-color)/20 hover:text-(--tn-theme-contrast) text-md" data-action="bold" data-requires-selection="true">
-    <Icon name="bold" className="size-1 text-(--tn-theme-contrast) mr-1!"/>
-    <div class="flex justify-between items-center w-full">
-      <span class="font-semibold text-(--tn-neutral-tertiary-color) text-shadow-lg! text-shadow-white">Negrita</span>
-      <span class="font-black shortcut group-hover:text-(--tn-theme-primary) group-hover:opacity-80 transition-opacity ml-[auto]! text-(--tn-theme-contrast) opacity-[0.6] py-[2px] px-[4px] text-xs!">Ctrl + B</span>
-    </div>
-  </div>
-  <div class="context-menu__item group context-menu__item:hover py-[8px]! px-[12px]! cursor-pointer flex! justify-between items-center hover:bg-(--tn-neutral-tertiary-color)/20 hover:text-(--tn-theme-contrast) text-md" data-action="italic" data-requires-selection="true">
-    <Icon name="italic" className="size-1 text-(--tn-theme-contrast) mr-1!"/>
-    <div class="flex justify-between items-center w-full">
-      <span class="font-semibold text-(--tn-neutral-tertiary-color) text-shadow-lg! text-shadow-white">Italica</span>
-      <span class="font-black shortcut group-hover:text-(--tn-theme-primary) group-hover:opacity-80 transition-opacity ml-[auto]! text-(--tn-theme-contrast) opacity-[0.6] py-[2px] px-[4px] text-xs!">Ctrl + I</span>
-    </div>
-  </div>
-  <div class="context-menu__item group context-menu__item:hover py-[8px]! px-[12px]! cursor-pointer flex! justify-between items-center hover:bg-(--tn-neutral-tertiary-color)/20 hover:text-(--tn-theme-contrast) text-md" data-action="underline" data-requires-selection="true">
-    <Icon name="underline" className="size-1 text-(--tn-theme-contrast) mr-1!"/>
-    <div class="flex justify-between items-center w-full">
-      <span class="font-semibold text-(--tn-neutral-tertiary-color) text-shadow-lg! text-shadow-white">Subrayado</span>
-      <span class="font-black shortcut group-hover:text-(--tn-theme-primary) group-hover:opacity-80 transition-opacity ml-[auto]! text-(--tn-theme-contrast) opacity-[0.6] py-[2px] px-[4px] text-xs!">Ctrl + U</span>
-    </div>
-  </div>
-  <div class="context-menu__separator h-[1px] bg-(--tn-theme-accent) my-5 mx-0 w-[180px] m-auto!"></div>
-  <div class="context-menu__item group context-menu__item:hover py-[8px]! px-[12px]! cursor-pointer flex! justify-between items-center hover:bg-(--tn-neutral-tertiary-color)/20 hover:text-(--tn-theme-contrast) text-md" data-action="undo">
-    <Icon name="undo" className="size-1 text-(--tn-theme-contrast) mr-1!"/>
-    <div class="flex justify-between items-center w-full">
-      <span class="font-semibold text-(--tn-neutral-tertiary-color) text-shadow-lg! text-shadow-white">Deshacer</span>
-      <span class="font-black shortcut group-hover:text-(--tn-theme-primary) group-hover:opacity-80 transition-opacity ml-[auto]! text-(--tn-theme-contrast) opacity-[0.6] py-[2px] px-[4px] text-xs!">Ctrl + Z</span>
-    </div>
-  </div>
-  <div class="context-menu__item group context-menu__item:hover py-[8px]! px-[12px]! cursor-pointer flex! justify-between items-center hover:bg-(--tn-neutral-tertiary-color)/20 hover:text-(--tn-theme-contrast) text-md" data-action="redo">
-    <Icon name="redo" className="size-1 text-(--tn-theme-contrast) mr-1!"/>
-    <div class="flex justify-between items-center w-full">
-      <span class="font-semibold text-(--tn-neutral-tertiary-color) text-shadow-lg! text-shadow-white">Rehacer</span>
-      <span class="font-black shortcut group-hover:text-(--tn-theme-primary) group-hover:opacity-80 transition-opacity ml-[auto]! text-(--tn-theme-contrast) opacity-[0.6] py-[2px] px-[4px] text-xs!">Ctrl + Y</span>
-    </div>
-  </div>
-  <div class="context-menu__separator"></div>
-  <div class="context-menu__item group context-menu__item:hover py-[8px]! px-[12px]! cursor-pointer flex! justify-start items-center hover:bg-(--tn-neutral-tertiary-color)/20 hover:text-(--tn-theme-contrast) text-md" data-action="pin-tab" data-context="tab">
-    <Icon name="pin" className="size-1 text-(--tn-theme-contrast) mr-1!"/>
-    <span class="font-semibold text-(--tn-neutral-tertiary-color) text-shadow-lg! text-shadow-white" id="pin-tab-text">Fijar</span>
-  </div>
+  <!-- Edición -->
+  {editItems.map((item) => <ContextMenuItem action={item.action} iconName={item.iconName} label={item.label} shortcut={item.shortcut} requiresSelection={item.requiresSelection} />)}
+
+  <ContextMenuSeparator variant="thin" />
+
+  <!-- Formato -->
+  {formatItems.map((item) => <ContextMenuItem action={item.action} iconName={item.iconName} label={item.label} shortcut={item.shortcut} requiresSelection={item.requiresSelection} />)}
+
+  <ContextMenuSeparator variant="thin" />
+
+  <!-- Historial -->
+  {historyItems.map((item) => <ContextMenuItem action={item.action} iconName={item.iconName} label={item.label} shortcut={item.shortcut} />)}
+
+  <ContextMenuSeparator variant="thin" />
+
+  <!-- Pestañas -->
+  {tabItems.map((item) => <ContextMenuItem action={item.action} iconName={item.iconName} label={item.label} />)}
 </div>
