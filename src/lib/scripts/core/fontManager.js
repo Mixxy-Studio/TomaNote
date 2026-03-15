@@ -180,20 +180,15 @@ export class FontManager {
     };
     
     const fontSize = fontSizeMap[sizeValue] || fontSizeMap.base;
-    console.log("[FontManager] applyFontSizeToEditor - sizeValue:", sizeValue, "fontSize:", fontSize);
 
     // Apply via CSS variable (more robust)
     document.documentElement.style.setProperty("--tn-editor-font-size", fontSize);
-    console.log("[FontManager] Set --tn-editor-font-size to:", fontSize);
 
     // Also apply via classes as fallback
     const sizeClass = this.sizeClasses[sizeValue] || this.sizeClasses.base;
     const editorElements = document.querySelectorAll(".tab-list__item--content");
 
-    console.log("[FontManager] applyFontSizeToEditor - elements found:", editorElements.length);
-
     if (editorElements.length === 0) {
-      console.warn("[FontManager] No editor elements found, using CSS variable only");
       return;
     }
 
@@ -202,7 +197,6 @@ export class FontManager {
         element.classList.remove(cls);
       });
       element.classList.add(sizeClass);
-      console.log("[FontManager] Applied class:", sizeClass, "to element");
     });
   }
 
@@ -247,9 +241,7 @@ export class FontManager {
   }
 
   changeFontSize(sizeValue) {
-    console.log("[FontManager] changeFontSize called with:", sizeValue);
     if (!this.sizeClasses[sizeValue]) {
-      console.warn("[FontManager] Invalid size value:", sizeValue);
       return false;
     }
     localStorage.setItem("fontSize", sizeValue);
