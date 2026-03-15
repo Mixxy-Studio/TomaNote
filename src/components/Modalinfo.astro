@@ -7,6 +7,9 @@ import Icon from "../components/icons/Icon.astro";
 
 // Components
 import RoadmapViewer from "./RoadmapViewer.astro";
+
+// Settings Tabs
+import AboutTab from "./modals/settings/tabs/AboutTab.astro";
 ---
 
 <section id="modals">
@@ -78,45 +81,7 @@ import RoadmapViewer from "./RoadmapViewer.astro";
       <!-- Contenido principal -->
       <div class="settings-content flex-1 p-[24px]! overflow-y-scroll bg-(--tn-theme-secondary)">
         <!-- Pestaña Acerca de -->
-        <div class="settings-tab hidden [&.active]:block active" id="about-tab">
-          <div class="settings-header mb-[24px]!">
-            <h3><u>Acerca de TomaNote</u></h3>
-          </div>
-          <div class="settings-body">
-            <!-- Contenido de la licencia existente -->
-            <h4>TomaNote es un bloc de notas simple, rápido y gratuito, diseñado para escribir sin distracciones.</h4><br />
-            <h4>Funciona directamente en tu navegador y no requiere cuentas ni registro. Todas tus notas se guardan localmente en tu dispositivo, lo que significa que tú mantienes el control total de tu información.</h4><br />
-            <h6>TomaNote prioriza:</h6><br />
-            <ul class="list-disc list-inside pl-5!">
-              <li>Simplicidad</li>
-              <li>Velocidad</li>
-              <li>Privacidad</li>
-              <li>Uso sin fricción</li>
-            </ul>
-            <br />
-            <h4>No es una plataforma de productividad compleja ni un gestor de proyectos. Es un espacio limpio para pensar, escribir y organizar ideas.</h4><br />
-            <div class="settings-header">
-              <h3><u>Importante</u></h3>
-            </div>
-            <h4>Las notas se almacenan en el almacenamiento local del navegador. Si borras los datos del navegador o recargas sin caché, la información se perderá. Se recomienda exportar o respaldar tus notas periódicamente.</h4><br />
-            <div class="settings-header">
-              <h3><u>Funcionalidades principales</u></h3>
-            </div>
-            <ul class="list-disc list-inside pl-5!">
-              <li>Edición de texto libre y sin distracciones</li>
-              <li>Pestañas persistentes</li>
-              <li>Guardado automático local</li>
-              <li>Modo oscuro y personalización visual</li>
-              <li>Uso offline</li>
-            </ul>
-            <br />
-            <div class="settings-header">
-              <h3><u>Filosofía</u></h3>
-            </div>
-            <h4>TomaNote existe porque escribir debería ser simple, gratuito y accesible, sin depender de servicios externos ni suscripciones.</h4><br />
-            <!-- ... resto del contenido de la licencia ... -->
-          </div>
-        </div>
+        <AboutTab />
 
         <!-- Pestaña Licencia -->
         <div class="settings-tab hidden [&.active]:block" id="license-tab">
