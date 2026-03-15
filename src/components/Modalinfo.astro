@@ -9,13 +9,13 @@ import Icon from "../components/icons/Icon.astro";
 import SettingsNavItem from "./modals/SettingsNavItem.astro";
 
 // Settings Tabs
-import RoadmapViewer from "./RoadmapViewer.astro";
 import AboutTab from "./modals/settings/tabs/AboutTab.astro";
 import LicenseTab from "./modals/settings/tabs/LicenseTab.astro";
 import TermsTab from "./modals/settings/tabs/TermsTab.astro";
 import FontTab from "./modals/settings/tabs/FontTab.astro";
 import ThemeTab from "./modals/settings/tabs/ThemeTab.astro";
 import LangTab from "./modals/settings/tabs/LangTab.astro";
+import RoadmapTab from "./modals/settings/tabs/RoadmapTab.astro";
 
 const navItems = [
   { tabId: "about", iconName: "about", label: "About" },
@@ -65,9 +65,7 @@ const navItems = [
         <TermsTab />
 
         <!-- Pestaña Roadmap -->
-        <div class="settings-tab hidden [&.active]:block" id="roadmap-tab">
-          <RoadmapViewer defaultLang="es" />
-        </div>
+        <RoadmapTab />
 
         <!-- Pestaña Tipografia -->
         <FontTab />
