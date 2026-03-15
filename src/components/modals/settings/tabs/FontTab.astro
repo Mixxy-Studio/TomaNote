@@ -9,25 +9,25 @@ import Icon from "../../../icons/Icon.astro";
   <div class="settings-header">
     <h3 class="font-black underline">Configuracion Tipografica</h3>
   </div>
-
+  <hr />
   <div class="settings-body">
     <div class="settings-section">
       <h4 class="font-medium! text-xl!">Fuente</h4>
 
       <div class="settings-section__group">
-        <select id="font-select" class="font-select w-full py-[10px]! px-[12px]! rounded-sm border-2 border-(--tn-theme-primary) bg-(--tn-theme-secondary) text-(--color-text)! text-normal cursor-pointer transition-all hover:border-(--tn-theme-accent) focus:outline-0 focus:border-(--tn-theme-contrast)">
-          <option value="Inter">Inter (Por defecto)</option>
-          <option value="Poppins">Poppins</option>
-          <option value="Raleway">Raleway</option>
-          <option value="Open Sans">Open Sans</option>
-          <option value="Roboto">Roboto</option>
-          <option value="Montserrat">Montserrat</option>
-          <option value="custom">Personalizada</option>
+        <select id="font-select" class="font-select w-full py-[10px]! px-[12px]! rounded-sm border-2 border-(--tn-theme-accent) bg-(--tn-theme-secondary) text-(--color-accent)/60! text-normal cursor-pointer transition-all hover:border-(--tn-theme-accent) focus:outline-0 focus:border-(--tn-theme-contrast)">
+          <option class="text-(--color-text)/75" value="Inter">Inter (Por defecto)</option>
+          <option class="text-(--color-text)/75" value="Poppins">Poppins</option>
+          <option class="text-(--color-text)/75" value="Raleway">Raleway</option>
+          <option class="text-(--color-text)/75" value="Open Sans">Open Sans</option>
+          <option class="text-(--color-text)/75" value="Roboto">Roboto</option>
+          <option class="text-(--color-text)/75" value="Montserrat">Montserrat</option>
+          <option class="text-(--color-text)/75" value="custom">Personalizada</option>
         </select>
       </div>
 
       <div id="custom-font-url-wrapper" class="settings-section__group mt-4! hidden" style="display: none;">
-        <input id="font-url-input" class="placeholder:text-(--color-text)! flex-1 w-full py-[10px]! px-[12px]! rounded-sm border-2 border-(--tn-theme-primary) bg-(--tn-theme-secondary) text-(--color-text) text-normal cursor-pointer transition-all hover:border-(--tn-theme-accent) focus:outline-0 focus:border-(--tn-theme-contrast)" type="text" placeholder="Introduce una URL válida de Google Fonts o deja vacío para fuente por defecto" />
+        <input id="font-url-input" class="placeholder:text-(--color-accent)/60! flex-1 w-full py-[10px]! px-[12px]! rounded-sm border-2 border-(--tn-theme-accent) bg-(--tn-theme-secondary) text-(--color-text) text-normal cursor-pointer transition-all hover:border-(--tn-theme-accent) focus:outline-0 focus:border-(--tn-theme-contrast)" type="text" placeholder="https://fonts.googleapis.com/css2?family=..." />
         <div id="font-url-error" class="bg-red-600 mt-4! hidden text-white rounded-md px-3!"></div>
       </div>
 

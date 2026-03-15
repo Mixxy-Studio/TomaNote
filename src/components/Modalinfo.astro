@@ -13,7 +13,7 @@ import AboutTab from "./modals/settings/tabs/AboutTab.astro";
 import LicenseTab from "./modals/settings/tabs/LicenseTab.astro";
 import TermsTab from "./modals/settings/tabs/TermsTab.astro";
 import FontTab from "./modals/settings/tabs/FontTab.astro";
-import ThemeTab from "./modals/settings/tabs/ThemeTab.astro";
+import AppearanceTab from "./modals/settings/tabs/AppearanceTab.astro";
 import LangTab from "./modals/settings/tabs/LangTab.astro";
 import RoadmapTab from "./modals/settings/tabs/RoadmapTab.astro";
 
@@ -23,13 +23,13 @@ const navItems = [
   { tabId: "terms", iconName: "terms", label: "Terms" },
   { tabId: "roadmap", iconName: "roadmap", label: "Roadmap" },
   { tabId: "fonts", iconName: "tipo", label: "Typography" },
-  { tabId: "theme", iconName: "theme", label: "Theme" },
+  { tabId: "appearance", iconName: "appearance", label: "Appearance" },
   { tabId: "lang", iconName: "lang", label: "Language" },
 ];
 ---
 
 <section id="modals">
-  <dialog id="info-notepad" class="settings-modal open:block open:opacity-100 open:scale-100 open:absolute open:top-1/2 open:left-1/2 open:-translate-1/2 lg:h-[80vh] md:w-[70%] md:max-w-[70%] md:h-auto md:min-h-[unset] w-[90%] h-auto max-w-[90vw] min-h-[600px] max-h-[70vh] text-(--color-text)! bg-(--tn-theme-primary-dark) overflow-hidden shadow-2xl rounded-2xl scale-100 opacity-0 hidden border-0 p-0!">
+  <dialog open id="info-notepad" class="settings-modal open:block open:opacity-100 open:scale-100 open:absolute open:top-1/2 open:left-1/2 open:-translate-1/2 lg:h-[80vh] md:w-[70%] md:max-w-[70%] md:h-auto md:min-h-[unset] w-[90%] h-auto max-w-[90vw] min-h-[600px] max-h-[70vh] text-(--color-text)! bg-(--tn-theme-primary-dark) overflow-hidden shadow-2xl rounded-2xl scale-100 opacity-0 hidden border-0 p-0!">
     <div class="settings-container md:flex-row flex h-full flex-col">
       <!-- Sidebar izquierdo -->
       <div class="settings-sidebar lg:justify-between md:w-auto w-full bg-(--tn-theme-accent) flex flex-col min-h-auto pt-[20px]! pb-[12px]! px-[16px]!">
@@ -71,7 +71,7 @@ const navItems = [
         <FontTab />
 
         <!-- Pestaña Theme -->
-        <ThemeTab />
+        <AppearanceTab />
 
         <!-- Pestaña Language -->
         <LangTab />

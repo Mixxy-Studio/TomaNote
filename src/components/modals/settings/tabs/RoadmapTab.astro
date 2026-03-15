@@ -46,8 +46,9 @@ const defaultLang = "es";
   <div class="settings-header mb-[24px]! text-center">
     <h3><u>Roadmap de Desarrollo</u></h3>
   </div>
+  <hr />
   <div class="settings-body">
-    <div class="roadmap-list flex-column ga-2 overflow-y-auto w-[60%] m-auto! rounded-2xl bg-white/2 p-5! mt-5!" id="roadmap-list">
+    <div class="roadmap-list flex-column gap-2 overflow-y-auto w-[60%] m-auto! rounded-2xl bg-white/2 p-5!" id="roadmap-list">
       {
         versions.map((v) => (
           <div class="roadmap-item border-b-[1px] border-solid border-[oklch(var(--bc)/0.1)] last:border-b-0" data-version={v.slug}>
