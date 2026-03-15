@@ -18,7 +18,7 @@ import LangTab from "./modals/settings/tabs/LangTab.astro";
 import RoadmapTab from "./modals/settings/tabs/RoadmapTab.astro";
 
 const navItems = [
-  { tabId: "about", iconName: "about", label: "About" },
+  { tabId: "about", iconName: "about", label: "About", className: "active" },
   { tabId: "license", iconName: "license", label: "Licence" },
   { tabId: "terms", iconName: "terms", label: "Terms" },
   { tabId: "roadmap", iconName: "roadmap", label: "Roadmap" },
@@ -42,7 +42,7 @@ const navItems = [
         </div>
 
         <nav class="settings-nav bg-(--tn-neutral-tertiary-color)/10 rounded-lg mt-[16px]! px-[5px]!">
-          {navItems.map((item) => <SettingsNavItem tabId={item.tabId} iconName={item.iconName} label={item.label} />)}
+          {navItems.map((item) => <SettingsNavItem className={item.className || ""} tabId={item.tabId} iconName={item.iconName} label={item.label} />)}
         </nav>
 
         <form enctype="application/x-www-form-urlencoded" method="dialog" class="sidebar-footer">
