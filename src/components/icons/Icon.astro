@@ -4,12 +4,14 @@ import type AppearanceTab from "../modals/settings/tabs/AppearanceTab.astro";
 // src/components/icons/Icon.astro
 export interface Props {
   name: string;
-  className?: string; // <-- Añadir esta línea
+  className?: string;
   size?: number | string;
   strokeWidth?: number | string;
+  fill?: string;
+  fillColor?: string;
 }
 
-const { name, className, size = 6, strokeWidth = 1.5 } = Astro.props;
+const { name, className, size = 6, strokeWidth = 1.5, fill = "none" } = Astro.props;
 
 // Mapa de todos los paths de iconos
 const ICON_PATHS: Record<string, string> = {
@@ -97,6 +99,9 @@ const ICON_PATHS: Record<string, string> = {
 
   // Plus
   plus: "M12 3.75a.75.75 0 0 1 .75.75v6.75h6.75a.75.75 0 0 1 0 1.5h-6.75v6.75a.75.75 0 0 1-1.5 0v-6.75H4.5a.75.75 0 0 1 0-1.5h6.75V4.5a.75.75 0 0 1 .75-.75Z",
+
+  // Letter A
+  letterA: "M22.5 22.4c-0.5-0.5-1.2-1.7-2-3.6L12.5 0.5h-0.3L4.1 18.9c-0.8 1.8-1.5 3-2 3.5c-0.5 0.6-1.2 0.9-2 1v0.6h7.6v-0.6c-0.9-0.1-1.7-0.2-2-0.4c-0.5-0.3-0.8-0.8-0.8-1.4c0-0.5 0.2-1.1 0.5-1.8l1-2.2h8l1.2 2.8c0.3 0.7 0.5 1.2 0.5 1.3c0.1 0.2 0.1 0.4 0.1 0.6c0 0.3-0.1 0.6-0.4 0.8c-0.4 0.2-1 0.4-1.9 0.4h-0.5v0.6h11v-0.6C23.3 23.1 22.8 22.9 22.5 22.4z M6.7 16.1l3.5-7.9l3.4 7.9H6.7z",
 };
 
 const FONT_PATH =
@@ -110,13 +115,13 @@ if (!pathData) {
 
 {
   name === "font" ? (
-    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 256 256" stroke-width={strokeWidth} stroke="currentColor" class:list={[`size-${size} font-light`, className]}>
+    <svg xmlns="http://www.w3.org/2000/svg" fill={fill} viewBox="0 0 256 256" stroke-width={strokeWidth} stroke="currentColor" class:list={[`size-${size} font-light`, className]}>
       <g>
         <path d={FONT_PATH} />
       </g>
     </svg>
   ) : (
-    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width={strokeWidth} stroke="currentColor" class:list={[`size-${size} font-light`, className]}>
+    <svg xmlns="http://www.w3.org/2000/svg" fill={fill} viewBox="0 0 24 24" stroke-width={strokeWidth} stroke="currentColor" class:list={[`size-${size} font-light`, className]}>
       <path stroke-linecap="round" stroke-linejoin="round" d={ICON_PATHS[name]} />
     </svg>
   )
