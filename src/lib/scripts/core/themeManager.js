@@ -37,14 +37,17 @@ export class ThemeManager {
     // Cargar tema guardado
     this.loadSavedTheme();
 
-    // Crear UI del selector
-    this.createThemeSelectorUI();
+    // Crear UI del selector (deprecated, ahora se usa AppearanceTab)
+    // this.createThemeSelectorUI();
 
     // Aplicar tema inicial
     this.applyTheme(this.currentTheme);
 
     // Configurar listeners
     this.setupEventListeners();
+
+    // Configurar AppearanceTab si existe
+    this.setupAppearanceTab();
 
     return this;
   }
@@ -133,43 +136,7 @@ export class ThemeManager {
   }
 
   setupEventListeners() {
-    // Toggle del dropdown
-    const toggleBtn = document.getElementById("theme-toggle-btn");
-    const dropdown = document.getElementById("theme-dropdown");
-
-    if (!toggleBtn || !dropdown) {
-      return;
-    }
-
-    toggleBtn.addEventListener("click", (e) => {
-      e.stopPropagation();
-      this.toggleDropdown();
-    });
-
-    // Selección de tema
-    document.querySelectorAll(".theme-option").forEach((btn) => {
-      btn.addEventListener("click", (e) => {
-        const themeId = e.currentTarget.dataset.theme;
-        this.switchTheme(themeId);
-        this.closeDropdown();
-      });
-    });
-
-    // Cerrar dropdown al hacer clic fuera
-    document.addEventListener("click", (e) => {
-      if (!e.target.closest(".theme-selector-container")) {
-        this.closeDropdown();
-      }
-    });
-
-    // Cerrar con Escape
-    document.addEventListener("keydown", (e) => {
-      if (e.key === "Escape" && this.isDropdownOpen) {
-        this.closeDropdown();
-      }
-    });
-
-    // Sincronizar con el toggle antiguo si existe
+    // Sincronizar con el toggle antiguo si existe (deprecated)
     const oldToggle = document.getElementById("dark-mode-toggle");
     if (oldToggle) {
       // Establecer estado inicial
@@ -179,6 +146,60 @@ export class ThemeManager {
         this.toggleLightMode(e.target.checked);
       });
     }
+  }
+
+  setupAppearanceTab() {
+    const themeRadios = document.querySelectorAll('input[name="themeColor"]');
+    
+    if (themeRadios.length === 0) {
+      return;
+    }
+
+    // Mapear IDs de radio buttons a IDs de temas
+    const radioToThemeMap = {
+      "theme-color-dark": "dark",
+      "theme-color-light": "light",
+      "theme-color-rose": "cozy-rose",
+      "theme-color-aqua": "chill-aqua",
+      "theme-color-forest": "wild-forest",
+      "theme-color-orbit": "neon-orbit",
+    };
+
+    // Establecer el radio button activo según el tema actual
+    this.updateAppearanceTabUI();
+
+    // Agregar event listeners a los radio buttons
+    themeRadios.forEach((radio) => {
+      radio.addEventListener("change", (e) => {
+        const themeId = radioToThemeMap[e.target.id];
+        if (themeId) {
+          this.switchTheme(themeId);
+        }
+      });
+    });
+
+    // Escuchar cambios de tema para actualizar la UI
+    window.addEventListener("themeChanged", (e) => {
+      this.updateAppearanceTabUI();
+    });
+  }
+
+  updateAppearanceTabUI() {
+    const themeRadios = document.querySelectorAll('input[name="themeColor"]');
+    const themeToRadioMap = {
+      dark: "theme-color-dark",
+      light: "theme-color-light",
+      "cozy-rose": "theme-color-rose",
+      "chill-aqua": "theme-color-aqua",
+      "wild-forest": "theme-color-forest",
+      "neon-orbit": "theme-color-orbit",
+    };
+
+    const activeRadioId = themeToRadioMap[this.currentTheme];
+
+    themeRadios.forEach((radio) => {
+      radio.checked = radio.id === activeRadioId;
+    });
   }
 
   toggleDropdown() {
