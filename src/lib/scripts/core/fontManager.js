@@ -25,7 +25,7 @@ export class FontManager {
     const customFontWrapper = document.getElementById("custom-font-url-wrapper");
     const customFontInstructions = document.getElementById("custom-font-instructions");
     const fontError = document.getElementById("font-url-error");
-    const saveFontBtn = document.getElementById("save-font-styles");
+    const fontSizeRadios = document.querySelectorAll('input[name="options-font-size"]');
 
     if (!fontSelect) return;
 
@@ -56,7 +56,6 @@ export class FontManager {
       });
     }
 
-    const fontSizeRadios = document.querySelectorAll('input[name="options-font-size"]');
     const savedFontSize = localStorage.getItem("fontSize");
     if (savedFontSize && fontSizeRadios) {
       fontSizeRadios.forEach((radio) => {
@@ -66,13 +65,9 @@ export class FontManager {
       });
     }
 
-    if (saveFontBtn) {
-      saveFontBtn.addEventListener("click", () => {
+    if (fontSelect) {
+      fontSelect.addEventListener("change", () => {
         const selectedFont = fontSelect.value;
-        const selectedSize = fontSizeRadios ? Array.from(fontSizeRadios).find((r) => r.checked) : null;
-        const sizeValue = selectedSize ? selectedSize.id.replace("option-", "").replace("-text", "") : "base";
-
-        this.changeFontSize(sizeValue);
 
         if (this.fontUrls[selectedFont]) {
           if (fontError) fontError.style.display = "none";
@@ -85,7 +80,7 @@ export class FontManager {
 
           if (url === "") {
             if (fontError) {
-              fontError.textContent = "Por favor ingresa una URL válida de Google Fonts.";
+              fontError.textContent = "Por favor ingresa una URL valida de Google Fonts.";
               fontError.style.display = "inline-block";
             }
             return;
@@ -102,10 +97,41 @@ export class FontManager {
           }
 
           if (fontError) {
-            fontError.textContent = "Por favor ingresa una URL válida de Google Fonts (debe comenzar con https://fonts.googleapis.com/)";
+            fontError.textContent = "Por favor ingresa una URL valida de Google Fonts (debe comenzar con https://fonts.googleapis.com/)";
             fontError.style.display = "inline-block";
           }
         }
+      });
+    }
+
+    if (fontInput) {
+      fontInput.addEventListener("input", () => {
+        if (fontSelect && fontSelect.value === "custom") {
+          const url = fontInput.value.trim();
+
+          if (url === "") {
+            return;
+          }
+
+          if (this.isValidGoogleFontsUrl(url)) {
+            if (fontError) fontError.style.display = "none";
+            const match = url.match(/[?&]family=([^:&]*)/);
+            if (match && match[1]) {
+              const family = decodeURIComponent(match[1].split(":")[0].replace(/\+/g, " "));
+              this.changeNoteFont(url, family);
+            }
+          }
+        }
+      });
+    }
+
+    if (fontSizeRadios) {
+      fontSizeRadios.forEach((radio) => {
+        radio.addEventListener("change", () => {
+          const selectedSize = Array.from(fontSizeRadios).find((r) => r.checked);
+          const sizeValue = selectedSize ? selectedSize.id.replace("option-", "").replace("-text", "") : "base";
+          this.changeFontSize(sizeValue);
+        });
       });
     }
   }
