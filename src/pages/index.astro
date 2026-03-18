@@ -3,23 +3,19 @@
 import Layout from "../layouts/Layout.astro";
 
 // Components
-import ThemeSelector from "../components/ThemeSelector.astro";
 import Modalsinfo from "../components/Modalinfo.astro";
 import ContextualMenu from "../components/ContextualMenu.astro";
 import FloatingMenu from "../components/FloatingMenu.astro";
-
 ---
 
 <Layout>
-  <div dir="ltr" class="tab-list flex flex-row justify-between items-start w-full h-full max-w-[100dvw] overflow-x-auto z-[999]">
+  <div dir="ltr" class="tab-list flex flex-row justify-start items-start w-full h-full max-w-[100dvw] overflow-x-auto z-[999]">
     <span id="tab-list-anchor" class="hidden"></span>
-    <ThemeSelector />
   </div>
 
   <Modalsinfo />
   <ContextualMenu />
   <FloatingMenu />
-
 </Layout>
 
 <script>
