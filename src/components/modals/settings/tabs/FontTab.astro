@@ -1,0 +1,93 @@
+---
+// FontTab.astro - Settings Modal - Font Tab
+
+// Icons
+import Icon from "../../../icons/Icon.astro";
+---
+
+<div class="settings-tab hidden [&.active]:block" id="fonts-tab">
+  <div class="settings-header">
+    <h3 class="font-black underline">Configuracion Tipografica</h3>
+  </div>
+  <hr />
+  <div class="settings-body">
+    <div class="grid grid-cols-3 gap-4">
+      <div class="col-span-1">
+        <h4 class="font-medium! text-xl!">Fuente</h4>
+      </div>
+      <div class="col-span-2">
+        <div class="settings-section__group">
+          <select id="font-select" class="font-select w-full py-[10px]! px-[12px]! rounded-sm border-2 border-(--tn-theme-accent) bg-(--tn-theme-secondary) text-(--color-accent)! text-normal cursor-pointer transition-all hover:border-(--tn-theme-accent) focus:text-(--color-accent)! focus:outline-0 focus:border-(--tn-theme-contrast)">
+            <option class="text-(--color-text)/75" value="Inter">Inter (Por defecto)</option>
+            <option class="text-(--color-text)/75" value="Poppins">Poppins</option>
+            <option class="text-(--color-text)/75" value="Raleway">Raleway</option>
+            <option class="text-(--color-text)/75" value="Open Sans">Open Sans</option>
+            <option class="text-(--color-text)/75" value="Roboto">Roboto</option>
+            <option class="text-(--color-text)/75" value="Montserrat">Montserrat</option>
+            <option class="text-(--color-text)/75" value="custom">Personalizada</option>
+          </select>
+        </div>
+
+        <div id="custom-font-url-wrapper" class="settings-section__group mt-4! hidden" style="display: none;">
+          <input id="font-url-input" class="placeholder:text-(--color-accent)/60! flex-1 w-full py-[10px]! px-[12px]! rounded-sm border-2 border-(--tn-theme-accent) bg-(--tn-theme-secondary) text-(--color-text) text-normal cursor-pointer transition-all hover:border-(--tn-theme-accent) focus:outline-0 focus:border-(--tn-theme-contrast)" type="text" placeholder="https://fonts.googleapis.com/css2?family=..." />
+          <div id="font-url-error" class="bg-red-600 mt-4! hidden text-white rounded-md px-3!"></div>
+        </div>
+
+        <div id="custom-font-instructions" class="settings-section mt-4! hidden">
+          <ul role="list" class="list-disc pl-3!">
+            <li class="block md:inline-flex items-center my-2! before:content-['·'] before:text-inherit! md:before:text-6xl! before:leading-0! before:mr-3!">
+              Para fuente personalizada, Obtén la URL desde <a href="https://fonts.google.com/" target="_blank" class="mx-1!">Google Fonts</a> con la opción <code class="mx-1!">Get embed code</code>.
+            </li>
+            <li class="block md:inline-flex items-center my-2! before:content-['·'] before:text-inherit! md:before:text-6xl! before:leading-0! before:mr-3!">
+              Copia la URL del elemento <code class="mx-1!">&lt;link&gt;</code> (debe comenzar con <code class="mx-1!">https://fonts.googleapis.com/</code>).
+            </li>
+          </ul>
+          <p class="mt-3!">La configuración de la fuente se guarda localmente en este navegador y se aplica automáticamente.</p>
+        </div>
+
+        <div class="settings-section mt-4!">
+          <ul role="list" class="list-disc pl-3!">
+            <li class="block md:inline-flex items-center my-2! before:content-['·'] before:text-inherit! md:before:text-6xl! before:leading-0! before:mr-3!">Selecciona una fuente de la lista o elige <strong>Personalizada</strong> para usar otra.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="grid grid-cols-3 gap-4">
+      <div class="col-span-1">
+        <div class="settings-section mt-5!">
+          <h4 class="font-medium! text-xl!">Tamaño de fuente</h4>
+          <p>Controla el tamaño del texto en el editor</p>
+          <p class="text-sm! text-(--color-text)/60 mt-2!"><i>(Los cambios se aplican automaticamente)</i></p>
+        </div>
+      </div>
+      <div class="col-span-2">
+        <div class="settings-form flex gap-5">
+          <div class="group flex flex-col gap-2 mb-5!">
+            <h4 class="mb-0! mt-3!">Base</h4>
+            <input type="radio" name="options-font-size" class="hidden peer" id="option-base-text" checked />
+            <label for="option-base-text" class="w-[100px] h-[100px]! flex items-center justify-center border-2 border-(--tn-theme-accent) rounded-lg cursor-pointer peer-checked:border-(--tn-theme-contrast)">
+              <Icon name="letterA" fill="var(--tn-theme-accent)" className="text-(--tn-theme-contrast) scale-100" strokeWidth={0.5} />
+            </label>
+          </div>
+
+          <div class="group flex flex-col gap-2 mb-5!">
+            <h4 class="mb-0! mt-3!">Medium</h4>
+            <input type="radio" name="options-font-size" class="hidden peer" id="option-medium-text" />
+            <label for="option-medium-text" class="w-[100px] h-[100px]! flex items-center justify-center border-2 border-(--tn-theme-accent) rounded-lg cursor-pointer peer-checked:border-(--tn-theme-contrast)">
+              <Icon name="letterA" fill="var(--tn-theme-accent)" className="text-(--tn-theme-contrast) scale-150" strokeWidth={0.5} />
+            </label>
+          </div>
+
+          <div class="group flex flex-col gap-2 mb-5!">
+            <h4 class="mb-0! mt-3!">Large</h4>
+            <input type="radio" name="options-font-size" class="hidden peer" id="option-large-text" />
+            <label for="option-large-text" class="w-[100px] h-[100px]! flex items-center justify-center border-2 border-(--tn-theme-accent) rounded-lg cursor-pointer peer-checked:border-(--tn-theme-contrast)">
+              <Icon name="letterA" fill="var(--tn-theme-accent)" className="text-(--tn-theme-contrast) scale-200" strokeWidth={0.5} />
+            </label>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

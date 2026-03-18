@@ -8,6 +8,9 @@ export default defineConfig({
   site: SITE_URL,
   vite: {
     plugins: [tailwindcss()],
+    optimizeDeps: {
+      include: ['sortablejs']
+    },
     
     build: {
       assetsDir: 'assets',

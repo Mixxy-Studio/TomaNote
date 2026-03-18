@@ -45,3 +45,59 @@ $breakpoints: (
 //     padding: 2rem;
 //   }
 // }
+
+@mixin theme-colors($theme-name, $colors) {
+  &[for="theme-color-#{$theme-name}"] {
+    span:nth-child(1) {
+      background-color: map-get($colors, primary);
+      border-top-left-radius: 10px;
+    }
+
+    span:nth-child(2) {
+      background-color: map-get($colors, secondary);
+      border-top-right-radius: 10px;
+    }
+
+    span:nth-child(3) {
+      background-color: map-get($colors, accent);
+      border-bottom-left-radius: 10px;
+    }
+
+    span:nth-child(4) {
+      background-color: map-get($colors, contrast);
+      border-bottom-right-radius: 10px;
+    }
+  }
+}
+
+// Uso
+// #appearance-tab {
+//   .settings-body {
+//     .group {
+//       label {
+//         @include theme-colors(dark, (
+//           primary: vars.$tn-theme-primary-dark,
+//           secondary: vars.$tn-theme-secondary-dark,
+//           accent: vars.$tn-theme-accent-dark,
+//           contrast: vars.$tn-theme-contrast-dark
+//         ));
+
+//         @include theme-colors(light, (
+//           primary: vars.$tn-theme-primary-light,
+//           secondary: vars.$tn-theme-secondary-light,
+//           accent: vars.$tn-theme-accent-light,
+//           contrast: vars.$tn-theme-contrast-light
+//         ));
+
+//         @include theme-colors(rose, (
+//           primary: vars.$tn-theme-primary-rose,
+//           secondary: vars.$tn-theme-secondary-rose,
+//           accent: vars.$tn-theme-accent-rose,
+//           contrast: vars.$tn-theme-contrast-rose
+//         ));
+
+//         // ... y así sucesivamente
+//       }
+//     }
+//   }
+// }

@@ -1,0 +1,9 @@
+---
+interface Props {
+  variant?: "default" | "thin";
+}
+
+const { variant = "default" } = Astro.props;
+---
+
+{variant === "default" ? <div class="context-menu__separator h-[1px] bg-(--tn-theme-accent) my-5 mx-0 w-[180px] m-auto!" /> : <div class="context-menu__separator" />}

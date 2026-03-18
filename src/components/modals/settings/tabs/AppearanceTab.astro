@@ -1,0 +1,76 @@
+---
+// Appearance.astro - Settings Modal - Appearance Tab
+---
+
+<section id="appearance-tab" class="tn-appearance-tab settings-tab hidden [&.active]:block">
+  <div class="settings-header">
+    <h3>Appearance</h3>
+  </div>
+  <hr />
+  <div class="settings-body">
+    <div class="grid grid-cols-3 gap-4">
+      <div class="col-span-1">
+        <h3 class="text-(--tn-theme-accent) font-bold">Interface theme</h3>
+        <p>Selecciona tu tema favorito</p>
+      </div>
+      <div class="col-span-2">
+        <div class="grid grid-cols-3 gap-4">
+          <div class="group">
+            <input type="radio" name="themeColor" id="theme-color-dark" class="hidden peer" />
+            <label for="theme-color-dark">
+              <span></span>
+              <span></span>
+              <span></span>
+              <span></span>
+            </label>
+          </div>
+          <div class="group">
+            <input type="radio" name="themeColor" id="theme-color-light" class="hidden peer" />
+            <label for="theme-color-light">
+              <span></span>
+              <span></span>
+              <span></span>
+              <span></span>
+            </label>
+          </div>
+          <div class="group">
+            <input type="radio" name="themeColor" id="theme-color-rose" class="hidden peer" />
+            <label for="theme-color-rose">
+              <span></span>
+              <span></span>
+              <span></span>
+              <span></span>
+            </label>
+          </div>
+          <div class="group">
+            <input type="radio" name="themeColor" id="theme-color-aqua" class="hidden peer" />
+            <label for="theme-color-aqua">
+              <span></span>
+              <span></span>
+              <span></span>
+              <span></span>
+            </label>
+          </div>
+          <div class="group">
+            <input type="radio" name="themeColor" id="theme-color-forest" class="hidden peer" checked />
+            <label for="theme-color-forest">
+              <span></span>
+              <span></span>
+              <span></span>
+              <span></span>
+            </label>
+          </div>
+          <div class="group">
+            <input type="radio" name="themeColor" id="theme-color-orbit" class="hidden peer" />
+            <label for="theme-color-orbit">
+              <span></span>
+              <span></span>
+              <span></span>
+              <span></span>
+            </label>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
