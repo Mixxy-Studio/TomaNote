@@ -151,9 +151,7 @@ export class FloatingMenu {
       });
     }
 
-    const submenuLabels = this.floatingMenu.querySelectorAll(
-      'label[for^="tn-open-options__"]'
-    );
+    const submenuLabels = this.floatingMenu.querySelectorAll('label[for^="tn-open-options__"]');
     submenuLabels.forEach((label) => {
       label.addEventListener("mousedown", (e) => {
         const selection = window.getSelection();
@@ -179,7 +177,7 @@ export class FloatingMenu {
 
   handleTextAction(action, button) {
     let savedRange = this.savedSelection;
-    
+
     if (!savedRange) {
       const selection = window.getSelection();
       if (selection && selection.toString().length > 0) {
@@ -277,7 +275,8 @@ export class FloatingMenu {
 
   pinTab(tabElement) {
     const labelSpan = tabElement.querySelector("label span");
-    const tabName = labelSpan?.textContent?.trim() || "New";
+    const fallbackName = window.i18n?.t("tab.new") ?? "Nueva";
+    const tabName = labelSpan?.textContent?.trim() || fallbackName;
     const emojiInText = detectEmojiInText(tabName);
     const emoji = emojiInText || getRandomPinEmoji();
 
@@ -329,9 +328,7 @@ export class FloatingMenu {
     const hasActiveTab = !!activeTab;
     const hasTextSelection = this.hasTextSelection();
 
-    const tabActions = this.floatingMenu.querySelectorAll(
-      "[data-floating-action='edit-name-tab'], [data-floating-action='delete-tab']",
-    );
+    const tabActions = this.floatingMenu.querySelectorAll("[data-floating-action='edit-name-tab'], [data-floating-action='delete-tab']");
 
     tabActions.forEach((btn) => {
       if (hasActiveTab) {
@@ -351,9 +348,7 @@ export class FloatingMenu {
         this.toolsButton.classList.add("tn-tools-hidden");
         this.toolsButton.style.display = "none";
 
-        const submenuRadios = this.floatingMenu?.querySelectorAll(
-          'input[type="radio"][name="options"]'
-        );
+        const submenuRadios = this.floatingMenu?.querySelectorAll('input[type="radio"][name="options"]');
         submenuRadios?.forEach((radio) => (radio.checked = false));
 
         const mainCheckbox = document.getElementById("tn-open-options");

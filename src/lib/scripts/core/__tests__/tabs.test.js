@@ -10,6 +10,21 @@ const localStorageMock = {
 };
 global.localStorage = localStorageMock;
 
+// Mock window.i18n para tests deterministicos
+const i18nMock = {
+  t: vi.fn((key) => {
+    const translations = {
+      "tab.new": "New",
+      "tab.delete-confirm": "Delete this tab?",
+    };
+    return translations[key] ?? key;
+  }),
+  getLang: vi.fn(() => "en"),
+  has: vi.fn((key) => ["tab.new", "tab.delete-confirm"].includes(key)),
+  initialized: true,
+};
+global.window = { i18n: i18nMock };
+
 // Mock DOM elements
 const mockTabList = {
   insertBefore: vi.fn(),
@@ -24,6 +39,16 @@ describe("TabManager - Lógica Básica", () => {
   beforeEach(() => {
     vi.clearAllMocks();
     dispatchEventSpy = vi.spyOn(document, "dispatchEvent");
+    
+    // Reset i18n mock
+    i18nMock.t.mockClear();
+    i18nMock.t.mockImplementation((key) => {
+      const translations = {
+        "tab.new": "New",
+        "tab.delete-confirm": "Delete this tab?",
+      };
+      return translations[key] ?? key;
+    });
     
     tabManager = new TabManager({
       enablePersistence: true,
@@ -122,6 +147,28 @@ describe("TabManager - Eventos tabsChanged", () => {
         type: "tabsChanged",
       }),
     );
+  });
+
+  it("deleteTabElement debe usar mensaje de confirmación de i18n", () => {
+    const confirmSpy = vi.fn(() => true);
+    global.confirm = confirmSpy;
+    
+    const mockTabElement = {
+      querySelector: vi.fn().mockReturnValue({ id: "body-tab-1" }),
+      remove: vi.fn(),
+    };
+
+    tabManager.tabsData.push({
+      id: "body-tab-1",
+      name: "Test",
+      content: "",
+      isPinned: false,
+      emoji: null,
+    });
+
+    tabManager.deleteTabElement(mockTabElement);
+
+    expect(confirmSpy).toHaveBeenCalledWith("Delete this tab?");
   });
 
   it("deleteTabElement debe dispatchear evento tabsChanged al confirmar", () => {

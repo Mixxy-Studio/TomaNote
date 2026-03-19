@@ -31,17 +31,24 @@ export async function initNotepad() {
 
 // ===== FUNCIONES CRÍTICAS (deben cargarse primero) =====
 async function loadCriticalFunctions() {
-  // 1. Cargar fuente personalizada (parte más crítica)
+  // 1. Inicializar sistema de internacionalización
+  const { i18n } = await import("../../i18n/core.js");
+  i18n.init();
+
+  // 2. Compartir idioma del cliente con SSR (para que los componentes .astro lo usen)
+  window.__I18N_CONFIG = { lang: i18n.getLang() };
+
+  // 3. Cargar fuente personalizada (parte más crítica)
   const { FontManager } = await import("./core/fontManager.js");
   window.fontManager = new FontManager();
   window.fontManager.loadCustomFont();
   window.fontManager.loadFontSize();
   window.fontManager.initFontSettingsUI();
 
-  // 2. Configurar sistema de temas (dark/light mode)
+  // 3. Configurar sistema de temas (dark/light mode)
   await setupThemeSystem();
 
-  // 3. Configurar Service Worker si está disponible
+  // 4. Configurar Service Worker si está disponible
   setupServiceWorker();
 }
 
