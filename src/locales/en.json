@@ -1,0 +1,36 @@
+{
+  "_comment-branding": "Branding and Slogan",
+
+  "app.title": "TomaNote",
+  "app.slogan": "TomaNote: free, private & offline online notepad",
+  "app.doodle-title": "Oops… nothing here!",
+  "app.doodle-subtitle": "Open an existing note or create a new one with the ",
+
+  "_comment-tabs": "Tab creation",
+  "tab.new": "New",
+  "tab.delete-confirm": "Delete this tab?",
+
+  "_comment-about": "TomaNote information",
+
+  "about.main-title": "About TomaNote",
+  "about.main-first-description": "TomaNote is a simple, fast, and free notepad designed for distraction-free writing.",
+  "about.main-second-description": "It runs directly in your browser with no accounts or sign-up required. All your notes are saved locally on your device, meaning you stay in full control of your data.",
+
+  "about.first-list": "TomaNote prioritizes:",
+  "about.first-list-item1": "Simplicity",
+  "about.first-list-item2": "Speed",
+  "about.first-list-item3": "Privacy",
+  "about.first-list-item4": "Frictionless use",
+
+  "about.intro-third-description": "It's not a complex productivity platform or a project manager. It's a clean space to think, write, and organize ideas.",
+  "about.second-title": "Important",
+  "about.second-first-description": "Notes are stored in your browser's local storage. If you clear your browser data or hard-reload the page, your notes will be lost. We recommend exporting or backing up your notes regularly.",
+  "about.title-second-list": "Key features",
+  "about.title-second-list-item1": "Free-form, distraction-free text editing",
+  "about.title-second-list-item2": "Persistent tabs",
+  "about.title-second-list-item3": "Local autosave",
+  "about.title-second-list-item4": "Dark mode by default with multiple customization themes",
+  "about.title-second-list-item5": "Private notes and offline use",
+  "about.third-title": "Philosophy",
+  "about.third-first-description": "TomaNote exists because writing should be simple, free, and accessible — no external services or subscriptions needed."
+}

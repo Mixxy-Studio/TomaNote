@@ -1,0 +1,36 @@
+{
+  "_comment-branding": "Textos de marca y Slogan",
+
+  "app.title": "TomaNote",
+  "app.slogan": "TomaNote: bloc de notas online gratuito, privado y offline",
+  "app.doodle-title": "¡Ups… nada por aquí!",
+  "app.doodle-subtitle": "Abre una nota existente o crea una nueva con el ",
+
+  "_comment-tabs": "Creacion de tabs",
+  "tab.new": "Nueva",
+  "tab.delete-confirm": "¿Eliminar esta pestaña?",
+
+  "_comment-about": "Informacion de Tomanote",
+
+  "about.main-title": "Acerca de Tomanote",
+  "about.main-first-description": "TomaNote es un bloc de notas simple, rápido y gratuito, diseñado para escribir sin distracciones.",
+  "about.main-second-description": "Funciona directamente en tu navegador y no requiere cuentas ni registro. Todas tus notas se guardan localmente en tu dispositivo, lo que significa que tú mantienes el control total de tu información.",
+
+  "about.first-list": "TomaNote prioriza:",
+  "about.first-list-item1": "Simplicidad",
+  "about.first-list-item2": "Velocidad",
+  "about.first-list-item3": "Privacidad",
+  "about.first-list-item4": "Uso sin fricción",
+
+  "about.intro-third-description": "No es una plataforma de productividad compleja ni un gestor de proyectos. Es un espacio limpio para pensar, escribir y organizar ideas.",
+  "about.second-title": "Importante",
+  "about.second-first-description": "Las notas se almacenan en el almacenamiento local del navegador. Si borras los datos del navegador o recargas sin caché, la información se perderá. Se recomienda exportar o respaldar tus notas periódicamente.",
+  "about.title-second-list": "Funcionalidades principales",
+  "about.title-second-list-item1": "Edición de texto libre y sin distracciones",
+  "about.title-second-list-item2": "Pestañas persistentes",
+  "about.title-second-list-item3": "Guardado automático local",
+  "about.title-second-list-item4": "Modo oscuro pro defecto con diferentes temas de personalización",
+  "about.title-second-list-item5": "Notas privadas y uso sin internet",
+  "about.third-title": "Filosofía",
+  "about.third-first-description": "TomaNote existe porque escribir debería ser simple, gratuito y accesible, sin depender de servicios externos ni suscripciones."
+}
