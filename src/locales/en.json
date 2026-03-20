@@ -1,0 +1,122 @@
+{
+  "_comment-branding": "Branding and Slogan",
+
+  "app.title": "TomaNote",
+  "app.slogan": "TomaNote: free, private & offline online notepad",
+  "app.doodle-title": "Oops… nothing here!",
+  "app.doodle-subtitle": "Open an existing note or create a new one with the ",
+
+  "_comment-tabs": "Tab creation",
+  "tab.new": "New",
+  "tab.delete-confirm": "Delete this tab?",
+
+  "_comment-about": "TomaNote information",
+
+  "about.main-title": "About TomaNote",
+  "about.main-first-description": "TomaNote is a simple, fast, and free notepad designed for distraction-free writing.",
+  "about.main-second-description": "It runs directly in your browser with no accounts or sign-up required. All your notes are saved locally on your device, meaning you stay in full control of your data.",
+
+  "about.first-list": "TomaNote prioritizes:",
+  "about.first-list-item1": "Simplicity",
+  "about.first-list-item2": "Speed",
+  "about.first-list-item3": "Privacy",
+  "about.first-list-item4": "Frictionless use",
+
+  "about.intro-third-description": "It's not a complex productivity platform or a project manager. It's a clean space to think, write, and organize ideas.",
+  "about.second-title": "Important",
+  "about.second-first-description": "Notes are stored in your browser's local storage. If you clear your browser data or hard-reload the page, your notes will be lost. We recommend exporting or backing up your notes regularly.",
+  "about.title-second-list": "Key features",
+  "about.title-second-list-item1": "Free-form, distraction-free text editing",
+  "about.title-second-list-item2": "Persistent tabs",
+  "about.title-second-list-item3": "Local autosave",
+  "about.title-second-list-item4": "Dark mode by default with multiple customization themes",
+  "about.title-second-list-item5": "Private notes and offline use",
+  "about.third-title": "Philosophy",
+  "about.third-first-description": "TomaNote exists because writing should be simple, free, and accessible — no external services or subscriptions needed.",
+
+  "_comment-license": "TomaNote License",
+
+  "licence.main-title": "License",
+  "licence.main-subtitle": "GNU Affero General Public License (AGPL) v3.0",
+  "licence.main-description": "This software is licensed under the GNU Affero General Public License (AGPL) v3.0. The AGPL v3.0 grants users the freedom to use, study, modify, and distribute the software, under the following conditions:",
+
+  "licence.condition1-strong": "Free Use:",
+  "licence.condition1-normal": "The software may be used for any purpose, without restrictions.",
+  "licence.condition2-strong": "Modification:",
+  "licence.condition2-normal": "Users may modify the software and distribute modified versions.",
+  "licence.condition3-strong": "Distribution:",
+  "licence.condition3-normal": "Any copy of the software, whether in its original or modified form, must include the same AGPL v3.0 license.",
+
+  "licence.second-title": "Additional Clause: Commercial Use Restriction",
+  "licence.second-description": "Users may not use the software for commercial purposes unless prior written authorization has been obtained from the developer.",
+
+  "licence.third-title": "Restricted Commercial Use:",
+  "licence.third-description": "Direct or indirect commercialization of this software is prohibited, including but not limited to selling, leasing, sublicensing, or any other commercial use, without the express written consent of the original copyright holder. This restriction does not affect users' rights to modify, improve, or redistribute the software, provided such activities do not involve commercial use.",
+  "licence.last-description": "For permissions related to commercial use, please contact the copyright holder.",
+
+  "_comment-terms": "TomaNote Terms of Use",
+
+  "terms.main-title": "Terms of Use",
+  "terms.main-subtitle": "Terms and Warnings for Notepad Use",
+
+  "terms.second-title1": "Storage Limit",
+  "terms.second-description1": "This notepad uses your browser's LocalStorage to save data. Although the storage limit is 5 MB, we recommend avoiding large volumes of text. Browser storage is limited and may be affected by saving large amounts of data. If you reach the limit, you may lose data — please back up your notes regularly.",
+  "terms.second-title2": "Data Security",
+  "terms.second-description2": "Data saved in this notepad is not encrypted and is stored in your browser's LocalStorage, which does not guarantee security. We recommend not storing sensitive or private information here, as it may be vulnerable to unauthorized access if others have access to your device or browser.",
+  "terms.second-title3": "URL Safety",
+  "terms.second-description3": "Make sure you are using a trusted and secure URL when accessing the notepad. Avoid accessing it from suspicious links or unsecured public networks, as you may be exposed to phishing attacks or data theft. The development team is not responsible for data loss due to improper use or insecure access.",
+
+  "_comment-typo": "TomaNote Font Configuration",
+
+  "typo.main-title": "Typography Settings",
+
+  "typo.first-option": "Font",
+  "typo.first-option-default": "Inter (Default)",
+  "typo.first-option-poppins": "Poppins",
+  "typo.first-option-raleway": "Raleway",
+  "typo.first-option-opensans": "Open Sans",
+  "typo.first-option-roboto": "Roboto",
+  "typo.first-option-montserrat": "Montserrat",
+  "typo.first-option-custom": "Custom",
+  "typo.first-option-info": "Select a font from the list or choose <b>Custom</b> to use another one.",
+  "typo.first-option-alert": "Please enter a valid Google Fonts URL.",
+  "typo.first-option-sbs1-1": "For a custom font, get the URL from ",
+  "typo.first-option-sbs1-2": " using the option",
+  "typo.first-option-sbs1-3": "Get embed code",
+  "typo.first-option-sbs2-1": "Copy the URL from the ",
+  "typo.first-option-sbs2-2": " element (it must start with ",
+  "typo.first-option-sbs3": "Font settings are saved locally in this browser and applied automatically.",
+
+  "typo.second-option": "Font Size",
+  "typo.second-option-subtitle": "Controls the text size in the editor",
+  "typo.second-option-tip": "(Changes apply automatically)",
+  "typo.second-option-base": "Base",
+  "typo.second-option-medium": "Medium",
+  "typo.second-option-large": "Large",
+
+  "_comment-appaerance": "TomaNote Theme and Appearance Settings",
+
+  "appearance.main-title": "Appearance",
+
+  "appearance.first-option": "Theme Selection",
+  "appearance.first-option-description": "Pick your favorite theme",
+
+  "_comment-language": "Language Selector",
+
+  "lang.main-title": "Language",
+  "lang.main-subtitle": "Choose your language",
+
+  "lang.option-en_us": "English (US)",
+  "lang.option-es_co": "Spanish (CO)",
+
+  "_comment-modal-tab-buttons": "Settings Modal Tab Buttons",
+
+  "mtb.about": "About",
+  "mtb.licence": "License",
+  "mtb.terms": "Terms",
+  "mtb.roadmap": "Roadmap",
+  "mtb.typo": "Typography",
+  "mtb.appearance": "Appearance",
+  "mtb.lang": "Language",
+  "mtb.submit": "Save"
+}

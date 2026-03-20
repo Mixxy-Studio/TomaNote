@@ -3,11 +3,11 @@
 interface Props {
   tabId: string;
   iconName: string;
-  label: string;
+  labelKey: string;
   className: string;
 }
 
-const { tabId, iconName, label, className } = Astro.props;
+const { tabId, iconName, labelKey, className } = Astro.props;
 
 // Icons
 import Icon from "../icons/Icon.astro";
@@ -17,5 +17,5 @@ import Icon from "../icons/Icon.astro";
   <span class="icon mr-[12px]!">
     <Icon name={iconName} className="size-1 md:size-6" />
   </span>
-  {label}
+  <span data-i18n={labelKey}>{labelKey}</span>
 </button>

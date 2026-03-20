@@ -1,0 +1,122 @@
+{
+  "_comment-branding": "Textos de marca y Slogan",
+
+  "app.title": "TomaNote",
+  "app.slogan": "TomaNote: bloc de notas online gratuito, privado y offline",
+  "app.doodle-title": "¡Ups… nada por aquí!",
+  "app.doodle-subtitle": "Abre una nota existente o crea una nueva con el ",
+
+  "_comment-tabs": "Creacion de tabs",
+  "tab.new": "Nueva",
+  "tab.delete-confirm": "¿Eliminar esta pestaña?",
+
+  "_comment-about": "Informacion de Tomanote",
+
+  "about.main-title": "Acerca de Tomanote",
+  "about.main-first-description": "TomaNote es un bloc de notas simple, rápido y gratuito, diseñado para escribir sin distracciones.",
+  "about.main-second-description": "Funciona directamente en tu navegador y no requiere cuentas ni registro. Todas tus notas se guardan localmente en tu dispositivo, lo que significa que tú mantienes el control total de tu información.",
+
+  "about.first-list": "TomaNote prioriza:",
+  "about.first-list-item1": "Simplicidad",
+  "about.first-list-item2": "Velocidad",
+  "about.first-list-item3": "Privacidad",
+  "about.first-list-item4": "Uso sin fricción",
+
+  "about.intro-third-description": "No es una plataforma de productividad compleja ni un gestor de proyectos. Es un espacio limpio para pensar, escribir y organizar ideas.",
+  "about.second-title": "Importante",
+  "about.second-first-description": "Las notas se almacenan en el almacenamiento local del navegador. Si borras los datos del navegador o recargas sin caché, la información se perderá. Se recomienda exportar o respaldar tus notas periódicamente.",
+  "about.title-second-list": "Funcionalidades principales",
+  "about.title-second-list-item1": "Edición de texto libre y sin distracciones",
+  "about.title-second-list-item2": "Pestañas persistentes",
+  "about.title-second-list-item3": "Guardado automático local",
+  "about.title-second-list-item4": "Modo oscuro pro defecto con diferentes temas de personalización",
+  "about.title-second-list-item5": "Notas privadas y uso sin internet",
+  "about.third-title": "Filosofía",
+  "about.third-first-description": "TomaNote existe porque escribir debería ser simple, gratuito y accesible, sin depender de servicios externos ni suscripciones.",
+
+  "_comment-license": "Licencia de Tomanote",
+
+  "licence.main-title": "Licencia",
+  "licence.main-subtitle": "Licencia GNU Affero General Public License (AGPL) v3.0",
+  "licence.main-description": "Este software está licenciado bajo la GNU Affero General Public License (AGPL) v3.0. La licencia AGPL v3.0 garantiza a los usuarios la libertad de usar, estudiar, modificar y distribuir el software, bajo las siguientes condiciones:",
+
+  "licence.condition1-strong": "Libre Uso:",
+  "licence.condition1-normal": "El software puede ser utilizado para cualquier propósito, sin restricciones.",
+  "licence.condition2-strong": "Modificación:",
+  "licence.condition2-normal": "Los usuarios pueden modificar el software y distribuir las versiones modificadas.",
+  "licence.condition3-strong": "Distribución:",
+  "licence.condition3-normal": "Cualquier copia del software, ya sea en su forma original o modificada, debe incluir la misma licencia AGPL v3.0.",
+
+  "licence.second-title": "Cláusula Adicional: Restricción de Uso Comercial",
+  "licence.second-description": "Los usuarios no pueden utilizar el software para fines comerciales, excepto si han obtenido autorización previa por escrito del desarrollador.",
+
+  "licence.third-title": "Uso Comercial Restringido:",
+  "licence.third-description": "Se prohíbe la comercialización directa o indirecta de este software, incluyendo pero no limitado a la venta, arrendamiento, sublicenciamiento, o cualquier otro uso con fines comerciales, sin el consentimiento expreso y por escrito del titular original de los derechos de autor. Esta restricción no afecta los derechos de los usuarios a modificar, mejorar o redistribuir el software siempre que dichas actividades no impliquen un uso comercial.",
+  "licence.last-description": "Para obtener permisos específicos relacionados con el uso comercial, por favor contacta al titular de los derechos de autor.",
+
+  "_comment-terms": "Terminos de uso de Tomanote",
+
+  "terms.main-title": "Términos de Uso",
+  "terms.main-subtitle": "Términos y Advertencias para el Uso del Bloc de Notas",
+
+  "terms.second-title1": "Límite de Almacenamiento",
+  "terms.second-description1": "Este Bloc de Notas utiliza el LocalStorage de tu navegador para guardar la información. Aunque el límite de almacenamiento es de 5 MB, te recomiendo no almacenar grandes volúmenes de texto. Ten en cuenta que el almacenamiento en el navegador es limitado y puede verse afectado si guardas grandes cantidades de información. Si alcanzas el límite, podrías perder datos, por lo que sugerimos realizar copias de seguridad regularmente.",
+  "terms.second-title2": "Seguridad de la Información",
+  "terms.second-description2": "La información que guardas en este Bloc de Notas no está encriptada y se almacena en el LocalStorage de tu navegador, lo cual no garantiza su seguridad. Te recomiendo no guardar información sensible o privada en esta herramienta, ya que podría ser vulnerable a accesos no autorizados si otros usuarios tienen acceso a tu dispositivo o navegador.",
+  "terms.second-title3": "Precaución con la URL",
+  "terms.second-description3": "Asegúrate de que estás utilizando una URL confiable y segura al acceder al Bloc de Notas. Evita acceder desde enlaces sospechosos o en redes públicas no seguras, ya que podrías exponerte a ataques de suplantación de identidad (phishing) o robo de datos. Te recordamos que el equipo de desarrollo no se responsabiliza por la pérdida de datos debido a usos inapropiados de la herramienta o acceso no seguro.",
+
+  "_comment-typo": "Configuracion de fuentes de Tomanote",
+
+  "typo.main-title": "Configuracion Tipografica",
+
+  "typo.first-option": "Fuente",
+  "typo.first-option-default": "Inter (Por defecto)",
+  "typo.first-option-poppins": "Poppins",
+  "typo.first-option-raleway": "Raleway",
+  "typo.first-option-opensans": "Open Sans",
+  "typo.first-option-roboto": "Roboto",
+  "typo.first-option-montserrat": "Montserrat",
+  "typo.first-option-custom": "Personalizada",
+  "typo.first-option-info": "Selecciona una fuente de la lista o elige <b>Personalizada</b> para usar otra.",
+  "typo.first-option-alert": "Por favor ingresa una URL valida de Google Fonts.",
+  "typo.first-option-sbs1-1": "Para fuente personalizada, Obtén la URL desde ",
+  "typo.first-option-sbs1-2": " con la opción",
+  "typo.first-option-sbs1-3": "Get embed code",
+  "typo.first-option-sbs2-1": "Copia la URL del elemento ",
+  "typo.first-option-sbs2-2": " (debe comenzar con ",
+  "typo.first-option-sbs3": "La configuración de la fuente se guarda localmente en este navegador y se aplica automáticamente.",
+
+  "typo.second-option": "Tamaño de fuente",
+  "typo.second-option-subtitle": "Controla el tamaño del texto en el editor",
+  "typo.second-option-tip": "(Los cambios se aplican automaticamente)",
+  "typo.second-option-base": "Base",
+  "typo.second-option-medium": "Mediano",
+  "typo.second-option-large": "Grande",
+
+  "_comment-appaerance": "Configuracion de temas y apariencia de Tomanote",
+
+  "appearance.main-title": "Apariencia",
+
+  "appearance.first-option": "Selección de temas",
+  "appearance.first-option-description": "Selecciona tu tema favorito",
+
+  "_comment-language": "Seleccion de lenguaje",
+
+  "lang.main-title": "Iidioma",
+  "lang.main-subtitle": "Selecciona tu idioma",
+
+  "lang.option-en_us": "Ingles (US)",
+  "lang.option-es_co": "Español (CO)",
+
+  "_comment-modal-tab-buttons": "Botones del modal de configuracion",
+
+  "mtb.about": "Acerca de",
+  "mtb.licence": "Licencia",
+  "mtb.terms": "Terminos",
+  "mtb.roadmap": "Roadmap",
+  "mtb.typo": "Tipografia",
+  "mtb.appearance": "Apariencia",
+  "mtb.lang": "Lenguaje",
+  "mtb.submit": "Aceptar"
+}

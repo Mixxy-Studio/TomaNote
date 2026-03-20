@@ -11,8 +11,15 @@ import EmptyState from "../components/EmptyState.astro";
 ---
 
 <!doctype html>
-<html lang="es">
+<html>
   <head>
+    <script is:inline>
+      (function () {
+        const lang = navigator.language?.toLowerCase().startsWith("es") ? "es" : "en";
+        document.documentElement.setAttribute("data-lang", lang);
+      })();
+    </script>
+
     <!-- === BASIC META TAGS === -->
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />

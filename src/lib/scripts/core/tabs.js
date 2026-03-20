@@ -75,14 +75,15 @@ export class TabManager {
     return activeInput ? this.findTabById(activeInput.id) : null;
   }
 
-  createTab(name = "New", content = "", isPinned = false, emoji = null) {
+  createTab(name = null, content = "", isPinned = false, emoji = null) {
     if (!this.options.enableCreation) {
       this.log("⚠️  Creación de pestañas deshabilitada");
       return null;
     }
 
+    const tabName = name ?? window.i18n?.t("tab.new") ?? "Nueva";
     const id = `body-tab-${this.tabIdCounter++}`;
-    const tabData = { id, name, content, isPinned, emoji };
+    const tabData = { id, name: tabName, content, isPinned, emoji };
 
     // Crear elemento DOM
     const tabElement = this.createTabElement(tabData);
@@ -248,7 +249,7 @@ export class TabManager {
     tabElement.innerHTML = `
       <input type="radio" name="body-tab" id="${id}">
       <label class="bg-(--tn-default-tertiary-color) w-[250px] flex justify-between items-center py-[7px]! pr-[5px]! pl-[10px]! rounded cursor-pointer" for="${id}" ${labelDataEmoji}>
-        <span class="text-ellipsis whitespace-nowrap w-[80%] overflow-hidden z-10 text-[14px]! font-bold" ${spanDataEmoji}>${name || "New"}</span>
+        <span class="text-ellipsis whitespace-nowrap w-[80%] overflow-hidden z-10 text-[14px]! font-bold" ${spanDataEmoji}>${name}</span>
         <button class="edit-name-tab border-0 outline-0 w-[20px] h-[20px] justify-center items-center hidden rounded-full" aria-label="Editar nombre">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-1 w-1/2 h-1/2">
             <path d="M21.731 2.269a2.625 2.625 0 0 0-3.712 0l-1.157 1.157 3.712 3.712 1.157-1.157a2.625 2.625 0 0 0 0-3.712ZM19.513 8.199l-3.712-3.712-8.4 8.4a5.25 5.25 0 0 0-1.32 2.214l-.8 2.685a.75.75 0 0 0 .933.933l2.685-.8a5.25 5.25 0 0 0 2.214-1.32l8.4-8.4Z" />
@@ -316,27 +317,25 @@ export class TabManager {
     const label = tabItem.querySelector("label");
     const span = label.querySelector("span");
 
-    // Hacer editable
     label.setAttribute("contenteditable", "true");
     span.focus();
 
-    // Seleccionar todo el texto
     const range = document.createRange();
     range.selectNodeContents(span);
     const selection = window.getSelection();
     selection.removeAllRanges();
     selection.addRange(range);
 
-    // Finalizar edición al hacer clic fuera o presionar Enter
     const finishEditing = () => {
       label.removeAttribute("contenteditable");
       this.saveTabs();
       this.updateTabIds();
     };
 
-    // Handler para clic fuera (solo si no se omite)
+    let clickOutsideHandler = null;
+
     if (!skipClickOutside) {
-      const clickOutsideHandler = (e) => {
+      clickOutsideHandler = (e) => {
         const floatingMenu = document.querySelector(".tn-navbar");
         const clickFromFloatingMenu = floatingMenu?.contains(e.target);
 
@@ -346,13 +345,11 @@ export class TabManager {
         }
       };
 
-      // Delay para evitar que el click que abre la edición se cierre inmediatamente
       setTimeout(() => {
         document.addEventListener("click", clickOutsideHandler);
       }, 100);
     }
 
-    // Handler para Enter
     const keydownHandler = (e) => {
       if (e.key === "Enter") {
         e.preventDefault();
@@ -363,9 +360,8 @@ export class TabManager {
 
     label.addEventListener("keydown", keydownHandler);
 
-    // Auto-remover handlers después de 30 segundos (safety)
     setTimeout(() => {
-      if (!skipClickOutside) {
+      if (!skipClickOutside && clickOutsideHandler) {
         document.removeEventListener("click", clickOutsideHandler);
       }
       label.removeEventListener("keydown", keydownHandler);
@@ -402,7 +398,7 @@ export class TabManager {
   }
 
   deleteTabElement(tabElement) {
-    if (!tabElement || !confirm("¿Eliminar esta pestaña?")) {
+    if (!tabElement || !confirm(window.i18n?.t("tab.delete-confirm") ?? "¿Eliminar esta pestaña?")) {
       return;
     }
 

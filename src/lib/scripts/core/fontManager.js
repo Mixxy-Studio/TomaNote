@@ -1,4 +1,5 @@
 // src/lib/scripts/core/fontManager.js
+
 export class FontManager {
   constructor() {
     this.defaultFont = "Inter";
@@ -80,7 +81,7 @@ export class FontManager {
 
           if (url === "") {
             if (fontError) {
-              fontError.textContent = "Por favor ingresa una URL valida de Google Fonts.";
+              fontError.textContent = window.i18n.t("typo.first-option-alert");
               fontError.style.display = "inline-block";
             }
             return;
@@ -97,7 +98,7 @@ export class FontManager {
           }
 
           if (fontError) {
-            fontError.textContent = "Por favor ingresa una URL valida de Google Fonts (debe comenzar con https://fonts.googleapis.com/)";
+            fontError.textContent = window.i18n.t("typo.first-option-alert");
             fontError.style.display = "inline-block";
           }
         }
