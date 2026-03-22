@@ -1,226 +1,194 @@
 ---
 // RoadmapTab.astro - Settings Modal - Roadmap Tab
 
-// Styles
-import "../../../../styles/components/MarkDown.scss";
+// Languages
+import { getLang, useTranslations } from "../../../../i18n/utils";
+const lang = getLang();
+const t = useTranslations(lang);
 
-// Scripts
-import { marked } from "marked";
-import fs from "fs";
-import path from "path";
-
-interface Version {
-  version: string;
-  slug: string;
-}
-
-const roadmapBase = path.join(process.cwd(), "public", "ROADMAP");
-
-function getVersions(): Version[] {
-  const langPath = path.join(roadmapBase, "es");
-  if (!fs.existsSync(langPath)) return [];
-
-  return fs
-    .readdirSync(langPath)
-    .filter((file) => file.endsWith(".md"))
-    .map((file) => {
-      const slug = file.replace(".md", "");
-      return { version: slug, slug };
-    })
-    .sort((a, b) => b.slug.localeCompare(a.slug));
-}
-
-function getContent(lang: string, slug: string): string {
-  const filePath = path.join(roadmapBase, lang, `${slug}.md`);
-  if (!fs.existsSync(filePath)) return "";
-
-  const markdown = fs.readFileSync(filePath, "utf-8");
-  return marked.parse(markdown) as string;
-}
-
-const versions = getVersions();
-const defaultLang = "es";
+// Icons
+import Icon from "../../../icons/Icon.astro";
 ---
 
-<div class="settings-tab hidden [&.active]:block active" id="roadmap-tab">
+<div class="settings-tab hidden [&.active]:block" id="roadmap-tab">
   <div class="settings-header mb-[24px]! text-center">
-    <h3><u>Novedades</u></h3>
+    <h3><u data-i18n="roadmap.title"></u></h3>
   </div>
   <hr />
   <div class="settings-body">
-    <div class="p-4! font-sans">
+    <div class="p-4!">
       <div class="grid grid-cols-3 gap-4! items-start">
         <!-- Columna 1: Anterior -->
         <div class="bg-(--tn-theme-secondary) rounded-xl border border-(--tn-theme-accent)/30 overflow-hidden hover:shadow transition-all! duration-300! ease-in-out! cursor-default hover:scale-101">
           <div class="px-4! py-3! border-b border-(--tn-theme-accent)/30">
-            <span class="text-[11px] font-medium text-(--tn-color-text)/50 uppercase tracking-widest">Previous</span>
-            <p class="mt-1! text-[15px] font-medium text-(--tn-color-text)">v0.3.2</p>
-            <p class="mt-0.5! text-xs text-(--tn-color-text)/50">Jan 2026</p>
+            <span class="text-[11px] font-medium text-(--tn-color-text)/50 uppercase tracking-widest" data-i18n="roadmap.prev"></span>
+            <p class="mt-1! text-[15px] font-medium text-(--tn-color-text)" data-i18n="roadmap.prev-version"></p>
+            <p class="mt-0.5! text-xs text-(--tn-color-text)/50" data-i18n="roadmap.prev-date"></p>
           </div>
           <div class="px-4! py-3!">
             <ul class="flex flex-col gap-1! list-none! p-0! m-0!">
               <li class="border-b border-(--tn-theme-accent)/20 last:border-0">
                 <details class="group">
                   <summary class="flex items-center gap-2! py-2! cursor-pointer list-none text-[13px] text-(--tn-color-text)/70 pl-3! border-l-2 border-(--tn-theme-accent)/40">
-                    <span class="text-[10px] text-(--tn-color-text)/40 group-open:rotate-90 transition-transform! duration-200!">▶</span>
-                    Floating new tab button
+                    <Icon name="chevronright" className="text-[10px] text-(--tn-color-text)/40 group-open:rotate-90 transition-transform! duration-200! size-3!" />
+                    <span data-i18n="roadmap.prev-summary-1"></span>
                   </summary>
-                  <p class="text-[12px] text-(--tn-color-text)/50 pl-3! pr-2! pb-2! mt-0! mb-0! leading-relaxed">New FAB button at bottom right for creating tabs, replacing the old inline button.</p>
+                  <p class="text-[12px] text-(--tn-color-text)/50 pl-3! pr-2! pb-2! mt-0! mb-0! leading-relaxed" data-i18n="roadmap.prev-desc-1"></p>
                 </details>
               </li>
 
               <li class="border-b border-(--tn-theme-accent)/20 last:border-0">
                 <details class="group">
                   <summary class="flex items-center gap-2! py-2! cursor-pointer list-none text-[13px] text-(--tn-color-text)/70 pl-3! border-l-2 border-(--tn-theme-accent)/40">
-                    <span class="text-[10px] text-(--tn-color-text)/40 group-open:rotate-90 transition-transform! duration-200!">▶</span>
-                    Mobile modal fixes
+                    <Icon name="chevronright" className="text-[10px] text-(--tn-color-text)/40 group-open:rotate-90 transition-transform! duration-200! size-3!" />
+                    <span data-i18n="roadmap.prev-summary-2"></span>
                   </summary>
-                  <p class="text-[12px] text-(--tn-color-text)/50 pl-3! pr-2! pb-2! mt-0! mb-0! leading-relaxed">Corrected display issues in modals on small screens.</p>
+                  <p class="text-[12px] text-(--tn-color-text)/50 pl-3! pr-2! pb-2! mt-0! mb-0! leading-relaxed" data-i18n="roadmap.prev-desc-2"></p>
                 </details>
               </li>
 
               <li class="border-b border-(--tn-theme-accent)/20 last:border-0">
                 <details class="group">
                   <summary class="flex items-center gap-2! py-2! cursor-pointer list-none text-[13px] text-(--tn-color-text)/70 pl-3! border-l-2 border-(--tn-theme-accent)/40">
-                    <span class="text-[10px] text-(--tn-color-text)/40 group-open:rotate-90 transition-transform! duration-200!">▶</span>
-                    Vitest unit tests
+                    <Icon name="chevronright" className="text-[10px] text-(--tn-color-text)/40 group-open:rotate-90 transition-transform! duration-200! size-3!" />
+                    <span data-i18n="roadmap.prev-summary-3"></span>
                   </summary>
-                  <p class="text-[12px] text-(--tn-color-text)/50 pl-3! pr-2! pb-2! mt-0! mb-0! leading-relaxed">Added automated tests for core components: tabs, themes, fonts and context menu.</p>
+                  <p class="text-[12px] text-(--tn-color-text)/50 pl-3! pr-2! pb-2! mt-0! mb-0! leading-relaxed" data-i18n="roadmap.prev-desc-3"></p>
                 </details>
               </li>
 
               <li class="border-b border-(--tn-theme-accent)/20 last:border-0">
                 <details class="group">
                   <summary class="flex items-center gap-2! py-2! cursor-pointer list-none text-[13px] text-(--tn-color-text)/70 pl-3! border-l-2 border-(--tn-theme-accent)/40">
-                    <span class="text-[10px] text-(--tn-color-text)/40 group-open:rotate-90 transition-transform! duration-200!">▶</span>
-                    Custom font reset fix
+                    <Icon name="chevronright" className="text-[10px] text-(--tn-color-text)/40 group-open:rotate-90 transition-transform! duration-200! size-3!" />
+                    <span data-i18n="roadmap.prev-summary-4"></span>
                   </summary>
-                  <p class="text-[12px] text-(--tn-color-text)/50 pl-3! pr-2! pb-2! mt-0! mb-0! leading-relaxed">Fixed a bug where custom fonts wouldn't reset properly to the default.</p>
+                  <p class="text-[12px] text-(--tn-color-text)/50 pl-3! pr-2! pb-2! mt-0! mb-0! leading-relaxed" data-i18n="roadmap.prev-desc-4"></p>
                 </details>
               </li>
             </ul>
-            <a target="_blank" href="https://github.com/Mixxy-Studio/TomaNote/blob/master/CHANGELOG.md" class="inline-block mt-3! text-xs text-(--tn-theme-contrast) no-underline">View full changelog →</a>
+            <a target="_blank" href={t("roadmap.changelog-link")} class="inline-block mt-3! text-xs text-(--tn-theme-contrast) no-underline" data-i18n="roadmap.viewChangelog"></a>
           </div>
         </div>
 
         <!-- Columna 2: Actual (destacada) -->
         <div class="bg-(--tn-theme-contrast)/20 rounded-xl border-2 border-(--tn-theme-contrast) overflow-hidden hover:shadow transition-all! duration-300! ease-in-out! cursor-default hover:scale-101">
           <div class="px-4! py-3! border-b border-(--tn-theme-contrast)/30">
-            <span class="inline-block text-[11px] font-medium bg-(--tn-theme-contrast) text-(--tn-neutral-tertiary-color) px-2! py-0.5! rounded-md mb-1.5!">Current</span>
-            <p class="mt-1! text-[15px] font-medium text-(--tn-color-text)">v0.4.0</p>
-            <p class="mt-0.5! text-xs text-(--tn-color-text)/50">March 2026</p>
+            <span class="inline-block text-[11px] font-medium bg-(--tn-theme-contrast) text-(--tn-neutral-tertiary-color) px-2! py-0.5! rounded-md mb-1.5!" data-i18n="roadmap.current"></span>
+            <p class="mt-1! text-[15px] font-medium text-(--tn-color-text)" data-i18n="roadmap.current-version"></p>
+            <p class="mt-0.5! text-xs text-(--tn-color-text)/50" data-i18n="roadmap.current-date"></p>
           </div>
           <div class="px-4! py-3!">
             <ul class="flex flex-col gap-1! list-none! p-0! m-0!">
               <li class="border-b border-(--tn-theme-contrast)/20 last:border-0">
                 <details class="group">
                   <summary class="flex items-center gap-2! py-2! cursor-pointer list-none text-[13px] text-(--tn-color-text) pl-3! border-l-2 border-(--tn-theme-contrast)">
-                    <span class="text-[10px] text-(--tn-color-text)/50 group-open:rotate-90 transition-transform! duration-200!">▶</span>
-                    Floating menu with tool groups
+                    <Icon name="chevronright" className="text-[10px] text-(--tn-color-text)/40 group-open:rotate-90 transition-transform! duration-200! size-3!" />
+                    <span data-i18n="roadmap.current-summary-1"></span>
                   </summary>
-                  <p class="text-[12px] text-(--tn-color-text)/60 pl-3! pr-2! pb-2! mt-0! mb-0! leading-relaxed">New always-visible floating menu with grouped tools: content, font and tab actions.</p>
+                  <p class="text-[12px] text-(--tn-color-text)/60 pl-3! pr-2! pb-2! mt-0! mb-0! leading-relaxed" data-i18n="roadmap.current-desc-1"></p>
                 </details>
               </li>
 
               <li class="border-b border-(--tn-theme-contrast)/20 last:border-0">
                 <details class="group">
                   <summary class="flex items-center gap-2! py-2! cursor-pointer list-none text-[13px] text-(--tn-color-text) pl-3! border-l-2 border-(--tn-theme-contrast)">
-                    <span class="text-[10px] text-(--tn-color-text)/50 group-open:rotate-90 transition-transform! duration-200!">▶</span>
-                    Drag & drop tabs
+                    <Icon name="chevronright" className="text-[10px] text-(--tn-color-text)/40 group-open:rotate-90 transition-transform! duration-200! size-3!" />
+                    <span data-i18n="roadmap.current-summary-2"></span>
                   </summary>
-                  <p class="text-[12px] text-(--tn-color-text)/60 pl-3! pr-2! pb-2! mt-0! mb-0! leading-relaxed">Reorder your tabs by dragging them. Powered by SortableJS.</p>
+                  <p class="text-[12px] text-(--tn-color-text)/60 pl-3! pr-2! pb-2! mt-0! mb-0! leading-relaxed" data-i18n="roadmap.current-desc-2"></p>
                 </details>
               </li>
 
               <li class="border-b border-(--tn-theme-contrast)/20 last:border-0">
                 <details class="group">
                   <summary class="flex items-center gap-2! py-2! cursor-pointer list-none text-[13px] text-(--tn-color-text) pl-3! border-l-2 border-(--tn-theme-contrast)">
-                    <span class="text-[10px] text-(--tn-color-text)/50 group-open:rotate-90 transition-transform! duration-200!">▶</span>
-                    Font size selector
+                    <Icon name="chevronright" className="text-[10px] text-(--tn-color-text)/40 group-open:rotate-90 transition-transform! duration-200! size-3!" />
+                    <span data-i18n="roadmap.current-summary-3"></span>
                   </summary>
-                  <p class="text-[12px] text-(--tn-color-text)/60 pl-3! pr-2! pb-2! mt-0! mb-0! leading-relaxed">Choose between Base, Medium and Large text size. Saved locally per browser.</p>
+                  <p class="text-[12px] text-(--tn-color-text)/60 pl-3! pr-2! pb-2! mt-0! mb-0! leading-relaxed" data-i18n="roadmap.current-desc-3"></p>
                 </details>
               </li>
 
               <li class="border-b border-(--tn-theme-contrast)/20 last:border-0">
                 <details class="group">
                   <summary class="flex items-center gap-2! py-2! cursor-pointer list-none text-[13px] text-(--tn-color-text) pl-3! border-l-2 border-(--tn-theme-contrast)">
-                    <span class="text-[10px] text-(--tn-color-text)/50 group-open:rotate-90 transition-transform! duration-200!">▶</span>
-                    Custom Google Fonts
+                    <Icon name="chevronright" className="text-[10px] text-(--tn-color-text)/40 group-open:rotate-90 transition-transform! duration-200! size-3!" />
+                    <span data-i18n="roadmap.current-summary-4"></span>
                   </summary>
-                  <p class="text-[12px] text-(--tn-color-text)/60 pl-3! pr-2! pb-2! mt-0! mb-0! leading-relaxed">Paste any Google Fonts URL in settings and apply it instantly to your editor.</p>
+                  <p class="text-[12px] text-(--tn-color-text)/60 pl-3! pr-2! pb-2! mt-0! mb-0! leading-relaxed" data-i18n="roadmap.current-desc-4"></p>
                 </details>
               </li>
 
               <li class="border-b border-(--tn-theme-contrast)/20 last:border-0">
                 <details class="group">
                   <summary class="flex items-center gap-2! py-2! cursor-pointer list-none text-[13px] text-(--tn-color-text) pl-3! border-l-2 border-(--tn-theme-contrast)">
-                    <span class="text-[10px] text-(--tn-color-text)/50 group-open:rotate-90 transition-transform! duration-200!">▶</span>
-                    i18n: English & Spanish
+                    <Icon name="chevronright" className="text-[10px] text-(--tn-color-text)/40 group-open:rotate-90 transition-transform! duration-200! size-3!" />
+                    <span data-i18n="roadmap.current-summary-5"></span>
                   </summary>
-                  <p class="text-[12px] text-(--tn-color-text)/60 pl-3! pr-2! pb-2! mt-0! mb-0! leading-relaxed">Full interface translation system. Switch between English and Spanish from settings.</p>
+                  <p class="text-[12px] text-(--tn-color-text)/60 pl-3! pr-2! pb-2! mt-0! mb-0! leading-relaxed" data-i18n="roadmap.current-desc-5"></p>
                 </details>
               </li>
 
               <li class="border-b border-(--tn-theme-contrast)/20 last:border-0">
                 <details class="group">
                   <summary class="flex items-center gap-2! py-2! cursor-pointer list-none text-[13px] text-(--tn-color-text) pl-3! border-l-2 border-(--tn-theme-contrast)">
-                    <span class="text-[10px] text-(--tn-color-text)/50 group-open:rotate-90 transition-transform! duration-200!">▶</span>
-                    Renovated settings modal
+                    <Icon name="chevronright" className="text-[10px] text-(--tn-color-text)/40 group-open:rotate-90 transition-transform! duration-200! size-3!" />
+                    <span data-i18n="roadmap.current-summary-6"></span>
                   </summary>
-                  <p class="text-[12px] text-(--tn-color-text)/60 pl-3! pr-2! pb-2! mt-0! mb-0! leading-relaxed">Completely redesigned with dedicated tabs: About, License, Terms, News, Typography, Appearance and Language.</p>
+                  <p class="text-[12px] text-(--tn-color-text)/60 pl-3! pr-2! pb-2! mt-0! mb-0! leading-relaxed" data-i18n="roadmap.current-desc-6"></p>
                 </details>
               </li>
             </ul>
           </div>
         </div>
 
-        <!-- Columna 3: Próxima -->
+        <!-- Columna 3: Proxima -->
         <div class="bg-(--tn-theme-secondary) rounded-xl border border-(--tn-theme-accent)/30 overflow-hidden opacity-75 hover:shadow transition-all! duration-300! ease-in-out! cursor-default hover:scale-101">
           <div class="px-4! py-3! border-b border-(--tn-theme-accent)/30">
-            <span class="text-[11px] font-medium text-(--tn-color-text)/50 uppercase tracking-widest">Coming up</span>
-            <p class="mt-1! text-[15px] font-medium text-(--tn-color-text)">v0.5.0</p>
-            <p class="mt-0.5! text-xs text-(--tn-color-text)/50">In development</p>
+            <span class="text-[11px] font-medium text-(--tn-color-text)/50 uppercase tracking-widest" data-i18n="roadmap.next"></span>
+            <p class="mt-1! text-[15px] font-medium text-(--tn-color-text)" data-i18n="roadmap.next-version"></p>
+            <p class="mt-0.5! text-xs text-(--tn-color-text)/50" data-i18n="roadmap.next-date"></p>
           </div>
           <div class="px-4! py-3!">
             <ul class="flex flex-col gap-1! list-none! p-0! m-0!">
               <li class="border-b border-(--tn-theme-accent)/20 last:border-0">
                 <details class="group">
                   <summary class="flex items-center gap-2! py-2! cursor-pointer list-none text-[13px] text-(--tn-color-text)/70 pl-3! border-l-2 border-(--tn-theme-accent)/30 italic">
-                    <span class="text-[10px] text-(--tn-color-text)/30 group-open:rotate-90 transition-transform! duration-200!">▶</span>
-                    Markdown live rendering
+                    <Icon name="chevronright" className="text-[10px] text-(--tn-color-text)/40 group-open:rotate-90 transition-transform! duration-200! size-3!" />
+                    <span data-i18n="roadmap.next-summary-1"></span>
                   </summary>
-                  <p class="text-[12px] text-(--tn-color-text)/40 pl-3! pr-2! pb-2! mt-0! mb-0! leading-relaxed italic">Write markdown and see it rendered live as you type.</p>
+                  <p class="text-[12px] text-(--tn-color-text)/40 pl-3! pr-2! pb-2! mt-0! mb-0! leading-relaxed italic" data-i18n="roadmap.next-desc-1"></p>
                 </details>
               </li>
 
               <li class="border-b border-(--tn-theme-accent)/20 last:border-0">
                 <details class="group">
                   <summary class="flex items-center gap-2! py-2! cursor-pointer list-none text-[13px] text-(--tn-color-text)/70 pl-3! border-l-2 border-(--tn-theme-accent)/30 italic">
-                    <span class="text-[10px] text-(--tn-color-text)/30 group-open:rotate-90 transition-transform! duration-200!">▶</span>
-                    Image resize inline
+                    <Icon name="chevronright" className="text-[10px] text-(--tn-color-text)/40 group-open:rotate-90 transition-transform! duration-200! size-3!" />
+                    <span data-i18n="roadmap.next-summary-2"></span>
                   </summary>
-                  <p class="text-[12px] text-(--tn-color-text)/40 pl-3! pr-2! pb-2! mt-0! mb-0! leading-relaxed italic">Resize pasted images directly in the note up to 500px max.</p>
+                  <p class="text-[12px] text-(--tn-color-text)/40 pl-3! pr-2! pb-2! mt-0! mb-0! leading-relaxed italic" data-i18n="roadmap.next-desc-2"></p>
                 </details>
               </li>
 
               <li class="border-b border-(--tn-theme-accent)/20 last:border-0">
                 <details class="group">
                   <summary class="flex items-center gap-2! py-2! cursor-pointer list-none text-[13px] text-(--tn-color-text)/70 pl-3! border-l-2 border-(--tn-theme-accent)/30 italic">
-                    <span class="text-[10px] text-(--tn-color-text)/30 group-open:rotate-90 transition-transform! duration-200!">▶</span>
-                    Mermaid.js diagrams
+                    <Icon name="chevronright" className="text-[10px] text-(--tn-color-text)/40 group-open:rotate-90 transition-transform! duration-200! size-3!" />
+                    <span data-i18n="roadmap.next-summary-3"></span>
                   </summary>
-                  <p class="text-[12px] text-(--tn-color-text)/40 pl-3! pr-2! pb-2! mt-0! mb-0! leading-relaxed italic">Draw diagrams and flowcharts using text syntax inside your notes.</p>
+                  <p class="text-[12px] text-(--tn-color-text)/40 pl-3! pr-2! pb-2! mt-0! mb-0! leading-relaxed italic" data-i18n="roadmap.next-desc-3"></p>
                 </details>
               </li>
 
               <li class="border-b border-(--tn-theme-accent)/20 last:border-0">
                 <details class="group">
                   <summary class="flex items-center gap-2! py-2! cursor-pointer list-none text-[13px] text-(--tn-color-text)/70 pl-3! border-l-2 border-(--tn-theme-accent)/30 italic">
-                    <span class="text-[10px] text-(--tn-color-text)/30 group-open:rotate-90 transition-transform! duration-200!">▶</span>
-                    Session lock (daily key)
+                    <Icon name="chevronright" className="text-[10px] text-(--tn-color-text)/40 group-open:rotate-90 transition-transform! duration-200! size-3!" />
+                    <span data-i18n="roadmap.next-summary-4"></span>
                   </summary>
-                  <p class="text-[12px] text-(--tn-color-text)/40 pl-3! pr-2! pb-2! mt-0! mb-0! leading-relaxed italic">Lock your session with a temporary daily key. No password stored, full privacy.</p>
+                  <p class="text-[12px] text-(--tn-color-text)/40 pl-3! pr-2! pb-2! mt-0! mb-0! leading-relaxed italic" data-i18n="roadmap.next-desc-4"></p>
                 </details>
               </li>
             </ul>
