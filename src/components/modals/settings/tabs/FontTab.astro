@@ -53,17 +53,17 @@ import Icon from "../../../icons/Icon.astro";
       </div>
     </div>
 
-    <div class="grid grid-cols-3 gap-4 mt-4!">
-      <div class="col-span-1">
-        <div class="settings-section mt-5!">
+    <div class="grid grid-cols-3! sm:grid-cols-3! md:grid-cols-4 lg:grid-cols-3 gap-4 mt-4!">
+      <div class="col-span-3! sm:col-span-1! md:col-span-2 xl:col-span-1">
+        <div class="settings-section mt-5! mb-0!">
           <h4 class="font-medium! text-xl!" data-i18n="typo.second-option"></h4>
           <p data-i18n="typo.second-option-subtitle"></p>
           <p class="text-sm! text-(--color-text)/60 mt-2! italic" data-i18n="typo.second-option-tip"></p>
         </div>
       </div>
-      <div class="col-span-2">
-        <div class="settings-form flex gap-5">
-          <div class="group flex flex-col gap-2 mb-5!">
+      <div class="col-span-3! sm:col-span-2! md:col-span-2 xl:col-span-2">
+        <div class="settings-form flex flex-wrap gap-x-5">
+          <div class="group flex flex-col gap-2">
             <h4 class="mb-0! mt-3!" data-i18n="typo.second-option-base"></h4>
             <input type="radio" name="options-font-size" class="hidden peer" id="option-base-text" checked />
             <label for="option-base-text" class="w-[100px] h-[100px]! flex items-center justify-center border-2 border-(--tn-theme-accent) rounded-lg cursor-pointer peer-checked:border-(--tn-theme-contrast)">
@@ -71,7 +71,7 @@ import Icon from "../../../icons/Icon.astro";
             </label>
           </div>
 
-          <div class="group flex flex-col gap-2 mb-5!">
+          <div class="group flex flex-col gap-2">
             <h4 class="mb-0! mt-3!" data-i18n="typo.second-option-medium"></h4>
             <input type="radio" name="options-font-size" class="hidden peer" id="option-medium-text" />
             <label for="option-medium-text" class="w-[100px] h-[100px]! flex items-center justify-center border-2 border-(--tn-theme-accent) rounded-lg cursor-pointer peer-checked:border-(--tn-theme-contrast)">
@@ -79,7 +79,7 @@ import Icon from "../../../icons/Icon.astro";
             </label>
           </div>
 
-          <div class="group flex flex-col gap-2 mb-5!">
+          <div class="group flex flex-col gap-2">
             <h4 class="mb-0! mt-3!" data-i18n="typo.second-option-large"></h4>
             <input type="radio" name="options-font-size" class="hidden peer" id="option-large-text" />
             <label for="option-large-text" class="w-[100px] h-[100px]! flex items-center justify-center border-2 border-(--tn-theme-accent) rounded-lg cursor-pointer peer-checked:border-(--tn-theme-contrast)">
