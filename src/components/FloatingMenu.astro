@@ -28,7 +28,7 @@ const tabButtons = [
 ];
 ---
 
-<nav class="tn-navbar absolute bg-(--tn-theme-primary)/2! bottom-3 right-0 md:right-5 md:bottom-7 flex flex-column items-center justify-center rounded-2xl py-2max-w-[95vw] overflow-x-autoscrollbar-hide">
+<nav class="tn-navbar absolute bg-(--tn-theme-primary)/2! bottom-15 right-0 md:right-5 md:bottom-5 flex flex-column items-center justify-center rounded-2xl py-2max-w-[95vw] overflow-x-autoscrollbar-hide">
   <div dir="rtl" class="tn-navbar-btns tn-navbar-checked flex flex-col-reverse items-center justify-between gap-1 h-auto">
     <CreateTab />
 
@@ -45,7 +45,7 @@ const tabButtons = [
       <FloatingButtonGroup id="tn-navbar__tab" radioName="options" radioId="tn-open-options__tab" iconName="tab" buttons={tabButtons} iconStrokeWidth="1.5" />
 
       <!-- Botón Settings individual -->
-      <FloatingButton action="settings" iconName="settings" tooltip="Settings" className="tn-setting border-(--tn-theme-contrast)! p-4!" onClick="event.preventDefault(); document.querySelector('dialog#info-notepad').showModal()" />
+      <FloatingButton action="settings" iconName="settings" tooltip="Settings" className="tn-setting border-(--tn-theme-contrast)! p-4! bg-(--tn-theme-secondary)" onClick="event.preventDefault(); document.querySelector('dialog#info-notepad').showModal()" />
     </div>
   </div>
 </nav>
