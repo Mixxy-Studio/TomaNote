@@ -22,14 +22,14 @@ $tn-theme-contrast-dark: #335484;
 // Variables de tema Light
 $tn-theme-primary-light: #E0D3C2;
 $tn-theme-secondary-light: #F1EBE4;
-$tn-theme-accent-light: #CFA37E;
-$tn-theme-contrast-light: #FF893B;
+$tn-theme-accent-light: #FF893B;
+$tn-theme-contrast-light: #CFA37E;
 
 // Variables de tema Cozy Rose
-$tn-theme-primary-cozy-rose: #B85C80;
-$tn-theme-secondary-cozy-rose: #E6CBD5;
-$tn-theme-accent-cozy-rose: #ECA39D;
-$tn-theme-contrast-cozy-rose: #9657A8;
+$tn-theme-primary-cozy-rose: #8B5FBF;
+$tn-theme-secondary-cozy-rose: #E9E3F5;
+$tn-theme-accent-cozy-rose: #BFA2DB;
+$tn-theme-contrast-cozy-rose: #5E3A87;
 
 // Variables de tema Chill Aqua
 $tn-theme-primary-chill-aqua: #76C9D4;
@@ -51,8 +51,9 @@ $tn-theme-contrast-neon-orbit: #971C3C;
 
 // Fuentes y Espaciado
 $tn-font-size-base: 1rem;
-$tn-font-size-large: 1.5rem;
-$tn-font-family-default: "Raleway", sans-serif, "Arial", "Helvetica Neue", Helvetica, serif;
+$tn-font-size-medium: 1.25rem;
+$tn-font-size-large: 1.6rem;
+$tn-font-family-default: "Inter", sans-serif, "Arial", "Helvetica Neue", Helvetica, serif;
 $tn-padding-base: 10px;
 $tn-border-radius: 5px;
 $tn-border-radius-small: 4px;
@@ -154,7 +155,9 @@ $tn-themes: (
 
   // Fuentes y Espaciado
   --tn-font-size-base: #{$tn-font-size-base};
+  --tn-font-size-medium: #{$tn-font-size-medium};
   --tn-font-size-large: #{$tn-font-size-large};
+  --tn-editor-font-size: var(--tn-font-size-base);
   --tn-font-family-default: #{$tn-font-family-default};
   --tn-padding-base: #{$tn-padding-base};
   --tn-border-radius: #{$tn-border-radius};
@@ -232,8 +235,6 @@ $tn-themes: (
 /* =============================================== */
 /* ==== Variables de compatibilidad (opcional) === */
 /* =============================================== */
-
-// Si necesitas mantener compatibilidad con variables antiguas
 :root {
   --color-background: var(--tn-color-background);
   --color-secondary-background: var(--tn-color-secondary-background);

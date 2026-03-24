@@ -31,15 +31,24 @@ export async function initNotepad() {
 
 // ===== FUNCIONES CRÍTICAS (deben cargarse primero) =====
 async function loadCriticalFunctions() {
-  // 1. Cargar fuente personalizada (parte más crítica)
+  // 1. Inicializar sistema de internacionalización
+  const { i18n } = await import("../../i18n/core.js");
+  i18n.init();
+
+  // 2. Compartir idioma del cliente con SSR (para que los componentes .astro lo usen)
+  window.__I18N_CONFIG = { lang: i18n.getLang() };
+
+  // 3. Cargar fuente personalizada (parte más crítica)
   const { FontManager } = await import("./core/fontManager.js");
   window.fontManager = new FontManager();
   window.fontManager.loadCustomFont();
+  window.fontManager.loadFontSize();
+  window.fontManager.initFontSettingsUI();
 
-  // 2. Configurar sistema de temas (dark/light mode)
+  // 3. Configurar sistema de temas (dark/light mode)
   await setupThemeSystem();
 
-  // 3. Configurar Service Worker si está disponible
+  // 4. Configurar Service Worker si está disponible
   setupServiceWorker();
 }
 
@@ -117,6 +126,10 @@ async function initializeBasicComponents() {
   // Por ahora, las ponemos aquí como funciones internas
   await initializeTabsSystem();
   await initializeContextMenu();
+  await initializeFloatingMenu();
+  await initializeKeyboardShortcuts();
+  await initializeTabDragDrop();
+  await initializeSettingsModal();
 }
 
 async function initializeTabsSystem() {
@@ -133,6 +146,7 @@ async function initializeTabsSystem() {
       enablePinning: true,
       enableContentEditing: true,
       enableAutoSave: true,
+      anchorSelector: "#tab-list-anchor",
       debug: true,
     });
 
@@ -197,6 +211,70 @@ async function initializeContextMenu() {
     });
 
     throw error;
+  }
+}
+
+async function initializeFloatingMenu() {
+  try {
+    const { FloatingMenu } = await import("./ui/floatingMenu.js");
+
+    window.floatingMenu = new FloatingMenu({
+      debug: true,
+    });
+
+    await window.floatingMenu.init();
+
+    return window.floatingMenu;
+  } catch (error) {
+    console.error("❌ Error inicializando FloatingMenu:", error);
+  }
+}
+
+async function initializeKeyboardShortcuts() {
+  try {
+    const { KeyboardShortcuts } = await import("./ui/keyboardShortcuts.js");
+
+    window.keyboardShortcuts = new KeyboardShortcuts({
+      debug: true,
+    });
+
+    await window.keyboardShortcuts.init();
+
+    return window.keyboardShortcuts;
+  } catch (error) {
+    console.error("❌ Error inicializando KeyboardShortcuts:", error);
+  }
+}
+
+async function initializeTabDragDrop() {
+  try {
+    const { TabDragDrop } = await import("./ui/tabDragDrop.js");
+
+    window.tabDragDrop = new TabDragDrop({
+      debug: true,
+    });
+
+    await window.tabDragDrop.init();
+
+    return window.tabDragDrop;
+  } catch (error) {
+    console.error("❌ Error inicializando TabDragDrop:", error);
+  }
+}
+
+async function initializeSettingsModal() {
+  try {
+    const { SettingsModal } = await import("./ui/settingsModal.js");
+
+    window.settingsModal = new SettingsModal({
+      debug: true,
+    });
+
+    await window.settingsModal.init();
+
+    return window.settingsModal;
+  } catch (error) {
+    console.error("❌ Error inicializando SettingsModal:", error);
   }
 }
 
