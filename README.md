@@ -2,7 +2,7 @@
 
 <div align="center">
 
-![Version](https://img.shields.io/badge/version-0.4.0-blue.svg)
+![Version](https://img.shields.io/badge/version-0.4.1-blue.svg)
 ![License](https://img.shields.io/badge/license-AGPL%20v3-green.svg)
 ![Status](https://img.shields.io/badge/status-active-success.svg)
 ![Mobile](https://img.shields.io/badge/mobile-responsive-success)
@@ -20,27 +20,24 @@ TomaNote is a modern, minimalist notepad that runs directly in your browser. No 
 > Want to see what's coming next?
 > Check the **Roadmap** inside the app at [tomanote.app](https://tomanote.app) ✨
 
-## 🚀 What's new — v0.4.0
+## 🚀 What's new — v0.4.1
 
-This release focuses on editor tooling, personalization and a completely redesigned settings experience.
+This release focuses on bug fixes, security updates and development automation.
 
-### 🧰 Floating menu with tool groups
-A new always-visible floating menu replaces the old inline controls. Actions are grouped into three categories: content (copy, paste, undo, redo), font (bold, italic, underline) and tab management (pin, rename, delete).
+### 🐛 Paste cursor fix
+Text now inserts at the cursor position when using the floating menu paste button.
 
-### 🖱️ Drag & drop tabs
-Reorder your tabs by dragging them. Pinned tabs stay locked at the front. Powered by SortableJS.
+### 🛡️ Security vulnerabilities fixed
+Resolved 7 critical and high severity vulnerabilities in dependencies.
 
-### 🔤 Font size selector
-Choose between Base, Medium and Large text size directly from settings. Preference is saved locally per browser.
+### 🔧 Sass migration
+Migrated deprecated Sass functions to the new modular API.
 
-### ✏️ Custom Google Fonts
-Paste any Google Fonts URL in the Typography settings and apply it instantly to your editor.
+### ⚙️ Security automation
+Added automated security scripts and GitHub Action for continuous auditing.
 
-### 🌐 i18n — English & Spanish
-Full interface translation system built in. Switch between English and Spanish from the Appearance settings tab.
-
-### ⚙️ Renovated settings modal
-Completely redesigned with dedicated tabs: About, License, Terms, News, Typography, Appearance and Language.
+### 🧪 Test coverage
+All 146 tests passing with improved coverage.
 
 ## 🛠️ Tech Stack
 

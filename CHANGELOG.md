@@ -2,6 +2,40 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.4.1](https://github.com/Mixxy-Studio/TomaNote/compare/v0.4.0...v0.4.1) (2026-03-25)
+
+Bug fixes, security updates & maintainability improvements
+
+## 🐛 Bug Fixes
+
+- Fix #25: Paste text now inserts at cursor position in floating menu
+- Update paste functionality to use Selection API instead of execCommand
+
+## 🛡️ Security
+
+- Fix #17-24: Resolve 7 critical and high security vulnerabilities
+- Regenerate package-lock.json to unblock Dependabot
+- Resolve minimatch, rollup, svgo, immutable, ajv, devalue vulnerabilities
+
+## 🔧 Code Quality
+
+- Fix #16: Migrate deprecated Sass global functions to modular API
+- Replace map-get, map-has-key, map-keys with map.get, map.has-key, map.keys
+
+## ⚙️ Development Automation
+
+- Add security scripts: security:check, security:fix, security:outdated
+- Create GitHub Action for automated security audits (informative only)
+- Improve test coverage and prevent regressions
+
+## 🧪 Testing
+
+- Add comprehensive tests for paste functionality with Selection API
+- Update contextMenu tests for new paste behavior
+- All 146 tests passing
+
+---
+
 ### [0.4.0](https://github.com/camiicode/TomaNote/compare/v0.3.2...v0.4.0) (2026-03-24)
 
 Major modular redesign & internationalization
