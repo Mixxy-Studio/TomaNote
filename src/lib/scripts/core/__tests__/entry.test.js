@@ -26,6 +26,12 @@ vi.mock("../../ui/contextMenu.js", () => ({
   })),
 }));
 
+vi.mock("../../ui/settingsModal.js", () => ({
+  SettingsModal: vi.fn().mockImplementation(() => ({
+    init: vi.fn().mockResolvedValue(),
+  })),
+}));
+
 vi.mock("../../utils/domHelpers.js", () => ({
   default: {},
 }));
@@ -51,6 +57,7 @@ describe("entry.js", () => {
       themeManager: null,
       tabManager: null,
       contextMenu: null,
+      settingsModal: null,
       addEventListener: vi.fn(),
       dispatchEvent: vi.fn(),
       matchMedia: vi.fn().mockReturnValue({ matches: false }),

@@ -9,6 +9,16 @@
   font-size: var(--tn-font-size-base);
 }
 
+ul {
+  list-style: disc !important;
+  list-style-position: inside;
+}
+
+ol {
+  list-style: decimal !important;
+  list-style-position: inside;
+}
+
 body {
   margin: 0;
   padding: var(--tn-padding-base);
@@ -81,7 +91,7 @@ code {
   overflow: hidden;
   padding: 2px 6px;
   transition: background-color 0.3s ease;
-  color: var(--tn-theme-secondary);
+  color: var(--color-text);
 }
 
 /* Scrollbar styling */
@@ -170,4 +180,32 @@ html[data-theme="neon-orbit"] .tab-list__item {
   input:checked~label span {
     color: var(--tn-neutral-tertiary-color);
   }
+}
+
+.tab-list__item--content {
+  font-size: var(--tn-editor-font-size);
+}
+
+.base-text * {
+  font-size: vars.$tn-font-size-base !important;
+}
+
+.medium-text * {
+  font-size: vars.$tn-font-size-medium !important;
+}
+
+.large-text * {
+  font-size: vars.$tn-font-size-large !important;
+}
+
+hr {
+  display: inline-block;
+  margin-block: 0.5rem !important;
+  opacity: 0.15;
+  color: var(--tn-color-text);
+  background-color: var(--tn-color-text);
+  border-color: var(--color-text);
+  border-width: 0.0315rem 0 0 0;
+  border-style: solid;
+  width: 100%;
 }
