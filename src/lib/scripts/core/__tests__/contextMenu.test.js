@@ -39,6 +39,7 @@ describe("ContextMenu", () => {
       getElementById: vi.fn().mockReturnValue(mockElement),
       execCommand: vi.fn(),
       createElement: vi.fn().mockReturnValue(mockElement),
+      createTextNode: vi.fn().mockReturnValue({ nodeType: 3 }),
       body: { appendChild: vi.fn() },
       elementFromPoint: vi.fn().mockReturnValue(mockElement),
     };
@@ -55,6 +56,9 @@ describe("ContextMenu", () => {
             .fn()
             .mockReturnValue({ top: 100, left: 100 }),
           cloneRange: vi.fn().mockReturnValue({}),
+          deleteContents: vi.fn(),
+          insertNode: vi.fn(),
+          collapse: vi.fn(),
         }),
         removeAllRanges: vi.fn(),
         addRange: vi.fn(),
@@ -138,7 +142,7 @@ describe("ContextMenu", () => {
       );
     });
 
-    it("debe ejecutar comando paste usando clipboard", async () => {
+    it("debe ejecutar comando paste usando clipboard y Selection API", async () => {
       global.navigator = {
         clipboard: { readText: vi.fn().mockResolvedValue("pasted text") },
       };
@@ -147,11 +151,14 @@ describe("ContextMenu", () => {
       await contextMenu.handleTextAction("paste");
 
       expect(global.navigator.clipboard.readText).toHaveBeenCalled();
-      expect(global.document.execCommand).toHaveBeenCalledWith(
-        "insertText",
-        false,
-        "pasted text",
-      );
+
+      const mockSelection = global.window.getSelection();
+      expect(mockSelection.getRangeAt).toHaveBeenCalled();
+      expect(mockSelection.getRangeAt(0).deleteContents).toHaveBeenCalled();
+      expect(mockSelection.getRangeAt(0).insertNode).toHaveBeenCalled();
+      expect(mockSelection.getRangeAt(0).collapse).toHaveBeenCalledWith(false);
+      expect(mockSelection.removeAllRanges).toHaveBeenCalled();
+      expect(mockSelection.addRange).toHaveBeenCalled();
     });
   });
 
