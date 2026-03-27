@@ -2,6 +2,35 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.4.2](https://github.com/camiicode/TomaNote/compare/v0.4.1...v0.4.2) (2026-03-27)
+
+### [0.4.2](https://github.com/Mixxy-Studio/TomaNote/compare/v0.4.1...v0.4.2) (2026-03-27)
+
+Modal confirmation & mobile/PWA improvements
+
+## 🔔 New Features
+
+- Modal confirmation dialog for tab deletion
+- Replace deprecated browser confirm() with custom modal
+- New icons: alert, trash
+
+## 📱 Mobile & PWA Improvements
+
+- Dynamic floating menu positioning for mobile browsers
+- Safe area insets support for iOS PWA
+- Virtual keyboard detection
+- Fixed positioning issues in standalone mode
+
+## 🧪 Testing
+
+- Add tests for CloseTabConfirmation modal
+- Add tests for TabDeletion handler
+- Add tests for FloatingNavPosition module
+- 19 new tests added
+- All 163 tests passing
+
+---
+
 ### [0.4.1](https://github.com/Mixxy-Studio/TomaNote/compare/v0.4.0...v0.4.1) (2026-03-25)
 
 Bug fixes, security updates & maintainability improvements
