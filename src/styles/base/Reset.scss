@@ -209,3 +209,7 @@ hr {
   border-style: solid;
   width: 100%;
 }
+
+dialog::backdrop {
+  background-color: rgba(0, 0, 0, .5) !important;
+}

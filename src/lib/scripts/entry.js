@@ -130,6 +130,8 @@ async function initializeBasicComponents() {
   await initializeKeyboardShortcuts();
   await initializeTabDragDrop();
   await initializeSettingsModal();
+  await initializeCloseTabConfirmation();
+  await initializeFloatingNavPosition();
 }
 
 async function initializeTabsSystem() {
@@ -275,6 +277,30 @@ async function initializeSettingsModal() {
     return window.settingsModal;
   } catch (error) {
     console.error("❌ Error inicializando SettingsModal:", error);
+  }
+}
+
+async function initializeCloseTabConfirmation() {
+  try {
+    const { CloseTabConfirmation } = await import("./ui/closeTabConfirmation.js");
+
+    window.closeTabConfirmationModal = new CloseTabConfirmation();
+    await window.closeTabConfirmationModal.init();
+
+    console.log("[CloseTabConfirmation] Initialized");
+  } catch (error) {
+    console.error("❌ Error inicializando CloseTabConfirmation:", error);
+  }
+}
+
+async function initializeFloatingNavPosition() {
+  try {
+    const { FloatingNavPosition } = await import("./ui/floatingNavPosition.js");
+
+    window.floatingNavPosition = new FloatingNavPosition();
+    window.floatingNavPosition.init();
+  } catch (error) {
+    console.error("❌ Error inicializando FloatingNavPosition:", error);
   }
 }
 
