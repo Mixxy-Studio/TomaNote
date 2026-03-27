@@ -130,6 +130,7 @@ async function initializeBasicComponents() {
   await initializeKeyboardShortcuts();
   await initializeTabDragDrop();
   await initializeSettingsModal();
+  await initializeCloseTabConfirmation();
 }
 
 async function initializeTabsSystem() {
@@ -275,6 +276,19 @@ async function initializeSettingsModal() {
     return window.settingsModal;
   } catch (error) {
     console.error("❌ Error inicializando SettingsModal:", error);
+  }
+}
+
+async function initializeCloseTabConfirmation() {
+  try {
+    const { CloseTabConfirmation } = await import("./ui/closeTabConfirmation.js");
+
+    window.closeTabConfirmationModal = new CloseTabConfirmation();
+    await window.closeTabConfirmationModal.init();
+
+    console.log("[CloseTabConfirmation] Initialized");
+  } catch (error) {
+    console.error("❌ Error inicializando CloseTabConfirmation:", error);
   }
 }
 

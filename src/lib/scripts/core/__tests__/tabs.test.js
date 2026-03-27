@@ -149,66 +149,16 @@ describe("TabManager - Eventos tabsChanged", () => {
     );
   });
 
-  it("deleteTabElement debe usar mensaje de confirmación de i18n", () => {
-    const confirmSpy = vi.fn(() => true);
-    global.confirm = confirmSpy;
-    
-    const mockTabElement = {
-      querySelector: vi.fn().mockReturnValue({ id: "body-tab-1" }),
-      remove: vi.fn(),
-    };
-
-    tabManager.tabsData.push({
-      id: "body-tab-1",
-      name: "Test",
-      content: "",
-      isPinned: false,
-      emoji: null,
-    });
-
-    tabManager.deleteTabElement(mockTabElement);
-
-    expect(confirmSpy).toHaveBeenCalledWith("Delete this tab?");
-  });
-
-  it("deleteTabElement debe dispatchear evento tabsChanged al confirmar", () => {
-    const dispatchSpy = vi.spyOn(document, "dispatchEvent");
-    
-    global.confirm = vi.fn(() => true);
-    
-    const mockTabElement = {
-      querySelector: vi.fn().mockReturnValue({ id: "body-tab-1" }),
-      remove: vi.fn(),
-    };
-
-    tabManager.tabsData.push({
-      id: "body-tab-1",
-      name: "Test",
-      content: "",
-      isPinned: false,
-      emoji: null,
-    });
-
-    tabManager.deleteTabElement(mockTabElement);
-
-    expect(dispatchSpy).toHaveBeenCalledWith(
-      expect.objectContaining({
-        type: "tabsChanged",
-      }),
+  it("deleteTabElement debe delegar al deletionHandler", async () => {
+    const deleteTabElementSpy = vi.spyOn(
+      tabManager.deletionHandler,
+      "deleteTabElement"
     );
-  });
 
-  it("deleteTabElement no debe dispatchear evento si se cancela confirmación", () => {
-    const dispatchSpy = vi.spyOn(document, "dispatchEvent");
-    
-    global.confirm = vi.fn(() => false);
-    
-    const mockTabElement = {
-      querySelector: vi.fn().mockReturnValue({ id: "body-tab-1" }),
-    };
+    const mockTabElement = { foo: "bar" };
 
-    tabManager.deleteTabElement(mockTabElement);
+    await tabManager.deleteTabElement(mockTabElement);
 
-    expect(dispatchSpy).not.toHaveBeenCalled();
+    expect(deleteTabElementSpy).toHaveBeenCalledWith(mockTabElement);
   });
 });

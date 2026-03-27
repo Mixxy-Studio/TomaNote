@@ -1,20 +1,20 @@
 // src/lib/scripts/core/tabs.js
 // Sistema completo de gestión de pestañas con feature flags
 import { FormattingUtils } from "../utils/formatting.js";
+import { TabDeletionHandler } from "./tabDeletion.js";
 
 export class TabManager {
   constructor(options = {}) {
-    // Configuración con valores por defecto
     this.options = {
-      enablePersistence: true, // Restaurar desde localStorage
-      enableCreation: true, // Crear nuevas pestañas
-      enableEditing: true, // Editar nombres
-      enableDeletion: true, // Eliminar pestañas
-      enablePinning: false, // Fijar/desfijar (desactivado por ahora)
-      enableContentEditing: true, // Editar contenido
-      enableAutoSave: true, // Guardar automáticamente
-      anchorSelector: "#tab-list-anchor", // Selector ancla para insertar pestañas
-      debug: true, // Modo debug
+      enablePersistence: true,
+      enableCreation: true,
+      enableEditing: true,
+      enableDeletion: true,
+      enablePinning: false,
+      enableContentEditing: true,
+      enableAutoSave: true,
+      anchorSelector: "#tab-list-anchor",
+      debug: true,
       ...options,
     };
 
@@ -23,6 +23,8 @@ export class TabManager {
     this.createTabButton = null;
     this.tabAnchor = null;
     this.tabsData = [];
+
+    this.deletionHandler = new TabDeletionHandler(this);
 
     this.setupContextMenuIntegration();
   }
@@ -394,30 +396,11 @@ export class TabManager {
 
   deleteTab(deleteButton) {
     const tabElement = deleteButton.closest(".tab-list__item");
-    this.deleteTabElement(tabElement);
+    this.deletionHandler.deleteTabElement(tabElement);
   }
 
   deleteTabElement(tabElement) {
-    if (!tabElement || !confirm(window.i18n?.t("tab.delete-confirm") ?? "¿Eliminar esta pestaña?")) {
-      return;
-    }
-
-    const tabId = tabElement.querySelector("input").id;
-
-    // Eliminar del DOM
-    tabElement.remove();
-
-    // Eliminar de los datos
-    this.tabsData = this.tabsData.filter((tab) => tab.id !== tabId);
-
-    // Actualizar IDs
-    this.updateTabIds();
-
-    // Guardar cambios
-    this.saveTabs();
-
-    // Notificar cambio de pestañas
-    document.dispatchEvent(new CustomEvent("tabsChanged"));
+    this.deletionHandler.deleteTabElement(tabElement);
   }
 
   setupAutoSave() {
