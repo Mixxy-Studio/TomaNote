@@ -28,7 +28,7 @@ const tabButtons = [
 ];
 ---
 
-<nav class="tn-navbar absolute bg-(--tn-theme-primary)/2! bottom-15 right-0 md:right-5 md:bottom-5 flex flex-column items-center justify-center rounded-2xl py-2max-w-[95vw] overflow-x-autoscrollbar-hide">
+<nav class="tn-navbar" id="floating-nav" style="bottom: var(--nav-bottom, 1rem); padding-bottom: var(--nav-pb, 0rem);">
   <div dir="rtl" class="tn-navbar-btns tn-navbar-checked flex flex-col-reverse items-center justify-between gap-1 h-auto">
     <CreateTab />
 

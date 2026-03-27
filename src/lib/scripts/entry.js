@@ -131,6 +131,7 @@ async function initializeBasicComponents() {
   await initializeTabDragDrop();
   await initializeSettingsModal();
   await initializeCloseTabConfirmation();
+  await initializeFloatingNavPosition();
 }
 
 async function initializeTabsSystem() {
@@ -289,6 +290,17 @@ async function initializeCloseTabConfirmation() {
     console.log("[CloseTabConfirmation] Initialized");
   } catch (error) {
     console.error("❌ Error inicializando CloseTabConfirmation:", error);
+  }
+}
+
+async function initializeFloatingNavPosition() {
+  try {
+    const { FloatingNavPosition } = await import("./ui/floatingNavPosition.js");
+
+    window.floatingNavPosition = new FloatingNavPosition();
+    window.floatingNavPosition.init();
+  } catch (error) {
+    console.error("❌ Error inicializando FloatingNavPosition:", error);
   }
 }
 
