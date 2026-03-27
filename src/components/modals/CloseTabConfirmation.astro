@@ -1,0 +1,26 @@
+---
+import Icon from "../icons/Icon.astro";
+---
+
+<dialog id="closeTabConfirmation" class="relative bg-(--tn-neutral-tertiary-color)! rounded-2xl shadow-2xl hidden open:block open:opacity-100 open:absolute open:top-1/2 open:left-1/2 open:-translate-1/2 px-15! py-10! backdrop:bg-(--tn-neutral-primary-color)/50!">
+  <div class="closeTabConfirmation-row flex flex-col justify-center items-center gap-5">
+    <div class="closeTabConfirmation-header p-5! inline-flex items-center justify-center bg-(--tn-theme-contrast)/25 rounded border-0! w-auto">
+      <Icon name="alert" className="size-15 text-(--tn-theme-contrast)!" />
+    </div>
+    <div class="closeTabConfirmation-body text-center">
+      <h2 class="text-(--tn-neutral-primary-color)! text-3xl! font-bold mb-3!" data-i18n="ctc.title"></h2>
+      <p class="text-(--tn-neutral-primary-color)!" data-i18n="ctc.question"></p>
+      <p class="text-(--tn-neutral-primary-color)!" data-i18n="ctc.description"></p>
+    </div>
+    <div class="closeTabConfirmation-footer text-center flex flex-col justify-center items-center gap-2">
+      <button data-action="delete" class="text-(--tn-neutral-tertiary-color)! bg-(--tn-theme-contrast) px-5! py-2! rounded-2xl inline-flex items-center justify-center hover:transition-all! hover:scale-105 w-[250px]">
+        <Icon name="trash" className="size-3 mr-2!" />
+        <span data-i18n="ctc.confirmation"></span>
+      </button>
+      <button data-action="cancel" class="text-(--tn-neutral-primary-color)! bg-(--tn-neutral-tertiary-color) px-5! py-2! rounded-2xl inline-flex items-center justify-center hover:transition-all! hover:scale-105 border border-black w-[250px]">
+        <Icon name="close" className="size-2 mr-2!" strokeWidth={0.5} />
+        <span data-i18n="ctc.cancel"></span>
+      </button>
+    </div>
+  </div>
+</dialog>
