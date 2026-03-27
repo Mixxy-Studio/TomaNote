@@ -139,3 +139,4 @@ AGENT.md
 # Astro build cache
 .astro/
 .astro/**
+.astro/types.d.ts

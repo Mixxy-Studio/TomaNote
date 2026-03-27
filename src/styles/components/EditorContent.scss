@@ -1,0 +1,546 @@
+// =============================================================================
+// EditorContent.scss
+// Estilos tipográficos tipo "prose" para el editor contenteditable de TomaNote.
+//
+// Alcance: únicamente hijos de `.tab-list__item--content`.
+// No hay selectores globales sueltos — seguro para importar en el SCSS global.
+//
+// Variables CSS esperadas en el proyecto:
+//   --tn-color-text
+//   --tn-theme-accent
+//   --tn-theme-contrast
+//   --tn-theme-secondary
+//   --tn-theme-primary
+//   --tn-neutral-tertiary-color
+//   --tn-font-size-base
+//   --tn-font-size-medium
+//   --tn-font-size-large
+// =============================================================================
+
+.tab-list__item--content {
+
+  // ---------------------------------------------------------------------------
+  // Base del editor
+  // ---------------------------------------------------------------------------
+  color: var(--tn-color-text);
+  font-size: var(--tn-font-size-base);
+  line-height: 1.7;
+  word-break: break-word;
+  overflow-wrap: break-word;
+
+  // Espaciado vertical consistente entre bloques de nivel superior
+  >*+* {
+    margin-block-start: .5em;
+  }
+
+  // ---------------------------------------------------------------------------
+  // Encabezados — jerarquía Material Design
+  // ---------------------------------------------------------------------------
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    color: var(--tn-color-text);
+    font-weight: 600;
+    line-height: 1.25;
+    letter-spacing: -0.01em;
+    margin-block: 1.5em 0.5em;
+
+    // El primer encabezado no necesita margen superior extra
+    &:first-child {
+      margin-block-start: 0;
+    }
+  }
+
+  h1 {
+    font-size: calc(var(--tn-font-size-large) * 1.6);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    border-bottom: 2px solid var(--tn-theme-primary);
+    padding-block-end: 0.25em;
+  }
+
+  h2 {
+    font-size: calc(var(--tn-font-size-large) * 1.25);
+    font-weight: 700;
+    border-bottom: 1px solid color-mix(in srgb, var(--tn-color-text) 15%, transparent);
+    padding-block-end: 0.2em;
+  }
+
+  h3 {
+    font-size: var(--tn-font-size-large);
+    font-weight: 600;
+  }
+
+  h4 {
+    font-size: var(--tn-font-size-medium);
+    font-weight: 600;
+    color: color-mix(in srgb, var(--tn-color-text) 85%, transparent);
+  }
+
+  h5 {
+    font-size: var(--tn-font-size-base);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: color-mix(in srgb, var(--tn-color-text) 75%, transparent);
+  }
+
+  h6 {
+    font-size: var(--tn-font-size-base);
+    font-weight: 500;
+    color: color-mix(in srgb, var(--tn-color-text) 65%, transparent);
+    font-style: italic;
+  }
+
+  // ---------------------------------------------------------------------------
+  // Párrafo
+  // ---------------------------------------------------------------------------
+  p {
+    margin-block: 0.75em;
+    font-size: var(--tn-font-size-base);
+    line-height: 1.75;
+
+    &:first-child {
+      margin-block-start: 0;
+    }
+
+    &:last-child {
+      margin-block-end: 0;
+    }
+  }
+
+  // ---------------------------------------------------------------------------
+  // Texto inline: strong, em, u, s, span
+  // ---------------------------------------------------------------------------
+  strong,
+  b {
+    font-weight: 700;
+    color: var(--tn-color-text);
+  }
+
+  em,
+  i {
+    font-style: italic;
+  }
+
+  u {
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    text-decoration-color: color-mix(in srgb, var(--tn-color-text) 50%, transparent);
+  }
+
+  s,
+  del,
+  strike {
+    text-decoration: line-through;
+    text-decoration-color: color-mix(in srgb, var(--tn-color-text) 60%, transparent);
+    color: color-mix(in srgb, var(--tn-color-text) 60%, transparent);
+  }
+
+  mark {
+    background-color: color-mix(in srgb, var(--tn-theme-accent) 25%, transparent);
+    color: var(--tn-color-text);
+    padding-inline: 0.2em;
+    border-radius: 2px;
+  }
+
+  span {
+    // Sin override: respetar los estilos inline traídos desde otras webs
+    // Solo garantizamos herencia correcta
+    font-size: inherit;
+    line-height: inherit;
+  }
+
+  // ---------------------------------------------------------------------------
+  // Enlaces
+  // ---------------------------------------------------------------------------
+  a {
+    color: var(--tn-theme-accent);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    text-decoration-color: color-mix(in srgb, var(--tn-theme-accent) 50%, transparent);
+    transition: color 0.15s ease, text-decoration-color 0.15s ease;
+
+    &:hover,
+    &:focus-visible {
+      color: color-mix(in srgb, var(--tn-theme-accent) 80%, var(--tn-color-text));
+      text-decoration-color: var(--tn-theme-accent);
+    }
+
+    &:visited {
+      color: color-mix(in srgb, var(--tn-theme-accent) 75%, var(--tn-theme-secondary));
+    }
+  }
+
+  // ---------------------------------------------------------------------------
+  // Listas
+  // ---------------------------------------------------------------------------
+  ul,
+  ol {
+    padding-inline-start: 1.75em;
+    margin-block: 0.75em;
+
+    // Listas anidadas
+    ul,
+    ol {
+      margin-block: 0.25em;
+    }
+  }
+
+  ul {
+    list-style-type: disc;
+
+    ul {
+      list-style-type: circle;
+
+      ul {
+        list-style-type: square;
+      }
+    }
+  }
+
+  ol {
+    list-style-type: decimal;
+
+    ol {
+      list-style-type: lower-alpha;
+
+      ol {
+        list-style-type: lower-roman;
+      }
+    }
+  }
+
+  li {
+    margin-block: 0.3em;
+    line-height: 1.65;
+    padding-inline-start: 0.25em;
+
+    // Soporte para listas de tareas pegadas (p.ej. desde GitHub/Notion)
+    &[data-checked],
+    &.task-list-item {
+      list-style-type: none;
+      padding-inline-start: 0;
+    }
+  }
+
+  // Listas de definición
+  dl {
+    margin-block: 0.75em;
+  }
+
+  dt {
+    font-weight: 600;
+    color: var(--tn-color-text);
+    margin-block-start: 0.75em;
+  }
+
+  dd {
+    margin-inline-start: 1.5em;
+    color: color-mix(in srgb, var(--tn-color-text) 80%, transparent);
+    margin-block: 0.2em;
+  }
+
+  // ---------------------------------------------------------------------------
+  // Cita en bloque
+  // ---------------------------------------------------------------------------
+  blockquote {
+    margin-block: 1.25em;
+    margin-inline: 0;
+    padding-block: 0.5em;
+    padding-inline: 1.25em;
+    border-inline-start: 4px solid var(--tn-theme-contrast);
+    background-color: color-mix(in srgb, var(--tn-theme-contrast) 6%, transparent);
+    border-radius: 0 6px 6px 0;
+    color: color-mix(in srgb, var(--tn-color-text) 80%, transparent);
+    font-style: italic;
+
+    // Resetear cursiva para elementos dentro del blockquote
+    em,
+    i {
+      font-style: normal;
+    }
+
+    p {
+      margin-block: 0.3em;
+
+      &:first-child {
+        margin-block-start: 0;
+      }
+
+      &:last-child {
+        margin-block-end: 0;
+      }
+    }
+
+    cite {
+      display: block;
+      margin-block-start: 0.5em;
+      font-size: 0.85em;
+      font-style: normal;
+      font-weight: 500;
+      color: var(--tn-theme-contrast);
+      letter-spacing: 0.01em;
+
+      &::before {
+        content: "— ";
+      }
+    }
+  }
+
+  // ---------------------------------------------------------------------------
+  // Código — inline y bloque
+  // ---------------------------------------------------------------------------
+  code {
+    font-family: "JetBrains Mono", "Fira Code", "Cascadia Code", "Menlo",
+      "Consolas", "Monaco", monospace;
+    font-size: 0.875em;
+    background-color: color-mix(in srgb, var(--tn-theme-secondary) 18%, transparent);
+    color: var(--tn-theme-contrast);
+    padding-block: 0.15em;
+    padding-inline: 0.4em;
+    border-radius: 4px;
+    border: 1px solid color-mix(in srgb, var(--tn-theme-secondary) 30%, transparent);
+
+    // Resetear cuando está dentro de pre
+    pre & {
+      background: none;
+      border: none;
+      padding: 0;
+      font-size: inherit;
+      color: inherit;
+      border-radius: 0;
+    }
+  }
+
+  pre {
+    font-style: italic;
+    display: inline-block;
+    font-weight: bolder;
+    font-family: "JetBrains Mono", "Fira Code", "Cascadia Code", "Menlo",
+      "Consolas", "Monaco", monospace;
+    font-size: 0.875em;
+    line-height: 1.65;
+    background-color: var(--tn-theme-contrast) !important;
+    border: 1px solid color-mix(in srgb, var(--tn-theme-secondary) 25%, transparent);
+    border-radius: 8px;
+    padding-block: 1em;
+    padding-inline: 1.25em;
+    margin-block: 1.25em;
+    overflow-x: auto;
+    tab-size: 2;
+    color: var(--tn-neutral-tertiary-color);
+
+    // Scrollbar sutil
+    &::-webkit-scrollbar {
+      height: 5px;
+    }
+
+    &::-webkit-scrollbar-track {
+      background: transparent;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background: color-mix(in srgb, var(--tn-color-text) 25%, transparent);
+      border-radius: 999px;
+    }
+  }
+
+  // Bloque de teclado
+  kbd {
+    font-family: "JetBrains Mono", "Fira Code", monospace;
+    font-size: 0.8em;
+    background-color: color-mix(in srgb, var(--tn-theme-primary) 10%, transparent);
+    border: 1px solid color-mix(in srgb, var(--tn-color-text) 25%, transparent);
+    border-bottom-width: 2px;
+    border-radius: 4px;
+    padding-block: 0.1em;
+    padding-inline: 0.4em;
+    color: var(--tn-color-text);
+  }
+
+  // ---------------------------------------------------------------------------
+  // Separador horizontal
+  // ---------------------------------------------------------------------------
+  hr {
+    border: none;
+    border-block-start: 1px solid color-mix(in srgb, var(--tn-color-text) 15%, transparent);
+    margin-block: 2em;
+  }
+
+  // ---------------------------------------------------------------------------
+  // Imágenes y medios
+  // ---------------------------------------------------------------------------
+  img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 8px;
+    margin-block: 1em;
+    object-fit: cover;
+
+    // Imágenes inline (p.ej. emojis pegados)
+    &[style*="width: 1"],
+    &.emoji,
+    &[alt*="emoji"] {
+      display: inline;
+      vertical-align: middle;
+      margin-block: 0;
+      border-radius: 0;
+      height: 1.2em;
+      width: auto;
+    }
+  }
+
+  figure {
+    margin-block: 1.25em;
+    margin-inline: 0;
+
+    img {
+      margin-block: 0;
+    }
+
+    figcaption {
+      font-size: 0.85em;
+      color: color-mix(in srgb, var(--tn-color-text) 60%, transparent);
+      text-align: center;
+      margin-block-start: 0.5em;
+      font-style: italic;
+    }
+  }
+
+  video,
+  iframe {
+    max-width: 100%;
+    border-radius: 8px;
+    margin-block: 1em;
+  }
+
+  // ---------------------------------------------------------------------------
+  // Tablas — Material Design
+  // ---------------------------------------------------------------------------
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-block: 1.25em;
+    font-size: 0.9em;
+    line-height: 1.5;
+    overflow: hidden;
+    border-radius: 8px;
+    border: 1px solid color-mix(in srgb, var(--tn-color-text) 15%, transparent);
+  }
+
+  thead {
+    background-color: color-mix(in srgb, var(--tn-theme-primary) 10%, transparent);
+    border-bottom: 2px solid color-mix(in srgb, var(--tn-color-text) 20%, transparent);
+  }
+
+  tbody {
+    tr {
+      &:nth-child(even) {
+        background-color: color-mix(in srgb, var(--tn-theme-primary) 4%, transparent);
+      }
+
+      &:hover {
+        background-color: color-mix(in srgb, var(--tn-theme-accent) 6%, transparent);
+      }
+    }
+  }
+
+  tfoot {
+    border-top: 2px solid color-mix(in srgb, var(--tn-color-text) 20%, transparent);
+    background-color: color-mix(in srgb, var(--tn-theme-primary) 6%, transparent);
+  }
+
+  tr {
+    border-bottom: 1px solid color-mix(in srgb, var(--tn-color-text) 10%, transparent);
+
+    &:last-child {
+      border-bottom: none;
+    }
+  }
+
+  th {
+    padding-block: 0.65em;
+    padding-inline: 0.9em;
+    text-align: start;
+    font-weight: 600;
+    font-size: 0.85em;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: color-mix(in srgb, var(--tn-color-text) 80%, transparent);
+  }
+
+  td {
+    padding-block: 0.6em;
+    padding-inline: 0.9em;
+    vertical-align: top;
+    color: var(--tn-color-text);
+  }
+
+  // ---------------------------------------------------------------------------
+  // Elementos varios
+  // ---------------------------------------------------------------------------
+  abbr[title] {
+    text-decoration: underline dotted;
+    text-underline-offset: 3px;
+    cursor: help;
+  }
+
+  sub,
+  sup {
+    font-size: 0.75em;
+    line-height: 0;
+    position: relative;
+    vertical-align: baseline;
+  }
+
+  sup {
+    top: -0.5em;
+  }
+
+  sub {
+    bottom: -0.25em;
+  }
+
+  small {
+    font-size: 0.85em;
+    color: color-mix(in srgb, var(--tn-color-text) 70%, transparent);
+  }
+
+  // Details / summary (para contenido pegado desde docs)
+  details {
+    margin-block: 0.75em;
+    border: 1px solid color-mix(in srgb, var(--tn-color-text) 15%, transparent);
+    border-radius: 6px;
+    padding-block: 0.5em;
+    padding-inline: 0.75em;
+  }
+
+  summary {
+    font-weight: 500;
+    cursor: pointer;
+    list-style-type: none;
+    padding-block: 0.25em;
+    color: var(--tn-theme-accent);
+
+    &::-webkit-details-marker {
+      display: none;
+    }
+
+    &::before {
+      content: "▶ ";
+      font-size: 0.75em;
+      color: color-mix(in srgb, var(--tn-color-text) 50%, transparent);
+      transition: transform 0.15s ease;
+      display: inline-block;
+    }
+
+    details[open]>&::before {
+      transform: rotate(90deg);
+    }
+  }
+}

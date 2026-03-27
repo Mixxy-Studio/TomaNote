@@ -112,7 +112,7 @@ export class FloatingMenu {
       if (!button) return;
 
       const selection = window.getSelection();
-      if (selection && selection.toString().length > 0) {
+      if (selection && selection.rangeCount > 0) {
         this.savedSelection = selection.getRangeAt(0).cloneRange();
       }
     });
@@ -134,7 +134,7 @@ export class FloatingMenu {
     if (toolsButton) {
       toolsButton.addEventListener("mousedown", (e) => {
         const selection = window.getSelection();
-        if (selection && selection.toString().length > 0) {
+        if (selection && selection.rangeCount > 0) {
           this.savedSelection = selection.getRangeAt(0).cloneRange();
         }
       });
@@ -155,7 +155,7 @@ export class FloatingMenu {
     submenuLabels.forEach((label) => {
       label.addEventListener("mousedown", (e) => {
         const selection = window.getSelection();
-        if (selection && selection.toString().length > 0) {
+        if (selection && selection.rangeCount > 0) {
           this.savedSelection = selection.getRangeAt(0).cloneRange();
         }
       });
@@ -208,7 +208,18 @@ export class FloatingMenu {
 
       case "paste":
         navigator.clipboard.readText().then((text) => {
-          document.execCommand("insertText", false, text);
+          const selection = window.getSelection();
+          if (selection.rangeCount > 0) {
+            const range = selection.getRangeAt(0);
+            range.deleteContents();
+            range.insertNode(document.createTextNode(text));
+            range.collapse(false);
+            selection.removeAllRanges();
+            selection.addRange(range);
+          } else {
+            editable.focus();
+            document.execCommand("insertText", false, text);
+          }
         });
         break;
 

@@ -1,7 +1,7 @@
 {
   "name": "notepad-astro",
   "type": "module",
-  "version": "0.4.0",
+  "version": "0.4.2",
   "scripts": {
     "dev": "astro dev",
     "build": "astro build",
@@ -14,7 +14,10 @@
     "release:minor": "standard-version --release-as minor",
     "release:patch": "standard-version --release-as patch",
     "release:major": "standard-version --release-as major",
-    "postrelease": "node scripts/update-readme.js"
+    "postrelease": "node scripts/update-readme.js",
+    "security:check": "npm audit --audit-level=high",
+    "security:fix": "npm audit fix",
+    "security:outdated": "npm outdated"
   },
   "dependencies": {
     "@astrojs/check": "^0.9.6",
