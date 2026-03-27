@@ -163,6 +163,14 @@
   "roadmap.viewChangelog": "Ver changelog completo →",
   "roadmap.changelog-link": "https://github.com/Mixxy-Studio/TomaNote/blob/master/CHANGELOG.md",
 
+  "_comment-modal-closeTabConfirmation": "Modal de confirmacion para cerrar pestaña",
+
+  "ctc.title": "¿Confirmar acción?",
+  "ctc.question": "¿Deseas eliminar esta nota?",
+  "ctc.description": "Esta acción no se puede deshacer",
+  "ctc.confirmation": "Eliminar nota",
+  "ctc.cancel": "Cancelar",
+
   "_comment-modal-tab-buttons": "Botones del modal de configuracion",
 
   "mtb.about": "Acerca de",
