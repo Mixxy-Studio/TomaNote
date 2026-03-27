@@ -2,7 +2,7 @@
 
 <div align="center">
 
-![Version](https://img.shields.io/badge/version-0.4.1-blue.svg)
+![Version](https://img.shields.io/badge/version-0.4.2-blue.svg)
 ![License](https://img.shields.io/badge/license-AGPL%20v3-green.svg)
 ![Status](https://img.shields.io/badge/status-active-success.svg)
 ![Mobile](https://img.shields.io/badge/mobile-responsive-success)
@@ -20,24 +20,21 @@ TomaNote is a modern, minimalist notepad that runs directly in your browser. No 
 > Want to see what's coming next?
 > Check the **Roadmap** inside the app at [tomanote.app](https://tomanote.app) ✨
 
-## 🚀 What's new — v0.4.1
+## 🚀 What's new — v0.4.2
 
-This release focuses on bug fixes, security updates and development automation.
+This release focuses on deprecation handling and mobile/PWA improvements.
 
-### 🐛 Paste cursor fix
-Text now inserts at the cursor position when using the floating menu paste button.
+### 🔔 Modal confirmation for tab deletion
+Replaced browser's native confirm() dialog with a custom modal. The native confirm() will be deprecated in future browser versions.
 
-### 🛡️ Security vulnerabilities fixed
-Resolved 7 critical and high severity vulnerabilities in dependencies.
-
-### 🔧 Sass migration
-Migrated deprecated Sass functions to the new modular API.
-
-### ⚙️ Security automation
-Added automated security scripts and GitHub Action for continuous auditing.
+### 📱 Floating menu positioning fix
+Improved positioning for mobile browsers and PWA installations. The menu now correctly adapts to:
+- Safe area insets on iOS
+- Navigation bars on Android browsers
+- Virtual keyboard detection
 
 ### 🧪 Test coverage
-All 146 tests passing with improved coverage.
+Added 19 new tests for the new modules. All 163 tests passing.
 
 ## 🛠️ Tech Stack
 
