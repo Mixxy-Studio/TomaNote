@@ -22,7 +22,7 @@
   "dependencies": {
     "@astrojs/check": "^0.9.6",
     "@tailwindcss/vite": "^4.0.16",
-    "astro": "^5.16.10",
+    "astro": "^5.18.1",
     "marked": "^17.0.4",
     "sass": "^1.86.0",
     "sortablejs": "^1.15.7",
