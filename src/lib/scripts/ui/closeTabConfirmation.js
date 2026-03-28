@@ -12,19 +12,19 @@ export class CloseTabConfirmation {
     return this;
   }
   setupEventListeners() {
-    // Botón Delete
+    // Delete Button
     const deleteBtn = this.modal.querySelector("[data-action='delete']");
     deleteBtn?.addEventListener("click", () => this.handleConfirm());
-    // Botón Cancel o cerrar
+    // Cancel or close button
     const cancelBtn = this.modal.querySelector("[data-action='cancel']");
     cancelBtn?.addEventListener("click", () => this.handleCancel());
-    // Cerrar con ESC
+    // Close or ESC
     this.modal.addEventListener("cancel", (e) => {
       e.preventDefault();
       this.handleCancel();
     });
   }
-  // Método público para abrir el modal y retornar una promesa
+  // Public method for open modal and return promise
   open(tabElement) {
     this.pendingTabElement = tabElement;
     this.modal.showModal();

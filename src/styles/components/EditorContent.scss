@@ -1,11 +1,11 @@
 // =============================================================================
 // EditorContent.scss
-// Estilos tipográficos tipo "prose" para el editor contenteditable de TomaNote.
+// Typographics styles type for "prose" for editor contenteditable of TomaNote.
 //
-// Alcance: únicamente hijos de `.tab-list__item--content`.
-// No hay selectores globales sueltos — seguro para importar en el SCSS global.
+// Viability: only for children nodes of `.tab-list__item--content`.
+// No global selectors — Save for import into CSS files
 //
-// Variables CSS esperadas en el proyecto:
+// Variables CSS awaiting in the project:
 //   --tn-color-text
 //   --tn-theme-accent
 //   --tn-theme-contrast
@@ -20,7 +20,7 @@
 .tab-list__item--content {
 
   // ---------------------------------------------------------------------------
-  // Base del editor
+  // Base editor
   // ---------------------------------------------------------------------------
   color: var(--tn-color-text);
   font-size: var(--tn-font-size-base);
@@ -28,13 +28,13 @@
   word-break: break-word;
   overflow-wrap: break-word;
 
-  // Espaciado vertical consistente entre bloques de nivel superior
+  // Vertical space between blocks in the top level of tab contents
   >*+* {
     margin-block-start: .5em;
   }
 
   // ---------------------------------------------------------------------------
-  // Encabezados — jerarquía Material Design
+  // Jerarchy Headers — Material Design
   // ---------------------------------------------------------------------------
   h1,
   h2,
@@ -48,7 +48,7 @@
     letter-spacing: -0.01em;
     margin-block: 1.5em 0.5em;
 
-    // El primer encabezado no necesita margen superior extra
+    // The first header no needs margin top extra
     &:first-child {
       margin-block-start: 0;
     }
@@ -96,7 +96,7 @@
   }
 
   // ---------------------------------------------------------------------------
-  // Párrafo
+  // Paragraphs
   // ---------------------------------------------------------------------------
   p {
     margin-block: 0.75em;
@@ -113,7 +113,7 @@
   }
 
   // ---------------------------------------------------------------------------
-  // Texto inline: strong, em, u, s, span
+  // Text in inline: strong, em, u, s, span
   // ---------------------------------------------------------------------------
   strong,
   b {
@@ -148,14 +148,13 @@
   }
 
   span {
-    // Sin override: respetar los estilos inline traídos desde otras webs
-    // Solo garantizamos herencia correcta
+    // Without override: save other styles copying from other webs
     font-size: inherit;
     line-height: inherit;
   }
 
   // ---------------------------------------------------------------------------
-  // Enlaces
+  // Links
   // ---------------------------------------------------------------------------
   a {
     color: var(--tn-theme-accent);
@@ -176,14 +175,14 @@
   }
 
   // ---------------------------------------------------------------------------
-  // Listas
+  // Lists
   // ---------------------------------------------------------------------------
   ul,
   ol {
     padding-inline-start: 1.75em;
     margin-block: 0.75em;
 
-    // Listas anidadas
+    // Anidated Lists
     ul,
     ol {
       margin-block: 0.25em;
@@ -219,7 +218,7 @@
     line-height: 1.65;
     padding-inline-start: 0.25em;
 
-    // Soporte para listas de tareas pegadas (p.ej. desde GitHub/Notion)
+    // Suport for lists of texts pasted (e.g. From GitHub/Notion)
     &[data-checked],
     &.task-list-item {
       list-style-type: none;
@@ -227,7 +226,7 @@
     }
   }
 
-  // Listas de definición
+  // Definition Lists
   dl {
     margin-block: 0.75em;
   }
@@ -245,7 +244,7 @@
   }
 
   // ---------------------------------------------------------------------------
-  // Cita en bloque
+  // Blockquote
   // ---------------------------------------------------------------------------
   blockquote {
     margin-block: 1.25em;
@@ -258,7 +257,7 @@
     color: color-mix(in srgb, var(--tn-color-text) 80%, transparent);
     font-style: italic;
 
-    // Resetear cursiva para elementos dentro del blockquote
+    // Reset cursive for elements intos blockquotes
     em,
     i {
       font-style: normal;
@@ -292,7 +291,7 @@
   }
 
   // ---------------------------------------------------------------------------
-  // Código — inline y bloque
+  // Códe — inline y block
   // ---------------------------------------------------------------------------
   code {
     font-family: "JetBrains Mono", "Fira Code", "Cascadia Code", "Menlo",
@@ -305,7 +304,7 @@
     border-radius: 4px;
     border: 1px solid color-mix(in srgb, var(--tn-theme-secondary) 30%, transparent);
 
-    // Resetear cuando está dentro de pre
+    // Reset when it is in a <pre> tag
     pre & {
       background: none;
       border: none;
@@ -334,7 +333,7 @@
     tab-size: 2;
     color: var(--tn-neutral-tertiary-color);
 
-    // Scrollbar sutil
+    // Soft Scrollbar
     &::-webkit-scrollbar {
       height: 5px;
     }
@@ -349,7 +348,7 @@
     }
   }
 
-  // Bloque de teclado
+  // Keybord Block
   kbd {
     font-family: "JetBrains Mono", "Fira Code", monospace;
     font-size: 0.8em;
@@ -363,7 +362,7 @@
   }
 
   // ---------------------------------------------------------------------------
-  // Separador horizontal
+  // Horizontal divider
   // ---------------------------------------------------------------------------
   hr {
     border: none;
@@ -372,7 +371,7 @@
   }
 
   // ---------------------------------------------------------------------------
-  // Imágenes y medios
+  // Imáges y medias
   // ---------------------------------------------------------------------------
   img {
     max-width: 100%;
@@ -382,7 +381,7 @@
     margin-block: 1em;
     object-fit: cover;
 
-    // Imágenes inline (p.ej. emojis pegados)
+    // Imáges inline (e.g. emojis are pasted)
     &[style*="width: 1"],
     &.emoji,
     &[alt*="emoji"] {
@@ -420,7 +419,7 @@
   }
 
   // ---------------------------------------------------------------------------
-  // Tablas — Material Design
+  // Tables — Material Design
   // ---------------------------------------------------------------------------
   table {
     width: 100%;
@@ -482,7 +481,7 @@
   }
 
   // ---------------------------------------------------------------------------
-  // Elementos varios
+  // Any element aditonal
   // ---------------------------------------------------------------------------
   abbr[title] {
     text-decoration: underline dotted;
@@ -511,7 +510,7 @@
     color: color-mix(in srgb, var(--tn-color-text) 70%, transparent);
   }
 
-  // Details / summary (para contenido pegado desde docs)
+  // Details / summary (for content pasted from docs)
   details {
     margin-block: 0.75em;
     border: 1px solid color-mix(in srgb, var(--tn-color-text) 15%, transparent);

@@ -1,7 +1,7 @@
 import { describe, it, expect, vi, beforeEach, afterEach } from "vitest";
 import { ContextMenu } from "../../ui/contextMenu.js";
 
-// Mockear dependencias
+// Mockear dependencies
 vi.mock("../../utils/emojiDetector.js", () => ({
   detectEmojiInText: vi.fn().mockReturnValue(false),
 }));
@@ -52,9 +52,7 @@ describe("ContextMenu", () => {
         isCollapsed: false,
         rangeCount: 1,
         getRangeAt: vi.fn().mockReturnValue({
-          getBoundingClientRect: vi
-            .fn()
-            .mockReturnValue({ top: 100, left: 100 }),
+          getBoundingClientRect: vi.fn().mockReturnValue({ top: 100, left: 100 }),
           cloneRange: vi.fn().mockReturnValue({}),
           deleteContents: vi.fn(),
           insertNode: vi.fn(),
@@ -135,11 +133,7 @@ describe("ContextMenu", () => {
     it("debe ejecutar comando copy", () => {
       contextMenu.handleTextAction("copy");
 
-      expect(global.document.execCommand).toHaveBeenCalledWith(
-        "copy",
-        false,
-        null,
-      );
+      expect(global.document.execCommand).toHaveBeenCalledWith("copy", false, null);
     });
 
     it("debe ejecutar comando paste usando clipboard y Selection API", async () => {
@@ -166,14 +160,8 @@ describe("ContextMenu", () => {
     it("debe agregar event listeners", async () => {
       await contextMenu.init();
 
-      expect(global.document.addEventListener).toHaveBeenCalledWith(
-        "contextmenu",
-        expect.any(Function),
-      );
-      expect(global.document.addEventListener).toHaveBeenCalledWith(
-        "click",
-        expect.any(Function),
-      );
+      expect(global.document.addEventListener).toHaveBeenCalledWith("contextmenu", expect.any(Function));
+      expect(global.document.addEventListener).toHaveBeenCalledWith("click", expect.any(Function));
     });
   });
 });

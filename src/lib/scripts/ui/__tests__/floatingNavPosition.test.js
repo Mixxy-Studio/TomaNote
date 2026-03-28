@@ -31,7 +31,7 @@ describe("FloatingNavPosition", () => {
   });
 
   describe("init", () => {
-    it("debe inicializar correctamente y retornar this", () => {
+    it("must initialize correctly and return this", () => {
       window.visualViewport = undefined;
 
       positionHandler = new FloatingNavPosition();
@@ -41,7 +41,7 @@ describe("FloatingNavPosition", () => {
       expect(document.getElementById).toHaveBeenCalledWith("floating-nav");
     });
 
-    it("debe retornar this si el nav no existe", () => {
+    it("must return this if the nav does not exist", () => {
       document.getElementById = vi.fn().mockReturnValue(null);
 
       positionHandler = new FloatingNavPosition();
@@ -51,8 +51,8 @@ describe("FloatingNavPosition", () => {
     });
   });
 
-  describe("updatePosition - Detección de teclado", () => {
-    it("debe ignorar cambio brusco de viewport (>100px)", () => {
+  describe("updatePosition - Keyboard detection", () => {
+    it("should ignore sudden viewport changes (>100px)", () => {
       window.visualViewport = {
         height: 400,
         offsetTop: 0,
@@ -68,7 +68,7 @@ describe("FloatingNavPosition", () => {
       expect(mockDocumentElement.style.setProperty).not.toHaveBeenCalled();
     });
 
-    it("debe procesar cambio normal de viewport (<100px)", () => {
+    it("It must process normal viewport changes (<100px)", () => {
       window.visualViewport = {
         height: 700,
         offsetTop: 0,
@@ -86,7 +86,7 @@ describe("FloatingNavPosition", () => {
   });
 
   describe("updatePosition - PWA detection", () => {
-    it("debe usar safe-area en modo standalone", () => {
+    it("Must be use safe-area in standalone mode", () => {
       window.visualViewport = {
         height: 600,
         offsetTop: 0,
@@ -98,15 +98,12 @@ describe("FloatingNavPosition", () => {
       positionHandler.navElement = mockNavElement;
       positionHandler.init();
 
-      expect(mockDocumentElement.style.setProperty).toHaveBeenCalledWith(
-        "--nav-bottom",
-        "max(20px, env(safe-area-inset-bottom, 20px))"
-      );
+      expect(mockDocumentElement.style.setProperty).toHaveBeenCalledWith("--nav-bottom", "max(20px, env(safe-area-inset-bottom, 20px))");
     });
   });
 
   describe("setupEventListeners", () => {
-    it("debe agregar event listeners correctamente", () => {
+    it("Need to add event listeners correctly.", () => {
       const addEventListenerSpy = vi.spyOn(window, "addEventListener");
       window.visualViewport = undefined;
 
@@ -119,7 +116,7 @@ describe("FloatingNavPosition", () => {
       expect(addEventListenerSpy).toHaveBeenCalledWith("orientationchange", expect.any(Function));
     });
 
-    it("debe agregar visualViewport listener si está disponible", () => {
+    it("You should add the visualViewport listener if it's available.", () => {
       const mockVisualViewport = {
         addEventListener: vi.fn(),
       };
@@ -128,10 +125,7 @@ describe("FloatingNavPosition", () => {
       positionHandler = new FloatingNavPosition();
       positionHandler.setupEventListeners();
 
-      expect(mockVisualViewport.addEventListener).toHaveBeenCalledWith(
-        "resize",
-        expect.any(Function)
-      );
+      expect(mockVisualViewport.addEventListener).toHaveBeenCalledWith("resize", expect.any(Function));
     });
   });
 });

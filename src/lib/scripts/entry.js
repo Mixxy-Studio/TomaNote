@@ -1,26 +1,26 @@
 // src/lib/scripts/entry.js
-// Punto de entrada modular seguro para Notepad
+// Secure modular entry point for Notepad
 export async function initNotepad() {
-  // Verificación de seguridad: solo ejecutar en navegador
+  // Security check: only run in browser
   if (typeof window === "undefined" || typeof document === "undefined") {
     console.warn("⚠️  Entorno no compatible (SSR o Node.js), omitiendo...");
     return;
   }
 
   try {
-    // 1. Cargar funciones CRÍTICAS primero (las que necesitan estar inmediatamente)
+    // 1. Load CRITICAL functions first (those that need to be available immediately)
     await loadCriticalFunctions();
 
-    // 2. Inicializar componentes básicos
+    // 2. Initialize basic components
     await initializeBasicComponents();
 
-    // 3. Cargar módulos adicionales (menos críticos)
+    // 3. Load additional (less critical) modules
     await loadOptionalModules();
 
-    // 4. Verificar que todo funcione
+    // 4. Verify that everything is working
     await verifyFunctionality();
   } catch (error) {
-    // Intentar funcionalidad mínima
+    // Attempt minimal functionality
     try {
       await emergencyFallback();
     } catch (fallbackError) {
@@ -29,56 +29,56 @@ export async function initNotepad() {
   }
 }
 
-// ===== FUNCIONES CRÍTICAS (deben cargarse primero) =====
+// ===== CRITICAL FUNCTIONS (must be loaded first) =====
 async function loadCriticalFunctions() {
-  // 1. Inicializar sistema de internacionalización
+  // 1. Initialize internationalization system
   const { i18n } = await import("../../i18n/core.js");
   i18n.init();
 
-  // 2. Compartir idioma del cliente con SSR (para que los componentes .astro lo usen)
+  // 2. Share client language with SSR (so that .astro components can use it)
   window.__I18N_CONFIG = { lang: i18n.getLang() };
 
-  // 3. Cargar fuente personalizada (parte más crítica)
+  // 3. Load custom font (most critical part)
   const { FontManager } = await import("./core/fontManager.js");
   window.fontManager = new FontManager();
   window.fontManager.loadCustomFont();
   window.fontManager.loadFontSize();
   window.fontManager.initFontSettingsUI();
 
-  // 3. Configurar sistema de temas (dark/light mode)
+  // 3. Configure theme system (dark/light mode)
   await setupThemeSystem();
 
-  // 4. Configurar Service Worker si está disponible
+  // 4. Configure Service Worker if available
   setupServiceWorker();
 }
 
 async function setupThemeSystem() {
   try {
-    // Cargar ThemeManager
+    // Load ThemeManager
     const { ThemeManager } = await import("./core/themeManager.js");
     window.themeManager = new ThemeManager();
     await window.themeManager.init();
 
-    // Para retrocompatibilidad, mantener el toggle antiguo si existe
+    // For backward compatibility, keep the old toggle if it exists
     const oldDarkModeToggle = document.getElementById("dark-mode-toggle");
     if (oldDarkModeToggle) {
-      // Sincronizar estado inicial
+      // Synchronize initial state
       const isLightMode = window.themeManager.getCurrentTheme() === "light";
       oldDarkModeToggle.checked = isLightMode;
 
-      // Manejar cambios desde el toggle antiguo
+      // Manage changes from the old toggle
       oldDarkModeToggle.addEventListener("change", (e) => {
         window.themeManager.toggleLightMode(e.target.checked);
       });
 
-      // Escuchar cambios de tema para actualizar el toggle
+      // Listen for theme changes to update the toggle
       window.addEventListener("themeChanged", (e) => {
         const isLight = e.detail.theme === "light";
         oldDarkModeToggle.checked = isLight;
       });
     }
   } catch (error) {
-    // Fallback al sistema antiguo
+    // Fallback to the old system
     setupDarkModeFallback();
   }
 }
@@ -88,15 +88,10 @@ function setupDarkModeFallback() {
   if (!darkModeToggle) return;
 
   const savedMode = localStorage.getItem("darkMode");
-  const systemPrefersDark = window.matchMedia(
-    "(prefers-color-scheme: dark)",
-  ).matches;
+  const systemPrefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
 
   if (savedMode !== null) {
-    document.documentElement.classList.toggle(
-      "light-mode",
-      savedMode === "false",
-    );
+    document.documentElement.classList.toggle("light-mode", savedMode === "false");
     darkModeToggle.checked = savedMode === "false";
   } else if (!systemPrefersDark) {
     document.documentElement.classList.add("light-mode");
@@ -121,9 +116,9 @@ function setupServiceWorker() {
   }
 }
 
-// ===== COMPONENTES BÁSICOS =====
+// ===== BASIC COMPONENTS =====
 async function initializeBasicComponents() {
-  // Por ahora, las ponemos aquí como funciones internas
+  // For now, we'll list them here as internal functions.
   await initializeTabsSystem();
   await initializeContextMenu();
   await initializeFloatingMenu();
@@ -136,10 +131,10 @@ async function initializeBasicComponents() {
 
 async function initializeTabsSystem() {
   try {
-    // Importar dinámicamente para mejor performance
+    // Import dynamically for better performance
     const { TabManager } = await import("./core/tabs.js");
 
-    // Crear instancia con feature flags
+    // Create an instance for feature flags
     window.tabManager = new TabManager({
       enablePersistence: true,
       enableCreation: true,
@@ -152,16 +147,16 @@ async function initializeTabsSystem() {
       debug: true,
     });
 
-    // Inicializar
+    // Init
     await window.tabManager.init();
 
-    // Reemplazar el evento click básico con el real
+    // Replace the clasical event for the real for app
     const createTabBtn = document.getElementById("create-tab");
     if (createTabBtn) {
-      createTabBtn.onclick = null; // Remover el listener anterior
+      createTabBtn.onclick = null; // Remove the before listener
     }
   } catch (error) {
-    // Fallback al método básico
+    // Fallback to the method basic
     const createTabBtn = document.getElementById("create-tab");
     if (createTabBtn) {
       createTabBtn.addEventListener("click", () => {});
@@ -175,7 +170,7 @@ async function initializeContextMenu() {
   try {
     const { ContextMenu } = await import("./ui/contextMenu.js");
 
-    // Crear instancia
+    // Create an instance
     window.contextMenu = new ContextMenu({
       enableTextContext: true,
       enableTabContext: true,
@@ -183,13 +178,13 @@ async function initializeContextMenu() {
       debug: true,
     });
 
-    // Inicializar
+    // Init
     await window.contextMenu.init();
 
     document.addEventListener(
       "contextmenu",
       (e) => {
-        // IMPORTANTE: Solo prevenir si es en nuestras áreas
+        // IMPORTANT: just prvent if is in our areas
         const isContentEditable = e.target.closest(".tab-list__item--content");
         const isTabLabel = e.target.closest(".tab-list__item label");
 
@@ -197,12 +192,12 @@ async function initializeContextMenu() {
           e.preventDefault();
         }
       },
-      true,
-    ); // Usar capture: true para capturar el evento temprano
+      true
+    ); // Use capture: true for capture the event early
 
     return window.contextMenu;
   } catch (error) {
-    // Fallback mínimo
+    // Minimum fallback
     document.addEventListener("contextmenu", (e) => {
       const isContentEditable = e.target.closest(".tab-list__item--content");
       const isTabLabel = e.target.closest(".tab-list__item label");
@@ -304,15 +299,15 @@ async function initializeFloatingNavPosition() {
   }
 }
 
-// ===== MÓDULOS OPCIONALES =====
+// ===== OPTIONAL MODULES =====
 async function loadOptionalModules() {
   try {
-    // Intentar cargar módulos de utilidad
+    // Try load modules for utilites
     const utilsModule = await import("./utils/domHelpers.js");
 
     const emojiModule = await import("./utils/emojiDetector.js");
 
-    // Aquí puedes agregar más imports dinámicos
+    // Here you can add mor improt dynamics
     import("./core/fontManager.js");
     import("./core/tabs.js");
     import("./core/themeManager.js");
@@ -324,9 +319,9 @@ async function loadOptionalModules() {
   }
 }
 
-// ===== VERIFICACIÓN Y FALLBACK =====
+// ===== VERIFICATIÓN & FALLBACK =====
 async function verifyFunctionality() {
-  // Verificar elementos críticos
+  // Verify critical elements
   const criticalElements = [".tab-list", "#create-tab", "#context-menu"];
 
   const missingElements = [];
@@ -338,29 +333,27 @@ async function verifyFunctionality() {
   });
 
   if (missingElements.length > 0) {
-    // throw new Error(`Elementos críticos no encontrados: ${missingElements.join(', ')}`);
+    // throw new Error(`Critical elements not found: ${missingElements.join(', ')}`);
   }
 
-  // Verificar localStorage
+  // Verify localStorage
   if (typeof localStorage === "undefined") {
     throw new Error("localStorage no disponible");
   }
 }
 
 async function emergencyFallback() {
-  // Funcionalidad MÍNIMA para que la app no se rompa completamente
+  // minmum Functionality for that the appdont break completaly
 
-  // 1. Permitir crear pestañas básicas
+  // 1. Allow the creation of basic tabs
   const createTabBtn = document.getElementById("create-tab");
   if (createTabBtn) {
     createTabBtn.onclick = () => {
-      alert(
-        "Modo emergencia: Funcionalidad limitada. Por favor recarga la página.",
-      );
+      alert("Modo emergencia: Funcionalidad limitada. Por favor recarga la página.");
     };
   }
 
-  // 2. Dark mode básico
+  // 2. Basic Dark mode
   const darkModeToggle = document.getElementById("dark-mode-toggle");
   if (darkModeToggle) {
     darkModeToggle.onchange = (e) => {
@@ -372,7 +365,7 @@ async function emergencyFallback() {
 }
 
 function showErrorMessage() {
-  // Crear un mensaje de error visible pero no intrusivo
+  // Create a visible but non-intrusive error message
   const errorDiv = document.createElement("div");
   errorDiv.style.cssText = `
     position: fixed;
@@ -395,7 +388,7 @@ function showErrorMessage() {
 
   document.body.appendChild(errorDiv);
 
-  // Auto-eliminar después de 10 segundos
+  // Create a visible but non-intrusive error message
   setTimeout(() => {
     if (errorDiv.parentNode) {
       errorDiv.parentNode.removeChild(errorDiv);
@@ -403,7 +396,7 @@ function showErrorMessage() {
   }, 10000);
 }
 
-// Exportar funciones para debugging
+// Export functions for debugging
 export const debug = {
   test: () => {
     return "OK";

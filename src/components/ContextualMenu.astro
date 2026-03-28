@@ -27,21 +27,21 @@ const tabItems = [{ action: "pin-tab", iconName: "pin", label: "Fijar" }];
 ---
 
 <div id="context-menu" class="context-menu hidden fixed bg-(--tn-theme-primary) border border-(--tn-theme-contrast) rounded-lg shadow-2xl z-50 min-w-[200px] w-auto">
-  <!-- Edición -->
+  {/* Edition */}
   {editItems.map((item) => <ContextMenuItem action={item.action} iconName={item.iconName} label={item.label} shortcut={item.shortcut} requiresSelection={item.requiresSelection} />)}
 
   <ContextMenuSeparator variant="thin" />
 
-  <!-- Formato -->
+  {/* Format */}
   {formatItems.map((item) => <ContextMenuItem action={item.action} iconName={item.iconName} label={item.label} shortcut={item.shortcut} requiresSelection={item.requiresSelection} />)}
 
   <ContextMenuSeparator variant="thin" />
 
-  <!-- Historial -->
+  {/* History */}
   {historyItems.map((item) => <ContextMenuItem action={item.action} iconName={item.iconName} label={item.label} shortcut={item.shortcut} />)}
 
   <ContextMenuSeparator variant="thin" />
 
-  <!-- Pestañas -->
+  {/* Tabs */}
   {tabItems.map((item) => <ContextMenuItem action={item.action} iconName={item.iconName} label={item.label} />)}
 </div>

@@ -60,7 +60,7 @@ body {
   opacity: 0.8;
 }
 
-// Clases para formateo de negrita
+// Format Class for textin bold
 .bold-semibold {
   font-weight: 600;
 }
@@ -94,7 +94,7 @@ code {
   color: var(--color-text);
 }
 
-/* Scrollbar styling */
+// Scrollbar styling 
 ::-webkit-scrollbar {
   width: var(--tn-scrollbar-width, 12px);
   height: var(--tn-scrollbar-height, 12px);
@@ -114,14 +114,14 @@ code {
   }
 }
 
-/* Smooth transitions para cambios de tema */
+// Smooth transitions for theme changes 
 * {
   transition: background-color 0.3s ease,
     border-color 0.3s ease,
     color 0.3s ease;
 }
 
-// Colores especificos segun el tema
+// Specific Colors by theme
 html[data-theme="dark"] .tab-list__item {
   label span {
     color: var(--tn-neutral-tertiary-color);

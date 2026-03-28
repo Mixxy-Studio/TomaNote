@@ -52,7 +52,7 @@ Object.defineProperty(document, "documentElement", {
 const mockElements = [mockElement(), mockElement()];
 document.querySelectorAll = vi.fn().mockReturnValue(mockElements);
 
-describe("FontManager - Lógica Básica", () => {
+describe("FontManager - Basic Logic", () => {
   let fontManager;
 
   beforeEach(() => {
@@ -61,55 +61,35 @@ describe("FontManager - Lógica Básica", () => {
     fontManager = new FontManager();
   });
 
-  it("Aplicar fuente por defecto si no hay URL guardada", () => {
+  it("Apply default font if no URL is saved", () => {
     localStorageMock.getItem.mockReturnValue(null);
     fontManager.loadCustomFont();
-    expect(document.documentElement.style.setProperty).toHaveBeenCalledWith(
-      "--font-family-notes",
-      `'Inter', sans-serif, serif`,
-    );
+    expect(document.documentElement.style.setProperty).toHaveBeenCalledWith("--font-family-notes", `'Inter', sans-serif, serif`);
   });
 
-  it("Cargar fuente personalizada correctamente", () => {
-    localStorageMock.getItem.mockReturnValue(
-      "https://fonts.googleapis.com/css2?family=Roboto",
-    );
+  it("Load custom font correctly", () => {
+    localStorageMock.getItem.mockReturnValue("https://fonts.googleapis.com/css2?family=Roboto");
     fontManager.loadCustomFont();
     expect(document.head.appendChild).toHaveBeenCalled();
-    expect(document.documentElement.style.setProperty).toHaveBeenCalledWith(
-      "--font-family-notes",
-      `'Roboto', sans-serif, serif`,
-    );
+    expect(document.documentElement.style.setProperty).toHaveBeenCalledWith("--font-family-notes", `'Roboto', sans-serif, serif`);
   });
 
-  it("Cambia fuente de notas", () => {
-    const result = fontManager.changeNoteFont(
-      "https://fonts.googleapis.com/css2?family=Inter",
-      "Inter",
-    );
+  it("Change font of notes", () => {
+    const result = fontManager.changeNoteFont("https://fonts.googleapis.com/css2?family=Inter", "Inter");
     expect(result).toBe(true);
-    expect(localStorageMock.setItem).toHaveBeenCalledWith(
-      "customFontUrl",
-      "https://fonts.googleapis.com/css2?family=Inter",
-    );
-    expect(localStorageMock.setItem).toHaveBeenCalledWith(
-      "customFontName",
-      "Inter",
-    );
+    expect(localStorageMock.setItem).toHaveBeenCalledWith("customFontUrl", "https://fonts.googleapis.com/css2?family=Inter");
+    expect(localStorageMock.setItem).toHaveBeenCalledWith("customFontName", "Inter");
   });
 
-  it("Restablecer fuente a por defecto", () => {
+  it("Reset font to default", () => {
     fontManager.resetNoteFont();
     expect(localStorageMock.removeItem).toHaveBeenCalledWith("customFontUrl");
     expect(localStorageMock.removeItem).toHaveBeenCalledWith("customFontName");
-    expect(document.documentElement.style.setProperty).toHaveBeenCalledWith(
-      "--font-family-notes",
-      `'Inter', sans-serif, serif`,
-    );
+    expect(document.documentElement.style.setProperty).toHaveBeenCalledWith("--font-family-notes", `'Inter', sans-serif, serif`);
   });
 });
 
-describe("FontManager - Tamaño de Fuente", () => {
+describe("FontManager - Font Size", () => {
   let fontManager;
 
   beforeEach(() => {
@@ -135,19 +115,19 @@ describe("FontManager - Tamaño de Fuente", () => {
     fontManager = new FontManager();
   });
 
-  it("changeFontSize - guarda en localStorage y aplica clase", () => {
+  it("changeFontSize - saves to localStorage and applies class", () => {
     const result = fontManager.changeFontSize("medium");
     expect(result).toBe(true);
     expect(localStorageMock.setItem).toHaveBeenCalledWith("fontSize", "medium");
   });
 
-  it("changeFontSize - rechaza tamaño inválido", () => {
+  it("changeFontSize - rejects invalid size", () => {
     const result = fontManager.changeFontSize("invalid");
     expect(result).toBe(false);
     expect(localStorageMock.setItem).not.toHaveBeenCalled();
   });
 
-  it("changeFontSize - aplica clase base-text para tamaño base", () => {
+  it("changeFontSize - applies base-text class for base size", () => {
     const elements = document.querySelectorAll(".tab-list__item--content");
     fontManager.changeFontSize("base");
     expect(elements[0].classList.add).toHaveBeenCalledWith("base-text");
@@ -155,7 +135,7 @@ describe("FontManager - Tamaño de Fuente", () => {
     expect(elements[0].classList.remove).toHaveBeenCalledWith("large-text");
   });
 
-  it("changeFontSize - aplica clase medium-text para tamaño medium", () => {
+  it("changeFontSize - applies base-text class for base size", () => {
     const elements = document.querySelectorAll(".tab-list__item--content");
     fontManager.changeFontSize("medium");
     expect(elements[0].classList.add).toHaveBeenCalledWith("medium-text");
@@ -163,7 +143,7 @@ describe("FontManager - Tamaño de Fuente", () => {
     expect(elements[0].classList.remove).toHaveBeenCalledWith("large-text");
   });
 
-  it("changeFontSize - aplica clase large-text para tamaño large", () => {
+  it("changeFontSize - Apply the large-text class for large text size.", () => {
     const elements = document.querySelectorAll(".tab-list__item--content");
     fontManager.changeFontSize("large");
     expect(elements[0].classList.add).toHaveBeenCalledWith("large-text");
@@ -171,7 +151,7 @@ describe("FontManager - Tamaño de Fuente", () => {
     expect(elements[0].classList.remove).toHaveBeenCalledWith("medium-text");
   });
 
-  it("loadFontSize - usa tamaño guardado en localStorage", () => {
+  it("loadFontSize - Uses size saved in localStorage", () => {
     localStorageMock.getItem.mockReturnValue("large");
     const elements = document.querySelectorAll(".tab-list__item--content");
     fontManager.loadFontSize();
@@ -179,7 +159,7 @@ describe("FontManager - Tamaño de Fuente", () => {
     expect(elements[0].classList.add).toHaveBeenCalledWith("large-text");
   });
 
-  it("loadFontSize - usa tamaño por defecto si no hay guardado", () => {
+  it("loadFontSize - Use default size if no saving", () => {
     localStorageMock.getItem.mockReturnValue(null);
     const elements = document.querySelectorAll(".tab-list__item--content");
     fontManager.loadFontSize();
@@ -187,7 +167,7 @@ describe("FontManager - Tamaño de Fuente", () => {
     expect(elements[0].classList.add).toHaveBeenCalledWith("base-text");
   });
 
-  it("applyFontSizeToEditor - remueve todas las clases de tamaño antes de agregar", () => {
+  it("applyFontSizeToEditor - Remove all size classes before adding", () => {
     const elements = document.querySelectorAll(".tab-list__item--content");
     fontManager.applyFontSizeToEditor("medium");
     const removeCalls = elements[0].classList.remove.mock.calls;
@@ -196,7 +176,7 @@ describe("FontManager - Tamaño de Fuente", () => {
     expect(removeCalls).toContainEqual(["large-text"]);
   });
 
-  it("resetFontSize - remueve fontSize de localStorage y aplica base", () => {
+  it("resetFontSize - Remove fontSize from localStorage and apply base", () => {
     const elements = document.querySelectorAll(".tab-list__item--content");
     fontManager.resetFontSize();
     expect(localStorageMock.removeItem).toHaveBeenCalledWith("fontSize");

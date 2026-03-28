@@ -10,7 +10,7 @@ const localStorageMock = {
 };
 global.localStorage = localStorageMock;
 
-// Mock window.i18n para tests deterministicos
+// Mock window.i18n for deterministic tests
 const i18nMock = {
   t: vi.fn((key) => {
     const translations = {
@@ -39,7 +39,7 @@ describe("TabManager - Lógica Básica", () => {
   beforeEach(() => {
     vi.clearAllMocks();
     dispatchEventSpy = vi.spyOn(document, "dispatchEvent");
-    
+
     // Reset i18n mock
     i18nMock.t.mockClear();
     i18nMock.t.mockImplementation((key) => {
@@ -49,7 +49,7 @@ describe("TabManager - Lógica Básica", () => {
       };
       return translations[key] ?? key;
     });
-    
+
     tabManager = new TabManager({
       enablePersistence: true,
       enableCreation: true,
@@ -114,14 +114,14 @@ describe("TabManager - Eventos tabsChanged", () => {
 
   beforeEach(() => {
     vi.clearAllMocks();
-    
+
     tabManager = new TabManager({
       enablePersistence: false,
       enableCreation: true,
       enableAutoSave: false,
       debug: false,
     });
-    
+
     tabManager.tabList = mockTabList;
     tabManager.createTabButton = mockCreateTabButton;
     tabManager.createTabElement = vi.fn(() => {
@@ -139,21 +139,18 @@ describe("TabManager - Eventos tabsChanged", () => {
 
   it("createTab debe dispatchear evento tabsChanged", () => {
     const dispatchSpy = vi.spyOn(document, "dispatchEvent");
-    
+
     tabManager.createTab("Test Tab");
 
     expect(dispatchSpy).toHaveBeenCalledWith(
       expect.objectContaining({
         type: "tabsChanged",
-      }),
+      })
     );
   });
 
   it("deleteTabElement debe delegar al deletionHandler", async () => {
-    const deleteTabElementSpy = vi.spyOn(
-      tabManager.deletionHandler,
-      "deleteTabElement"
-    );
+    const deleteTabElementSpy = vi.spyOn(tabManager.deletionHandler, "deleteTabElement");
 
     const mockTabElement = { foo: "bar" };
 

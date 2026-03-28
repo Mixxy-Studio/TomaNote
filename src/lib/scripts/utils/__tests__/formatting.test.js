@@ -1,7 +1,7 @@
 import { describe, it, expect, beforeEach, vi } from "vitest";
 import { FormattingUtils } from "../formatting.js";
 
-// Mock del DOM
+// Mock of DOM
 const mockElement = {
   classList: {
     contains: vi.fn(),
@@ -63,7 +63,7 @@ describe("FormattingUtils - Ciclo de Negrita", () => {
     mockSelection.rangeCount = 0;
     FormattingUtils.cycleBold();
     expect(window.getSelection).toHaveBeenCalled();
-    // No debería crear elementos
+    // You shouldn't create elements
     expect(document.createElement).not.toHaveBeenCalled();
   });
 
@@ -120,9 +120,9 @@ describe("FormattingUtils - Ciclo de Negrita", () => {
     FormattingUtils.cycleBold();
 
     expect(boldElement.classList.remove).toHaveBeenCalledWith("bold-extrabold");
-    // Debería unwrap
+    // Should unwrap
   });
 
-  // Test omitido por complejidad de mocking DOM ranges
+  // TThis is omitted due to the complexity of mocking DOM ranges.
   // it('Maneja surroundContents que falla con insertNode', () => { ... }
 });

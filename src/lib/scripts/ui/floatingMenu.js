@@ -1,5 +1,5 @@
 // src/lib/scripts/ui/floatingMenu.js
-// Sistema de menú flotante - conecta botones con funciones existentes
+// Floating menu system - connects buttons to existing functions
 
 import { FormattingUtils } from "../utils/formatting.js";
 import { detectEmojiInText, getRandomPinEmoji } from "../utils/emojiDetector.js";

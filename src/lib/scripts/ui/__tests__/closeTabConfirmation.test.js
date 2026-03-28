@@ -33,7 +33,7 @@ describe("CloseTabConfirmation", () => {
   });
 
   describe("init", () => {
-    it("debe retornar this si el modal no existe", async () => {
+    it("should return `this` if the modal does not exist", async () => {
       modal.modal = null;
       const result = await modal.init();
       expect(result).toBe(modal);
@@ -41,7 +41,7 @@ describe("CloseTabConfirmation", () => {
   });
 
   describe("open", () => {
-    it("debe guardar pendingTabElement y llamar showModal", () => {
+    it("You must save pendingTabElement and call showModal", () => {
       const mockTabElement = { id: "tab-1" };
       const promise = modal.open(mockTabElement);
 
@@ -52,7 +52,7 @@ describe("CloseTabConfirmation", () => {
   });
 
   describe("handleConfirm", () => {
-    it("debe cerrar modal, limpiar pendingTabElement y resolver true", async () => {
+    it("You must close the modal, clear pendingTabElement, and resolve true", async () => {
       const mockTabElement = { id: "tab-1" };
       modal.pendingTabElement = mockTabElement;
 
@@ -68,7 +68,7 @@ describe("CloseTabConfirmation", () => {
   });
 
   describe("handleCancel", () => {
-    it("debe cerrar modal, limpiar pendingTabElement y resolver false", async () => {
+    it("You must close the modal, clear pendingTabElement, and resolve false", async () => {
       const mockTabElement = { id: "tab-1" };
       modal.pendingTabElement = mockTabElement;
 

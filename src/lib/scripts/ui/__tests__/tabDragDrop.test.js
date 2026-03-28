@@ -17,7 +17,7 @@ describe("TabDragDrop", () => {
   beforeEach(() => {
     addEventListenerSpy = vi.spyOn(document, "addEventListener");
     dispatchEventSpy = vi.fn();
-    
+
     global.CustomEvent = class CustomEvent {
       constructor(type, options) {
         this.type = type;
@@ -55,19 +55,19 @@ describe("TabDragDrop", () => {
   });
 
   describe("constructor", () => {
-    it("debe inicializar con opciones por defecto", () => {
+    it("It must initialize with default options", () => {
       const tdd = new TabDragDrop();
       expect(tdd.options.debug).toBe(true);
     });
 
-    it("debe fusionar opciones personalizadas", () => {
+    it("You must merge custom options", () => {
       const tdd = new TabDragDrop({ debug: false });
       expect(tdd.options.debug).toBe(false);
     });
   });
 
   describe("getSortableOptions", () => {
-    it("debe retornar opciones de Sortable con callbacks", () => {
+    it("must return Sortable options with callbacks", () => {
       const options = tabDragDrop.getSortableOptions();
 
       expect(options).toHaveProperty("animation");
@@ -79,7 +79,7 @@ describe("TabDragDrop", () => {
   });
 
   describe("handleDragStart", () => {
-    it("debe agregar clase dragging al item", () => {
+    it("must return Sortable options with callbacks", () => {
       const mockItem = {
         classList: { add: vi.fn() },
         querySelector: vi.fn().mockReturnValue(null),
@@ -90,7 +90,7 @@ describe("TabDragDrop", () => {
       expect(mockItem.classList.add).toHaveBeenCalledWith("dragging");
     });
 
-    it("debe agregar clase dragging-content al contenido", () => {
+    it("You need to add the dragging-content class to the content.", () => {
       const mockContent = { classList: { add: vi.fn() } };
       const mockItem = {
         classList: { add: vi.fn() },
@@ -104,7 +104,7 @@ describe("TabDragDrop", () => {
   });
 
   describe("handleDragEnd", () => {
-    it("debe remover clase dragging del item", () => {
+    it("You must remove the dragging class from the item.", () => {
       const mockItem = {
         classList: { remove: vi.fn() },
         querySelector: vi.fn().mockReturnValue(null),
@@ -127,7 +127,7 @@ describe("TabDragDrop", () => {
       expect(mockContent.classList.remove).toHaveBeenCalledWith("dragging-content");
     });
 
-    it("debe llamar a saveTabs de tabManager", () => {
+    it("You must call saveTabs from tabManager", () => {
       const mockItem = {
         classList: { remove: vi.fn() },
         querySelector: vi.fn().mockReturnValue(null),
@@ -138,7 +138,7 @@ describe("TabDragDrop", () => {
       expect(global.window.tabManager.saveTabs).toHaveBeenCalled();
     });
 
-    it("debe dispatchear evento tabsChanged al finalizar drag", () => {
+    it("must dispatch the tabsChanged event upon completion of drag", () => {
       const mockItem = {
         classList: { remove: vi.fn() },
         querySelector: vi.fn().mockReturnValue(null),
@@ -149,13 +149,13 @@ describe("TabDragDrop", () => {
       expect(dispatchEventSpy).toHaveBeenCalledWith(
         expect.objectContaining({
           type: "tabsChanged",
-        }),
+        })
       );
     });
   });
 
   describe("canPull", () => {
-    it("debe permitir mover pestañas no fijadas", () => {
+    it("It should allow moving unfixed tabs", () => {
       const mockItem = { classList: { contains: vi.fn().mockReturnValue(false) } };
       const mockTo = { el: mockTabList };
 
@@ -164,7 +164,7 @@ describe("TabDragDrop", () => {
       expect(result).toBe(true);
     });
 
-    it("debe permitir mover pestañas no fijadas a pinned-tabs", () => {
+    it("It should allow moving tabs that are not pinned to pinned tabs.", () => {
       const mockItem = { classList: { contains: vi.fn().mockReturnValue(false) } };
       const mockTo = { el: { classList: { contains: vi.fn().mockReturnValue(true) } } };
 

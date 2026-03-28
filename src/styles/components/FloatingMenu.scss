@@ -1,6 +1,6 @@
-/* Añade a tu CSS global o dentro de <style> en Astro */
+// Add to css global into <style> tag in Astro 
 
-/* Posicionamiento del Floating Menu */
+// Positionin of floating menu 
 .tn-navbar {
   position: fixed;
   right: 0;
@@ -41,7 +41,7 @@
   background: rgba(255, 255, 255, 0.1);
 }
 
-/* Separadores responsivos */
+// Responsive dividers 
 @media (max-width: 640px) {
   .tn-navbar .h-8 {
     height: 24px;
@@ -49,9 +49,7 @@
   }
 }
 
-// ---
-
-/* Mejoras para el menú móvil */
+// Improves for mobile menu 
 @media (max-width: 768px) {
   .tn-navbar {
     padding-left: 0.75rem;
@@ -59,7 +57,7 @@
     max-width: 98vw;
   }
 
-  /* Animación suave para el menú desplegable */
+  // Soft animation for dropdown menu 
   #mobileToolsMenu {
     transition: opacity 0.2s ease-in-out, transform 0.2s ease-in-out;
     transform-origin: bottom center;
@@ -98,7 +96,7 @@
     }
   }
 
-  /* Mejoras para los botones del acordeón */
+  // Improvements for acordeon buttons 
   .accordion-btn {
     transition: background-color 0.2s ease;
   }
@@ -111,7 +109,7 @@
     transform: rotate(180deg);
   }
 
-  /* Grid responsivo para los botones hijos */
+  // Grid responsivo for children buttons 
   .grid {
     gap: 0.25rem;
   }
@@ -122,19 +120,19 @@
     padding: 0.5rem !important;
   }
 
-  /* Ajustes para el botón de nueva pestaña */
+  // Improvements for the button "New Tab" 
   .tn-new-tab {
     background: var(--tn-theme-contrast);
   }
 
-  /* Sombra y profundidad para el menú */
+  // Shadows and deeps for the menu 
   #mobileToolsMenu {
     box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.5), 0 8px 10px -6px rgba(0, 0, 0, 0.3);
     border: 1px solid rgba(255, 255, 255, 0.1);
   }
 }
 
-/* Ajustes para pantallas muy pequeñas */
+// Imprvements for mini screens 
 @media (max-width: 380px) {
   .tn-navbar {
     padding-left: 0.5rem;
@@ -172,7 +170,7 @@
   }
 }
 
-/* Ajustes para landscape en móvil */
+// Improvements for mobile in landscape mode 
 @media (max-width: 768px) and (orientation: landscape) {
   #mobileToolsMenu {
     max-height: 60vh;
@@ -187,7 +185,7 @@
   }
 }
 
-/* Mejoras para el hover en dispositivos táctiles */
+// Imprivemnts for mobile hover effects 
 @media (hover: none) and (pointer: coarse) {
   .group:hover .opacity-0 {
     opacity: 0 !important;
@@ -200,20 +198,20 @@
   }
 }
 
-/* Estilo para el separador vertical */
+// Styles for vertical divider 
 .bg-white\/20 {
   background-color: rgba(255, 255, 255, 0.2);
 }
 
-/* Asegurar que los tooltips no se desborden en móvil */
+// Adjust that the tooltips not get out from mobile mode 
 @media (max-width: 768px) {
   .group .absolute.-top-8 {
     display: none;
-    /* Ocultar tooltips en móvil ya que tenemos el menú */
+    // Hidde tooltips in mobile 
   }
 }
 
-/* Pequeña animación para los botones del menú móvil */
+// short animations for buttons in mobile mode 
 #mobileToolsMenu button:not(.accordion-btn) {
   transition: all 0.15s ease;
 }
@@ -223,14 +221,14 @@
   background-color: var(--tn-theme-secondary);
 }
 
-/* Mejorar la legibilidad del texto en los botones del menú móvil */
+// Inprove readability for buttons in mobile view 
 #mobileToolsMenu .text-xs {
   font-size: 0.65rem;
   line-height: 1;
   margin-top: 0.125rem;
 }
 
-/* Responsive design para tabletas */
+// Responsive design for tabletas 
 @media (min-width: 640px) and (max-width: 768px) {
   .tn-navbar {
     max-width: 90vw;

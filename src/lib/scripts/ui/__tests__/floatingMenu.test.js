@@ -82,31 +82,27 @@ describe("FloatingMenu", () => {
   });
 
   describe("updateButtonStates", () => {
-    it("debe mostrar toolsButton cuando hay pestaña activa", () => {
+    it("The toolsButton should be displayed when a tab is active.", () => {
       mockTabList.querySelector = vi.fn().mockReturnValue({
         closest: vi.fn().mockReturnValue({}),
       });
 
       floatingMenu.updateButtonStates();
 
-      expect(mockToolsButton.classList.remove).toHaveBeenCalledWith(
-        "tn-tools-hidden",
-      );
+      expect(mockToolsButton.classList.remove).toHaveBeenCalledWith("tn-tools-hidden");
       expect(mockToolsButton.style.display).toBe("");
     });
 
-    it("debe ocultar toolsButton cuando no hay pestaña activa", () => {
+    it("You should hide the toolsButton when there is no active tab.", () => {
       mockTabList.querySelector = vi.fn().mockReturnValue(null);
 
       floatingMenu.updateButtonStates();
 
-      expect(mockToolsButton.classList.add).toHaveBeenCalledWith(
-        "tn-tools-hidden",
-      );
+      expect(mockToolsButton.classList.add).toHaveBeenCalledWith("tn-tools-hidden");
       expect(mockToolsButton.style.display).toBe("none");
     });
 
-    it("debe deshabilitar botones de acciones de tab cuando no hay pestaña activa", () => {
+    it("should disable tab action buttons when there is no active tab", () => {
       const mockBtn = {
         classList: { add: vi.fn(), remove: vi.fn() },
         setAttribute: vi.fn(),
@@ -122,7 +118,7 @@ describe("FloatingMenu", () => {
       expect(mockBtn.setAttribute).toHaveBeenCalledWith("disabled", "true");
     });
 
-    it("debe habilitar botones de acciones de tab cuando hay pestaña activa", () => {
+    it("must be enable tab action buttons when a tab is active", () => {
       const mockBtn = {
         classList: { add: vi.fn(), remove: vi.fn() },
         setAttribute: vi.fn(),
@@ -142,41 +138,35 @@ describe("FloatingMenu", () => {
   });
 
   describe("getActiveTab", () => {
-    it("debe retornar null si no hay tabList", () => {
+    it("must return null if there is no tabList", () => {
       floatingMenu.tabList = null;
       expect(floatingMenu.getActiveTab()).toBeNull();
     });
 
-    it("debe retornar null si no hay radio seleccionado", () => {
+    it("should return null if no radio is selected", () => {
       mockTabList.querySelector = vi.fn().mockReturnValue(null);
       expect(floatingMenu.getActiveTab()).toBeNull();
     });
   });
 
   describe("setupTabChangeListener", () => {
-    it("debe agregar listener para cambio de tabs", () => {
+    it("You need to add a listener for tab switching.", () => {
       floatingMenu.setupTabChangeListener();
 
-      expect(mockTabList.addEventListener).toHaveBeenCalledWith(
-        "change",
-        expect.any(Function),
-      );
+      expect(mockTabList.addEventListener).toHaveBeenCalledWith("change", expect.any(Function));
     });
 
-    it("debe agregar listener para evento tabsChanged", () => {
+    it("Need to add a listener for the tabsChanged event", () => {
       floatingMenu.setupTabChangeListener();
 
-      expect(global.document.addEventListener).toHaveBeenCalledWith(
-        "tabsChanged",
-        expect.any(Function),
-      );
+      expect(global.document.addEventListener).toHaveBeenCalledWith("tabsChanged", expect.any(Function));
     });
   });
 
   describe("handleDeleteTab", () => {
-    it("debe llamar a deleteTabElement de tabManager", () => {
+    it("You must call deleteTabElement from tabManager", () => {
       const mockTabElement = {};
-      
+
       global.window = {
         tabManager: {
           deleteTabElement: vi.fn(),
@@ -185,14 +175,12 @@ describe("FloatingMenu", () => {
 
       floatingMenu.handleDeleteTab(mockTabElement);
 
-      expect(global.window.tabManager.deleteTabElement).toHaveBeenCalledWith(
-        mockTabElement,
-      );
+      expect(global.window.tabManager.deleteTabElement).toHaveBeenCalledWith(mockTabElement);
     });
 
-    it("no debe llamar a deleteTabElement si tabManager no está disponible", () => {
+    it("should not be call deleteTabElement if tabManager is unavailable", () => {
       const mockTabElement = {};
-      
+
       global.window = {};
 
       floatingMenu.handleDeleteTab(mockTabElement);
@@ -211,7 +199,7 @@ describe("FloatingMenu", () => {
           return null;
         }),
       };
-      
+
       global.window = {
         tabManager: {
           reorderTabs: vi.fn(),
@@ -224,7 +212,7 @@ describe("FloatingMenu", () => {
       expect(mockTabElement.classList.add).toHaveBeenCalledWith("pinned");
     });
 
-    it("debe quitar clase pinned de la pestaña si ya está fijada", () => {
+    it("Must be remove the pinned class from the tab if it is already pinned.", () => {
       const mockLabel = { removeAttribute: vi.fn() };
       const mockLabelSpan = { dataset: { emoji: "📝" }, removeAttribute: vi.fn() };
       const mockTabElement = {
@@ -235,7 +223,7 @@ describe("FloatingMenu", () => {
           return null;
         }),
       };
-      
+
       global.window = {
         tabManager: {
           reorderTabs: vi.fn(),
@@ -248,7 +236,7 @@ describe("FloatingMenu", () => {
       expect(mockTabElement.classList.remove).toHaveBeenCalledWith("pinned");
     });
 
-    it("debe usar emoji personalizado si existe en el nombre de la pestaña", () => {
+    it("Must be use a custom emoji if one exists in the tab name", () => {
       const mockLabel = { setAttribute: vi.fn() };
       const mockLabelSpan = { dataset: {}, textContent: "⭐ Mi nota", setAttribute: vi.fn() };
       const mockTabElement = {
@@ -276,7 +264,7 @@ describe("FloatingMenu", () => {
       expect(mockLabelSpan.setAttribute).toHaveBeenCalledWith("data-emoji", "⭐");
     });
 
-    it("debe usar emoji aleatorio si no existe emoji en el nombre de la pestaña", () => {
+    it("Should use random emoji if there is no emoji in the tab name", () => {
       const mockLabel = { setAttribute: vi.fn() };
       const mockLabelSpan = { dataset: {}, textContent: "Mi nota", setAttribute: vi.fn() };
       const mockTabElement = {
@@ -312,27 +300,21 @@ describe("FloatingMenu", () => {
       vi.clearAllMocks();
     });
 
-    it("debe agregar listener de click al floatingMenu", () => {
+    it("Need to add a click listener to the floatingMenu", () => {
       floatingMenu.setupButtonHandlers();
 
-      expect(mockFloatingMenu.addEventListener).toHaveBeenCalledWith(
-        "click",
-        expect.any(Function),
-      );
+      expect(mockFloatingMenu.addEventListener).toHaveBeenCalledWith("click", expect.any(Function));
     });
 
-    it("debe agregar listener de mousedown al floatingMenu", () => {
+    it("Need to add a mousedown listener to the floatingMenu", () => {
       floatingMenu.setupButtonHandlers();
 
-      expect(mockFloatingMenu.addEventListener).toHaveBeenCalledWith(
-        "mousedown",
-        expect.any(Function),
-      );
+      expect(mockFloatingMenu.addEventListener).toHaveBeenCalledWith("mousedown", expect.any(Function));
     });
   });
 
   describe("handleEditNameTab", () => {
-    it("debe llamar a startEditingTabName del tabManager", () => {
+    it("Must be call startEditingTabName from the tabManager", () => {
       const mockEditButton = {};
       const mockTabElement = {
         querySelector: vi.fn().mockReturnValue(mockEditButton),
@@ -346,12 +328,10 @@ describe("FloatingMenu", () => {
 
       floatingMenu.handleEditNameTab(mockTabElement);
 
-      expect(global.window.tabManager.startEditingTabName).toHaveBeenCalledWith(
-        mockEditButton,
-      );
+      expect(global.window.tabManager.startEditingTabName).toHaveBeenCalledWith(mockEditButton);
     });
 
-    it("no debe llamar a startEditingTabName si tabManager no está disponible", () => {
+    it("Should not call startEditingTabName if tabManager is unavailable", () => {
       const mockTabElement = {
         querySelector: vi.fn().mockReturnValue({}),
       };
@@ -361,7 +341,7 @@ describe("FloatingMenu", () => {
       floatingMenu.handleEditNameTab(mockTabElement);
     });
 
-    it("no debe llamar a startEditingTabName si no existe el botón de editar", () => {
+    it("Should not call startEditingTabName if the edit button does not exist.", () => {
       const mockTabElement = {
         querySelector: vi.fn().mockReturnValue(null),
       };

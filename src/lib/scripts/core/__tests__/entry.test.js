@@ -1,7 +1,7 @@
 import { describe, it, expect, vi, beforeEach, afterEach } from "vitest";
 import { initNotepad, debug } from "../../entry.js";
 
-// Mockear módulos importados
+// Mockear módules importaded
 vi.mock("../fontManager.js", () => ({
   FontManager: vi.fn().mockImplementation(() => ({
     loadCustomFont: vi.fn(),
@@ -46,12 +46,12 @@ describe("entry.js", () => {
   let originalConsole;
 
   beforeEach(() => {
-    // Guardar originales
+    // save originals
     originalWindow = global.window;
     originalDocument = global.document;
     originalConsole = global.console;
 
-    // Mock básico de window y document
+    // Basic Mock of window and document
     global.window = {
       fontManager: null,
       themeManager: null,
@@ -87,7 +87,7 @@ describe("entry.js", () => {
   });
 
   afterEach(() => {
-    // Restaurar
+    // Restore
     global.window = originalWindow;
     global.document = originalDocument;
     global.console = originalConsole;
@@ -101,9 +101,7 @@ describe("entry.js", () => {
 
       await initNotepad();
 
-      expect(console.warn).toHaveBeenCalledWith(
-        "⚠️  Entorno no compatible (SSR o Node.js), omitiendo...",
-      );
+      expect(console.warn).toHaveBeenCalledWith("⚠️  Entorno no compatible (SSR o Node.js), omitiendo...");
     });
 
     it("debe inicializar correctamente en navegador", async () => {
