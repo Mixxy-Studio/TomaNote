@@ -4,9 +4,6 @@
 *::before,
 *::after {
   box-sizing: border-box;
-  padding: 0;
-  margin: 0;
-  font-size: var(--tn-font-size-base);
 }
 
 ul {
@@ -114,13 +111,6 @@ code {
   }
 }
 
-// Smooth transitions for theme changes 
-* {
-  transition: background-color 0.3s ease,
-    border-color 0.3s ease,
-    color 0.3s ease;
-}
-
 // Specific Colors by theme
 html[data-theme="dark"] .tab-list__item {
   label span {
@@ -212,4 +202,8 @@ hr {
 
 dialog::backdrop {
   background-color: rgba(0, 0, 0, .5) !important;
+}
+
+body:has(main#main-content article) {
+  overflow-y: scroll;
 }
