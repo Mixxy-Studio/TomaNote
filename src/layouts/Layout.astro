@@ -244,6 +244,58 @@ const canonicalUrl = `${siteUrl}${Astro.url.pathname}`;
         ]
       }
     </script>
+
+    {/* === ORGANIZATION SCHEMA === */}
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "TomaNote",
+        "url": "https://tomanote.app",
+        "description": "A minimal notepad for people who just want to write. Fast, offline-first, and completely free.",
+        "sameAs": [
+          "https://twitter.com/camiicode_x",
+          "https://github.com/camiicode"
+        ],
+        "contactPoint": {
+          "@type": "ContactPoint",
+          "email": "hello@tomanote.app",
+          "contactType": "customer service"
+        }
+      }
+    </script>
+
+    {/* === HOWTO SCHEMA ===}
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "HowTo",
+        "name": "How to start taking notes with TomaNote",
+        "description": "Learn how to use TomaNote to create and manage your notes in seconds.",
+        "step": [
+          {
+            "@type": "HowToStep",
+            "name": "Open the app",
+            "text": "Navigate to https://tomanote.app in your browser."
+          },
+          {
+            "@type": "HowToStep",
+            "name": "Create a new note",
+            "text": "Click the + button or press Ctrl+N to create a new tab."
+          },
+          {
+            "@type": "HowToStep",
+            "name": "Start writing",
+            "text": "Type your content in the editor. It auto-saves automatically."
+          },
+          {
+            "@type": "HowToStep",
+            "name": "Install as app",
+            "text": "On mobile, tap Share > Add to Home Screen to install it as a PWA."
+          }
+        ]
+      }
+    </script>
   </head>
 
   <body id="body" class="h-lvh relative">
