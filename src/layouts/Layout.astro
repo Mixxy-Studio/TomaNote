@@ -10,32 +10,16 @@ import "../styles/components/Icons.scss";
 import EmptyState from "../components/EmptyState.astro";
 
 // ─── Dynamic locale logic ───────────────────────────────────────────────────
-// Astro runs this at build time (SSG) or request time (SSR).
-// For a purely client-side SPA the values below are the safe static defaults;
-// swap for Astro i18n helpers once you add real routes.
-const locale = "en"; // TODO: replace with Astro.currentLocale
+
+const locale = "en";
 const ogLocale = "en_US";
 const siteUrl = "https://tomanote.app";
 const canonicalUrl = `${siteUrl}${Astro.url.pathname}`;
 ---
 
 <!doctype html>
-{
-  /*
-  FIX (a11y – HIGH): lang attribute added so screen readers use the correct
-  language/voice. Previously missing entirely from <html>.
-  TODO: replace hardcoded "en" with your i18n locale variable when routes exist.
-  */
-}
 <html lang={locale}>
   <head>
-    {
-      /*
-      FIX (a11y – HIGH): moved lang detection BEFORE any render so the
-      document language is declared at parse time, not after JS runs.
-      data-lang is still set for JS components that need it.
-    */
-    }
     <script is:inline>
       (function () {
         const lang = navigator.language?.toLowerCase().startsWith("es") ? "es" : "en";
@@ -56,22 +40,8 @@ const canonicalUrl = `${siteUrl}${Astro.url.pathname}`;
     <meta name="keywords" content="notes, notepad, tabs, editor, offline, pwa, productivity, web-app, fast notes" />
 
     {/* === CANONICAL & ROBOTS === */}
-    {
-      /*
-      FIX (SEO – MEDIUM): canonical is now dynamic so future pages (e.g. /es/)
-      don't all point to the root, causing duplicate-content issues.
-    */
-    }
     <link rel="canonical" href={canonicalUrl} />
     <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
-
-    {
-      /*
-      FIX (SEO – MEDIUM): hreflang signals to Google which language version to
-      serve. x-default is the fallback when no language matches.
-      Currently both point to root; update hrefs once /es/ route exists.
-    */
-    }
     <link rel="alternate" hreflang="en" href={siteUrl} />
     <link rel="alternate" hreflang="es" href={siteUrl} />
     <link rel="alternate" hreflang="x-default" href={siteUrl} />
@@ -85,12 +55,6 @@ const canonicalUrl = `${siteUrl}${Astro.url.pathname}`;
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
     <meta property="og:image:alt" content="Screenshot of TomaNote.app showing the editor with tabs" />
-    {
-      /*
-      FIX (SEO – MEDIUM): og:locale is now dynamic instead of hardcoded es_ES.
-      An English visitor sharing the page will now get en_US in the preview.
-    */
-    }
     <meta property="og:locale" content={ogLocale} />
     <meta property="og:locale:alternate" content={ogLocale === "en_US" ? "es_ES" : "en_US"} />
     <meta property="og:site_name" content="TomaNote App" />
@@ -121,18 +85,6 @@ const canonicalUrl = `${siteUrl}${Astro.url.pathname}`;
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,100..900;1,100..900&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Raleway:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet" />
-
-    {
-      /*
-      FIX (SEO – HIGH): favicon was an inline data URI — Google and most browsers
-      require a real file URL to display the favicon in search results and tabs.
-      Place favicon.svg and icon-192.png in /public/.
-
-      • favicon.svg        → shown in browser tabs (modern browsers)
-      • favicon.ico        → fallback for older browsers / Google Search Console
-      • icon-192.png       → Apple touch icon (home screen shortcut)
-    */
-    }
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="icon" type="image/x-icon" href="/favicon.ico" />
     <link rel="apple-touch-icon" sizes="192x192" href="/icon-192.png" />
@@ -141,13 +93,6 @@ const canonicalUrl = `${siteUrl}${Astro.url.pathname}`;
     <link rel="manifest" href="/manifest.webmanifest" />
 
     {/* === SCHEMA.ORG === */}
-    {
-      /*
-      FIX (SEO – LOW): aggregateRating with ratingCount: 1 is risky — Google
-      may ignore or penalize thin review data. Remove it until you have real
-      user ratings. Everything else in WebApplication schema is solid.
-    */
-    }
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
@@ -188,15 +133,6 @@ const canonicalUrl = `${siteUrl}${Astro.url.pathname}`;
         }
       }
     </script>
-
-    {
-      /*
-      FIX (SEO – MEDIUM): FAQ questions had Spanish punctuation (¿) but English
-      text — inconsistent and confusing for both users and crawlers.
-      Standardized to English since og:locale defaults to en_US.
-      TODO: add a second FAQPage block in Spanish once /es/ route exists.
-    */
-    }
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
@@ -297,24 +233,8 @@ const canonicalUrl = `${siteUrl}${Astro.url.pathname}`;
   </head>
 
   <body id="body" class="h-lvh relative">
-    {
-      /*
-      FIX (a11y – MEDIUM): skip link lets keyboard and screen reader users jump
-      directly to the editor, bypassing repeated navigation on every page load.
-      Visually hidden until focused — no layout impact.
-    */
-    }
     <a href="#main-content" class="skip-link">Skip to content</a>
-
     <EmptyState />
-
-    {
-      /*
-      FIX (a11y – LOW): <main> now has id="main-content" so the skip link above
-      lands in the right place. role="main" is redundant on <main> but kept for
-      older assistive tech that doesn't map the element automatically.
-    */
-    }
     <main id="main-content" role="main">
       <slot />
     </main>
@@ -328,12 +248,6 @@ const canonicalUrl = `${siteUrl}${Astro.url.pathname}`;
     width: 100%;
     height: 100%;
   }
-
-  /*
-    FIX (a11y – MEDIUM): skip link styles.
-    Off-screen by default, moves into view on focus.
-    Uses a high z-index so it's never obscured by the app UI.
-  */
   .skip-link {
     position: absolute;
     top: -100%;
