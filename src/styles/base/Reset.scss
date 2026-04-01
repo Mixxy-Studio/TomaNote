@@ -47,8 +47,8 @@ body {
 
 *[contenteditable="true"]:focus,
 *[contenteditable="true"]:active {
-  border: none;
-  outline: none;
+  outline: 2px solid var(--tn-theme-contrast);
+  outline-offset: 2px;
 }
 
 .code-block {
