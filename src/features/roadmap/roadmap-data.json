@@ -73,212 +73,192 @@
       }
     },
     {
-      "id": "old-041",
+      "id": "old-042",
       "type": "old",
       "versionNumber": "0.4.2",
-      "date": "2026-03-15",
+      "date": "2026-03-27",
       "isCurrent": false,
       "isNext": false,
       "isOld": true,
       "showInTab": false,
       "items": {
         "es": [
-          { "summary": "IA integrada", "description": "Asistente inteligente para sugerencias y automatización" },
-          { "summary": "Modo colaborativo", "description": "Edición en tiempo real con múltiples usuarios" },
-          { "summary": "API GraphQL", "description": "Nueva API más flexible y eficiente" },
-          { "summary": "Temas personalizados", "description": "Sistema completo de temas con editor visual" },
-          { "summary": "Exportación de datos", "description": "Exporta tus datos en múltiples formatos (PDF, CSV, JSON)" },
-          { "summary": "Notificaciones push", "description": "Sistema de notificaciones en tiempo real" },
-          { "summary": "Móvil responsive", "description": "Experiencia optimizada para dispositivos móviles" }
+          { "summary": "Modal de confirmación", "description": "Diálogo modal personalizado para eliminar pestañas, reemplazando el obsoleto confirm() de los navegadores" },
+          { "summary": "Mejoras para móviles y PWA", "description": "Posicionamiento dinámico del menú flotante, soporte para áreas seguras en iOS PWA, detección de teclado virtual y corrección de posición en modo standalone" },
+          { "summary": "Nuevos iconos", "description": "Iconos agregados: alerta y papelera" },
+          { "summary": "Pruebas", "description": "19 nuevas pruebas añadidas para los módulos de confirmación, eliminación de pestañas y posicionamiento del menú flotante. Total: 163 pruebas exitosas" }
         ],
         "en": [
-          { "summary": "Integrated AI", "description": "Intelligent assistant for suggestions and automation" },
-          { "summary": "Collaborative mode", "description": "Real-time editing with multiple users" },
-          { "summary": "GraphQL API", "description": "New more flexible and efficient API" },
-          { "summary": "Custom themes", "description": "Complete theme system with visual editor" },
-          { "summary": "Data export", "description": "Export your data in multiple formats (PDF, CSV, JSON)" },
-          { "summary": "Push notifications", "description": "Real-time notification system" },
-          { "summary": "Mobile responsive", "description": "Optimized experience for mobile devices" }
+          { "summary": "Confirmation modal", "description": "Custom modal dialog for tab deletion, replacing deprecated browser confirm()" },
+          { "summary": "Mobile & PWA improvements", "description": "Dynamic floating menu positioning, safe area insets support for iOS PWA, virtual keyboard detection, fixed positioning in standalone mode" },
+          { "summary": "New icons", "description": "Added alert and trash icons" },
+          { "summary": "Testing", "description": "19 new tests added for confirmation, tab deletion and floating menu modules. Total: 163 passing tests" }
+        ]
+      }
+    },
+    {
+      "id": "old-041",
+      "type": "old",
+      "versionNumber": "0.4.1",
+      "date": "2026-03-25",
+      "isCurrent": false,
+      "isNext": false,
+      "isOld": true,
+      "showInTab": false,
+      "items": {
+        "es": [
+          { "summary": "Corrección de pegado de texto", "description": "El texto pegado ahora se inserta en la posición del cursor usando Selection API en lugar de execCommand" },
+          { "summary": "Seguridad", "description": "Resueltas 7 vulnerabilidades críticas y altas (minimatch, rollup, svgo, immutable, ajv, devalue). Regenerado package-lock.json" },
+          { "summary": "Migración de Sass", "description": "Funciones globales obsoletas de Sass migradas a la API modular (map-get → map.get, etc.)" },
+          { "summary": "Automatización", "description": "Nuevos scripts de seguridad y GitHub Action para auditorías automáticas" },
+          { "summary": "Pruebas", "description": "Pruebas exhaustivas para la funcionalidad de pegado. Total: 146 pruebas exitosas" }
+        ],
+        "en": [
+          { "summary": "Paste text fix", "description": "Pasted text now inserts at cursor position using Selection API instead of execCommand" },
+          { "summary": "Security", "description": "Resolved 7 critical and high severity vulnerabilities (minimatch, rollup, svgo, immutable, ajv, devalue). Regenerated package-lock.json" },
+          { "summary": "Sass migration", "description": "Migrated deprecated Sass global functions to modular API (map-get → map.get, etc.)" },
+          { "summary": "Development automation", "description": "Added security scripts and GitHub Action for automated security audits" },
+          { "summary": "Testing", "description": "Comprehensive tests for paste functionality. Total: 146 passing tests" }
         ]
       }
     },
     {
       "id": "old-040",
       "type": "old",
-      "versionNumber": "0.4.1",
-      "date": "2026-03-01",
+      "versionNumber": "0.4.0",
+      "date": "2026-03-24",
       "isCurrent": false,
       "isNext": false,
       "isOld": true,
       "showInTab": false,
       "items": {
         "es": [
-          { "summary": "IA integrada", "description": "Asistente inteligente para sugerencias y automatización" },
-          { "summary": "Modo colaborativo", "description": "Edición en tiempo real con múltiples usuarios" },
-          { "summary": "API GraphQL", "description": "Nueva API más flexible y eficiente" },
-          { "summary": "Temas personalizados", "description": "Sistema completo de temas con editor visual" },
-          { "summary": "Exportación de datos", "description": "Exporta tus datos en múltiples formatos (PDF, CSV, JSON)" },
-          { "summary": "Notificaciones push", "description": "Sistema de notificaciones en tiempo real" },
-          { "summary": "Móvil responsive", "description": "Experiencia optimizada para dispositivos móviles" }
+          { "summary": "Menú flotante", "description": "Menú flotante con acciones agrupadas (contenido, fuente, pestañas)" },
+          { "summary": "Reordenamiento de pestañas", "description": "Arrastrar y soltar pestañas mediante SortableJS" },
+          { "summary": "Selector de tamaño de fuente", "description": "Opciones: Base, Mediano, Grande" },
+          { "summary": "Fuentes de Google", "description": "Soporte para fuentes personalizadas mediante URL" },
+          { "summary": "Internacionalización", "description": "Sistema i18n completo con inglés (EE.UU.) y español (Colombia)" },
+          { "summary": "Modal de configuración", "description": "Pestañas dedicadas: Acerca de, Licencia, Términos, Novedades, Tipografía, Apariencia, Idioma" },
+          { "summary": "Rediseño de modales", "description": "Rediseño completo del modal de configuración y nuevos iconos" }
         ],
         "en": [
-          { "summary": "Integrated AI", "description": "Intelligent assistant for suggestions and automation" },
-          { "summary": "Collaborative mode", "description": "Real-time editing with multiple users" },
-          { "summary": "GraphQL API", "description": "New more flexible and efficient API" },
-          { "summary": "Custom themes", "description": "Complete theme system with visual editor" },
-          { "summary": "Data export", "description": "Export your data in multiple formats (PDF, CSV, JSON)" },
-          { "summary": "Push notifications", "description": "Real-time notification system" },
-          { "summary": "Mobile responsive", "description": "Optimized experience for mobile devices" }
+          { "summary": "Floating menu", "description": "Floating menu with grouped actions (content, font, tabs)" },
+          { "summary": "Tab reordering", "description": "Drag & drop tab reordering powered by SortableJS" },
+          { "summary": "Font size selector", "description": "Options: Base, Medium, Large" },
+          { "summary": "Custom Google Fonts", "description": "Support for custom fonts via URL paste" },
+          { "summary": "Internationalization", "description": "Full i18n system: English (US) & Spanish (CO)" },
+          { "summary": "Settings modal", "description": "Dedicated tabs: About, License, Terms, News, Typography, Appearance, Language" },
+          { "summary": "Modal redesign", "description": "Complete settings modal redesign and new icons" }
         ]
       }
     },
     {
       "id": "old-032",
       "type": "old",
-      "versionNumber": "0.4.0",
-      "date": "2026-02-15",
+      "versionNumber": "0.3.2",
+      "date": "2026-02-04",
       "isCurrent": false,
       "isNext": false,
       "isOld": true,
       "showInTab": false,
       "items": {
         "es": [
-          { "summary": "IA integrada", "description": "Asistente inteligente para sugerencias y automatización" },
-          { "summary": "Modo colaborativo", "description": "Edición en tiempo real con múltiples usuarios" },
-          { "summary": "API GraphQL", "description": "Nueva API más flexible y eficiente" },
-          { "summary": "Temas personalizados", "description": "Sistema completo de temas con editor visual" },
-          { "summary": "Exportación de datos", "description": "Exporta tus datos en múltiples formatos (PDF, CSV, JSON)" },
-          { "summary": "Notificaciones push", "description": "Sistema de notificaciones en tiempo real" },
-          { "summary": "Móvil responsive", "description": "Experiencia optimizada para dispositivos móviles" }
+          { "summary": "Correcciones críticas", "description": "7 problemas resueltos: accesibilidad del botón nueva pestaña, responsividad móvil, formato negrita, eliminación de fuentes personalizadas, persistencia de dominio, alertas duplicadas y advertencias de Apple" },
+          { "summary": "Infraestructura de pruebas", "description": "Framework Vitest con jsdom, suites para ThemeManager, FontManager, TabManager y ContextMenu" },
+          { "summary": "Idioma predeterminado", "description": "Cambio de español a inglés en toda la interfaz" },
+          { "summary": "Actualizaciones de seguridad", "description": "Dependencias críticas actualizadas (diff, h3, devalue) y política SECURITY.md añadida" },
+          { "summary": "Optimización de rendimiento", "description": "Tree-shaking, minificación, eliminación de listeners duplicados y precarga de fuentes" }
         ],
         "en": [
-          { "summary": "Integrated AI", "description": "Intelligent assistant for suggestions and automation" },
-          { "summary": "Collaborative mode", "description": "Real-time editing with multiple users" },
-          { "summary": "GraphQL API", "description": "New more flexible and efficient API" },
-          { "summary": "Custom themes", "description": "Complete theme system with visual editor" },
-          { "summary": "Data export", "description": "Export your data in multiple formats (PDF, CSV, JSON)" },
-          { "summary": "Push notifications", "description": "Real-time notification system" },
-          { "summary": "Mobile responsive", "description": "Optimized experience for mobile devices" }
+          { "summary": "Critical fixes", "description": "7 issues resolved: new tab accessibility, mobile responsiveness, bold formatting, custom font removal, domain persistence, duplicate alerts and Apple warnings" },
+          { "summary": "Testing infrastructure", "description": "Vitest framework with jsdom, test suites for ThemeManager, FontManager, TabManager and ContextMenu" },
+          { "summary": "Default language", "description": "Changed default language from Spanish to English across the interface" },
+          { "summary": "Security updates", "description": "Updated critical dependencies (diff, h3, devalue) and added SECURITY.md policy" },
+          { "summary": "Performance optimization", "description": "Tree-shaking, minification, removed duplicate listeners and font preconnect" }
         ]
       }
     },
     {
       "id": "old-030",
       "type": "old",
-      "versionNumber": "0.4.0",
-      "date": "2026-02-15",
+      "versionNumber": "0.3.0",
+      "date": "2025-12-29",
       "isCurrent": false,
       "isNext": false,
       "isOld": true,
       "showInTab": false,
       "items": {
         "es": [
-          { "summary": "IA integrada", "description": "Asistente inteligente para sugerencias y automatización" },
-          { "summary": "Modo colaborativo", "description": "Edición en tiempo real con múltiples usuarios" },
-          { "summary": "API GraphQL", "description": "Nueva API más flexible y eficiente" },
-          { "summary": "Temas personalizados", "description": "Sistema completo de temas con editor visual" },
-          { "summary": "Exportación de datos", "description": "Exporta tus datos en múltiples formatos (PDF, CSV, JSON)" },
-          { "summary": "Notificaciones push", "description": "Sistema de notificaciones en tiempo real" },
-          { "summary": "Móvil responsive", "description": "Experiencia optimizada para dispositivos móviles" }
+          { "summary": "Selector de temas", "description": "6 estilos visuales disponibles para personalizar la apariencia" },
+          { "summary": "Soporte PWA", "description": "Instalación como aplicación en PC y dispositivos móviles" },
+          { "summary": "Rediseño UX", "description": "Mejoras significativas para desktop y tablets" },
+          { "summary": "Optimización SEO", "description": "Mejoras para aumentar la visibilidad del aplicativo" }
         ],
         "en": [
-          { "summary": "Integrated AI", "description": "Intelligent assistant for suggestions and automation" },
-          { "summary": "Collaborative mode", "description": "Real-time editing with multiple users" },
-          { "summary": "GraphQL API", "description": "New more flexible and efficient API" },
-          { "summary": "Custom themes", "description": "Complete theme system with visual editor" },
-          { "summary": "Data export", "description": "Export your data in multiple formats (PDF, CSV, JSON)" },
-          { "summary": "Push notifications", "description": "Real-time notification system" },
-          { "summary": "Mobile responsive", "description": "Optimized experience for mobile devices" }
+          { "summary": "Theme selector", "description": "6 visual styles available to customize the appearance" },
+          { "summary": "PWA support", "description": "Install as application on PC and mobile devices" },
+          { "summary": "UX redesign", "description": "Significant improvements for desktop and tablets" },
+          { "summary": "SEO optimization", "description": "Improvements to increase application visibility" }
         ]
       }
     },
     {
       "id": "old-022",
       "type": "old",
-      "versionNumber": "0.4.0",
-      "date": "2026-02-15",
+      "versionNumber": "0.2.2",
+      "date": "2025-12-29",
       "isCurrent": false,
       "isNext": false,
       "isOld": true,
       "showInTab": false,
       "items": {
-        "es": [
-          { "summary": "IA integrada", "description": "Asistente inteligente para sugerencias y automatización" },
-          { "summary": "Modo colaborativo", "description": "Edición en tiempo real con múltiples usuarios" },
-          { "summary": "API GraphQL", "description": "Nueva API más flexible y eficiente" },
-          { "summary": "Temas personalizados", "description": "Sistema completo de temas con editor visual" },
-          { "summary": "Exportación de datos", "description": "Exporta tus datos en múltiples formatos (PDF, CSV, JSON)" },
-          { "summary": "Notificaciones push", "description": "Sistema de notificaciones en tiempo real" },
-          { "summary": "Móvil responsive", "description": "Experiencia optimizada para dispositivos móviles" }
-        ],
-        "en": [
-          { "summary": "Integrated AI", "description": "Intelligent assistant for suggestions and automation" },
-          { "summary": "Collaborative mode", "description": "Real-time editing with multiple users" },
-          { "summary": "GraphQL API", "description": "New more flexible and efficient API" },
-          { "summary": "Custom themes", "description": "Complete theme system with visual editor" },
-          { "summary": "Data export", "description": "Export your data in multiple formats (PDF, CSV, JSON)" },
-          { "summary": "Push notifications", "description": "Real-time notification system" },
-          { "summary": "Mobile responsive", "description": "Optimized experience for mobile devices" }
-        ]
+        "es": [{ "summary": "Preparación de entorno", "description": "Entorno de preview preparado para actualización a versión 0.3.0" }],
+        "en": [{ "summary": "Environment preparation", "description": "Preview environment prepared for update to version 0.3.0" }]
       }
     },
     {
       "id": "old-021",
       "type": "old",
-      "versionNumber": "0.4.0",
-      "date": "2026-02-15",
+      "versionNumber": "0.2.1",
+      "date": "2025-12-17",
       "isCurrent": false,
       "isNext": false,
       "isOld": true,
       "showInTab": false,
       "items": {
         "es": [
-          { "summary": "IA integrada", "description": "Asistente inteligente para sugerencias y automatización" },
-          { "summary": "Modo colaborativo", "description": "Edición en tiempo real con múltiples usuarios" },
-          { "summary": "API GraphQL", "description": "Nueva API más flexible y eficiente" },
-          { "summary": "Temas personalizados", "description": "Sistema completo de temas con editor visual" },
-          { "summary": "Exportación de datos", "description": "Exporta tus datos en múltiples formatos (PDF, CSV, JSON)" },
-          { "summary": "Notificaciones push", "description": "Sistema de notificaciones en tiempo real" },
-          { "summary": "Móvil responsive", "description": "Experiencia optimizada para dispositivos móviles" }
+          { "summary": "Ajustes de texto", "description": "Ajustes menores de texto en el modal de información" },
+          { "summary": "Seguridad en CI", "description": "Límites de seguridad agregados al flujo de trabajo de GitHub Actions" },
+          { "summary": "Vulnerabilidades corregidas", "description": "Vulnerabilidades en automatización de despliegue corregidas" }
         ],
         "en": [
-          { "summary": "Integrated AI", "description": "Intelligent assistant for suggestions and automation" },
-          { "summary": "Collaborative mode", "description": "Real-time editing with multiple users" },
-          { "summary": "GraphQL API", "description": "New more flexible and efficient API" },
-          { "summary": "Custom themes", "description": "Complete theme system with visual editor" },
-          { "summary": "Data export", "description": "Export your data in multiple formats (PDF, CSV, JSON)" },
-          { "summary": "Push notifications", "description": "Real-time notification system" },
-          { "summary": "Mobile responsive", "description": "Optimized experience for mobile devices" }
+          { "summary": "Text adjustments", "description": "Minor text adjustments in the information modal" },
+          { "summary": "CI security", "description": "Security limits added to GitHub Actions workflow" },
+          { "summary": "Vulnerabilities fixed", "description": "Deployment automation vulnerabilities fixed" }
         ]
       }
     },
     {
       "id": "old-020",
       "type": "old",
-      "versionNumber": "0.4.0",
-      "date": "2026-02-15",
+      "versionNumber": "0.2.0",
+      "date": "2025-12-17",
       "isCurrent": false,
       "isNext": false,
       "isOld": true,
       "showInTab": false,
       "items": {
         "es": [
-          { "summary": "IA integrada", "description": "Asistente inteligente para sugerencias y automatización" },
-          { "summary": "Modo colaborativo", "description": "Edición en tiempo real con múltiples usuarios" },
-          { "summary": "API GraphQL", "description": "Nueva API más flexible y eficiente" },
-          { "summary": "Temas personalizados", "description": "Sistema completo de temas con editor visual" },
-          { "summary": "Exportación de datos", "description": "Exporta tus datos en múltiples formatos (PDF, CSV, JSON)" },
-          { "summary": "Notificaciones push", "description": "Sistema de notificaciones en tiempo real" },
-          { "summary": "Móvil responsive", "description": "Experiencia optimizada para dispositivos móviles" }
+          { "summary": "Refactorización completa", "description": "Reescritura total del proyecto para mejorar estructura y mantenibilidad" },
+          { "summary": "Velocidad de carga", "description": "Optimizaciones significativas en el tiempo de carga inicial" },
+          { "summary": "Modularización", "description": "Scripts organizados en módulos independientes y reutilizables" },
+          { "summary": "Mantenibilidad", "description": "Código más limpio y preparado para futuras funcionalidades" }
         ],
         "en": [
-          { "summary": "Integrated AI", "description": "Intelligent assistant for suggestions and automation" },
-          { "summary": "Collaborative mode", "description": "Real-time editing with multiple users" },
-          { "summary": "GraphQL API", "description": "New more flexible and efficient API" },
-          { "summary": "Custom themes", "description": "Complete theme system with visual editor" },
-          { "summary": "Data export", "description": "Export your data in multiple formats (PDF, CSV, JSON)" },
-          { "summary": "Push notifications", "description": "Real-time notification system" },
-          { "summary": "Mobile responsive", "description": "Optimized experience for mobile devices" }
+          { "summary": "Complete refactor", "description": "Full project rewrite to improve structure and maintainability" },
+          { "summary": "Load speed", "description": "Significant optimizations in initial loading time" },
+          { "summary": "Modularization", "description": "Scripts organized into independent and reusable modules" },
+          { "summary": "Maintainability", "description": "Cleaner code ready for future features" }
         ]
       }
     }

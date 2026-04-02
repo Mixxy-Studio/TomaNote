@@ -10,11 +10,11 @@ const lang = getLang();
 // Filtrar versiones que se muestran en el tab (solo prev, current, next)
 const visibleVersions = roadmapData.versions.filter((v) => v.showInTab !== false);
 
-// Ordenar: current, prev, next (o el orden que prefieras)
+// Ordenar: previous, current, next (orden visual: Anterior → Actual → Próximo)
 const currentV = visibleVersions.find((v) => v.isCurrent);
 const previousV = visibleVersions.find((v) => v.type === "previous");
 const nextV = visibleVersions.find((v) => v.isNext);
-const orderedVersions = [currentV, previousV, nextV].filter((v): v is NonNullable<typeof v> => v !== undefined);
+const orderedVersions = [previousV, currentV, nextV].filter((v): v is NonNullable<typeof v> => v !== undefined);
 
 // Todas las versiones antiguas para el historial completo
 const oldVersions = roadmapData.versions.filter((v) => v.isOld);
@@ -32,26 +32,6 @@ const oldVersions = roadmapData.versions.filter((v) => v.isOld);
       <div class="grid 2xl:grid-cols-3 gap-4! items-start">
         {orderedVersions.map((version) => <RoadmapColumn version={version} lang={lang} />)}
       </div>
-
-      {/* Historial completo (colapsable) */}
-      {
-        oldVersions.length > 0 && (
-          <div class="mt-8!">
-            <details class="group">
-              <summary class="cursor-pointer text-sm text-(--tn-color-text)/70 hover:text-(--tn-color-text) transition-colors! flex items-center gap-2!">
-                <Icon name="chevronright" className="text-[10px] group-open:rotate-90 transition-transform! duration-200! size-3!" />
-                <span>📜 Ver historial completo ({oldVersions.length} versiones anteriores)</span>
-              </summary>
-
-              <div class="mt-4! grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4!">
-                {oldVersions.map((version) => (
-                  <RoadmapColumn version={version} lang={lang} isHistorical={true} />
-                ))}
-              </div>
-            </details>
-          </div>
-        )
-      }
     </div>
   </div>
 </div>
