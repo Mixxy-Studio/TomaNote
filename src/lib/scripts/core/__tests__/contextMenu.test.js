@@ -73,13 +73,13 @@ describe("ContextMenu", () => {
   });
 
   describe("constructor", () => {
-    it("debe inicializar con opciones por defecto", () => {
+    it("should initialize with default options", () => {
       const menu = new ContextMenu();
       expect(menu.options.enableTextContext).toBe(true);
       expect(menu.options.enableTabContext).toBe(true);
     });
 
-    it("debe fusionar opciones personalizadas", () => {
+    it("should merge custom options", () => {
       const menu = new ContextMenu({ enableTextContext: false });
       expect(menu.options.enableTextContext).toBe(false);
       expect(menu.options.enableTabContext).toBe(true);
@@ -87,12 +87,12 @@ describe("ContextMenu", () => {
   });
 
   describe("init", () => {
-    it("debe inicializar correctamente si encuentra el elemento", async () => {
+    it("should initialize correctly when element is found", async () => {
       await contextMenu.init();
       expect(contextMenu.contextMenu).toBe(mockElement);
     });
 
-    it("debe inicializar si encuentra el elemento inmediatamente", async () => {
+    it("should initialize immediately when element exists", async () => {
       await contextMenu.init();
       expect(contextMenu.contextMenu).toBe(mockElement);
     });
@@ -103,7 +103,7 @@ describe("ContextMenu", () => {
       await contextMenu.init();
     });
 
-    it("debe mostrar el menú para texto editable", () => {
+    it("should show menu for editable text", () => {
       const mockEditable = { focus: vi.fn() };
       contextMenu.showTextContextMenu(mockEvent, mockEditable);
 
@@ -117,7 +117,7 @@ describe("ContextMenu", () => {
       await contextMenu.init();
     });
 
-    it("debe ocultar el menú", () => {
+    it("should hide the menu", () => {
       contextMenu.hideContextMenu();
 
       expect(mockElement.style.display).toBe("none");
@@ -130,13 +130,13 @@ describe("ContextMenu", () => {
       contextMenu.activeEditableElement = { focus: vi.fn() };
     });
 
-    it("debe ejecutar comando copy", () => {
+    it("should execute copy command", () => {
       contextMenu.handleTextAction("copy");
 
       expect(global.document.execCommand).toHaveBeenCalledWith("copy", false, null);
     });
 
-    it("debe ejecutar comando paste usando clipboard y Selection API", async () => {
+    it("should execute paste command using clipboard and Selection API", async () => {
       global.navigator = {
         clipboard: { readText: vi.fn().mockResolvedValue("pasted text") },
       };
@@ -157,7 +157,7 @@ describe("ContextMenu", () => {
   });
 
   describe("setupContextMenu", () => {
-    it("debe agregar event listeners", async () => {
+    it("should add event listeners", async () => {
       await contextMenu.init();
 
       expect(global.document.addEventListener).toHaveBeenCalledWith("contextmenu", expect.any(Function));

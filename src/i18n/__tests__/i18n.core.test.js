@@ -65,7 +65,7 @@ describe("I18nManager - Init", () => {
     expect(i18n.getLang()).toBe("en");
   });
 
-  it("init() debe hacer fallback a inglés para alemán (de-DE)", () => {
+  it("init() should fallback to English for German (de-DE)", () => {
     mockNavigatorLanguage("de-DE");
     i18n.init();
     expect(i18n.getLang()).toBe("en");
@@ -88,7 +88,7 @@ describe("I18nManager - Init", () => {
     const originalWindow = global.window;
     global.window = undefined;
 
-    // No debe lanzar error
+    // Should not throw error
     expect(() => i18n.init()).not.toThrow();
 
     global.window = originalWindow;
@@ -339,7 +339,7 @@ describe("I18nManager - Edge Cases", () => {
     mockNavigatorLanguage("es-ES");
     i18n.init();
 
-    // Las keys existentes deben tener valores no vacíos
+    // Existing keys should have non-empty values
     expect(i18n.t("tab.new").length).toBeGreaterThan(0);
   });
 

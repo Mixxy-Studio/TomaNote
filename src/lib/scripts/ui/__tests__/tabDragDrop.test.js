@@ -115,7 +115,7 @@ describe("TabDragDrop", () => {
       expect(mockItem.classList.remove).toHaveBeenCalledWith("dragging");
     });
 
-    it("debe remover clase dragging-content del contenido", () => {
+    it("should remove dragging-content class from content", () => {
       const mockContent = { classList: { remove: vi.fn() } };
       const mockItem = {
         classList: { remove: vi.fn() },

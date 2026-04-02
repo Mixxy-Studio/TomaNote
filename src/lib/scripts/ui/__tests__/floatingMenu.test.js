@@ -188,7 +188,7 @@ describe("FloatingMenu", () => {
   });
 
   describe("handlePinTab", () => {
-    it("debe agregar clase pinned a la pestaña", () => {
+    it("should add pinned class to the tab", () => {
       const mockLabel = { setAttribute: vi.fn() };
       const mockLabelSpan = { dataset: {}, textContent: "Test", setAttribute: vi.fn() };
       const mockTabElement = {

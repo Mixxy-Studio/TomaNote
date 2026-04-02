@@ -137,7 +137,7 @@ describe("TabManager - Eventos tabsChanged", () => {
     });
   });
 
-  it("createTab debe dispatchear evento tabsChanged", () => {
+  it("createTab should dispatch tabsChanged event", () => {
     const dispatchSpy = vi.spyOn(document, "dispatchEvent");
 
     tabManager.createTab("Test Tab");
@@ -149,7 +149,7 @@ describe("TabManager - Eventos tabsChanged", () => {
     );
   });
 
-  it("deleteTabElement debe delegar al deletionHandler", async () => {
+  it("deleteTabElement should delegate to deletionHandler", async () => {
     const deleteTabElementSpy = vi.spyOn(tabManager.deletionHandler, "deleteTabElement");
 
     const mockTabElement = { foo: "bar" };
