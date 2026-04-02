@@ -110,6 +110,8 @@
         ~label {
           background-color: var(--tn-theme-secondary);
           transition: background-color ease 0.3s;
+          outline: 2px solid var(--tn-theme-contrast);
+          outline-offset: -2px;
 
           span {
             color: var(--tn-theme-primary);
