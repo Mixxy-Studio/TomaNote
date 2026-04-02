@@ -136,6 +136,9 @@ AGENT.md
 .astro/**# Astro build cache
 .astro/
 .astro/**
+.agents
+.agents/skills/**
+
 # Astro build cache
 .astro/
 .astro/**
