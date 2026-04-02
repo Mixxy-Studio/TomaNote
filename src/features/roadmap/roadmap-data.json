@@ -1,0 +1,286 @@
+{
+  "versions": [
+    {
+      "id": "prev",
+      "type": "previous",
+      "versionNumber": "0.4.2",
+      "date": "2026-04-01",
+      "isCurrent": false,
+      "isNext": false,
+      "items": {
+        "es": [
+          { "summary": "Mejora en el rendimiento", "description": "Optimización de carga inicial reduciendo un 40% el tiempo de respuesta" },
+          { "summary": "Nuevo tema oscuro", "description": "Implementación completa del modo oscuro con paleta de colores personalizable" },
+          { "summary": "Corrección de bugs", "description": "Se han corregido más de 15 bugs reportados por la comunidad" }
+        ],
+        "en": [
+          { "summary": "Performance improvement", "description": "Initial load optimization reducing response time by 40%" },
+          { "summary": "New dark theme", "description": "Complete dark mode implementation with customizable color palette" },
+          { "summary": "Bug fixes", "description": "Over 15 bugs reported by the community have been fixed" }
+        ]
+      }
+    },
+    {
+      "id": "current",
+      "type": "current",
+      "versionNumber": "0.4.3",
+      "date": "2026-04-15",
+      "isCurrent": true,
+      "isNext": false,
+      "items": {
+        "es": [
+          { "summary": "Sistema de plugins", "description": "Nueva API para crear y compartir plugins personalizados" },
+          { "summary": "Dashboard rediseñado", "description": "Interfaz completamente rediseñada con métricas en tiempo real" },
+          { "summary": "Soporte para PWA", "description": "Ahora la aplicación funciona offline y puede instalarse como app nativa" },
+          { "summary": "Integración con GitHub", "description": "Sincronización automática con repositorios y issues" },
+          { "summary": "Mejoras de accesibilidad", "description": "Cumplimiento con WCAG 2.1 nivel AA" }
+        ],
+        "en": [
+          { "summary": "Plugin system", "description": "New API to create and share custom plugins" },
+          { "summary": "Redesigned dashboard", "description": "Completely redesigned interface with real-time metrics" },
+          { "summary": "PWA support", "description": "Now the app works offline and can be installed as a native app" },
+          { "summary": "GitHub integration", "description": "Automatic synchronization with repositories and issues" },
+          { "summary": "Accessibility improvements", "description": "WCAG 2.1 level AA compliance" }
+        ]
+      }
+    },
+    {
+      "id": "next",
+      "type": "next",
+      "versionNumber": "0.5.0",
+      "date": "2026-05-01",
+      "isCurrent": false,
+      "isNext": true,
+      "items": {
+        "es": [
+          { "summary": "IA integrada", "description": "Asistente inteligente para sugerencias y automatización" },
+          { "summary": "Modo colaborativo", "description": "Edición en tiempo real con múltiples usuarios" },
+          { "summary": "API GraphQL", "description": "Nueva API más flexible y eficiente" },
+          { "summary": "Temas personalizados", "description": "Sistema completo de temas con editor visual" },
+          { "summary": "Exportación de datos", "description": "Exporta tus datos en múltiples formatos (PDF, CSV, JSON)" },
+          { "summary": "Notificaciones push", "description": "Sistema de notificaciones en tiempo real" },
+          { "summary": "Móvil responsive", "description": "Experiencia optimizada para dispositivos móviles" }
+        ],
+        "en": [
+          { "summary": "Integrated AI", "description": "Intelligent assistant for suggestions and automation" },
+          { "summary": "Collaborative mode", "description": "Real-time editing with multiple users" },
+          { "summary": "GraphQL API", "description": "New more flexible and efficient API" },
+          { "summary": "Custom themes", "description": "Complete theme system with visual editor" },
+          { "summary": "Data export", "description": "Export your data in multiple formats (PDF, CSV, JSON)" },
+          { "summary": "Push notifications", "description": "Real-time notification system" },
+          { "summary": "Mobile responsive", "description": "Optimized experience for mobile devices" }
+        ]
+      }
+    },
+    {
+      "id": "old-041",
+      "type": "old",
+      "versionNumber": "0.4.2",
+      "date": "2026-03-15",
+      "isCurrent": false,
+      "isNext": false,
+      "isOld": true,
+      "showInTab": false,
+      "items": {
+        "es": [
+          { "summary": "IA integrada", "description": "Asistente inteligente para sugerencias y automatización" },
+          { "summary": "Modo colaborativo", "description": "Edición en tiempo real con múltiples usuarios" },
+          { "summary": "API GraphQL", "description": "Nueva API más flexible y eficiente" },
+          { "summary": "Temas personalizados", "description": "Sistema completo de temas con editor visual" },
+          { "summary": "Exportación de datos", "description": "Exporta tus datos en múltiples formatos (PDF, CSV, JSON)" },
+          { "summary": "Notificaciones push", "description": "Sistema de notificaciones en tiempo real" },
+          { "summary": "Móvil responsive", "description": "Experiencia optimizada para dispositivos móviles" }
+        ],
+        "en": [
+          { "summary": "Integrated AI", "description": "Intelligent assistant for suggestions and automation" },
+          { "summary": "Collaborative mode", "description": "Real-time editing with multiple users" },
+          { "summary": "GraphQL API", "description": "New more flexible and efficient API" },
+          { "summary": "Custom themes", "description": "Complete theme system with visual editor" },
+          { "summary": "Data export", "description": "Export your data in multiple formats (PDF, CSV, JSON)" },
+          { "summary": "Push notifications", "description": "Real-time notification system" },
+          { "summary": "Mobile responsive", "description": "Optimized experience for mobile devices" }
+        ]
+      }
+    },
+    {
+      "id": "old-040",
+      "type": "old",
+      "versionNumber": "0.4.1",
+      "date": "2026-03-01",
+      "isCurrent": false,
+      "isNext": false,
+      "isOld": true,
+      "showInTab": false,
+      "items": {
+        "es": [
+          { "summary": "IA integrada", "description": "Asistente inteligente para sugerencias y automatización" },
+          { "summary": "Modo colaborativo", "description": "Edición en tiempo real con múltiples usuarios" },
+          { "summary": "API GraphQL", "description": "Nueva API más flexible y eficiente" },
+          { "summary": "Temas personalizados", "description": "Sistema completo de temas con editor visual" },
+          { "summary": "Exportación de datos", "description": "Exporta tus datos en múltiples formatos (PDF, CSV, JSON)" },
+          { "summary": "Notificaciones push", "description": "Sistema de notificaciones en tiempo real" },
+          { "summary": "Móvil responsive", "description": "Experiencia optimizada para dispositivos móviles" }
+        ],
+        "en": [
+          { "summary": "Integrated AI", "description": "Intelligent assistant for suggestions and automation" },
+          { "summary": "Collaborative mode", "description": "Real-time editing with multiple users" },
+          { "summary": "GraphQL API", "description": "New more flexible and efficient API" },
+          { "summary": "Custom themes", "description": "Complete theme system with visual editor" },
+          { "summary": "Data export", "description": "Export your data in multiple formats (PDF, CSV, JSON)" },
+          { "summary": "Push notifications", "description": "Real-time notification system" },
+          { "summary": "Mobile responsive", "description": "Optimized experience for mobile devices" }
+        ]
+      }
+    },
+    {
+      "id": "old-032",
+      "type": "old",
+      "versionNumber": "0.4.0",
+      "date": "2026-02-15",
+      "isCurrent": false,
+      "isNext": false,
+      "isOld": true,
+      "showInTab": false,
+      "items": {
+        "es": [
+          { "summary": "IA integrada", "description": "Asistente inteligente para sugerencias y automatización" },
+          { "summary": "Modo colaborativo", "description": "Edición en tiempo real con múltiples usuarios" },
+          { "summary": "API GraphQL", "description": "Nueva API más flexible y eficiente" },
+          { "summary": "Temas personalizados", "description": "Sistema completo de temas con editor visual" },
+          { "summary": "Exportación de datos", "description": "Exporta tus datos en múltiples formatos (PDF, CSV, JSON)" },
+          { "summary": "Notificaciones push", "description": "Sistema de notificaciones en tiempo real" },
+          { "summary": "Móvil responsive", "description": "Experiencia optimizada para dispositivos móviles" }
+        ],
+        "en": [
+          { "summary": "Integrated AI", "description": "Intelligent assistant for suggestions and automation" },
+          { "summary": "Collaborative mode", "description": "Real-time editing with multiple users" },
+          { "summary": "GraphQL API", "description": "New more flexible and efficient API" },
+          { "summary": "Custom themes", "description": "Complete theme system with visual editor" },
+          { "summary": "Data export", "description": "Export your data in multiple formats (PDF, CSV, JSON)" },
+          { "summary": "Push notifications", "description": "Real-time notification system" },
+          { "summary": "Mobile responsive", "description": "Optimized experience for mobile devices" }
+        ]
+      }
+    },
+    {
+      "id": "old-030",
+      "type": "old",
+      "versionNumber": "0.4.0",
+      "date": "2026-02-15",
+      "isCurrent": false,
+      "isNext": false,
+      "isOld": true,
+      "showInTab": false,
+      "items": {
+        "es": [
+          { "summary": "IA integrada", "description": "Asistente inteligente para sugerencias y automatización" },
+          { "summary": "Modo colaborativo", "description": "Edición en tiempo real con múltiples usuarios" },
+          { "summary": "API GraphQL", "description": "Nueva API más flexible y eficiente" },
+          { "summary": "Temas personalizados", "description": "Sistema completo de temas con editor visual" },
+          { "summary": "Exportación de datos", "description": "Exporta tus datos en múltiples formatos (PDF, CSV, JSON)" },
+          { "summary": "Notificaciones push", "description": "Sistema de notificaciones en tiempo real" },
+          { "summary": "Móvil responsive", "description": "Experiencia optimizada para dispositivos móviles" }
+        ],
+        "en": [
+          { "summary": "Integrated AI", "description": "Intelligent assistant for suggestions and automation" },
+          { "summary": "Collaborative mode", "description": "Real-time editing with multiple users" },
+          { "summary": "GraphQL API", "description": "New more flexible and efficient API" },
+          { "summary": "Custom themes", "description": "Complete theme system with visual editor" },
+          { "summary": "Data export", "description": "Export your data in multiple formats (PDF, CSV, JSON)" },
+          { "summary": "Push notifications", "description": "Real-time notification system" },
+          { "summary": "Mobile responsive", "description": "Optimized experience for mobile devices" }
+        ]
+      }
+    },
+    {
+      "id": "old-022",
+      "type": "old",
+      "versionNumber": "0.4.0",
+      "date": "2026-02-15",
+      "isCurrent": false,
+      "isNext": false,
+      "isOld": true,
+      "showInTab": false,
+      "items": {
+        "es": [
+          { "summary": "IA integrada", "description": "Asistente inteligente para sugerencias y automatización" },
+          { "summary": "Modo colaborativo", "description": "Edición en tiempo real con múltiples usuarios" },
+          { "summary": "API GraphQL", "description": "Nueva API más flexible y eficiente" },
+          { "summary": "Temas personalizados", "description": "Sistema completo de temas con editor visual" },
+          { "summary": "Exportación de datos", "description": "Exporta tus datos en múltiples formatos (PDF, CSV, JSON)" },
+          { "summary": "Notificaciones push", "description": "Sistema de notificaciones en tiempo real" },
+          { "summary": "Móvil responsive", "description": "Experiencia optimizada para dispositivos móviles" }
+        ],
+        "en": [
+          { "summary": "Integrated AI", "description": "Intelligent assistant for suggestions and automation" },
+          { "summary": "Collaborative mode", "description": "Real-time editing with multiple users" },
+          { "summary": "GraphQL API", "description": "New more flexible and efficient API" },
+          { "summary": "Custom themes", "description": "Complete theme system with visual editor" },
+          { "summary": "Data export", "description": "Export your data in multiple formats (PDF, CSV, JSON)" },
+          { "summary": "Push notifications", "description": "Real-time notification system" },
+          { "summary": "Mobile responsive", "description": "Optimized experience for mobile devices" }
+        ]
+      }
+    },
+    {
+      "id": "old-021",
+      "type": "old",
+      "versionNumber": "0.4.0",
+      "date": "2026-02-15",
+      "isCurrent": false,
+      "isNext": false,
+      "isOld": true,
+      "showInTab": false,
+      "items": {
+        "es": [
+          { "summary": "IA integrada", "description": "Asistente inteligente para sugerencias y automatización" },
+          { "summary": "Modo colaborativo", "description": "Edición en tiempo real con múltiples usuarios" },
+          { "summary": "API GraphQL", "description": "Nueva API más flexible y eficiente" },
+          { "summary": "Temas personalizados", "description": "Sistema completo de temas con editor visual" },
+          { "summary": "Exportación de datos", "description": "Exporta tus datos en múltiples formatos (PDF, CSV, JSON)" },
+          { "summary": "Notificaciones push", "description": "Sistema de notificaciones en tiempo real" },
+          { "summary": "Móvil responsive", "description": "Experiencia optimizada para dispositivos móviles" }
+        ],
+        "en": [
+          { "summary": "Integrated AI", "description": "Intelligent assistant for suggestions and automation" },
+          { "summary": "Collaborative mode", "description": "Real-time editing with multiple users" },
+          { "summary": "GraphQL API", "description": "New more flexible and efficient API" },
+          { "summary": "Custom themes", "description": "Complete theme system with visual editor" },
+          { "summary": "Data export", "description": "Export your data in multiple formats (PDF, CSV, JSON)" },
+          { "summary": "Push notifications", "description": "Real-time notification system" },
+          { "summary": "Mobile responsive", "description": "Optimized experience for mobile devices" }
+        ]
+      }
+    },
+    {
+      "id": "old-020",
+      "type": "old",
+      "versionNumber": "0.4.0",
+      "date": "2026-02-15",
+      "isCurrent": false,
+      "isNext": false,
+      "isOld": true,
+      "showInTab": false,
+      "items": {
+        "es": [
+          { "summary": "IA integrada", "description": "Asistente inteligente para sugerencias y automatización" },
+          { "summary": "Modo colaborativo", "description": "Edición en tiempo real con múltiples usuarios" },
+          { "summary": "API GraphQL", "description": "Nueva API más flexible y eficiente" },
+          { "summary": "Temas personalizados", "description": "Sistema completo de temas con editor visual" },
+          { "summary": "Exportación de datos", "description": "Exporta tus datos en múltiples formatos (PDF, CSV, JSON)" },
+          { "summary": "Notificaciones push", "description": "Sistema de notificaciones en tiempo real" },
+          { "summary": "Móvil responsive", "description": "Experiencia optimizada para dispositivos móviles" }
+        ],
+        "en": [
+          { "summary": "Integrated AI", "description": "Intelligent assistant for suggestions and automation" },
+          { "summary": "Collaborative mode", "description": "Real-time editing with multiple users" },
+          { "summary": "GraphQL API", "description": "New more flexible and efficient API" },
+          { "summary": "Custom themes", "description": "Complete theme system with visual editor" },
+          { "summary": "Data export", "description": "Export your data in multiple formats (PDF, CSV, JSON)" },
+          { "summary": "Push notifications", "description": "Real-time notification system" },
+          { "summary": "Mobile responsive", "description": "Optimized experience for mobile devices" }
+        ]
+      }
+    }
+  ]
+}
