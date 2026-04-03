@@ -1,0 +1,278 @@
+// Add to css global into <style> tag in Astro 
+
+// Positionin of floating menu 
+.tn-navbar {
+  position: fixed;
+  right: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-radius: 1rem;
+  padding: 0.5rem 0;
+  max-width: 95vw;
+  z-index: 50;
+
+  @media (min-width: 768px) {
+    right: 1.25rem;
+    bottom: 1.25rem;
+  }
+}
+
+.tn-btn {
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+}
+
+.tn-btn:active {
+  transform: scale(0.92);
+}
+
+.tn-btn::after {
+  content: '';
+  position: absolute;
+  inset: -4px;
+  border-radius: 24px;
+  background: transparent;
+  transition: background 0.2s;
+}
+
+.tn-btn:focus-visible::after {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+// Responsive dividers 
+@media (max-width: 640px) {
+  .tn-navbar .h-8 {
+    height: 24px;
+    margin: 0 8px;
+  }
+}
+
+// Improves for mobile menu 
+@media (max-width: 768px) {
+  .tn-navbar {
+    padding-left: 0.75rem;
+    padding-right: 0.75rem;
+    max-width: 98vw;
+  }
+
+  // Soft animation for dropdown menu 
+  #mobileToolsMenu {
+    transition: opacity 0.2s ease-in-out, transform 0.2s ease-in-out;
+    transform-origin: bottom center;
+    max-height: 70vh;
+    overflow-y: auto;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(255, 255, 255, 0.3) transparent;
+  }
+
+  #mobileToolsMenu::-webkit-scrollbar {
+    width: 4px;
+  }
+
+  #mobileToolsMenu::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  #mobileToolsMenu::-webkit-scrollbar-thumb {
+    background-color: rgba(255, 255, 255, 0.3);
+    border-radius: 20px;
+  }
+
+  #mobileToolsMenu:not(.hidden) {
+    animation: slideUp 0.2s ease-out;
+  }
+
+  @keyframes slideUp {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  // Improvements for acordeon buttons 
+  .accordion-btn {
+    transition: background-color 0.2s ease;
+  }
+
+  .accordion-btn svg {
+    transition: transform 0.2s ease;
+  }
+
+  .accordion-btn svg.rotate-180 {
+    transform: rotate(180deg);
+  }
+
+  // Grid responsivo for children buttons 
+  .grid {
+    gap: 0.25rem;
+  }
+
+  .grid>button {
+    min-width: 0;
+    font-size: 0.7rem;
+    padding: 0.5rem !important;
+  }
+
+  // Improvements for the button "New Tab" 
+  .tn-new-tab {
+    background: var(--tn-theme-contrast);
+  }
+
+  // Shadows and deeps for the menu 
+  #mobileToolsMenu {
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.5), 0 8px 10px -6px rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+}
+
+// Imprvements for mini screens 
+@media (max-width: 380px) {
+  .tn-navbar {
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+  }
+
+  .tn-btn {
+    padding: 0.75rem !important;
+  }
+
+  .size-6 {
+    width: 1.25rem;
+    height: 1.25rem;
+  }
+
+  .grid-cols-3 {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .grid-cols-2 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  #mobileToolsMenu {
+    padding: 0.75rem;
+  }
+
+  #mobileToolsMenu .text-lg {
+    font-size: 1rem;
+  }
+
+  .accordion-btn {
+    padding: 0.6rem 0.75rem;
+    font-size: 0.9rem;
+  }
+}
+
+// Improvements for mobile in landscape mode 
+@media (max-width: 768px) and (orientation: landscape) {
+  #mobileToolsMenu {
+    max-height: 60vh;
+  }
+
+  .grid-cols-3 {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  .grid-cols-2 {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+// Imprivemnts for mobile hover effects 
+@media (hover: none) and (pointer: coarse) {
+  .group:hover .opacity-0 {
+    opacity: 0 !important;
+  }
+
+  .tn-btn:active {
+    background-color: var(--tn-theme-secondary);
+    transform: scale(0.95);
+    transition: transform 0.1s ease;
+  }
+}
+
+// Styles for vertical divider 
+.bg-white\/20 {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+// Adjust that the tooltips not get out from mobile mode 
+@media (max-width: 768px) {
+  .group .absolute.-top-8 {
+    display: none;
+    // Hidde tooltips in mobile 
+  }
+}
+
+// short animations for buttons in mobile mode 
+#mobileToolsMenu button:not(.accordion-btn) {
+  transition: all 0.15s ease;
+}
+
+#mobileToolsMenu button:not(.accordion-btn):active {
+  transform: scale(0.95);
+  background-color: var(--tn-theme-secondary);
+}
+
+// Inprove readability for buttons in mobile view 
+#mobileToolsMenu .text-xs {
+  font-size: 0.65rem;
+  line-height: 1;
+  margin-top: 0.125rem;
+}
+
+// Responsive design for tabletas 
+@media (min-width: 640px) and (max-width: 768px) {
+  .tn-navbar {
+    max-width: 90vw;
+  }
+
+  #mobileToolsMenu {
+    max-width: 90vw;
+    left: 5vw;
+  }
+}
+
+.tn-horizontal-buttons {
+
+  .tn-btn {
+    &:hover {
+      border: 1px solid var(--tn-theme-contrast) !important;
+    }
+  }
+
+  .tn-navbar-btns {
+    display: none;
+    overflow: visible;
+    background-color: var(--tn-theme-primary);
+    border-radius: 20px;
+    padding: 5px;
+    border: 1px solid var(--tn-theme-contrast);
+  }
+
+  input:checked {
+    ~.tn-navbar-btns {
+      --tn-spacing-btw-btns: 5px;
+      display: inline-flex;
+      flex-direction: row-reverse;
+      justify-content: center;
+      align-items: center;
+      width: auto;
+      position: absolute;
+      top: 0;
+      right: calc(100% + var(--tn-spacing-btw-btns));
+      bottom: 0;
+      z-index: 999;
+      gap: var(--tn-spacing-btw-btns);
+      opacity: 1;
+      visibility: visible;
+    }
+  }
+}

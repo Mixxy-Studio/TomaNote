@@ -213,7 +213,7 @@ async function initializeContextMenu() {
 
 async function initializeFloatingMenu() {
   try {
-    const { FloatingMenu } = await import("./ui/floatingMenu.js");
+    const { FloatingMenu } = await import("../../features/floating-menu/floating-menu.js");
 
     window.floatingMenu = new FloatingMenu({
       debug: true,
