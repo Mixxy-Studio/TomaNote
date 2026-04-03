@@ -129,16 +129,6 @@ dist
 .yarn/install-state.gz
 .pnp.*
 
-# AI
-AGENT.md
-
-.astro/
-.astro/**# Astro build cache
-.astro/
-.astro/**
-.agents
-.agents/skills/**
-
 # Astro build cache
 .astro/
 .astro/**
