@@ -3,7 +3,7 @@
 import "./floating-menu.scss";
 
 // Components
-import CreateTab from "../../components/Createtab.astro";
+import CreateTab from "../create-tab/create-tab.astro";
 import MainToolsButton from "./components/MainToolsButton.astro";
 import FloatingButtonGroup from "./components/FloatingButtonGroup.astro";
 import FloatingButton from "./components/FloatingButton.astro";
@@ -28,7 +28,7 @@ const tabButtons = [
 ];
 ---
 
-<nav class="tn-navbar" id="floating-nav" style="bottom: var(--nav-bottom, 1rem); padding-bottom: var(--nav-pb, 0rem);">
+<nav class="tn-navbar" id="floating-nav" style="bottom: var(--nav-bottom, 1.5rem); padding-bottom: var(--nav-pb, 0rem);">
   <div dir="rtl" class="tn-navbar-btns tn-navbar-checked flex flex-col-reverse items-center justify-between gap-1 h-auto">
     <CreateTab />
 
