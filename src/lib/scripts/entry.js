@@ -277,7 +277,7 @@ async function initializeSettingsModal() {
 
 async function initializeCloseTabConfirmation() {
   try {
-    const { CloseTabConfirmation } = await import("./ui/closeTabConfirmation.js");
+    const { CloseTabConfirmation } = await import("../../features/close-tab-confirmation/close-tab-confirmation.js");
 
     window.closeTabConfirmationModal = new CloseTabConfirmation();
     await window.closeTabConfirmationModal.init();
