@@ -2,26 +2,23 @@
 const fs = require("fs");
 const path = require("path");
 
-// Leer la versión actualizada de package.json
+// Read the updated versión from package.json
 const pkg = require("../package.json");
 const version = pkg.version;
 
-// Ruta al README.md
+// Path to README.md
 const readmePath = path.join(__dirname, "../README.md");
 let readmeContent = fs.readFileSync(readmePath, "utf8");
 
-// Reemplazar el marcador {{version}} con la versión real
+// replace the pin {{version}} with the real version
 readmeContent = readmeContent.replace(/v`{{version}}`/g, `v\`${version}\``);
 
-// Guardar los cambios
+// Save changes
 fs.writeFileSync(readmePath, readmeContent);
 
 const changelogPath = path.join(__dirname, "../CHANGELOG.md");
 let changelogContent = fs.readFileSync(changelogPath, "utf8");
 
-changelogContent = changelogContent.replace(
-  /## \[Unreleased\]/,
-  `## [Unreleased]\n\n## [${version}]`,
-);
+changelogContent = changelogContent.replace(/## \[Unreleased\]/, `## [Unreleased]\n\n## [${version}]`);
 
 fs.writeFileSync(changelogPath, changelogContent);

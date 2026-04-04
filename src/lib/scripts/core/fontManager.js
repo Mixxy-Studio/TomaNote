@@ -162,9 +162,7 @@ export class FontManager {
 
       const match = fontUrl.match(/[?&]family=([^:&]*)/);
       if (match && match[1]) {
-        const family = decodeURIComponent(
-          match[1].split(":")[0].replace(/\+/g, " "),
-        );
+        const family = decodeURIComponent(match[1].split(":")[0].replace(/\+/g, " "));
         this.applyFontToNotes(family);
         localStorage.setItem("customFontName", family);
       }
@@ -176,14 +174,14 @@ export class FontManager {
   loadFontSize() {
     const savedSize = localStorage.getItem("fontSize") || this.defaultSize;
     this.applyFontSizeToEditor(savedSize);
-    
-    // Observar cambios en el DOM para aplicar el tamaño cuando se creen nuevos elementos
+
+    // Observe changes in the DOM to apply the size when new elements are created
     this.observeEditorElements();
   }
 
   observeEditorElements() {
     if (typeof MutationObserver === "undefined") return;
-    
+
     const observer = new MutationObserver((mutations) => {
       const savedSize = localStorage.getItem("fontSize") || this.defaultSize;
       this.applyFontSizeToEditor(savedSize);
@@ -205,7 +203,7 @@ export class FontManager {
       medium: "var(--tn-font-size-medium)",
       large: "var(--tn-font-size-large)",
     };
-    
+
     const fontSize = fontSizeMap[sizeValue] || fontSizeMap.base;
 
     // Apply via CSS variable (more robust)
@@ -228,16 +226,11 @@ export class FontManager {
   }
 
   applyFontToNotes(fontFamily) {
-    // Actualizar variable CSS
-    document.documentElement.style.setProperty(
-      "--font-family-notes",
-      `'${fontFamily}', ${this.fontFallback}`,
-    );
+    // Update CSS variable
+    document.documentElement.style.setProperty("--font-family-notes", `'${fontFamily}', ${this.fontFallback}`);
 
-    // Aplicar a elementos existentes
-    const noteElements = document.querySelectorAll(
-      ".tab-list__item--content, .tab-list__item label span",
-    );
+    // Apply to existing elements
+    const noteElements = document.querySelectorAll(".tab-list__item--content, .tab-list__item label span");
 
     noteElements.forEach((element) => {
       element.style.fontFamily = `'${fontFamily}', ${this.fontFallback}`;

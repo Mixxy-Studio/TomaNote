@@ -4,9 +4,6 @@
 *::before,
 *::after {
   box-sizing: border-box;
-  padding: 0;
-  margin: 0;
-  font-size: var(--tn-font-size-base);
 }
 
 ul {
@@ -50,8 +47,8 @@ body {
 
 *[contenteditable="true"]:focus,
 *[contenteditable="true"]:active {
-  border: none;
-  outline: none;
+  outline: 2px solid var(--tn-theme-contrast);
+  outline-offset: -2px;
 }
 
 .code-block {
@@ -60,7 +57,7 @@ body {
   opacity: 0.8;
 }
 
-// Clases para formateo de negrita
+// Format Class for textin bold
 .bold-semibold {
   font-weight: 600;
 }
@@ -94,7 +91,7 @@ code {
   color: var(--color-text);
 }
 
-/* Scrollbar styling */
+// Scrollbar styling 
 ::-webkit-scrollbar {
   width: var(--tn-scrollbar-width, 12px);
   height: var(--tn-scrollbar-height, 12px);
@@ -114,14 +111,7 @@ code {
   }
 }
 
-/* Smooth transitions para cambios de tema */
-* {
-  transition: background-color 0.3s ease,
-    border-color 0.3s ease,
-    color 0.3s ease;
-}
-
-// Colores especificos segun el tema
+// Specific Colors by theme
 html[data-theme="dark"] .tab-list__item {
   label span {
     color: var(--tn-neutral-tertiary-color);
@@ -212,4 +202,8 @@ hr {
 
 dialog::backdrop {
   background-color: rgba(0, 0, 0, .5) !important;
+}
+
+body:has(main#main-content article) {
+  overflow-y: scroll;
 }

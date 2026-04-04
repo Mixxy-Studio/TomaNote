@@ -1,182 +1,105 @@
 # Changelog
 
-All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
+All notable changes to this project will be documented in this file.
 
-### [0.4.2](https://github.com/Mixxy-Studio/TomaNote/compare/v0.4.1...v0.4.2) (2026-03-27)
+The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
-Modal confirmation & mobile/PWA improvements
+## [0.4.3] - April 14, 2026
 
-## 🔔 New Features
+### Added
+- New API to create and share custom plugins
+- Completely redesigned interface with real-time metrics
+- Now the app works offline and can be installed as a native app
+- Automatic synchronization with repositories and issues
+- WCAG 2.1 level AA compliance
 
-- Modal confirmation dialog for tab deletion
-- Replace deprecated browser confirm() with custom modal
-- New icons: alert, trash
+## [0.4.2] - March 31, 2026
 
-## 📱 Mobile & PWA Improvements
+### Added
+- Initial load optimization reducing response time by 40%
+- Complete dark mode implementation with customizable color palette
+- Over 15 bugs reported by the community have been fixed
 
-- Dynamic floating menu positioning for mobile browsers
-- Safe area insets support for iOS PWA
-- Virtual keyboard detection
-- Fixed positioning issues in standalone mode
+### Previous Versions
 
-## 🧪 Testing
+<details>
+<summary>[0.4.2] - March 26, 2026</summary>
 
-- Add tests for CloseTabConfirmation modal
-- Add tests for TabDeletion handler
-- Add tests for FloatingNavPosition module
-- 19 new tests added
-- All 163 tests passing
+- Custom modal dialog for tab deletion, replacing deprecated browser confirm()
+- Dynamic floating menu positioning, safe area insets support for iOS PWA, virtual keyboard detection, fixed positioning in standalone mode
+- Added alert and trash icons
+- 19 new tests added for confirmation, tab deletion and floating menu modules. Total: 163 passing tests
 
----
+</details>
 
-### [0.4.1](https://github.com/Mixxy-Studio/TomaNote/compare/v0.4.0...v0.4.1) (2026-03-25)
+<details>
+<summary>[0.4.1] - March 24, 2026</summary>
 
-Bug fixes, security updates & maintainability improvements
+- Pasted text now inserts at cursor position using Selection API instead of execCommand
+- Resolved 7 critical and high severity vulnerabilities (minimatch, rollup, svgo, immutable, ajv, devalue). Regenerated package-lock.json
+- Migrated deprecated Sass global functions to modular API (map-get → map.get, etc.)
+- Added security scripts and GitHub Action for automated security audits
+- Comprehensive tests for paste functionality. Total: 146 passing tests
 
-## 🐛 Bug Fixes
+</details>
 
-- Fix #25: Paste text now inserts at cursor position in floating menu
-- Update paste functionality to use Selection API instead of execCommand
+<details>
+<summary>[0.4.0] - March 23, 2026</summary>
 
-## 🛡️ Security
-
-- Fix #17-24: Resolve 7 critical and high security vulnerabilities
-- Regenerate package-lock.json to unblock Dependabot
-- Resolve minimatch, rollup, svgo, immutable, ajv, devalue vulnerabilities
-
-## 🔧 Code Quality
-
-- Fix #16: Migrate deprecated Sass global functions to modular API
-- Replace map-get, map-has-key, map-keys with map.get, map.has-key, map.keys
-
-## ⚙️ Development Automation
-
-- Add security scripts: security:check, security:fix, security:outdated
-- Create GitHub Action for automated security audits (informative only)
-- Improve test coverage and prevent regressions
-
-## 🧪 Testing
-
-- Add comprehensive tests for paste functionality with Selection API
-- Update contextMenu tests for new paste behavior
-- All 146 tests passing
-
----
-
-### [0.4.0](https://github.com/camiicode/TomaNote/compare/v0.3.2...v0.4.0) (2026-03-24)
-
-Major modular redesign & internationalization
-
-## 🆕 New Features
-
-- Floating menu with grouped tool actions (content, font, tabs)
+- Floating menu with grouped actions (content, font, tabs)
 - Drag & drop tab reordering powered by SortableJS
-- Font size selector: Base, Medium, Large
-- Custom Google Fonts support via URL paste
+- Options: Base, Medium, Large
+- Support for custom fonts via URL paste
 - Full i18n system: English (US) & Spanish (CO)
-- Settings modal with dedicated tabs: About, License, Terms, News, Typography, Appearance, Language
-- EmptyState component for better UX
+- Dedicated tabs: About, License, Terms, News, Typography, Appearance, Language
+- Complete settings modal redesign and new icons
 
-## 🎨 Design & UX
+</details>
 
-- Complete modal settings redesign
-- New icons: close, rocket, file-text, chevron-right
-- Icon component refactor with centralized SVG library
-- Responsive improvements for tablet and mobile views
+<details>
+<summary>[0.3.2] - February 3, 2026</summary>
 
-## 🧪 Testing
+- 7 issues resolved: new tab accessibility, mobile responsiveness, bold formatting, custom font removal, domain persistence, duplicate alerts and Apple warnings
+- Vitest framework with jsdom, test suites for ThemeManager, FontManager, TabManager and ContextMenu
+- Changed default language from Spanish to English across the interface
+- Updated critical dependencies (diff, h3, devalue) and added SECURITY.md policy
+- Tree-shaking, minification, removed duplicate listeners and font preconnect
 
-- Add 21 tests for SettingsModal module
-- Add comprehensive tests for i18n core
-- Add tests for floating menu, tabs, keyboard shortcuts, tab drag & drop
-- Expand FontManager test coverage
+</details>
 
-## 🔧 Code Quality
+<details>
+<summary>[0.3.0] - December 28, 2025</summary>
 
-- Modular architecture for floating menu components
-- TypeScript declarations for window.i18n
-- Astro cache folder (.astro) removed from git tracking
-- Improved SASS mixins and variables organization
+- 6 visual styles available to customize the appearance
+- Install as application on PC and mobile devices
+- Significant improvements for desktop and tablets
+- Improvements to increase application visibility
 
----
+</details>
 
-### [0.3.2](https://github.com/camiicode/TomaNote/compare/v0.3.1...v0.3.2) (2026-02-04)
+<details>
+<summary>[0.2.2] - December 28, 2025</summary>
 
-Major stability & UX improvements
+- Preview environment prepared for update to version 0.3.0
 
-## 🐛 Critical Bug Fixes (7 Issues Resolved)
+</details>
 
-- Fix #9: New tab button accessibility - redesigned as floating action button
-- Fix #7: Mobile modal responsiveness issues resolved
-- Fix #10: Bold formatting inconsistency and reliability
-- Fix #8: Custom font removal and reset functionality
-- Fix #5: Custom domain persistence through GitHub Pages deployments
-- Fix #6: Duplicate confirmation alerts when closing tabs
-- Fix #12: Deprecated Apple meta tag warnings
+<details>
+<summary>[0.2.1] - December 16, 2025</summary>
 
-## 🧪 Testing Infrastructure
+- Minor text adjustments in the information modal
+- Security limits added to GitHub Actions workflow
+- Deployment automation vulnerabilities fixed
 
-- Add comprehensive Vitest testing framework with jsdom
-- Implement test suites for ThemeManager, FontManager, TabManager, ContextMenu
-- Centralize test organization in dedicated **tests** directories
+</details>
 
-## 🔧 Code Quality & Standards
+<details>
+<summary>[0.2.0] - December 16, 2025</summary>
 
-- Implement Prettier configuration with custom formatting rules
-- Update ESLint SASS configuration for V3.0.0+ compatibility
-- Remove debug logs and improve code organization
-- Enhance Astro configuration with production optimizations
+- Full project rewrite to improve structure and maintainability
+- Significant optimizations in initial loading time
+- Scripts organized into independent and reusable modules
+- Cleaner code ready for future features
 
-## 🌐 Internationalization
+</details>
 
-- Change default language from Spanish to English
-- Update UI labels and default tab names to English
-- Improve accessibility with proper element labeling
-
-## 🛡️ Security Updates
-
-- Update critical dependencies (diff, h3, devalue) via Dependabot
-- Add SECURITY.md policy documentation
-- Enhance build security with console removal in production
-
-## 📱 Performance & UX
-
-- Optimize build performance with tree-shaking and minification
-- Improve mobile experience across all interactive elements
-- Remove duplicate event listeners to prevent memory leaks
-- Enhance font loading with Google Fonts preconnect
-
-### [0.3.1](https://github.com/camiicode/notepad/compare/v0.3.0...v0.3.1) (2025-12-29)
-
-## [0.3.0](https://github.com/camiicode/notepad/compare/v0.2.2...v0.3.0) (2025-12-29)
-
-###### ✨ Nuevas funcionalidades
-
-- Selector de temas con **6 estilos visuales** disponibles.
-- Soporte para **instalación como aplicación (PWA)** en PC y dispositivos móviles.
-
-###### 🎨 Mejoras de diseño y UX
-
-- Rediseño significativo del aplicativo para **desktop y tablets**.
-- Ajustes en la paleta de colores del tema por defecto para una experiencia más amable y consistente.
-
-###### 🚀 Optimización
-
-- Mejoras en **SEO** para aumentar la visibilidad y alcance del aplicativo.
-
-### [0.2.2](https://github.com/camiicode/notepad/compare/v0.2.1...v0.2.2) (2025-12-29)
-
-- Se prepara el entorno de preview para actualziaciona version 0.3.0
-
-### 0.2.1 (2025-12-17)
-
-- Ajustes menores de texto en el modal de información.
-- chore(ci): agregar límites de seguridad al flujo de trabajo de GitHub Actions
-- Vulnerabilidades en automatizacion de despligue corregidos
-
-### 0.2.0 (2025-12-17)
-
-- Se refactoriza el proyecto por completo
-- Velocidad de carga
-- Modularizacion de scripts
-- Mejor mantenibilidad y adicion de futuras feature

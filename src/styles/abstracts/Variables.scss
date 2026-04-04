@@ -1,55 +1,55 @@
-/* =========================================== */
-/* =========== Variables de TomaNote ========= */
-/* =========================================== */
+// =========================================== 
+// =========== Tomanote Variables ========= 
+// =========================================== 
 
 @use "sass:map";
 @use "sass:color";
 
-/* === Variables SCSS (para usar en archivos .scss) === */
+// === SCSS Variables === 
 
-// Variables neutrales (siempre disponibles)
+// Variables neutrla (always enable)
 $tn-neutral-primary-color: #000000;
 $tn-neutral-secondary-color: #C2C2C2;
 $tn-neutral-tertiary-color: #FFFFFF;
 $tn-neutral-link-color: #276FBF;
 
-// Variables de tema por defecto (Dark Mode)
+// Variables for team by default
 $tn-theme-primary-dark: #181A1B;
 $tn-theme-secondary-dark: #272E38;
 $tn-theme-accent-dark: #465461;
 $tn-theme-contrast-dark: #335484;
 
-// Variables de tema Light
+// Variables for light theme
 $tn-theme-primary-light: #E0D3C2;
 $tn-theme-secondary-light: #F1EBE4;
 $tn-theme-accent-light: #FF893B;
 $tn-theme-contrast-light: #CFA37E;
 
-// Variables de tema Cozy Rose
+// Variables for cozy rose theme
 $tn-theme-primary-cozy-rose: #8B5FBF;
 $tn-theme-secondary-cozy-rose: #E9E3F5;
 $tn-theme-accent-cozy-rose: #BFA2DB;
 $tn-theme-contrast-cozy-rose: #5E3A87;
 
-// Variables de tema Chill Aqua
+// Variables for chill aqua theme
 $tn-theme-primary-chill-aqua: #76C9D4;
 $tn-theme-secondary-chill-aqua: #E1F7F9;
 $tn-theme-accent-chill-aqua: #77C8BF;
 $tn-theme-contrast-chill-aqua: #1F5869;
 
-// Variables de tema Wild Forest
+// Variables for wild forest theme
 $tn-theme-primary-wild-forest: #8EBF7A;
 $tn-theme-secondary-wild-forest: #C6DDBF;
 $tn-theme-accent-wild-forest: #3E6B3F;
 $tn-theme-contrast-wild-forest: #674A40;
 
-// Variables de tema Neon Orbit
+// Variables for neon orbit theme
 $tn-theme-primary-neon-orbit: #1A1A2E;
 $tn-theme-secondary-neon-orbit: #1F3365;
 $tn-theme-accent-neon-orbit: #EB5B72;
 $tn-theme-contrast-neon-orbit: #971C3C;
 
-// Fuentes y Espaciado
+// Fonts and sizes
 $tn-font-size-base: 1rem;
 $tn-font-size-medium: 1.25rem;
 $tn-font-size-large: 1.6rem;
@@ -62,7 +62,7 @@ $tn-border-radius-small: 4px;
 $tn-scrollbar-thumb: #676767;
 $tn-scrollbar-track: #2d2d2d;
 
-// Mapa de temas para fácil acceso
+// Theme maps for ease access
 $tn-themes: (
   dark: (primary: $tn-theme-primary-dark,
     secondary: $tn-theme-secondary-dark,
@@ -96,7 +96,7 @@ $tn-themes: (
     text-color: $tn-neutral-tertiary-color )
 );
 
-// Función helper para obtener valores de tema
+// Functión helper for get values of the theme
 @function tn-theme($theme-name, $property) {
   @if map-has-key($tn-themes, $theme-name) {
     $theme: map.get($tn-themes, $theme-name);
@@ -115,7 +115,7 @@ $tn-themes: (
   }
 }
 
-// Mixin para aplicar estilos de tema
+// Mixin for aply styles in the theme
 @mixin tn-theme-styles($theme-name) {
   $theme: map.get($tn-themes, $theme-name);
 
@@ -128,32 +128,32 @@ $tn-themes: (
   }
 }
 
-/* =========================================== */
-/* === Variables CSS (para usar en :root) ==== */
-/* =========================================== */
+// =========================================== 
+// === Variables CSS (for use in :root) ==== 
+// =========================================== 
 
-/* === Variables Base (siempre presentes) === */
+// === Base Variables (always available) === 
 :root {
-  // Variables neutrales (siempre disponibles)
+  // Neutral Variables (always enable)
   --tn-neutral-primary-color: #{$tn-neutral-primary-color};
   --tn-neutral-secondary-color: #{$tn-neutral-secondary-color};
   --tn-neutral-tertiary-color: #{$tn-neutral-tertiary-color};
   --tn-neutral-link-color: #{$tn-neutral-link-color};
 
-  // Variables funcionales ALIAS (usar estas en CSS)
+  // High functions Variables (use this in CSS files)
   --tn-color-background: var(--tn-theme-primary);
   --tn-color-secondary-background: var(--tn-theme-secondary);
   --tn-color-accent: var(--tn-theme-accent);
   --tn-color-contrast: var(--tn-theme-contrast);
   --tn-color-text: var(--tn-neutral-tertiary-color);
 
-  // Variables de tema por defecto (Dark Mode)
+  // Dark theme Variables by default
   --tn-theme-primary: #{$tn-theme-primary-dark};
   --tn-theme-secondary: #{$tn-theme-secondary-dark};
   --tn-theme-accent: #{$tn-theme-accent-dark};
   --tn-theme-contrast: #{$tn-theme-contrast-dark};
 
-  // Fuentes y Espaciado
+  // Fonts and sizes
   --tn-font-size-base: #{$tn-font-size-base};
   --tn-font-size-medium: #{$tn-font-size-medium};
   --tn-font-size-large: #{$tn-font-size-large};
@@ -168,7 +168,7 @@ $tn-themes: (
   --tn-scrollbar-track: #{$tn-theme-secondary-dark};
 }
 
-/* === Temas específicos === */
+// === Especific Themes === 
 :root[data-theme="light"] {
   @include tn-theme-styles(light);
   --tn-color-text: #{$tn-neutral-primary-color};
@@ -202,7 +202,7 @@ $tn-themes: (
   --tn-color-text: #{$tn-neutral-tertiary-color};
 }
 
-// Clases utilitarias para forzar temas (útil para testing)
+// Utilitaries Classes for force themes (usefull for testing)
 .tn-theme-dark {
   @include tn-theme-styles(dark);
 }
@@ -232,9 +232,9 @@ $tn-themes: (
   --tn-color-text: #{$tn-neutral-tertiary-color};
 }
 
-/* =============================================== */
-/* ==== Variables de compatibilidad (opcional) === */
-/* =============================================== */
+// =============================================== 
+// ====== Compatibility Variables (optional) ===== 
+// =============================================== 
 :root {
   --color-background: var(--tn-color-background);
   --color-secondary-background: var(--tn-color-secondary-background);

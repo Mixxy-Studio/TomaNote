@@ -1,0 +1,51 @@
+@use "../../styles/abstracts/Variables.scss" as vars;
+@use "../../styles/abstracts/Mixins.scss" as mixins;
+
+#modals {
+  .settings-modal {
+    &::backdrop {
+      background-color: rgba(vars.$tn-neutral-primary-color, 0.75);
+    }
+  }
+
+  .settings-content .settings-header h3 {
+    font-size: 1.5rem;
+    font-weight: 600;
+  }
+
+  .settings-section {
+    margin-bottom: 32px;
+
+    h4 {
+      font-size: 1.1rem;
+      margin-bottom: 8px;
+    }
+
+    .section-description {
+      color: var(--tn-theme-secondary);
+      margin-bottom: 16px;
+    }
+
+    &__group {
+      display: block;
+      gap: 8px;
+      align-items: center;
+
+      @include mixins.respond-to('xs') {
+        display: flex;
+      }
+
+      button {
+        width: 100%;
+
+        @include mixins.respond-to('xs') {
+          width: unset;
+        }
+      }
+    }
+  }
+
+  .sidebar-footer {
+    margin-top: 1rem;
+  }
+}

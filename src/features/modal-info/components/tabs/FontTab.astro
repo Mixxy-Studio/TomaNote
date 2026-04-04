@@ -1,0 +1,93 @@
+---
+// FontTab.astro - Settings Modal - Font Tab
+
+// Icons
+import Icon from "../../../../components/icons/Icon.astro";
+---
+
+<div class="settings-tab hidden [&.active]:block" id="fonts-tab">
+  <div class="settings-header">
+    <h3 class="font-black underline" data-i18n="typo.main-title"></h3>
+  </div>
+  <hr />
+  <div class="settings-body">
+    <div class="grid grid-cols-3 gap-4">
+      <div class="col-span-1">
+        <h4 class="font-medium! text-xl!" data-i18n="typo.first-option"></h4>
+      </div>
+      <div class="col-span-2">
+        <div class="settings-section__group">
+          <select id="font-select" class="font-select w-full py-[10px]! px-[12px]! rounded-sm border-2 border-(--tn-theme-accent) bg-(--tn-theme-secondary) text-(--color-accent)! text-normal cursor-pointer transition-all hover:border-(--tn-theme-accent) focus:text-(--color-accent)! focus:outline-0 focus:border-(--tn-theme-contrast)">
+            <option class="text-(--color-text)/75" data-i18n="typo.first-option-default" value="Inter">Inter (Por defecto)</option>
+            <option class="text-(--color-text)/75" data-i18n="typo.first-option-poppins" value="Poppins">Poppins</option>
+            <option class="text-(--color-text)/75" data-i18n="typo.first-option-raleway" value="Raleway">Raleway</option>
+            <option class="text-(--color-text)/75" data-i18n="typo.first-option-opensans" value="Open Sans">Open Sans</option>
+            <option class="text-(--color-text)/75" data-i18n="typo.first-option-roboto" value="Roboto">Roboto</option>
+            <option class="text-(--color-text)/75" data-i18n="typo.first-option-montserrat" value="Montserrat">Montserrat</option>
+            <option class="text-(--color-text)/75" data-i18n="typo.first-option-custom" value="custom">Personalizada</option>
+          </select>
+        </div>
+
+        <div id="custom-font-url-wrapper" class="settings-section__group mt-4! hidden" style="display: none;">
+          <input id="font-url-input" class="placeholder:text-(--color-accent)/60! flex-1 w-full py-[10px]! px-[12px]! rounded-sm border-2 border-(--tn-theme-accent) bg-(--tn-theme-secondary) text-(--color-text) text-normal cursor-pointer transition-all hover:border-(--tn-theme-accent) focus:outline-0 focus:border-(--tn-theme-contrast)" type="text" placeholder="https://fonts.googleapis.com/css2?family=..." />
+          <div id="font-url-error" class="bg-red-600 mt-4! hidden text-white rounded-md px-3!"></div>
+        </div>
+
+        <div id="custom-font-instructions" class="settings-section mt-4! hidden">
+          <ul role="list" class="list-disc pl-3!">
+            <li class="block md:inline-flex items-center my-2! before:content-['·'] before:text-inherit! md:before:text-6xl! before:leading-0! before:mr-3!">
+              <span data-i18n="typo.first-option-sbs1-1"></span>
+              <a href="https://fonts.google.com/" target="_blank" class="mx-1!">Google Fonts</a>
+              <span data-i18n="typo.first-option-sbs1-2"></span>
+              <code class="mx-1!">Get embed code</code>.
+            </li>
+            <li class="block md:inline-flex flex-wrap items-center my-2! before:content-['·'] before:text-inherit! md:before:text-6xl! before:leading-0! before:mr-3!">
+              <span data-i18n="typo.first-option-sbs2-1"></span>
+              <code class="mx-1!">&lt;link&gt;</code>
+              <span data-i18n="typo.first-option-sbs2-2"></span>
+              <code class="mx-1!">https://fonts.googleapis.com/</code>).
+            </li>
+          </ul>
+          <p class="mt-3!" data-i18n="typo.first-option-sbs3"></p>
+        </div>
+      </div>
+    </div>
+
+    <div class="grid grid-cols-3! sm:grid-cols-3! md:grid-cols-4 lg:grid-cols-3 gap-4 mt-4!">
+      <div class="col-span-3! sm:col-span-1! md:col-span-2 xl:col-span-1">
+        <div class="settings-section mt-5! mb-0!">
+          <h4 class="font-medium! text-xl!" data-i18n="typo.second-option"></h4>
+          <p data-i18n="typo.second-option-subtitle"></p>
+          <p class="text-sm! text-(--color-text)/60 mt-2! italic" data-i18n="typo.second-option-tip"></p>
+        </div>
+      </div>
+      <div class="col-span-3! sm:col-span-2! md:col-span-2 xl:col-span-2">
+        <div class="settings-form flex flex-wrap gap-x-5">
+          <div class="group flex flex-col gap-2">
+            <h4 class="mb-0! mt-3!" data-i18n="typo.second-option-base"></h4>
+            <input type="radio" name="options-font-size" class="sr-only peer" id="option-base-text" checked />
+            <label for="option-base-text" class="w-[100px] h-[100px]! flex items-center justify-center border-2 border-(--tn-theme-accent) rounded-lg cursor-pointer peer-checked:border-(--tn-theme-contrast)">
+              <Icon name="letterA" fill="var(--tn-theme-accent)" className="text-(--tn-theme-contrast) scale-100" strokeWidth={0.5} />
+            </label>
+          </div>
+
+          <div class="group flex flex-col gap-2">
+            <h4 class="mb-0! mt-3!" data-i18n="typo.second-option-medium"></h4>
+            <input type="radio" name="options-font-size" class="sr-only peer" id="option-medium-text" />
+            <label for="option-medium-text" class="w-[100px] h-[100px]! flex items-center justify-center border-2 border-(--tn-theme-accent) rounded-lg cursor-pointer peer-checked:border-(--tn-theme-contrast)">
+              <Icon name="letterA" fill="var(--tn-theme-accent)" className="text-(--tn-theme-contrast) scale-150" strokeWidth={0.5} />
+            </label>
+          </div>
+
+          <div class="group flex flex-col gap-2">
+            <h4 class="mb-0! mt-3!" data-i18n="typo.second-option-large"></h4>
+            <input type="radio" name="options-font-size" class="sr-only peer" id="option-large-text" />
+            <label for="option-large-text" class="w-[100px] h-[100px]! flex items-center justify-center border-2 border-(--tn-theme-accent) rounded-lg cursor-pointer peer-checked:border-(--tn-theme-contrast)">
+              <Icon name="letterA" fill="var(--tn-theme-accent)" className="text-(--tn-theme-contrast) scale-200" strokeWidth={0.5} />
+            </label>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,139 @@
+---
+import Layout from "../layouts/Layout.astro";
+
+const title = "About - TomaNote";
+const description = "Learn about TomaNote - a simple, fast, and free notepad designed for distraction-free writing. No accounts required, notes stored locally.";
+---
+
+<Layout>
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {"@type": "ListItem", "name": "Home", "position": 1, "item": "https://tomanote.app"},
+        {"@type": "ListItem", "name": "About", "position": 2}
+      ]
+    }
+  </script>
+  <article id="tn-content-about" class="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-800">
+    <div class="container mx-auto px-4 py-12 md:py-16 lg:py-20 max-w-4xl">
+      <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-lg p-6 md:p-8 lg:p-10">
+        <h1 class="text-4xl! md:text-5xl! font-extrabold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent mb-8">About TomaNote</h1>
+
+        <div class="space-y-8">
+          <section>
+            <p class="text-lg md:text-xl text-gray-700 dark:text-gray-300 mb-6 leading-relaxed">TomaNote is a simple, fast, and free notepad designed for distraction-free writing.</p>
+            <p class="text-gray-700 dark:text-gray-300 leading-relaxed bg-blue-50 dark:bg-blue-900/20 border-l-4 border-blue-600 p-4 rounded-r-lg">It runs directly in your browser with no accounts or sign-up required. All your notes are saved locally on your device, meaning you stay in full control of your data.</p>
+          </section>
+
+          <section class="border-t border-gray-200 dark:border-gray-700 pt-6">
+            <h2 class="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-4 flex items-center gap-2">
+              <span class="w-2 h-2 bg-blue-600 rounded-full"></span>
+              TomaNote prioritizes:
+            </h2>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+              <div class="flex items-center gap-2 bg-gray-50 dark:bg-gray-700/50 rounded-lg p-3">
+                <svg class="w-5 h-5 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"></path>
+                </svg>
+                <span class="text-gray-700 dark:text-gray-300 font-medium">Simplicity</span>
+              </div>
+              <div class="flex items-center gap-2 bg-gray-50 dark:bg-gray-700/50 rounded-lg p-3">
+                <svg class="w-5 h-5 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                </svg>
+                <span class="text-gray-700 dark:text-gray-300 font-medium">Speed</span>
+              </div>
+              <div class="flex items-center gap-2 bg-gray-50 dark:bg-gray-700/50 rounded-lg p-3">
+                <svg class="w-5 h-5 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6-4h12a2 2 0 002-2v-2a2 2 0 00-2-2H6a2 2 0 00-2 2v2a2 2 0 002 2zm10 4v-4m-8 4v-4"></path>
+                </svg>
+                <span class="text-gray-700 dark:text-gray-300 font-medium">Privacy</span>
+              </div>
+              <div class="flex items-center gap-2 bg-gray-50 dark:bg-gray-700/50 rounded-lg p-3">
+                <svg class="w-5 h-5 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path>
+                </svg>
+                <span class="text-gray-700 dark:text-gray-300 font-medium">Frictionless use</span>
+              </div>
+            </div>
+          </section>
+
+          <section class="border-t border-gray-200 dark:border-gray-700 pt-6">
+            <p class="text-gray-700 dark:text-gray-300 leading-relaxed italic bg-gray-50 dark:bg-gray-700/50 p-5 rounded-xl text-center">"It's not a complex productivity platform or a project manager. It's a clean space to think, write, and organize ideas."</p>
+          </section>
+
+          <section class="border-t border-gray-200 dark:border-gray-700 pt-6">
+            <h2 class="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-4 flex items-center gap-2">
+              <span class="w-2 h-2 bg-blue-600 rounded-full"></span>
+              Important
+            </h2>
+            <div class="bg-amber-50 dark:bg-amber-900/20 border-l-4 border-amber-500 p-4 rounded-r-lg">
+              <p class="text-gray-700 dark:text-gray-300 leading-relaxed">
+                Notes are stored in your browser's local storage. If you clear your browser data or hard-reload the page, your notes will be lost.
+                <span class="font-semibold text-amber-700 dark:text-amber-400">We recommend exporting or backing up your notes regularly.</span>
+              </p>
+            </div>
+          </section>
+
+          <section class="border-t border-gray-200 dark:border-gray-700 pt-6">
+            <h2 class="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-4 flex items-center gap-2">
+              <span class="w-2 h-2 bg-blue-600 rounded-full"></span>
+              Key features
+            </h2>
+            <ul class="space-y-3 bg-gray-50 dark:bg-gray-700/50 rounded-xl p-5 md:p-6">
+              <li class="flex items-start gap-3 text-gray-700 dark:text-gray-300">
+                <svg class="w-5 h-5 text-blue-600 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                </svg>
+                <span>Free-form, distraction-free text editing</span>
+              </li>
+              <li class="flex items-start gap-3 text-gray-700 dark:text-gray-300">
+                <svg class="w-5 h-5 text-blue-600 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                </svg>
+                <span>Persistent tabs</span>
+              </li>
+              <li class="flex items-start gap-3 text-gray-700 dark:text-gray-300">
+                <svg class="w-5 h-5 text-blue-600 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                </svg>
+                <span>Local autosave</span>
+              </li>
+              <li class="flex items-start gap-3 text-gray-700 dark:text-gray-300">
+                <svg class="w-5 h-5 text-blue-600 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                </svg>
+                <span>Dark mode by default with multiple customization themes</span>
+              </li>
+              <li class="flex items-start gap-3 text-gray-700 dark:text-gray-300">
+                <svg class="w-5 h-5 text-blue-600 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                </svg>
+                <span>Private notes and offline use</span>
+              </li>
+            </ul>
+          </section>
+
+          <section class="border-t border-gray-200 dark:border-gray-700 pt-6">
+            <h2 class="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-4 flex items-center gap-2">
+              <span class="w-2 h-2 bg-blue-600 rounded-full"></span>
+              Philosophy
+            </h2>
+            <p class="text-gray-700 dark:text-gray-300 leading-relaxed bg-gradient-to-r from-blue-50 to-purple-50 dark:from-blue-900/20 dark:to-purple-900/20 p-5 rounded-xl">TomaNote exists because writing should be simple, free, and accessible — no external services or subscriptions needed.</p>
+          </section>
+        </div>
+
+        <div class="mt-12 pt-8 border-t border-gray-200 dark:border-gray-700">
+          <a href="/" class="inline-flex items-center gap-2 text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 font-semibold transition-colors duration-200 group">
+            <svg class="w-5 h-5 transform group-hover:-translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
+            </svg>
+            Back to TomaNote
+          </a>
+        </div>
+      </div>
+    </div>
+  </article>
+</Layout>

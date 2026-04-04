@@ -1,0 +1,89 @@
+---
+// Appearance.astro - Settings Modal - Appearance Tab
+---
+
+<section id="appearance-tab" class="tn-appearance-tab settings-tab hidden [&.active]:block">
+  <div class="settings-header">
+    <h3 data-i18n="appearance.main-title"></h3>
+  </div>
+  <hr />
+  <div class="settings-body">
+    <div class="grid lg:grid-cols-3 gap-4">
+      <div class="col-span-1">
+        <h3 class="text-(--tn-theme-accent) font-bold" data-i18n="appearance.first-option"></h3>
+        <p data-i18n="appearance.first-option-description">Selecciona tu tema favorito</p>
+      </div>
+      <div class="col-span-2">
+        <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-2 xl:grid-cols-3 gap-4!">
+          <div class="group">
+            <input type="radio" name="themeColor" id="theme-color-dark" class="sr-only peer" />
+            <label for="theme-color-dark">
+              <span></span>
+              <span></span>
+              <span></span>
+              <span></span>
+            </label>
+          </div>
+          <div class="group">
+            <input type="radio" name="themeColor" id="theme-color-light" class="sr-only peer" />
+            <label for="theme-color-light">
+              <span></span>
+              <span></span>
+              <span></span>
+              <span></span>
+            </label>
+          </div>
+          <div class="group">
+            <input type="radio" name="themeColor" id="theme-color-rose" class="sr-only peer" />
+            <label for="theme-color-rose">
+              <span></span>
+              <span></span>
+              <span></span>
+              <span></span>
+            </label>
+          </div>
+          <div class="group">
+            <input type="radio" name="themeColor" id="theme-color-aqua" class="sr-only peer" />
+            <label for="theme-color-aqua">
+              <span></span>
+              <span></span>
+              <span></span>
+              <span></span>
+            </label>
+          </div>
+          <div class="group">
+            <input type="radio" name="themeColor" id="theme-color-forest" class="sr-only peer" checked />
+            <label for="theme-color-forest">
+              <span></span>
+              <span></span>
+              <span></span>
+              <span></span>
+            </label>
+          </div>
+          <div class="group">
+            <input type="radio" name="themeColor" id="theme-color-orbit" class="sr-only peer" />
+            <label for="theme-color-orbit">
+              <span></span>
+              <span></span>
+              <span></span>
+              <span></span>
+            </label>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="grid grid-cols-3 gap-4 mt-10!">
+      <div class="col-span-1">
+        <h3 class="text-(--tn-theme-accent) font-bold" data-i18n="lang.main-title"></h3>
+        <p data-i18n="lang.main-subtitle"></p>
+      </div>
+      <div class="col-span-2">
+        <select id="lang-select" class="tn-lang-select w-full py-[10px]! px-[12px]! rounded-sm border-2 border-(--tn-theme-accent) bg-(--tn-theme-secondary) text-(--color-accent)! text-normal cursor-pointer transition-all hover:border-(--tn-theme-accent) focus:text-(--color-accent)! focus:outline-0 focus:border-(--tn-theme-contrast)">
+          <option class="text-(--color-text)/75" data-i18n="lang.option-en_us" value="en"></option>
+          <option class="text-(--color-text)/75" data-i18n="lang.option-es_co" value="es"></option>
+        </select>
+      </div>
+    </div>
+  </div>
+</section>
