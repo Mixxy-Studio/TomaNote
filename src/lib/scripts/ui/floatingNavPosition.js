@@ -76,11 +76,11 @@ export class FloatingNavPosition {
         document.documentElement.style.setProperty("--nav-bottom", `${offset}px`);
         document.documentElement.style.setProperty("--nav-pb", `${bottomSpace}px`);
       } else {
-        document.documentElement.style.setProperty("--nav-bottom", "1rem");
+        document.documentElement.style.setProperty("--nav-bottom", "1.5rem");
         document.documentElement.style.setProperty("--nav-pb", "0rem");
       }
     } else {
-      document.documentElement.style.setProperty("--nav-bottom", "1rem");
+      document.documentElement.style.setProperty("--nav-bottom", "1.5rem");
       document.documentElement.style.setProperty("--nav-pb", "0rem");
     }
   }
