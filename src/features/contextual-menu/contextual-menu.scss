@@ -1,0 +1,44 @@
+@use "../../styles/abstracts/Variables.scss" as vars;
+
+#context-menu {
+
+  .context-menu__item {
+
+    &[data-action="bold"] {
+      font-weight: bold;
+    }
+
+    &[data-action="italic"] {
+      font-style: italic;
+    }
+
+    &[data-action="underline"] {
+      text-decoration: underline;
+    }
+
+    &[data-action="undo"],
+    &[data-action="redo"] {
+      opacity: 0.7;
+
+      &:hover {
+        opacity: 1;
+      }
+    }
+
+    &[data-requires-selection="true"].disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+      pointer-events: none;
+    }
+
+    &[data-requires-selection="true"].disabled:hover {
+      background-color: transparent;
+    }
+
+    [data-requires-selection="true"].disabled .shortcut {
+      opacity: 0.3;
+    }
+
+  }
+
+}

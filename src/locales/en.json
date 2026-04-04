@@ -275,5 +275,16 @@
   "roadmap.old-020.6.description": "Optimized experience for mobile devices",
   "roadmap.badge.current": "CURRENT",
   "roadmap.badge.next": "NEXT",
-  "roadmap.badge.previous": "PREVIOUS"
+  "roadmap.badge.previous": "PREVIOUS",
+  "context-menu": {
+    "copy": "Copy",
+    "cut": "Cut",
+    "paste": "Paste",
+    "bold": "Bold",
+    "italic": "Italic",
+    "underline": "Underline",
+    "undo": "Undo",
+    "redo": "Redo",
+    "pin-tab": "Pin"
+  }
 }

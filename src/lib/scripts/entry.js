@@ -168,7 +168,7 @@ async function initializeTabsSystem() {
 
 async function initializeContextMenu() {
   try {
-    const { ContextMenu } = await import("./ui/contextMenu.js");
+    const { ContextMenu } = await import("../../features/contextual-menu/contextual-menu.js");
 
     // Create an instance
     window.contextMenu = new ContextMenu({
@@ -311,7 +311,7 @@ async function loadOptionalModules() {
     import("./core/fontManager.js");
     import("./core/tabs.js");
     import("./core/themeManager.js");
-    import("./ui/contextMenu.js");
+    import("../../features/contextual-menu/contextual-menu.js");
     import("./utils/domHelpers.js");
     import("./utils/emojiDetector.js");
   } catch (error) {
