@@ -276,15 +276,14 @@
   "roadmap.badge.current": "ACTUAL",
   "roadmap.badge.next": "PRÓXIMO",
   "roadmap.badge.previous": "ANTERIOR",
-  "context-menu": {
-    "copy": "Copiar",
-    "cut": "Cortar",
-    "paste": "Pegar",
-    "bold": "Negrita",
-    "italic": "Itálica",
-    "underline": "Subrayado",
-    "undo": "Deshacer",
-    "redo": "Rehacer",
-    "pin-tab": "Fijar"
-  }
+  "context-menu.copy": "Copiar",
+  "context-menu.cut": "Cortar",
+  "context-menu.paste": "Pegar",
+  "context-menu.bold": "Negrita",
+  "context-menu.italic": "Itálica",
+  "context-menu.underline": "Subrayado",
+  "context-menu.undo": "Deshacer",
+  "context-menu.redo": "Rehacer",
+  "context-menu.pin-tab": "Fijar",
+  "context-menu.unpin-tab": "Desfijar"
 }

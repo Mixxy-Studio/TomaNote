@@ -137,6 +137,11 @@ export class ContextMenu {
     // Show menu at mouse position
     this.showMenuAt(e.pageX, e.pageY);
 
+    // Apply i18n translations to the menu
+    if (window.i18n && typeof window.i18n.applyTranslations === "function") {
+      window.i18n.applyTranslations();
+    }
+
     this.log("📝 Menú contextual de texto mostrado");
   }
 
@@ -148,11 +153,6 @@ export class ContextMenu {
 
     // Check if the tab is locked
     const isPinned = this.activeTabElement.classList.contains("pinned");
-    const pinTabText = this.contextMenu.querySelector("#pin-tab-text");
-
-    if (pinTabText) {
-      pinTabText.textContent = isPinned ? "Desfijar" : "Fijar";
-    }
 
     // Show only tab options
     this.contextMenu.querySelectorAll(".context-menu__item").forEach((item) => {
@@ -170,6 +170,11 @@ export class ContextMenu {
 
     // Show menu at mouse position
     this.showMenuAt(e.pageX, e.pageY);
+
+    // Apply i18n translations to the menu
+    if (window.i18n && typeof window.i18n.applyTranslations === "function") {
+      window.i18n.applyTranslations();
+    }
 
     this.log("📑 Menú contextual de pestaña mostrado");
   }

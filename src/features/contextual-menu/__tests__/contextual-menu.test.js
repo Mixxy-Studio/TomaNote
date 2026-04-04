@@ -6,6 +6,22 @@ vi.mock("../../../lib/scripts/utils/emojiDetector.js", () => ({
   detectEmojiInText: vi.fn().mockReturnValue(false),
 }));
 
+// Mock de navigator.language
+function mockNavigatorLanguage(lang) {
+  Object.defineProperty(global, "navigator", {
+    value: { language: lang },
+    writable: true,
+    configurable: true,
+  });
+}
+
+// Reset i18n
+function resetI18n() {
+  if (global.window) {
+    global.window.i18n = undefined;
+  }
+}
+
 describe("ContextMenu", () => {
   let contextMenu;
   let mockElement;
@@ -162,6 +178,127 @@ describe("ContextMenu", () => {
 
       expect(global.document.addEventListener).toHaveBeenCalledWith("contextmenu", expect.any(Function));
       expect(global.document.addEventListener).toHaveBeenCalledWith("click", expect.any(Function));
+    });
+  });
+});
+
+describe("ContextualMenu - I18n Translations", () => {
+  let i18n;
+
+  beforeEach(async () => {
+    vi.clearAllMocks();
+    resetI18n();
+    vi.resetModules();
+    const module = await import("../../../i18n/core.js");
+    i18n = module.i18n;
+  });
+
+  describe("Translations in Spanish (es)", () => {
+    beforeEach(() => {
+      mockNavigatorLanguage("es-ES");
+      i18n.init();
+    });
+
+    it('t("context-menu.copy") must be return "Copiar"', () => {
+      expect(i18n.t("context-menu.copy")).toBe("Copiar");
+    });
+
+    it('t("context-menu.cut") must be return "Cortar"', () => {
+      expect(i18n.t("context-menu.cut")).toBe("Cortar");
+    });
+
+    it('t("context-menu.paste") must be return "Pegar"', () => {
+      expect(i18n.t("context-menu.paste")).toBe("Pegar");
+    });
+
+    it('t("context-menu.bold") must be return "Negrita"', () => {
+      expect(i18n.t("context-menu.bold")).toBe("Negrita");
+    });
+
+    it('t("context-menu.italic") must be return "Itálica"', () => {
+      expect(i18n.t("context-menu.italic")).toBe("Itálica");
+    });
+
+    it('t("context-menu.underline") must be return "Subrayado"', () => {
+      expect(i18n.t("context-menu.underline")).toBe("Subrayado");
+    });
+
+    it('t("context-menu.undo") must be return "Deshacer"', () => {
+      expect(i18n.t("context-menu.undo")).toBe("Deshacer");
+    });
+
+    it('t("context-menu.redo") must be return "Rehacer"', () => {
+      expect(i18n.t("context-menu.redo")).toBe("Rehacer");
+    });
+
+    it('t("context-menu.pin-tab") must be return "Fijar"', () => {
+      expect(i18n.t("context-menu.pin-tab")).toBe("Fijar");
+    });
+
+    it('t("context-menu.unpin-tab") must be return "Desfijar"', () => {
+      expect(i18n.t("context-menu.unpin-tab")).toBe("Desfijar");
+    });
+  });
+
+  describe("Translations in English (en)", () => {
+    beforeEach(() => {
+      mockNavigatorLanguage("en-US");
+      i18n.init();
+    });
+
+    it('t("context-menu.copy") must be return "Copy"', () => {
+      expect(i18n.t("context-menu.copy")).toBe("Copy");
+    });
+
+    it('t("context-menu.cut") must be return "Cut"', () => {
+      expect(i18n.t("context-menu.cut")).toBe("Cut");
+    });
+
+    it('t("context-menu.paste") must be return "Paste"', () => {
+      expect(i18n.t("context-menu.paste")).toBe("Paste");
+    });
+
+    it('t("context-menu.bold") must be return "Bold"', () => {
+      expect(i18n.t("context-menu.bold")).toBe("Bold");
+    });
+
+    it('t("context-menu.italic") must be return "Italic"', () => {
+      expect(i18n.t("context-menu.italic")).toBe("Italic");
+    });
+
+    it('t("context-menu.underline") must be return "Underline"', () => {
+      expect(i18n.t("context-menu.underline")).toBe("Underline");
+    });
+
+    it('t("context-menu.undo") must be return "Undo"', () => {
+      expect(i18n.t("context-menu.undo")).toBe("Undo");
+    });
+
+    it('t("context-menu.redo") must be return "Redo"', () => {
+      expect(i18n.t("context-menu.redo")).toBe("Redo");
+    });
+
+    it('t("context-menu.pin-tab") must be return "Pin"', () => {
+      expect(i18n.t("context-menu.pin-tab")).toBe("Pin");
+    });
+
+    it('t("context-menu.unpin-tab") must be return "Unpin"', () => {
+      expect(i18n.t("context-menu.unpin-tab")).toBe("Unpin");
+    });
+  });
+
+  describe("Keys should be different between languages", () => {
+    it("context-menu.copy should be different in es vs en", () => {
+      mockNavigatorLanguage("es-ES");
+      i18n.init();
+      const esCopy = i18n.t("context-menu.copy");
+
+      i18n.setLang("en");
+      const enCopy = i18n.t("context-menu.copy");
+
+      expect(esCopy).not.toBe(enCopy);
+      expect(esCopy).toBe("Copiar");
+      expect(enCopy).toBe("Copy");
     });
   });
 });

@@ -3,12 +3,12 @@
 interface Props {
   action: string;
   iconName: string;
-  label: string;
+  labelKey: string;
   shortcut?: string;
   requiresSelection?: boolean;
 }
 
-const { action, iconName, label, shortcut, requiresSelection = false } = Astro.props;
+const { action, iconName, labelKey, shortcut, requiresSelection = false } = Astro.props;
 
 // Icons
 import Icon from "../../../components/icons/Icon.astro";
@@ -20,11 +20,11 @@ import Icon from "../../../components/icons/Icon.astro";
   {
     shortcut ? (
       <div class="flex justify-between items-center w-full">
-        <span class="font-semibold text-(--tn-neutral-tertiary-color) text-shadow-lg! text-shadow-white">{label}</span>
+        <span class="font-semibold text-(--tn-neutral-tertiary-color) text-shadow-lg! text-shadow-white" data-i18n={labelKey}></span>
         <span class="font-black shortcut group-hover:text-(--tn-theme-primary) group-hover:opacity-80 transition-opacity ml-[auto]! text-(--tn-theme-contrast) opacity-[0.6] py-[2px] px-[4px] text-xs!">{shortcut}</span>
       </div>
     ) : (
-      <span class="font-semibold text-(--tn-neutral-tertiary-color) text-shadow-lg! text-shadow-white">{label}</span>
+      <span class="font-semibold text-(--tn-neutral-tertiary-color) text-shadow-lg! text-shadow-white" data-i18n={labelKey}></span>
     )
   }
 </div>
