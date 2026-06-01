@@ -36,6 +36,6 @@
     "jsdom": "^27.4.0",
     "standard-version": "^9.5.0",
     "terser": "^5.44.1",
-    "vitest": "^4.0.16"
+    "vitest": "^4.1.0"
   }
 }
