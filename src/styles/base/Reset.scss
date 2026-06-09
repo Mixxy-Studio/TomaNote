@@ -47,8 +47,8 @@ body {
 
 *[contenteditable="true"]:focus,
 *[contenteditable="true"]:active {
-  outline: 2px solid var(--tn-theme-contrast);
-  outline-offset: -2px;
+  border: none;
+  outline: none;
 }
 
 .code-block {
@@ -202,8 +202,4 @@ hr {
 
 dialog::backdrop {
   background-color: rgba(0, 0, 0, .5) !important;
-}
-
-body:has(main#main-content article) {
-  overflow-y: scroll;
 }
