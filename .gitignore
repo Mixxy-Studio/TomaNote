@@ -133,3 +133,6 @@ dist
 .astro/
 .astro/**
 .astro/types.d.ts
+
+# Agent instructions (local only)
+AGENTS.md
