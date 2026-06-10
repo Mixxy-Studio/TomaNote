@@ -1,9 +1,9 @@
 // src/lib/scripts/utils/formatting.js
-// Utilidades para formateo de texto en contentEditable
+// Text formatting utilities in contentEditable
 
 export class FormattingUtils {
   /**
-   * Aplica negrita cíclica: normal → semibold → extrabold → normal
+   * Apply cyclic bolding: normal → semibold → extrabold → normal
    */
   static cycleBold() {
     const selection = window.getSelection();
@@ -11,11 +11,11 @@ export class FormattingUtils {
 
     const range = selection.getRangeAt(0);
 
-    // Buscar si ya hay un wrapper de negrita
+    // Check if a bold wrapper already exists
     let wrapper = this.findBoldWrapper(range);
 
     if (wrapper) {
-      // Ciclar el existente
+      // Cycle the existing one
       this.cycleExistingBold(wrapper);
     } else {
       // Crear nuevo wrapper
@@ -24,7 +24,7 @@ export class FormattingUtils {
   }
 
   /**
-   * Encuentra el wrapper de negrita más cercano en la selección
+   * Find the closest bold wrapper in the selection
    */
   static findBoldWrapper(range) {
     let element = range.commonAncestorContainer;
@@ -41,7 +41,7 @@ export class FormattingUtils {
   }
 
   /**
-   * Cicla un wrapper existente
+   * Cycle an existing wrapper
    */
   static cycleExistingBold(wrapper) {
     if (wrapper.classList.contains("bold-semibold")) {
@@ -55,7 +55,7 @@ export class FormattingUtils {
   }
 
   /**
-   * Aplica negrita a una selección nueva
+   * Apply bold to a new selection
    */
   static applyNewBold(range) {
     const span = document.createElement("span");
@@ -64,7 +64,7 @@ export class FormattingUtils {
     try {
       range.surroundContents(span);
     } catch (e) {
-      // Si surroundContents falla (selección compleja), usar insertNode
+      // If surroundContents fails (complex selection), use insertNode
       const contents = range.extractContents();
       span.appendChild(contents);
       range.insertNode(span);
@@ -72,7 +72,7 @@ export class FormattingUtils {
   }
 
   /**
-   * Remueve el wrapper de negrita, moviendo el contenido arriba
+   * Remove the bold wrapper by moving the content to the top.
    */
   static unwrapBold(wrapper) {
     const parent = wrapper.parentNode;

@@ -1,6 +1,5 @@
 // src/lib/scripts/ui/tabDragDrop.js
-// Sistema de drag and drop para pestañas usando SortableJS
-
+// Drag and drop system for tabs using SortableJS
 import Sortable from "sortablejs";
 
 export class TabDragDrop {
@@ -120,7 +119,7 @@ export class TabDragDrop {
       content.classList.add("dragging-content");
     }
 
-    // Deshabilitar solo scroll vertical mientras arrastra
+    // Disable only vertical scrolling while dragging
     this.tabList.style.overflowY = "hidden";
 
     this.log("🕐 Iniciando drag de tab");
@@ -139,7 +138,7 @@ export class TabDragDrop {
       content.classList.remove("dragging-content");
     }
 
-    // Restaurar scroll vertical
+    // Restore vertical scroll
     this.tabList.style.overflowY = "";
 
     this.log("🔄 Drag terminado - reordenando");
@@ -151,7 +150,7 @@ export class TabDragDrop {
       this.log("💾 Orden guardado");
     }
 
-    // Notificar cambio de pestañas
+    // Notify tab changes
     document.dispatchEvent(new CustomEvent("tabsChanged"));
   }
 

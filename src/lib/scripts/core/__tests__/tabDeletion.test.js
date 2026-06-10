@@ -53,12 +53,12 @@ describe("TabDeletionHandler", () => {
   });
 
   describe("deleteTabElement", () => {
-    it("debe retornar temprano si tabElement es null", async () => {
+    it("must return early if tabElement is null", async () => {
       await handler.deleteTabElement(null);
       expect(mockTabElement.remove).not.toHaveBeenCalled();
     });
 
-    it("debe usar el modal de confirmación cuando está disponible", async () => {
+    it("should use the confirmation modal when it is available", async () => {
       const mockModal = {
         open: vi.fn().mockResolvedValue({ confirmed: true, tabElement: mockTabElement }),
       };
@@ -69,10 +69,10 @@ describe("TabDeletionHandler", () => {
       expect(mockModal.open).toHaveBeenCalledWith(mockTabElement);
       expect(mockTabElement.remove).toHaveBeenCalled();
       expect(mockTabManager.tabsData).toHaveLength(1);
-      expect(mockTabManager.tabsData.find(t => t.id === "body-tab-1")).toBeUndefined();
+      expect(mockTabManager.tabsData.find((t) => t.id === "body-tab-1")).toBeUndefined();
     });
 
-    it("no debe eliminar si el usuario cancela en el modal", async () => {
+    it("should not delete it if the user cancels in the modal.", async () => {
       const mockModal = {
         open: vi.fn().mockResolvedValue({ confirmed: false, tabElement: null }),
       };
@@ -85,7 +85,7 @@ describe("TabDeletionHandler", () => {
       expect(mockTabManager.tabsData).toHaveLength(2);
     });
 
-    it("debe usar fallback a confirm() si el modal no está disponible", async () => {
+    it("must use fallback to confirm() if the modal is not available", async () => {
       window.closeTabConfirmationModal = null;
       global.confirm = vi.fn().mockReturnValue(true);
 
@@ -95,7 +95,7 @@ describe("TabDeletionHandler", () => {
       expect(mockTabElement.remove).toHaveBeenCalled();
     });
 
-    it("no debe eliminar si el fallback confirm() retorna false", async () => {
+    it("Do not remove if the fallback confirm() returns false", async () => {
       window.closeTabConfirmationModal = null;
       global.confirm = vi.fn().mockReturnValue(false);
 
@@ -107,27 +107,25 @@ describe("TabDeletionHandler", () => {
   });
 
   describe("executeDeletion", () => {
-    it("debe remover el elemento del DOM y actualizar datos", () => {
+    it("You must remove the element from the DOM and update the data", () => {
       handler.executeDeletion(mockTabElement);
 
       expect(mockTabElement.remove).toHaveBeenCalled();
       expect(mockTabManager.tabsData).toHaveLength(1);
-      expect(mockTabManager.tabsData.find(t => t.id === "body-tab-1")).toBeUndefined();
+      expect(mockTabManager.tabsData.find((t) => t.id === "body-tab-1")).toBeUndefined();
     });
 
-    it("debe llamar a updateTabIds y saveTabs", () => {
+    it("must call updateTabIds and saveTabs", () => {
       handler.executeDeletion(mockTabElement);
 
       expect(mockTabManager.updateTabIds).toHaveBeenCalled();
       expect(mockTabManager.saveTabs).toHaveBeenCalled();
     });
 
-    it("debe dispatchear evento tabsChanged", () => {
+    it("must dispatch tabsChanged event", () => {
       handler.executeDeletion(mockTabElement);
 
-      expect(document.dispatchEvent).toHaveBeenCalledWith(
-        expect.objectContaining({ type: "tabsChanged" })
-      );
+      expect(document.dispatchEvent).toHaveBeenCalledWith(expect.objectContaining({ type: "tabsChanged" }));
     });
   });
 });

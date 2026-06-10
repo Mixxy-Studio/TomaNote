@@ -1,14 +1,14 @@
-// Helper para usar las variables TN consistentemente
+// Helper for use variables of Tomanote consist
 @use "../abstracts/Variables.scss" as vars;
 
-// Mixin para transiciones de tema
+// Mixin for transitions of themes
 @mixin theme-transition {
   transition: background-color 0.3s ease,
     border-color 0.3s ease,
     color 0.3s ease;
 }
 
-// Clases helper para usar en cualquier lugar
+// Classes helper for use in any place
 .tn-bg-primary {
   background-color: var(--tn-color-background);
   @include theme-transition;

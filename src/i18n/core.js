@@ -1,5 +1,5 @@
 // src/i18n/core.js
-// Sistema centralizado de internacionalización para módulos JS
+// Interanational central system for modules JS
 import es from "../locales/es.json";
 import en from "../locales/en.json";
 

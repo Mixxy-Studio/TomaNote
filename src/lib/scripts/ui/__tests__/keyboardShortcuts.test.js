@@ -13,7 +13,7 @@ describe("KeyboardShortcuts", () => {
     dispatchEventSpy = vi.spyOn(document, "dispatchEvent");
     getElementByIdSpy = vi.spyOn(document, "getElementById");
     querySelectorSpy = vi.spyOn(document, "querySelector");
-    
+
     global.CustomEvent = class CustomEvent {
       constructor(type, options) {
         this.type = type;
@@ -35,29 +35,26 @@ describe("KeyboardShortcuts", () => {
   });
 
   describe("constructor", () => {
-    it("debe inicializar con opciones por defecto", () => {
+    it("It must initialize with default options", () => {
       const ks = new KeyboardShortcuts();
       expect(ks.options.debug).toBe(true);
     });
 
-    it("debe fusionar opciones personalizadas", () => {
+    it("You must merge custom options", () => {
       const ks = new KeyboardShortcuts({ debug: false });
       expect(ks.options.debug).toBe(false);
     });
   });
 
   describe("init", () => {
-    it("debe inicializar correctamente en desktop", async () => {
+    it("It must initialize correctly on the desktop", async () => {
       await keyboardShortcuts.init();
 
       expect(keyboardShortcuts.isDesktop).toBe(true);
-      expect(addEventListenerSpy).toHaveBeenCalledWith(
-        "keydown",
-        expect.any(Function),
-      );
+      expect(addEventListenerSpy).toHaveBeenCalledWith("keydown", expect.any(Function));
     });
 
-    it("no debe agregar listener en dispositivos touch", async () => {
+    it("Should not add a listener to touch devices.", async () => {
       const originalOtouchstart = window.ontouchstart;
       window.ontouchstart = true;
 
@@ -71,21 +68,16 @@ describe("KeyboardShortcuts", () => {
   });
 
   describe("setupEscapeKeyHandler", () => {
-    it("debe agregar listener de keydown", async () => {
+    it("Need to add a keydown listener", async () => {
       await keyboardShortcuts.init();
 
-      expect(addEventListenerSpy).toHaveBeenCalledWith(
-        "keydown",
-        expect.any(Function),
-      );
+      expect(addEventListenerSpy).toHaveBeenCalledWith("keydown", expect.any(Function));
     });
 
-    it("debe ignorar ESC si el modal de settings está abierto", async () => {
+    it("Should ignore ESC if the settings modal is open", async () => {
       await keyboardShortcuts.init();
-      
-      const call = addEventListenerSpy.mock.calls.find(
-        (call) => call[0] === "keydown",
-      );
+
+      const call = addEventListenerSpy.mock.calls.find((call) => call[0] === "keydown");
       const keydownHandler = call[1];
 
       const mockModal = {
@@ -94,7 +86,7 @@ describe("KeyboardShortcuts", () => {
       const mockRadio = {
         checked: true,
       };
-      
+
       getElementByIdSpy.mockReturnValue(mockModal);
       querySelectorSpy.mockReturnValue(mockRadio);
 

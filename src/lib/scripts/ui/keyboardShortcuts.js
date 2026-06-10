@@ -1,5 +1,5 @@
 // src/lib/scripts/ui/keyboardShortcuts.js
-// Sistema de atajos de teclado para desktop
+// Desktop keyboard shortcut system
 
 export class KeyboardShortcuts {
   constructor(options = {}) {
@@ -29,14 +29,14 @@ export class KeyboardShortcuts {
 
       this.log("⌨️ Tecla ESC detectada");
 
-      // 1. Verificar si hay modal de settings abierto
+      // 1. Check if there is an open settings modal
       const settingsModal = document.getElementById("info-notepad");
       if (settingsModal?.hasAttribute("open")) {
         this.log("⚠️ Modal de settings abierto - ignorando ESC");
         return;
       }
 
-      // 2. Verificar si se está editando el nombre de una pestaña
+      // 2. Check if a tab name is being edited
       const editingLabel = document.querySelector('label[contenteditable="true"]');
       if (editingLabel) {
         this.log("✏️ Modo de edición activo - saliendo del modo edición");
@@ -47,14 +47,14 @@ export class KeyboardShortcuts {
         return;
       }
 
-      // 3. Cerrar la pestaña activa (desmarcar radio)
+      // 3. Close the active tab (uncheck the radio button)
       const activeTab = document.querySelector('.tab-list input[type="radio"]:checked');
       if (activeTab) {
         this.log("🔒 Cerrando pestaña activa");
         activeTab.checked = false;
-        
-        // Notificar a otros módulos (como FloatingMenu)
-        document.dispatchEvent(new CustomEvent('tabsChanged'));
+
+        // Notify other modules (such as FloatingMenu)
+        document.dispatchEvent(new CustomEvent("tabsChanged"));
       }
     });
   }

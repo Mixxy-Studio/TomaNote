@@ -1,7 +1,7 @@
 import { describe, it, expect, vi, beforeEach, afterEach } from "vitest";
 import { initNotepad, debug } from "../../entry.js";
 
-// Mockear módulos importados
+// Mock imported modules
 vi.mock("../fontManager.js", () => ({
   FontManager: vi.fn().mockImplementation(() => ({
     loadCustomFont: vi.fn(),
@@ -46,12 +46,12 @@ describe("entry.js", () => {
   let originalConsole;
 
   beforeEach(() => {
-    // Guardar originales
+    // save originals
     originalWindow = global.window;
     originalDocument = global.document;
     originalConsole = global.console;
 
-    // Mock básico de window y document
+    // Basic Mock of window and document
     global.window = {
       fontManager: null,
       themeManager: null,
@@ -87,7 +87,7 @@ describe("entry.js", () => {
   });
 
   afterEach(() => {
-    // Restaurar
+    // Restore
     global.window = originalWindow;
     global.document = originalDocument;
     global.console = originalConsole;
@@ -95,19 +95,17 @@ describe("entry.js", () => {
   });
 
   describe("initNotepad", () => {
-    it("no debe hacer nada en entorno no navegador", async () => {
+    it("should do nothing in non-browser environment", async () => {
       delete global.window;
       delete global.document;
 
       await initNotepad();
 
-      expect(console.warn).toHaveBeenCalledWith(
-        "⚠️  Entorno no compatible (SSR o Node.js), omitiendo...",
-      );
+      expect(console.warn).toHaveBeenCalledWith("⚠️  Entorno no compatible (SSR o Node.js), omitiendo...");
     });
 
-    it("debe inicializar correctamente en navegador", async () => {
-      // Mock elementos DOM necesarios
+    it("should initialize correctly in browser", async () => {
+      // Mock necessary DOM elements
       global.document.querySelector.mockReturnValue({});
       global.document.getElementById.mockReturnValue({});
 
@@ -117,8 +115,8 @@ describe("entry.js", () => {
       expect(global.window.themeManager).toBeDefined();
     });
 
-    it("debe activar modo emergencia si falla inicialización", async () => {
-      // Forzar error en loadCriticalFunctions
+    it("should activate emergency mode if initialization fails", async () => {
+      // Force error in loadCriticalFunctions
       vi.doMock("./core/fontManager.js", () => {
         throw new Error("Test error");
       });
@@ -130,11 +128,11 @@ describe("entry.js", () => {
   });
 
   describe("debug", () => {
-    it('debe retornar "OK" en test', () => {
+    it('should return "OK" in test', () => {
       expect(debug.test()).toBe("OK");
     });
 
-    it("debe verificar elementos DOM", () => {
+    it("should verify DOM elements", () => {
       const elements = debug.checkElements();
       expect(elements).toHaveProperty("tabList");
       expect(elements).toHaveProperty("createTab");

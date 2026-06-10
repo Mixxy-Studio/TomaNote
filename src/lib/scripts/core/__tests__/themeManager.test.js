@@ -21,13 +21,13 @@ describe("ThemeManager - Lógica Básica", () => {
     document.documentElement.classList.remove("light-mode");
   });
 
-  it("Carga tema guardado en localStorage", () => {
+  it("Load theme saved in localStorage", () => {
     localStorageMock.getItem.mockReturnValue("dark");
     themeManager.loadSavedTheme();
     expect(themeManager.currentTheme).toBe("dark");
   });
 
-  it("Usa tema por defecto si no hay guardado", () => {
+  it("Use default theme if no save file is available", () => {
     localStorageMock.getItem.mockReturnValue(null);
     // Mock matchMedia for system preference
     global.matchMedia = vi.fn().mockReturnValue({ matches: false });
@@ -35,25 +35,20 @@ describe("ThemeManager - Lógica Básica", () => {
     expect(themeManager.currentTheme).toBe("light");
   });
 
-  it("Cambia tema correctamente", () => {
+  it("Change theme correctly", () => {
     themeManager.switchTheme("cozy-rose");
     expect(themeManager.currentTheme).toBe("cozy-rose");
-    expect(document.documentElement.getAttribute("data-theme")).toBe(
-      "cozy-rose",
-    );
-    expect(localStorageMock.setItem).toHaveBeenCalledWith(
-      "notepadTheme",
-      "cozy-rose",
-    );
+    expect(document.documentElement.getAttribute("data-theme")).toBe("cozy-rose");
+    expect(localStorageMock.setItem).toHaveBeenCalledWith("notepadTheme", "cozy-rose");
   });
 
-  it("Devuelve lista de temas disponibles", () => {
+  it("Returns a list of available themes", () => {
     const themes = themeManager.getThemes();
     expect(themes).toHaveLength(6);
     expect(themes[0]).toHaveProperty("id", "dark");
   });
 
-  it("Devuelve tema actual", () => {
+  it("Returns current topic", () => {
     themeManager.currentTheme = "neon-orbit";
     expect(themeManager.getCurrentTheme()).toBe("neon-orbit");
   });

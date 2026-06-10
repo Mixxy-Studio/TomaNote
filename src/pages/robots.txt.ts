@@ -21,14 +21,15 @@ export async function GET() {
   Disallow: /tmp/
 
   # Block AI crawlers that might use content for training
+  # Note: Google-Extended is allowed to appear in Google AI Overviews
   User-agent: GPTBot
   Disallow: /
 
   User-agent: ChatGPT-User
   Disallow: / 
 
-  User-agent: Google-Extended
-  Disallow: /
+  # User-agent: Google-Extended
+  # Allow: /  # Uncomment to appear in Google AI Overviews
 
   User-agent: anthropic-ai
   Disallow: /

@@ -1,5 +1,5 @@
 // src/lib/scripts/ui/contextMenu.js
-// Sistema de menú contextual para texto y pestañas
+// Context menu system for text and tabs
 
 import { detectEmojiInText, getRandomPinEmoji } from "../utils/emojiDetector.js";
 import { FormattingUtils } from "../utils/formatting.js";
@@ -22,14 +22,13 @@ export class ContextMenu {
 
   async init() {
     try {
-      // 1. Encontrar el elemento del menú
+      // 1. Find the menu item
       this.contextMenu = await this.waitForElement("#context-menu");
 
-      // 2. Configurar según flags
+      // 2. Configure according to flags
       if (this.options.enableTextContext || this.options.enableTabContext) {
         this.setupContextMenu();
       }
-
 
       return this;
     } catch (error) {
@@ -66,24 +65,24 @@ export class ContextMenu {
   }
 
   setupContextMenu() {
-    // No agregar listener en dispositivos touch (mobile)
+    // Do not add listener on touch (mobile) devices
     if ("ontouchstart" in window) {
       this.log("📱 Menú contextual deshabilitado en mobile");
       return;
     }
 
-    // Mostrar menú contextual al hacer clic derecho
+    // Show context menu on right click
     document.addEventListener("contextmenu", (e) => {
       e.preventDefault();
       this.handleContextMenu(e);
     });
 
-    // Ocultar menú al hacer clic
+    // Hide menu on click
     document.addEventListener("click", () => {
       this.hideContextMenu();
     });
 
-    // Manejar acciones del menú
+    // Manage menu actions
     this.contextMenu.addEventListener("click", (e) => {
       this.handleMenuAction(e);
     });
@@ -92,10 +91,10 @@ export class ContextMenu {
   handleContextMenu(e) {
     const target = e.target;
 
-    // Verificar si es contenido editable
+    // Check if it is editable content
     const isContentEditable = target.closest(".tab-list__item--content");
 
-    // Verificar si es etiqueta de pestaña
+    // Check if it's a tab label
     const isTabLabel = target.closest(".tab-list__item label");
 
     if (isContentEditable && this.options.enableTextContext) {
@@ -106,10 +105,10 @@ export class ContextMenu {
   }
 
   showTextContextMenu(e, editableElement) {
-    // Guardar el elemento editable activo
+    // Save the active editable element
     this.activeEditableElement = editableElement;
 
-    // Verificar si hay selección de texto
+    // Check if there is text selection
     const selection = window.getSelection();
     const hasSelection = selection.toString().length > 0;
 
@@ -117,7 +116,7 @@ export class ContextMenu {
       this.activeSelection = selection.getRangeAt(0).cloneRange();
     }
 
-    // Mostrar/ocultar opciones según el contexto
+    // Show/hide options based on context
     this.contextMenu.querySelectorAll(".context-menu__item").forEach((item) => {
       if (item.dataset.requiresSelection === "true") {
         item.classList.toggle("disabled", !hasSelection);
@@ -131,25 +130,23 @@ export class ContextMenu {
     });
 
     // Mostrar separadores
-    this.contextMenu
-      .querySelectorAll(".context-menu__separator")
-      .forEach((separator) => {
-        separator.style.display = "block";
-      });
+    this.contextMenu.querySelectorAll(".context-menu__separator").forEach((separator) => {
+      separator.style.display = "block";
+    });
 
-    // Mostrar menú en posición del mouse
+    // Show menu at mouse position
     this.showMenuAt(e.pageX, e.pageY);
 
     this.log("📝 Menú contextual de texto mostrado");
   }
 
   showTabContextMenu(e, tabLabel) {
-    // Guardar el elemento de pestaña activo
+    // Save the active tab item
     this.activeTabElement = tabLabel.closest(".tab-list__item");
     this.activeEditableElement = null;
     this.activeSelection = null;
 
-    // Verificar si la pestaña está fijada
+    // Check if the tab is locked
     const isPinned = this.activeTabElement.classList.contains("pinned");
     const pinTabText = this.contextMenu.querySelector("#pin-tab-text");
 
@@ -157,7 +154,7 @@ export class ContextMenu {
       pinTabText.textContent = isPinned ? "Desfijar" : "Fijar";
     }
 
-    // Mostrar solo opciones de pestaña
+    // Show only tab options
     this.contextMenu.querySelectorAll(".context-menu__item").forEach((item) => {
       if (item.dataset.context === "tab") {
         item.style.display = "block";
@@ -166,14 +163,12 @@ export class ContextMenu {
       }
     });
 
-    // Ocultar separadores
-    this.contextMenu
-      .querySelectorAll(".context-menu__separator")
-      .forEach((separator) => {
-        separator.style.display = "none";
-      });
+    // Hide separators
+    this.contextMenu.querySelectorAll(".context-menu__separator").forEach((separator) => {
+      separator.style.display = "none";
+    });
 
-    // Mostrar menú en posición del mouse
+    // Show menu at mouse position
     this.showMenuAt(e.pageX, e.pageY);
 
     this.log("📑 Menú contextual de pestaña mostrado");
@@ -182,7 +177,7 @@ export class ContextMenu {
   showMenuAt(x, y) {
     this.contextMenu.style.display = "block";
 
-    // Ajustar posición para que no se salga de la pantalla
+    // Adjust position so it doesn't go off the screen
     const menuWidth = this.contextMenu.offsetWidth;
     const menuHeight = this.contextMenu.offsetHeight;
     const windowWidth = window.innerWidth;
@@ -228,17 +223,17 @@ export class ContextMenu {
   }
 
   handleTextAction(action) {
-    // Asegurar que el elemento tenga el foco
+    // Ensure the element has focus
     this.activeEditableElement.focus();
 
-    // Restaurar la selección si existe
+    // Restore selection if it exists
     if (this.activeSelection) {
       const selection = window.getSelection();
       selection.removeAllRanges();
       selection.addRange(this.activeSelection);
     }
 
-    // Ejecutar comando correspondiente
+    // Execute the corresponding command
     switch (action) {
       case "copy":
       case "cut":
@@ -290,7 +285,7 @@ export class ContextMenu {
   }
 
   pinTab(tabElement) {
-    // Verificar si hay emoticono en el texto del nombre
+    // Check if there is an emoticon in the name text
     const labelSpan = tabElement.querySelector("label span");
     const tabName = labelSpan.textContent.trim();
     const emojiInText = detectEmojiInText(tabName);
@@ -298,23 +293,23 @@ export class ContextMenu {
     // Usar emoji detectado o uno aleatorio
     const emoji = emojiInText || getRandomPinEmoji();
 
-    // Marcar como fijada
+    // Mark as pinned
     tabElement.classList.add("pinned");
     const label = tabElement.querySelector("label");
     label.setAttribute("data-emoji", emoji);
     labelSpan.setAttribute("data-emoji", emoji);
 
-    // Reorganizar pestañas
+    // Reorganize tabs
     this.reorderTabs();
 
-    // Guardar cambios (necesitarás acceder al TabManager)
+    // Save changes (you will need to access the TabManager)
     this.saveTabChanges();
 
     this.log("📍 Pestaña fijada:", tabName);
   }
 
   unpinTab(tabElement) {
-    // Quitar marca de fijada
+    // Remove pinned mark
     tabElement.classList.remove("pinned");
     const label = tabElement.querySelector("label");
     const labelSpan = tabElement.querySelector("label span");
@@ -322,10 +317,10 @@ export class ContextMenu {
     label.removeAttribute("data-emoji");
     labelSpan.removeAttribute("data-emoji");
 
-    // Reorganizar pestañas
+    // Reorganize tabs
     this.reorderTabs();
 
-    // Guardar cambios
+    // Save changes
     this.saveTabChanges();
 
     this.log("📍 Pestaña desfijada");
@@ -340,21 +335,17 @@ export class ContextMenu {
 
     const allTabs = Array.from(tabList.querySelectorAll(".tab-list__item"));
 
-    // Separar pestañas fijadas y normales
-    const pinnedTabs = allTabs.filter((tab) =>
-      tab.classList.contains("pinned"),
-    );
-    const normalTabs = allTabs.filter(
-      (tab) => !tab.classList.contains("pinned"),
-    );
+    // Separate fixed and normal lashes
+    const pinnedTabs = allTabs.filter((tab) => tab.classList.contains("pinned"));
+    const normalTabs = allTabs.filter((tab) => !tab.classList.contains("pinned"));
 
-    // Remover todas las pestañas del DOM
+    // Remove all tabs from the DOM
     allTabs.forEach((tab) => tab.remove());
 
     // Obtener el elemento de referencia para insertBefore
     const referenceElement = tabAnchor || createTabButton;
 
-    // Reinsertar en orden: primero las fijadas, luego las normales
+    // Reinsert in order: first the fixed ones, then the normal ones
     if (referenceElement) {
       pinnedTabs.forEach((tab) => {
         tabList.insertBefore(tab, referenceElement);
@@ -364,7 +355,7 @@ export class ContextMenu {
         tabList.insertBefore(tab, referenceElement);
       });
     } else {
-      // Si no hay referencia, usar appendChild
+      // If there is no reference, use appendChild
       pinnedTabs.forEach((tab) => {
         tabList.appendChild(tab);
       });
@@ -378,13 +369,12 @@ export class ContextMenu {
   }
 
   saveTabChanges() {
-    // Esta función necesita acceder al TabManager para guardar
-    // Por ahora, dispara un evento global que el TabManager puede escuchar
+    // This function needs to access the TabManager to save.
+
+    // For now, it triggers a global event that the TabManager can listen for.
     const event = new CustomEvent("tabsChanged");
     document.dispatchEvent(event);
   }
-
-
 
   log(...args) {
     if (this.options.debug) {

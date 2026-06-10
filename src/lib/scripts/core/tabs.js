@@ -1,5 +1,5 @@
 // src/lib/scripts/core/tabs.js
-// Sistema completo de gestión de pestañas con feature flags
+// Complete tab management system with feature flags
 import { FormattingUtils } from "../utils/formatting.js";
 import { TabDeletionHandler } from "./tabDeletion.js";
 
@@ -29,13 +29,13 @@ export class TabManager {
     this.setupContextMenuIntegration();
   }
 
-  // ===== MÉTODOS PÚBLICOS =====
+  // ===== PUBLIC MÉTHODS =====
   async init() {
     try {
-      // 1. Encontrar elementos DOM
+      // 1. Find elementos in DOM
       await this.findDOMElements();
 
-      // 2. Inicializar funcionalidades según flags
+      // 2. Initialize functions by flags
       if (this.options.enablePersistence) {
         await this.restoreTabs();
       }
@@ -60,7 +60,7 @@ export class TabManager {
         this.setupAutoSave();
       }
 
-      // 3. Configurar evento para guardar antes de cerrar
+      // 3. Settings events before close
       window.addEventListener("beforeunload", () => this.saveTabs());
       return this;
     } catch (error) {
@@ -87,13 +87,13 @@ export class TabManager {
     const id = `body-tab-${this.tabIdCounter++}`;
     const tabData = { id, name: tabName, content, isPinned, emoji };
 
-    // Crear elemento DOM
+    // Create an DOM Element
     const tabElement = this.createTabElement(tabData);
 
-    // Agregar a datos
+    // Add to the data
     this.tabsData.push(tabData);
 
-    // Seleccionar y enfocar
+    // Choose and focus
     tabElement.querySelector("input").checked = true;
     setTimeout(() => {
       const contentDiv = tabElement.querySelector(".tab-list__item--content");
@@ -103,16 +103,16 @@ export class TabManager {
     this.log("➕ Pestaña creada:", { id, name });
     this.saveTabs();
 
-    // Notificar cambio de pestañas
+    // Notifyc change of tabs
     document.dispatchEvent(new CustomEvent("tabsChanged"));
 
     return tabData;
   }
 
-  // ===== MÉTODOS INTERNOS =====
+  // ===== INTERNAL METHODS =====
 
   setupContextMenuIntegration() {
-    // Escuchar evento de cambios en pestañas
+    // Listen for tab change events
     document.addEventListener("tabsChanged", () => {
       this.saveTabs();
     });
@@ -150,17 +150,17 @@ export class TabManager {
     const createTabButton = this.createTabButton;
     const allTabs = Array.from(this.tabList.querySelectorAll(".tab-list__item"));
 
-    // Separar pestañas fijadas y normales
+    // Separate fixed and normal lashes
     const pinnedTabs = allTabs.filter((tab) => tab.classList.contains("pinned"));
     const normalTabs = allTabs.filter((tab) => !tab.classList.contains("pinned"));
 
-    // Remover todas las pestañas del DOM
+    // Remove all tabs from the DOM
     allTabs.forEach((tab) => tab.remove());
 
-    // Obtener el elemento de referencia para insertBefore
+    // Get the reference element for insertBefore
     const referenceElement = this.tabAnchor || createTabButton;
 
-    // Reinsertar en orden: primero las fijadas, luego las normales
+    // Reinsert in order: first the fixed ones, then the normal ones
     if (referenceElement && this.tabList.contains(referenceElement)) {
       pinnedTabs.forEach((tab) => {
         this.tabList.insertBefore(tab, referenceElement);
@@ -170,7 +170,7 @@ export class TabManager {
         this.tabList.insertBefore(tab, referenceElement);
       });
     } else {
-      // Si no hay referencia válida, usar appendChild
+      // If there is no valid reference, use appendChild
       pinnedTabs.forEach((tab) => {
         this.tabList.appendChild(tab);
       });
@@ -222,15 +222,15 @@ export class TabManager {
       const savedData = localStorage.getItem("tabsData");
       this.tabsData = savedData ? JSON.parse(savedData) : [];
 
-      // Limpiar tabs existentes (excepto el botón crear)
+      // Clear existing tabs (except the create button)
       this.tabList.querySelectorAll(".tab-list__item").forEach((item) => item.remove());
 
-      // Crear elementos para cada tab
+      // Create elements for each tab
       this.tabsData.forEach((tabData) => {
         this.createTabElement(tabData);
       });
 
-      // Actualizar contador de IDs
+      // Update ID counter
       this.updateTabIdCounter();
     } catch (error) {
       this.tabsData = [];
@@ -244,7 +244,7 @@ export class TabManager {
     tabElement.className = "tab-list__item flex justify-start items-center flex-wrap h-auto ml-[5px]! first:ml-0! [&:not(.pinned)_label]:relative! border border-(--tn-theme-secondary) rounded";
     if (isPinned) tabElement.classList.add("pinned");
 
-    // Usar template literal para el HTML (igual al original)
+    // Use template literal for HTML (same as the original)
     const labelDataEmoji = emoji ? `data-emoji="${emoji}"` : "";
     const spanDataEmoji = emoji ? `data-emoji="${emoji}"` : "";
 
@@ -267,7 +267,7 @@ export class TabManager {
       <div class="tab-list__item--content overflow-x-hidden overflow-y-scroll font-thin hidden bg-(--tn-theme-secondary) min-h-[92dvh] p-(--tn-padding-base)! border-0 outline-0 absolute top-[50px] left-[10px] h-[calc(100%-60px)] w-[calc(100%-(var(--tn-padding-base)*2))] first:mr-[10px] border-r border-(--tn-theme-secondary)! rounded-md" contenteditable="true">${content || ""}</div>
     `;
 
-    // Insertar usando el ancla o el botón como referencia
+    // Insert using the anchor or button as a reference
     if (this.tabAnchor) {
       this.tabList.insertBefore(tabElement, this.tabAnchor);
     } else if (this.createTabButton && this.tabList.contains(this.createTabButton)) {
@@ -288,14 +288,14 @@ export class TabManager {
   }
 
   setupContentEditing() {
-    // Configurar manejo de tabulador en editores de contenido
+    // Configure tab handling in content editors
     this.tabList.addEventListener("keydown", (event) => {
       if (event.key === "Tab" && event.target.classList.contains("tab-list__item--content")) {
         event.preventDefault();
         document.execCommand("insertText", false, "    ");
       }
 
-      // Atajo para negrita: CTRL + B
+      // Shortcut for bold: CTRL + B
       if (event.ctrlKey && event.key === "b" && event.target.classList.contains("tab-list__item--content")) {
         event.preventDefault();
         FormattingUtils.cycleBold();
@@ -304,7 +304,7 @@ export class TabManager {
   }
 
   setupTabEditing() {
-    // Delegar eventos para manejar edición de nombres
+    // Delegate events to handle name editing
     this.tabList.addEventListener("click", (e) => {
       const editButton = e.target.closest(".edit-name-tab");
       if (editButton) {
@@ -371,7 +371,7 @@ export class TabManager {
   }
 
   setupTabDeletion() {
-    // Delegar eventos para eliminar pestañas
+    // Delegate events to delete tabs
     this.tabList.addEventListener("click", (e) => {
       const deleteButton = e.target.closest(".delete-tab");
       if (deleteButton) {
@@ -380,7 +380,7 @@ export class TabManager {
       }
     });
 
-    // También manejar clic medio del mouse
+    // Also handle middle mouse click
     document.addEventListener("auxclick", (e) => {
       if (e.button === 1) {
         // Botón medio
@@ -404,7 +404,7 @@ export class TabManager {
   }
 
   setupAutoSave() {
-    // Guardar automáticamente al cambiar contenido
+    // Automatically save when changing content
     this.tabList.addEventListener("input", (e) => {
       if (e.target.classList.contains("tab-list__item--content")) {
         setTimeout(() => this.saveTabs(), 500); // Debounce
@@ -450,7 +450,7 @@ export class TabManager {
       const label = item.querySelector("label");
       const newId = `body-tab-${index + 1}`;
 
-      // Solo actualizar si cambió
+      // Only update if it changed
       if (input && input.id !== newId) {
         input.id = newId;
         if (label) label.setAttribute("for", newId);
@@ -486,7 +486,7 @@ export class TabManager {
     }
   }
 
-  // Métodos para debugging
+  // Debugging methods
   debug() {
     return {
       tabsCount: this.tabsData.length,
