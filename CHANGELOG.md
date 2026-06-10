@@ -7,18 +7,26 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 ## [0.4.3] - April 14, 2026
 
 ### Added
-- New API to create and share custom plugins
-- Completely redesigned interface with real-time metrics
-- Now the app works offline and can be installed as a native app
-- Automatic synchronization with repositories and issues
-- WCAG 2.1 level AA compliance
+- All components restructured into src/features/ as self-contained modules: FloatingMenu, ContextualMenu, ModalInfo, CreateTab, CloseTabConfirmation, and Roadmap
+- Custom <dialog> element for tab deletion, replacing the native browser confirm()
+- ARIA attributes on modals, improved keyboard navigation, screen reader support
+- Google Search Console verification meta tag, BreadcrumbList and HowTo schemas, 3 new SEO views, default hreflang set to 'en', AI agent indexing (Google, GPT, Anthropic)
+- Floating menu position auto-adjusts based on install mode (PWA vs browser), tablet and mobile display corrections, pasted text preserves its original structure
+- All comments and test descriptions translated to English, contextual menu and confirmation modal translation
+- Removed outline on [contenteditable]:focus, added global dialog::backdrop, --nav-bottom adjusted to 1rem, removed redundant font styles
+- 6 icons added: close button, rocket, file-text, chevron-right, alert, and trash
+- New Roadmap tab replacing the News tab, with i18n integration and automated sync from roadmap-data.json
+- Scripts for automated roadmap translation sync and CHANGELOG.md generation
+- Removed orphaned scripts (roadmap-gen.js), unused roadmap.old-* translation keys, duplicate files deleted
 
 ## [0.4.2] - March 31, 2026
 
 ### Added
-- Initial load optimization reducing response time by 40%
-- Complete dark mode implementation with customizable color palette
-- Over 15 bugs reported by the community have been fixed
+- The native browser confirm() is being phased out, so a custom confirmation modal was implemented, aligned with the app's design.
+- The floating menu appeared in different positions between the web version and the installed PWA, so a dynamic script was implemented to calculate the correct position in both contexts.
+- Tests cover new and modified features. The tab closing logic was moved to a modular standalone script, and tests were added for the floating menu and tab close confirmation.
+- The 'alert' and 'trash' icons were added to provide a clearer representation of the tab closing flow for users.
+- The text editor now includes global styles for consistent rendering, especially optimized for content pasted from external web pages.
 
 ### Previous Versions
 
