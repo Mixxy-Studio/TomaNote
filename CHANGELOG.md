@@ -4,7 +4,7 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
-## [0.4.3] - April 14, 2026
+## [0.4.3] - June 10, 2026
 
 ### Added
 - All components restructured into src/features/ as self-contained modules: FloatingMenu, ContextualMenu, ModalInfo, CreateTab, CloseTabConfirmation, and Roadmap
@@ -19,7 +19,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 - Scripts for automated roadmap translation sync and CHANGELOG.md generation
 - Removed orphaned scripts (roadmap-gen.js), unused roadmap.old-* translation keys, duplicate files deleted
 
-## [0.4.2] - March 31, 2026
+## [0.4.2] - April 1, 2026
 
 ### Added
 - The native browser confirm() is being phased out, so a custom confirmation modal was implemented, aligned with the app's design.
@@ -31,7 +31,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 ### Previous Versions
 
 <details>
-<summary>[0.4.2] - March 26, 2026</summary>
+<summary>[0.4.2] - March 27, 2026</summary>
 
 - Custom modal dialog for tab deletion, replacing deprecated browser confirm()
 - Dynamic floating menu positioning, safe area insets support for iOS PWA, virtual keyboard detection, fixed positioning in standalone mode
@@ -41,7 +41,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 </details>
 
 <details>
-<summary>[0.4.1] - March 24, 2026</summary>
+<summary>[0.4.1] - March 25, 2026</summary>
 
 - Pasted text now inserts at cursor position using Selection API instead of execCommand
 - Resolved 7 critical and high severity vulnerabilities (minimatch, rollup, svgo, immutable, ajv, devalue). Regenerated package-lock.json
@@ -52,7 +52,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 </details>
 
 <details>
-<summary>[0.4.0] - March 23, 2026</summary>
+<summary>[0.4.0] - March 24, 2026</summary>
 
 - Floating menu with grouped actions (content, font, tabs)
 - Drag & drop tab reordering powered by SortableJS
@@ -65,7 +65,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 </details>
 
 <details>
-<summary>[0.3.2] - February 3, 2026</summary>
+<summary>[0.3.2] - February 4, 2026</summary>
 
 - 7 issues resolved: new tab accessibility, mobile responsiveness, bold formatting, custom font removal, domain persistence, duplicate alerts and Apple warnings
 - Vitest framework with jsdom, test suites for ThemeManager, FontManager, TabManager and ContextMenu
@@ -76,7 +76,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 </details>
 
 <details>
-<summary>[0.3.0] - December 28, 2025</summary>
+<summary>[0.3.0] - December 29, 2025</summary>
 
 - 6 visual styles available to customize the appearance
 - Install as application on PC and mobile devices
@@ -86,14 +86,14 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 </details>
 
 <details>
-<summary>[0.2.2] - December 28, 2025</summary>
+<summary>[0.2.2] - December 29, 2025</summary>
 
 - Preview environment prepared for update to version 0.3.0
 
 </details>
 
 <details>
-<summary>[0.2.1] - December 16, 2025</summary>
+<summary>[0.2.1] - December 17, 2025</summary>
 
 - Minor text adjustments in the information modal
 - Security limits added to GitHub Actions workflow
@@ -102,7 +102,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 </details>
 
 <details>
-<summary>[0.2.0] - December 16, 2025</summary>
+<summary>[0.2.0] - December 17, 2025</summary>
 
 - Full project rewrite to improve structure and maintainability
 - Significant optimizations in initial loading time
