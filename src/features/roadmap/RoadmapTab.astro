@@ -1,11 +1,12 @@
 ---
 // RoadmapTab.astro
-import { getLang } from "../../i18n/utils";
+import { getLang, useTranslations } from "../../i18n/utils";
 import Icon from "../../components/icons/Icon.astro";
 import roadmapData from "./roadmap-data.json";
 import RoadmapColumn from "./RoadmapColumn.astro";
 
 const lang = getLang();
+const t = useTranslations(lang);
 
 // Filtrar versiones que se muestran en el tab (solo prev, current, next)
 const visibleVersions = roadmapData.versions.filter((v) => v.showInTab !== false);
@@ -33,5 +34,11 @@ const oldVersions = roadmapData.versions.filter((v) => v.isOld);
         {orderedVersions.map((version) => <RoadmapColumn version={version} lang={lang} />)}
       </div>
     </div>
+  </div>
+
+  <div class="text-start mt-6! pb-4! pl-4">
+    <a href={t("roadmap.changelog-link")} target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1 text-sm text-(--tn-theme-contrast) hover:underline transition-all!" data-i18n="roadmap.viewChangelog">
+      {t("roadmap.viewChangelog")}
+    </a>
   </div>
 </div>
