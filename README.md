@@ -2,7 +2,7 @@
 
 <div align="center">
 
-![Version](https://img.shields.io/badge/version-0.4.2-blue.svg)
+![Version](https://img.shields.io/badge/version-0.4.3-blue.svg)
 ![License](https://img.shields.io/badge/license-AGPL%20v3-green.svg)
 ![Status](https://img.shields.io/badge/status-active-success.svg)
 ![Mobile](https://img.shields.io/badge/mobile-responsive-success)
@@ -20,21 +20,27 @@ TomaNote is a modern, minimalist notepad that runs directly in your browser. No 
 > Want to see what's coming next?
 > Check the **Roadmap** inside the app at [tomanote.app](https://tomanote.app) ✨
 
-## 🚀 What's new — v0.4.2
+## 🚀 What's new — v0.4.3
 
-This release focuses on deprecation handling and mobile/PWA improvements.
+This release is a major refactor focusing on modularization, internationalization, and SEO.
 
-### 🔔 Modal confirmation for tab deletion
-Replaced browser's native confirm() dialog with a custom modal. The native confirm() will be deprecated in future browser versions.
+### 🧩 Full modularization
+All components restructured into `src/features/` as self-contained modules: FloatingMenu, ContextualMenu, ModalInfo, CreateTab, CloseTabConfirmation, and Roadmap.
 
-### 📱 Floating menu positioning fix
-Improved positioning for mobile browsers and PWA installations. The menu now correctly adapts to:
-- Safe area insets on iOS
-- Navigation bars on Android browsers
-- Virtual keyboard detection
+### 🌐 Internationalization
+Floating menu tooltips and contextual menu actions now use the i18n system. All comments and test descriptions translated to English.
+
+### 🗺️ Roadmap tab
+New Roadmap tab replacing the News tab, with i18n integration and automated sync from roadmap-data.json. "View full changelog" link included.
+
+### ♿ Accessibility improvements
+ARIA attributes on modals, improved keyboard navigation, and screen reader support.
+
+### 🔍 SEO optimization
+Google Search Console verification, BreadcrumbList and HowTo schemas, 3 new SEO views (About, Privacy, Terms), and AI agent indexing.
 
 ### 🧪 Test coverage
-Added 19 new tests for the new modules. All 163 tests passing.
+All 267 tests passing — covering modularized components, i18n, and UI features.
 
 ## 🛠️ Tech Stack
 
