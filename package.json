@@ -9,7 +9,7 @@
     "build": "npm run sync:roadmap && npm run changelog && astro build",
     "predev": "npm run sync:roadmap",
     "prebuild": "npm run sync:roadmap && npm run changelog",
-    "deploy": "gh-pages -d dist",
+    "deploy": "gh-pages -d dist -t",
     "preview": "astro preview",
     "astro": "astro",
     "test": "vitest",
