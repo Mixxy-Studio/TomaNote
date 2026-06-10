@@ -489,6 +489,95 @@ describe("I18nManager - Integration with TabManager", () => {
   });
 });
 
+describe("Floating menu tooltip translations (context-menu keys)", () => {
+  let i18n;
+
+  beforeEach(async () => {
+    vi.clearAllMocks();
+    resetI18n();
+    vi.resetModules();
+    const module = await import("../core.js");
+    i18n = module.i18n;
+  });
+
+  describe("Spanish translations", () => {
+    beforeEach(() => {
+      mockNavigatorLanguage("es-ES");
+      i18n.init();
+    });
+
+    const spanishExpected = {
+      "context-menu.copy": "Copiar",
+      "context-menu.cut": "Cortar",
+      "context-menu.paste": "Pegar",
+      "context-menu.bold": "Negrita",
+      "context-menu.italic": "Itálica",
+      "context-menu.underline": "Subrayado",
+      "context-menu.undo": "Deshacer",
+      "context-menu.redo": "Rehacer",
+      "context-menu.pin-tab": "Fijar",
+      "context-menu.unpin-tab": "Desfijar",
+      "context-menu.edit-name-tab": "Renombrar",
+      "context-menu.delete-tab": "Eliminar",
+      "context-menu.settings": "Ajustes",
+    };
+
+    Object.entries(spanishExpected).forEach(([key, expected]) => {
+      it(`t("${key}") must return "${expected}"`, () => {
+        expect(i18n.t(key)).toBe(expected);
+      });
+    });
+  });
+
+  describe("English translations", () => {
+    beforeEach(() => {
+      mockNavigatorLanguage("en-US");
+      i18n.init();
+    });
+
+    const englishExpected = {
+      "context-menu.copy": "Copy",
+      "context-menu.cut": "Cut",
+      "context-menu.paste": "Paste",
+      "context-menu.bold": "Bold",
+      "context-menu.italic": "Italic",
+      "context-menu.underline": "Underline",
+      "context-menu.undo": "Undo",
+      "context-menu.redo": "Redo",
+      "context-menu.pin-tab": "Pin",
+      "context-menu.unpin-tab": "Unpin",
+      "context-menu.edit-name-tab": "Rename",
+      "context-menu.delete-tab": "Delete",
+      "context-menu.settings": "Settings",
+    };
+
+    Object.entries(englishExpected).forEach(([key, expected]) => {
+      it(`t("${key}") must return "${expected}"`, () => {
+        expect(i18n.t(key)).toBe(expected);
+      });
+    });
+  });
+
+  describe("Floating menu action-to-key mapping", () => {
+    beforeEach(() => {
+      mockNavigatorLanguage("en-US");
+      i18n.init();
+    });
+
+    const actions = ["redo", "undo", "copy", "paste", "bold", "underline", "italic", "pin-tab", "edit-name-tab", "delete-tab", "settings"];
+
+    actions.forEach((action) => {
+      const key = `context-menu.${action}`;
+      it(`"${key}" must exist and return a non-empty string`, () => {
+        const result = i18n.t(key);
+        expect(result).toBeTruthy();
+        expect(result.length).toBeGreaterThan(0);
+        expect(result).not.toBe(key);
+      });
+    });
+  });
+});
+
 describe("I18nManager - Optional Chaining y null safety", () => {
   let i18n;
 

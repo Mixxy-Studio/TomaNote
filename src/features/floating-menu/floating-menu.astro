@@ -8,23 +8,27 @@ import MainToolsButton from "./components/MainToolsButton.astro";
 import FloatingButtonGroup from "./components/FloatingButtonGroup.astro";
 import FloatingButton from "./components/FloatingButton.astro";
 
+// i18n
+import { getLang, useTranslations } from "../../i18n/utils";
+const t = useTranslations(getLang());
+
 const contentButtons = [
-  { action: "redo", iconName: "redo", tooltip: "Redo", className: "tn-redo" },
-  { action: "undo", iconName: "undo", tooltip: "Undo", className: "tn-undo" },
-  { action: "copy", iconName: "copy", tooltip: "Copy", className: "tn-copy" },
-  { action: "paste", iconName: "paste", tooltip: "Paste", className: "tn-paste" },
+  { action: "redo", iconName: "redo", tooltip: t("context-menu.redo"), className: "tn-redo" },
+  { action: "undo", iconName: "undo", tooltip: t("context-menu.undo"), className: "tn-undo" },
+  { action: "copy", iconName: "copy", tooltip: t("context-menu.copy"), className: "tn-copy" },
+  { action: "paste", iconName: "paste", tooltip: t("context-menu.paste"), className: "tn-paste" },
 ];
 
 const fontButtons = [
-  { action: "bold", iconName: "bold", tooltip: "Bold", className: "tn-bold" },
-  { action: "underline", iconName: "underline", tooltip: "Underline", className: "tn-under" },
-  { action: "italic", iconName: "italic", tooltip: "Italic", className: "tn-italic" },
+  { action: "bold", iconName: "bold", tooltip: t("context-menu.bold"), className: "tn-bold" },
+  { action: "underline", iconName: "underline", tooltip: t("context-menu.underline"), className: "tn-under" },
+  { action: "italic", iconName: "italic", tooltip: t("context-menu.italic"), className: "tn-italic" },
 ];
 
 const tabButtons = [
-  { action: "pin-tab", iconName: "pin", tooltip: "Pin Tab", className: "tn-pin" },
-  { action: "edit-name-tab", iconName: "edit", tooltip: "Edit Name Tab", className: "tn-edit" },
-  { action: "delete-tab", iconName: "delete", tooltip: "Delete Tab", className: "tn-delete" },
+  { action: "pin-tab", iconName: "pin", tooltip: t("context-menu.pin-tab"), className: "tn-pin" },
+  { action: "edit-name-tab", iconName: "edit", tooltip: t("context-menu.edit-name-tab"), className: "tn-edit" },
+  { action: "delete-tab", iconName: "delete", tooltip: t("context-menu.delete-tab"), className: "tn-delete" },
 ];
 ---
 
@@ -45,7 +49,7 @@ const tabButtons = [
       <FloatingButtonGroup id="tn-navbar__tab" radioName="options" radioId="tn-open-options__tab" iconName="tab" buttons={tabButtons} iconStrokeWidth="1.5" />
 
       {/* Individual Settings button */}
-      <FloatingButton action="settings" iconName="settings" tooltip="Settings" className="tn-setting border-(--tn-theme-contrast)! p-4! bg-(--tn-theme-secondary)" onClick="event.preventDefault(); document.querySelector('dialog#info-notepad').showModal()" />
+      <FloatingButton action="settings" iconName="settings" tooltip={t("context-menu.settings")} className="tn-setting border-(--tn-theme-contrast)! p-4! bg-(--tn-theme-secondary)" onClick="event.preventDefault(); document.querySelector('dialog#info-notepad').showModal()" />
     </div>
   </div>
 </nav>
