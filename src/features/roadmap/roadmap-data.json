@@ -47,12 +47,16 @@
         "es": [
           { "summary": "Actualización de dependencias", "description": "Dependencias críticas actualizadas mediante dependabot: Vite y grupo de dependencias npm_and_yarn" },
           { "summary": "Corrección de estilos para Vite", "description": "Ajustes de estilos requeridos tras la última actualización de Vite para mantener la compatibilidad visual" },
-          { "summary": "Parche de seguridad CVE-2026-33532", "description": "Resuelta vulnerabilidad CVE-2026-33532 y vulnerabilidades relacionadas mediante overrides en npm" }
-        ],
+          { "summary": "Parche de seguridad CVE-2026-33532", "description": "Resuelta vulnerabilidad CVE-2026-33532 y vulnerabilidades relacionadas mediante overrides en npm" },
+          { "summary": "Internacionalización completa en páginas SEO", "description": "Las páginas Acerca de, Términos y Privacidad ahora se renderizan en el idioma del usuario mediante useTranslations()" },
+          { "summary": "Limpieza de código", "description": "Eliminado archivo duplicado contextMenu.js, strings hardcodeados en español reemplazados por claves i18n, corregido parpadeo de idioma incorrecto"
+        }],
         "en": [
           { "summary": "Dependency updates", "description": "Critical dependencies updated via dependabot: Vite and npm_and_yarn dependency group" },
           { "summary": "Vite style fix", "description": "Style adjustments required after the latest Vite update to maintain visual compatibility" },
-          { "summary": "Security patch CVE-2026-33532", "description": "Resolved CVE-2026-33532 vulnerability and related issues via npm overrides" }
+          { "summary": "Security patch CVE-2026-33532", "description": "Resolved CVE-2026-33532 vulnerability and related issues via npm overrides" },
+          { "summary": "Full i18n on SEO pages", "description": "About, Terms and Privacy pages now render in the user's language via useTranslations()" },
+          { "summary": "Code cleanup", "description": "Removed duplicate contextMenu.js, replaced hardcoded Spanish strings with i18n keys, fixed language flash on settings tabs" }
         ]
       }
     },

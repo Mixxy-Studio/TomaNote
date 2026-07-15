@@ -136,3 +136,6 @@ dist
 
 # Agent instructions (local only)
 AGENTS.md
+
+# Windows artifact
+nul
