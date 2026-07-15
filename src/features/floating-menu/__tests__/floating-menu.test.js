@@ -21,6 +21,7 @@ describe("FloatingMenu", () => {
 
     mockFloatingMenu = {
       addEventListener: vi.fn(),
+      querySelector: vi.fn().mockReturnValue(null),
       querySelectorAll: vi.fn().mockReturnValue([]),
     };
 

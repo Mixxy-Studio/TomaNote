@@ -351,6 +351,7 @@ export class FloatingMenu {
       }
     });
 
+    // Mobile: hide tools button when no tab active
     if (this.toolsButton) {
       if (hasActiveTab) {
         this.toolsButton.classList.remove("tn-tools-hidden");
@@ -358,13 +359,22 @@ export class FloatingMenu {
       } else {
         this.toolsButton.classList.add("tn-tools-hidden");
         this.toolsButton.style.display = "none";
-
-        const submenuRadios = this.floatingMenu?.querySelectorAll('input[type="radio"][name="options"]');
-        submenuRadios?.forEach((radio) => (radio.checked = false));
-
-        const mainCheckbox = document.getElementById("tn-open-options");
-        if (mainCheckbox) mainCheckbox.checked = false;
       }
+    }
+
+    // Desktop: hide tools container when no tab active
+    const toolsContainer = this.floatingMenu?.querySelector(".tn-tools-container");
+    if (toolsContainer) {
+      toolsContainer.style.display = hasActiveTab ? "" : "none";
+    }
+
+    // Close sub-menus when no tab active
+    if (!hasActiveTab) {
+      const submenuRadios = this.floatingMenu?.querySelectorAll('input[type="radio"][name="options"]');
+      submenuRadios?.forEach((radio) => (radio.checked = false));
+
+      const mainCheckbox = document.getElementById("tn-open-options");
+      if (mainCheckbox) mainCheckbox.checked = false;
     }
 
     this.log(`🔄 Estados actualizados - Tab activa: ${hasActiveTab}, Selección: ${hasTextSelection}`);
