@@ -1,6 +1,8 @@
 import { describe, it, expect, beforeEach, vi } from "vitest";
 import { FloatingNavPosition } from "../floatingNavPosition.js";
 
+const originalGetById = document.getElementById.bind(document);
+
 describe("FloatingNavPosition", () => {
   let positionHandler;
   let mockNavElement;
@@ -28,6 +30,8 @@ describe("FloatingNavPosition", () => {
 
     document.getElementById = vi.fn().mockReturnValue(mockNavElement);
     window.matchMedia = vi.fn().mockReturnValue({ matches: false });
+
+    localStorage.clear();
   });
 
   describe("init", () => {
@@ -126,6 +130,98 @@ describe("FloatingNavPosition", () => {
       positionHandler.setupEventListeners();
 
       expect(mockVisualViewport.addEventListener).toHaveBeenCalledWith("resize", expect.any(Function));
+    });
+  });
+
+  describe("getContentHeight", () => {
+    const mockBottomBar = { offsetHeight: 66 };
+    const mockTabLabel = { offsetHeight: 44 };
+
+    beforeEach(() => {
+      window.visualViewport = { height: 844 };
+      window.matchMedia = vi.fn().mockReturnValue({ matches: false });
+      localStorage.clear();
+    });
+
+    it("should set --content-height on mobile", () => {
+      window.matchMedia = vi.fn((q) => ({ matches: q === "(max-width: 767px)" }));
+
+      document.getElementById = originalGetById;
+      vi.spyOn(document, "getElementById").mockImplementation((id) => {
+        if (id === "bottom-bar") return mockBottomBar;
+        if (id === "floating-nav") return mockNavElement;
+        return originalGetById(id);
+      });
+      vi.spyOn(document, "querySelector").mockImplementation((sel) => {
+        if (sel === ".tab-list__item label") return mockTabLabel;
+        return null;
+      });
+
+      positionHandler = new FloatingNavPosition();
+      positionHandler.getContentHeight();
+
+      expect(mockDocumentElement.style.setProperty).toHaveBeenCalledWith("--content-height", "724px");
+    });
+
+    it("should NOT set --content-height on desktop", () => {
+      window.matchMedia = vi.fn().mockReturnValue({ matches: false });
+
+      positionHandler = new FloatingNavPosition();
+      positionHandler.getContentHeight();
+
+      expect(mockDocumentElement.style.setProperty).not.toHaveBeenCalledWith("--content-height", expect.anything());
+    });
+
+    it("should use cached value when viewport matches", () => {
+      localStorage.setItem("contentHeightCache", JSON.stringify({ height: 500, viewportHeight: 844 }));
+
+      window.matchMedia = vi.fn((q) => ({ matches: q === "(max-width: 767px)" }));
+      window.visualViewport = { height: 844 };
+
+      positionHandler = new FloatingNavPosition();
+      positionHandler.getContentHeight();
+
+      expect(mockDocumentElement.style.setProperty).toHaveBeenCalledWith("--content-height", "500px");
+    });
+
+    it("should recalculate when viewport changes", () => {
+      localStorage.setItem("contentHeightCache", JSON.stringify({ height: 500, viewportHeight: 844 }));
+
+      window.matchMedia = vi.fn((q) => ({ matches: q === "(max-width: 767px)" }));
+      window.visualViewport = { height: 600 };
+
+      document.getElementById = originalGetById;
+      vi.spyOn(document, "getElementById").mockImplementation((id) => {
+        if (id === "bottom-bar") return mockBottomBar;
+        if (id === "floating-nav") return mockNavElement;
+        return originalGetById(id);
+      });
+      vi.spyOn(document, "querySelector").mockImplementation((sel) => {
+        if (sel === ".tab-list__item label") return mockTabLabel;
+        return null;
+      });
+
+      positionHandler = new FloatingNavPosition();
+      positionHandler.getContentHeight();
+
+      expect(mockDocumentElement.style.setProperty).toHaveBeenCalledWith("--content-height", "480px");
+    });
+
+    it("should fallback to 44px when no tab labels exist", () => {
+      window.matchMedia = vi.fn((q) => ({ matches: q === "(max-width: 767px)" }));
+
+      document.getElementById = originalGetById;
+      vi.spyOn(document, "getElementById").mockImplementation((id) => {
+        if (id === "bottom-bar") return mockBottomBar;
+        if (id === "floating-nav") return mockNavElement;
+        return originalGetById(id);
+      });
+      vi.spyOn(document, "querySelector").mockReturnValue(null);
+
+      positionHandler = new FloatingNavPosition();
+      positionHandler.getContentHeight();
+
+      expect(mockDocumentElement.style.setProperty).toHaveBeenCalledWith("--content-height", "724px");
     });
   });
 });

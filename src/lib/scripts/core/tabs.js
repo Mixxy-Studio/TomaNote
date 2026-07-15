@@ -62,6 +62,14 @@ export class TabManager {
 
       // 3. Settings events before close
       window.addEventListener("beforeunload", () => this.saveTabs());
+
+      // 4. Recalculate content height when switching tabs
+      this.tabList.addEventListener("click", (e) => {
+        if (e.target.closest(".tab-list__item label")) {
+          this.updateContentHeight();
+        }
+      });
+
       return this;
     } catch (error) {
       throw error;
@@ -106,6 +114,8 @@ export class TabManager {
     // Notifyc change of tabs
     document.dispatchEvent(new CustomEvent("tabsChanged"));
 
+    this.updateContentHeight();
+
     return tabData;
   }
 
@@ -116,6 +126,10 @@ export class TabManager {
     document.addEventListener("tabsChanged", () => {
       this.saveTabs();
     });
+  }
+
+  updateContentHeight() {
+    window.floatingNavPosition?.getContentHeight();
   }
 
   pinTab(tabElement, emoji = "📄") {
@@ -264,7 +278,7 @@ export class TabManager {
           </svg>
         </button>
       </label>
-      <div class="tab-list__item--content md:ml-10px overflow-x-hidden overflow-y-scroll font-thin hidden bg-(--tn-theme-secondary) min-h-[93dvh] p-(--tn-padding-base)! border-0 outline-0 absolute top-11 md:left-2.5 md:w-[calc(100%-25px)] first:mr-2.5 border-r border-(--tn-theme-secondary)! rounded-md" contenteditable="true">${content || ""}</div>
+      <div class="tab-list__item--content md:ml-10px overflow-x-hidden overflow-y-scroll font-thin hidden bg-(--tn-theme-secondary) p-(--tn-padding-base)! border-0 outline-0 absolute top-11 md:left-2.5 md:w-[calc(100%-25px)] first:mr-2.5 border-r border-(--tn-theme-secondary)! rounded-md" contenteditable="true">${content || ""}</div>
     `;
 
     // Insert using the anchor or button as a reference

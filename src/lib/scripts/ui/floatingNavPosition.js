@@ -100,4 +100,39 @@ export class FloatingNavPosition {
       document.documentElement.style.setProperty("--bb-pb", "0px");
     }
   }
+
+  getContentHeight() {
+    const isMobile = window.matchMedia("(max-width: 767px)").matches;
+    if (!isMobile) return;
+
+    const viewportHeight = window.visualViewport?.height ?? window.innerHeight;
+    const cacheKey = "contentHeightCache";
+
+    try {
+      const cached = JSON.parse(localStorage.getItem(cacheKey));
+      if (cached && cached.viewportHeight === viewportHeight) {
+        document.documentElement.style.setProperty("--content-height", `${cached.height}px`);
+        return;
+      }
+    } catch (e) {}
+
+    const bottomBar = document.getElementById("bottom-bar");
+    if (!bottomBar) return;
+
+    const tabLabel = document.querySelector(".tab-list__item label");
+    const tabLabelHeight = tabLabel ? tabLabel.offsetHeight : 44;
+
+    const bottomBarHeight = bottomBar.offsetHeight || 76;
+    const bottomBarMargin = 10;
+
+    const availableHeight = viewportHeight - tabLabelHeight - bottomBarHeight - bottomBarMargin;
+
+    if (availableHeight > 0) {
+      document.documentElement.style.setProperty("--content-height", `${availableHeight}px`);
+
+      try {
+        localStorage.setItem(cacheKey, JSON.stringify({ height: availableHeight, viewportHeight }));
+      } catch (e) {}
+    }
+  }
 }

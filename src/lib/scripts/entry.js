@@ -14,10 +14,13 @@ export async function initNotepad() {
     // 2. Initialize basic components
     await initializeBasicComponents();
 
-    // 3. Load additional (less critical) modules
+    // 3. Initial content height calculation (after tabs + floatingNav are ready)
+    window.floatingNavPosition?.getContentHeight();
+
+    // 4. Load additional (less critical) modules
     await loadOptionalModules();
 
-    // 4. Verify that everything is working
+    // 5. Verify that everything is working
     await verifyFunctionality();
   } catch (error) {
     // Attempt minimal functionality
