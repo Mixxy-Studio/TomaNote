@@ -155,5 +155,17 @@
   "roadmap.next.1.summary": "Live Markdown preview",
   "roadmap.next.1.description": "Write in Markdown and see the result rendered in real time directly in your note.",
   "roadmap.next.2.summary": "Global search",
-  "roadmap.next.2.description": "Search among your notes, either by title or directly by note content."
+  "roadmap.next.2.description": "Search among your notes, either by title or directly by note content.",
+  "roadmap.prev.5.summary": "Internationalization",
+  "roadmap.prev.5.description": "All comments and test descriptions translated to English, contextual menu and confirmation modal translation",
+  "roadmap.prev.6.summary": "Style updates",
+  "roadmap.prev.6.description": "Removed outline on [contenteditable]:focus, added global dialog::backdrop, --nav-bottom adjusted to 1rem, removed redundant font styles",
+  "roadmap.prev.7.summary": "New icons",
+  "roadmap.prev.7.description": "6 icons added: close button, rocket, file-text, chevron-right, alert, and trash",
+  "roadmap.prev.8.summary": "Roadmap",
+  "roadmap.prev.8.description": "New Roadmap tab replacing the News tab, with i18n integration and automated sync from roadmap-data.json",
+  "roadmap.prev.9.summary": "Automation",
+  "roadmap.prev.9.description": "Scripts for automated roadmap translation sync and CHANGELOG.md generation",
+  "roadmap.prev.10.summary": "Cleanup",
+  "roadmap.prev.10.description": "Removed orphaned scripts (roadmap-gen.js), unused roadmap.old-* translation keys, duplicate files deleted"
 }

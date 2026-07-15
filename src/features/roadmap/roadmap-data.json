@@ -3,39 +3,14 @@
     {
       "id": "prev",
       "type": "previous",
-      "versionNumber": "0.4.2",
-      "date": "2026-04-01",
-      "isCurrent": false,
-      "isNext": false,
-      "items": {
-        "es": [
-          { "summary": "Modal de confirmacion para eliminar pestañas", "description": "El método nativo confirm() del navegador está siendo desincentivado. Se implementó un modal de confirmación personalizado, alineado con los estilos y la experiencia del aplicativo." },
-          { "summary": "Posicionamiento del Floating Menu", "description": "Se corrigió la inconsistencia de posicionamiento del menú flotante entre web y PWA mediante un cálculo dinámico basado en el contexto de renderizado." },
-          { "summary": "Se agregaron 19 test adicionales", "description": "Se implementaron pruebas para las nuevas funcionalidades y cambios realizados. La lógica de cierre de pestañas fue modularizada en un script independiente, y se añadieron tests para el menú flotante y la confirmación de cierre." },
-          { "summary": "Se añadieron 2 nuevos iconos", "description": "Se incorporaron los iconos 'alert' y 'trash' para representar de forma más clara el flujo de cierre de pestañas para los usuarios." },
-          { "summary": "Nuevos estilos para el editor de texto", "description": "El editor de texto ahora incluye estilos globales para una visualización consistente, especialmente optimizados para contenido pegado desde otras páginas web." }
-        ],
-        "en": [
-          { "summary": "Tab deletion confirmation modal", "description": "The native browser confirm() is being phased out, so a custom confirmation modal was implemented, aligned with the app's design." },
-          { "summary": "Floating menu positioning", "description": "The floating menu appeared in different positions between the web version and the installed PWA, so a dynamic script was implemented to calculate the correct position in both contexts." },
-          { "summary": "19 additional tests added", "description": "Tests cover new and modified features. The tab closing logic was moved to a modular standalone script, and tests were added for the floating menu and tab close confirmation." },
-          { "summary": "2 new icons added", "description": "The 'alert' and 'trash' icons were added to provide a clearer representation of the tab closing flow for users." },
-          { "summary": "New text editor styles", "description": "The text editor now includes global styles for consistent rendering, especially optimized for content pasted from external web pages." }
-        ]
-      }
-    },
-    {
-      "id": "current",
-      "type": "current",
       "versionNumber": "0.4.3",
       "date": "2026-06-10",
-      "isCurrent": true,
+      "isCurrent": false,
       "isNext": false,
       "items": {
         "es": [
           { "summary": "Modularización completa", "description": "Todos los componentes se reestructuraron en src/features/ como módulos independientes: FloatingMenu, ContextualMenu, ModalInfo, CreateTab, CloseTabConfirmation y Roadmap" },
           { "summary": "Modal de confirmación", "description": "Nuevo diálogo <dialog> personalizado para eliminar pestañas, reemplazando el obsoleto confirm() nativo del navegador" },
-          { "summary": "Soporte para PWA", "description": "Ahora la aplicación funciona offline y puede instalarse como app nativa" },
           { "summary": "Mejoras de accesibilidad", "description": "Atributos ARIA en modales, navegación por teclado mejorada, soporte para lectores de pantalla" },
           { "summary": "Optimización SEO", "description": "Meta tag de verificación de Google Search Console, esquemas BreadcrumbList y HowTo, 3 nuevas vistas SEO, hreflang por defecto en 'en', indexación para agentes IA (Google, GPT, Anthropic)" },
           { "summary": "Correcciones de UI", "description": "Posición del menú flotante se ajusta según modo de instalación (PWA vs navegador), correcciones en tablet y móvil, texto pegado preserva su estructura original" },
@@ -58,6 +33,26 @@
           { "summary": "Roadmap", "description": "New Roadmap tab replacing the News tab, with i18n integration and automated sync from roadmap-data.json" },
           { "summary": "Automation", "description": "Scripts for automated roadmap translation sync and CHANGELOG.md generation" },
           { "summary": "Cleanup", "description": "Removed orphaned scripts (roadmap-gen.js), unused roadmap.old-* translation keys, duplicate files deleted" }
+        ]
+      }
+    },
+    {
+      "id": "current",
+      "type": "current",
+      "versionNumber": "0.4.4",
+      "date": "2026-07-15",
+      "isCurrent": true,
+      "isNext": false,
+      "items": {
+        "es": [
+          { "summary": "Actualización de dependencias", "description": "Dependencias críticas actualizadas mediante dependabot: Vite y grupo de dependencias npm_and_yarn" },
+          { "summary": "Corrección de estilos para Vite", "description": "Ajustes de estilos requeridos tras la última actualización de Vite para mantener la compatibilidad visual" },
+          { "summary": "Parche de seguridad CVE-2026-33532", "description": "Resuelta vulnerabilidad CVE-2026-33532 y vulnerabilidades relacionadas mediante overrides en npm" }
+        ],
+        "en": [
+          { "summary": "Dependency updates", "description": "Critical dependencies updated via dependabot: Vite and npm_and_yarn dependency group" },
+          { "summary": "Vite style fix", "description": "Style adjustments required after the latest Vite update to maintain visual compatibility" },
+          { "summary": "Security patch CVE-2026-33532", "description": "Resolved CVE-2026-33532 vulnerability and related issues via npm overrides" }
         ]
       }
     },
@@ -102,6 +97,44 @@
           { "summary": "Mobile & PWA improvements", "description": "Dynamic floating menu positioning, safe area insets support for iOS PWA, virtual keyboard detection, fixed positioning in standalone mode" },
           { "summary": "New icons", "description": "Added alert and trash icons" },
           { "summary": "Testing", "description": "19 new tests added for confirmation, tab deletion and floating menu modules. Total: 163 passing tests" }
+        ]
+      }
+    },
+    {
+      "id": "old-043",
+      "type": "old",
+      "versionNumber": "0.4.3",
+      "date": "2026-06-10",
+      "isCurrent": false,
+      "isNext": false,
+      "isOld": true,
+      "showInTab": false,
+      "items": {
+        "es": [
+          { "summary": "Modularización completa", "description": "Todos los componentes se reestructuraron en src/features/ como módulos independientes: FloatingMenu, ContextualMenu, ModalInfo, CreateTab, CloseTabConfirmation y Roadmap" },
+          { "summary": "Modal de confirmación", "description": "Nuevo diálogo <dialog> personalizado para eliminar pestañas, reemplazando el obsoleto confirm() nativo del navegador" },
+          { "summary": "Mejoras de accesibilidad", "description": "Atributos ARIA en modales, navegación por teclado mejorada, soporte para lectores de pantalla" },
+          { "summary": "Optimización SEO", "description": "Meta tag de verificación de Google Search Console, esquemas BreadcrumbList y HowTo, 3 nuevas vistas SEO, hreflang por defecto en 'en', indexación para agentes IA (Google, GPT, Anthropic)" },
+          { "summary": "Correcciones de UI", "description": "Posición del menú flotante se ajusta según modo de instalación (PWA vs navegador), correcciones en tablet y móvil, texto pegado preserva su estructura original" },
+          { "summary": "Internacionalización", "description": "Todos los comentarios y descripciones de tests traducidos al inglés, traducciones para menú contextual y modal de confirmación" },
+          { "summary": "Actualización de estilos", "description": "Eliminado outline en [contenteditable]:focus, agregado dialog::backdrop global, ajuste de --nav-bottom a 1rem, eliminados estilos de fuente redundantes" },
+          { "summary": "Nuevos iconos", "description": "6 iconos añadidos: botón cerrar, cohete, file-text, chevron-right, alerta y papelera" },
+          { "summary": "Roadmap", "description": "Nueva pestaña Roadmap reemplaza la pestaña Novedades, con integración i18n y sincronización automatizada desde roadmap-data.json" },
+          { "summary": "Automatización", "description": "Scripts para sincronización automática de traducciones del roadmap y generación de CHANGELOG.md" },
+          { "summary": "Limpieza", "description": "Scripts huérfanos eliminados (roadmap-gen.js), claves de traducción roadmap.old-* sin uso removidas, archivos duplicados eliminados" }
+        ],
+        "en": [
+          { "summary": "Full modularization", "description": "All components restructured into src/features/ as self-contained modules: FloatingMenu, ContextualMenu, ModalInfo, CreateTab, CloseTabConfirmation, and Roadmap" },
+          { "summary": "Confirmation modal", "description": "Custom <dialog> element for tab deletion, replacing the native browser confirm()" },
+          { "summary": "Accessibility improvements", "description": "ARIA attributes on modals, improved keyboard navigation, screen reader support" },
+          { "summary": "SEO optimization", "description": "Google Search Console verification meta tag, BreadcrumbList and HowTo schemas, 3 new SEO views, default hreflang set to 'en', AI agent indexing (Google, GPT, Anthropic)" },
+          { "summary": "UI fixes", "description": "Floating menu position auto-adjusts based on install mode (PWA vs browser), tablet and mobile display corrections, pasted text preserves its original structure" },
+          { "summary": "Internationalization", "description": "All comments and test descriptions translated to English, contextual menu and confirmation modal translation" },
+          { "summary": "Style updates", "description": "Removed outline on [contenteditable]:focus, added global dialog::backdrop, --nav-bottom adjusted to 1rem, removed redundant font styles" },
+          { "summary": "New icons", "description": "6 icons added: close button, rocket, file-text, chevron-right, alert, and trash" },
+          { "summary": "Roadmap", "description": "New Roadmap tab replacing the News tab, with i18n integration and automated sync from roadmap-data.json" },
+          { "summary": "Automation", "description": "Scripts for automated roadmap translation sync and CHANGELOG.md generation" },
+          { "summary": "Cleanup", "description": "Removed orphaned scripts (roadmap-gen.js), unused roadmap.old-* translation keys, duplicate files deleted" }
         ]
       }
     },
