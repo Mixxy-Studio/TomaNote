@@ -1,0 +1,23 @@
+---
+// src/features/sidebar-left/SidebarLeft.astro
+// Left sidebar: logo, search (placeholder), settings (placeholder)
+
+import "./sidebar-left.scss";
+import Icon from "../../components/icons/Icon.astro";
+---
+
+<aside class="sidebar-left hidden md:flex">
+  <div class="sidebar-left__top">
+    <button tabindex="0" aria-label="TomaNote" class="sidebar-left__btn sidebar-left__logo">
+      <Icon name="tomanote" className="text-(--tn-theme-contrast)" />
+    </button>
+    <button tabindex="0" aria-label="Search" class="sidebar-left__btn" disabled>
+      <Icon name="search" className="text-(--tn-theme-accent)" />
+    </button>
+  </div>
+  <div class="sidebar-left__bottom">
+    <button tabindex="0" aria-label="Settings" class="sidebar-left__btn" disabled>
+      <Icon name="settings" className="text-(--tn-theme-accent)" />
+    </button>
+  </div>
+</aside>
