@@ -1,0 +1,36 @@
+---
+import Icon from "../../../components/icons/Icon.astro";
+
+interface SubmenuItem {
+  action: string;
+  iconName: string;
+  tooltip: string;
+  className?: string;
+}
+
+interface Props {
+  id: string;
+  items: SubmenuItem[];
+}
+
+const { id, items } = Astro.props;
+---
+
+<div
+  id={id}
+  class="tn-bottom-bar-submenu max-h-0 overflow-hidden transition-all duration-300 ease-in-out"
+  data-submenu-panel={id}
+>
+  <div class="flex items-center justify-center gap-2 py-3 px-4">
+    {items.map((item) => (
+      <button
+        class="tn-btn tn-bottom-bar-submenu-btn p-3! rounded-xl border border-transparent hover:border-(--tn-theme-contrast) hover:bg-(--tn-theme-secondary) flex justify-center items-center transition-all duration-200"
+        data-floating-action={item.action}
+        aria-label={item.tooltip}
+        type="button"
+      >
+        <Icon name={item.iconName} className="text-(--tn-theme-contrast)" />
+      </button>
+    ))}
+  </div>
+</div>

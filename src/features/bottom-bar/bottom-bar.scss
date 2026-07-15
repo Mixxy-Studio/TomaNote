@@ -1,0 +1,142 @@
+// =============================================================================
+// Bottom Bar — Mobile/Tablet navigation (visible < 768px)
+// Follows Apple HIG / Material Design bottom navigation patterns
+// =============================================================================
+
+.tn-bottom-bar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 50;
+  background: var(--tn-theme-secondary);
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  display: flex;
+  flex-direction: column;
+  max-width: 100vw;
+  margin: 10px;
+  border-radius: 10px;
+
+  // Safe area for PWA / notched devices
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+
+  @media (min-width: 768px) {
+    display: none !important;
+  }
+}
+
+// Row of 4 main buttons
+.tn-bottom-bar-row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+  height: 56px;
+  min-height: 56px;
+  padding: 0 0.5rem;
+  gap: 0;
+}
+
+// Individual button in the bar
+.tn-bottom-bar-btn {
+  background: transparent;
+  // border: 1px solid white;
+  outline: none;
+  color: var(--tn-theme-contrast);
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+  border-radius: 15px;
+
+  &:active {
+    transform: scale(0.92);
+    transition: transform 0.1s ease;
+  }
+
+  &.tn-bottom-bar-btn--active {
+    color: var(--tn-theme-accent, var(--tn-theme-contrast));
+
+    svg {
+      stroke: currentColor;
+    }
+  }
+}
+
+// Create tab button (+ icon)
+.tn-bottom-bar-create-icon {
+  transition: background-color 0.2s, transform 0.2s;
+}
+
+// =============================================================================
+// Submenu container — slides up above the bar
+// =============================================================================
+
+.tn-bottom-bar-submenu-container {
+  position: absolute;
+  bottom: 100%;
+  left: 0;
+  right: 0;
+  pointer-events: none;
+
+  >* {
+    pointer-events: auto;
+  }
+}
+
+.tn-bottom-bar-submenu {
+  background: transparent;
+
+  &.tn-bottom-bar-submenu--open {
+    max-height: 200px !important;
+  }
+}
+
+// Submenu action buttons
+.tn-bottom-bar-submenu-btn {
+  background: var(--tn-theme-secondary);
+  min-width: 44px;
+  min-height: 44px;
+  box-shadow: 0px 0px 10px 1px rgba(0, 0, 0, .5);
+
+  &:active {
+    background-color: var(--tn-theme-contrast);
+    transform: scale(0.92);
+    transition: transform 0.1s ease;
+  }
+}
+
+// =============================================================================
+// Mini screens (<=380px)
+// =============================================================================
+
+@media (max-width: 380px) {
+  .tn-bottom-bar-row {
+    height: 48px;
+    min-height: 48px;
+    padding: 0 0.25rem;
+  }
+
+  .tn-bottom-bar-submenu-btn {
+    min-width: 36px;
+    min-height: 36px;
+
+    .tn-btn {
+      padding: 0.5rem !important;
+    }
+  }
+}
+
+// =============================================================================
+// Touch devices — disable hover effects, improve active feedback
+// =============================================================================
+
+@media (hover: none) and (pointer: coarse) {
+  .tn-bottom-bar-btn:active {
+    background-color: rgba(255, 255, 255, 0.05);
+  }
+
+  .tn-bottom-bar-submenu-btn:active {
+    background-color: var(--tn-theme-contrast);
+    transform: scale(0.95);
+    transition: transform 0.1s ease;
+  }
+}

@@ -1,5 +1,12 @@
 // Add to css global into <style> tag in Astro
 
+// Mobile: hidden — replaced by bottom-bar
+@media (max-width: 767px) {
+  .tn-navbar {
+    display: none !important;
+  }
+}
+
 // Positioning of floating menu
 .tn-navbar {
   position: fixed;
