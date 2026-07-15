@@ -1,6 +1,12 @@
 // src/features/sidebar-left/sidebar-left.scss
 // Left sidebar styles — desktop only (≥768px)
 
+.sidebar-body {
+  border-top: 1px solid var(--tn-theme-secondary);
+  margin-top: 10px;
+  padding-top: 10px;
+}
+
 .sidebar-left {
   flex-direction: column;
   align-items: center;
@@ -12,6 +18,8 @@
   border-right: 1px solid rgba(255, 255, 255, 0.08);
   padding: 0.75rem 0;
   z-index: 40;
+  margin-top: -10px;
+  margin-left: -10px;
 }
 
 .sidebar-left__top,
@@ -20,6 +28,10 @@
   flex-direction: column;
   align-items: center;
   gap: 0.5rem;
+}
+
+.sidebar-left__bottom {
+  margin-bottom: 10px;
 }
 
 .sidebar-left__btn {
@@ -54,7 +66,3 @@
   }
 }
 
-.sidebar-left__logo {
-  width: 44px;
-  height: 44px;
-}

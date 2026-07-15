@@ -1,8 +1,16 @@
 ---
 import Icon from "../../../components/icons/Icon.astro";
+import { getLang, useTranslations } from "../../../i18n/utils";
+
+const t = useTranslations(getLang());
 ---
 
-<input type="checkbox" name="menu" id="tn-open-options" class="peer/menu hidden" />
-<label for="tn-open-options" id="tn-tools-button" class="tn-btn p-4! text-(--tn-theme-contrast) bg-(--tn-theme-primary) rounded-2xl hover:text-(--tn-neutral-tertiary) hover:bg-(--tn-theme-primary)/80! mx-1! cursor-pointer peer-checked/menu:bg-(--tn-theme-contrast) peer-checked/menu:text-(--tn-netrual-tertiary-color)! peer-checked/menu:hover:bg-(--tn-theme-contrast) flex justify-center items-center min-w-[56px]">
-  <Icon name="tools" className="size-6 text-(--tn-neutral-tertiary-color)" />
-</label>
+<div class="group relative">
+  <input type="checkbox" name="menu" id="tn-open-options" class="peer/menu hidden" />
+  <label for="tn-open-options" id="tn-tools-button" class="tn-btn p-4! text-(--tn-theme-contrast) bg-(--tn-theme-primary) rounded-2xl hover:text-(--tn-neutral-tertiary) hover:bg-(--tn-theme-primary)/80! mx-1! cursor-pointer peer-checked/menu:bg-(--tn-theme-contrast) peer-checked/menu:text-(--tn-netrual-tertiary-color)! peer-checked/menu:hover:bg-(--tn-theme-contrast) flex justify-center items-center min-w-[56px]">
+    <Icon name="tools" className="size-6 text-(--tn-neutral-tertiary-color)" />
+  </label>
+  <span data-i18n="context-menu.tools" class="pointer-events-none absolute right-full mr-2 top-1/2 -translate-y-1/2 whitespace-nowrap rounded bg-(--tn-theme-primary) px-1! py-1/2! text-xs! text-(--tn-neutral-tertiary-color) opacity-0 transition-opacity group-hover:opacity-100 border border-(--tn-theme-contrast)! z-50">
+    {t("context-menu.tools")}
+  </span>
+</div>
