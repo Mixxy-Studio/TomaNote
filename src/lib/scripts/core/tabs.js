@@ -252,13 +252,13 @@ export class TabManager {
       <input type="radio" name="body-tab" id="${id}">
       <label class="bg-(--tn-default-tertiary-color) w-[250px] flex justify-between items-center py-[7px]! pr-[5px]! pl-[10px]! rounded cursor-pointer" for="${id}" ${labelDataEmoji}>
         <span class="text-ellipsis whitespace-nowrap w-[80%] overflow-hidden z-10 text-[14px]! font-bold" ${spanDataEmoji}>${name}</span>
-        <button class="edit-name-tab border-0 outline-0 w-[20px] h-[20px] justify-center items-center hidden rounded-full" aria-label="Editar nombre">
+        <button class="edit-name-tab border-0 outline-0 w-[20px] h-[20px] justify-center items-center hidden rounded-full" aria-label="${window.i18n?.t("tab.edit-name") ?? "Edit name"}">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-1 w-1/2 h-1/2">
             <path d="M21.731 2.269a2.625 2.625 0 0 0-3.712 0l-1.157 1.157 3.712 3.712 1.157-1.157a2.625 2.625 0 0 0 0-3.712ZM19.513 8.199l-3.712-3.712-8.4 8.4a5.25 5.25 0 0 0-1.32 2.214l-.8 2.685a.75.75 0 0 0 .933.933l2.685-.8a5.25 5.25 0 0 0 2.214-1.32l8.4-8.4Z" />
             <path d="M5.25 5.25a3 3 0 0 0-3 3v10.5a3 3 0 0 0 3 3h10.5a3 3 0 0 0 3-3V13.5a.75.75 0 0 0-1.5 0v5.25a1.5 1.5 0 0 1-1.5 1.5H5.25a1.5 1.5 0 0 1-1.5-1.5V8.25a1.5 1.5 0 0 1 1.5-1.5h5.25a.75.75 0 0 0 0-1.5H5.25Z" />
           </svg>
         </button>
-        <button class="delete-tab border-0 outline-0 w-[20px] h-[20px] justify-center items-center hidden rounded-full" aria-label="Eliminar pestaña">
+        <button class="delete-tab border-0 outline-0 w-[20px] h-[20px] justify-center items-center hidden rounded-full" aria-label="${window.i18n?.t("tab.delete") ?? "Delete tab"}">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-1 w-1/2 h-1/2">
             <path fill-rule="evenodd" d="M5.47 5.47a.75.75 0 0 1 1.06 0L12 10.94l5.47-5.47a.75.75 0 1 1 1.06 1.06L13.06 12l5.47 5.47a.75.75 0 1 1-1.06 1.06L12 13.06l-5.47 5.47a.75.75 0 0 1-1.06-1.06L10.94 12 5.47 6.53a.75.75 0 0 1 0-1.06Z" clip-rule="evenodd" />
           </svg>

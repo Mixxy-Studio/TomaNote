@@ -88,8 +88,8 @@ export class ThemeManager {
         <button 
           id="theme-toggle-btn" 
           class="theme-toggle-btn" 
-          title="Cambiar tema"
-          aria-label="Selector de temas"
+          title="${window.i18n?.t("appearance.first-option") ?? "Theme Selection"}"
+          aria-label="${window.i18n?.t("appearance.first-option") ?? "Theme Selection"}"
           aria-haspopup="true"
           aria-expanded="false"
         >
@@ -103,7 +103,7 @@ export class ThemeManager {
           style="display: none;"
         >
           <div class="theme-dropdown-header">
-            <h4>Seleccionar Tema</h4>
+            <h4>${window.i18n?.t("appearance.first-option") ?? "Select Theme"}</h4>
           </div>
           <div class="theme-list" role="none">
             ${this.themes
@@ -329,7 +329,7 @@ export class ThemeManager {
       } else {
         toggleBtn.innerHTML = currentTheme.icon;
       }
-      toggleBtn.title = `Tema actual: ${currentTheme.name}`;
+      toggleBtn.title = `${window.i18n?.t("appearance.first-option-description") ?? "Current theme"}: ${currentTheme.name}`;
     }
   }
 

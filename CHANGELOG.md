@@ -10,6 +10,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 - Critical dependencies updated via dependabot: Vite and npm_and_yarn dependency group
 - Style adjustments required after the latest Vite update to maintain visual compatibility
 - Resolved CVE-2026-33532 vulnerability and related issues via npm overrides
+- About, Terms and Privacy pages now render in the user's language via useTranslations()
+- Removed duplicate contextMenu.js, replaced hardcoded Spanish strings with i18n keys, fixed language flash on settings tabs
 
 ## [0.4.3] - June 10, 2026
 

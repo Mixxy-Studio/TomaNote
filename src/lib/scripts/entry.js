@@ -349,7 +349,7 @@ async function emergencyFallback() {
   const createTabBtn = document.getElementById("create-tab");
   if (createTabBtn) {
     createTabBtn.onclick = () => {
-      alert("Modo emergencia: Funcionalidad limitada. Por favor recarga la página.");
+      alert(window.i18n?.t("error.emergency-alert") ?? "Emergency mode: Limited functionality. Please reload the page.");
     };
   }
 
@@ -381,9 +381,9 @@ function showErrorMessage() {
     max-width: 300px;
   `;
   errorDiv.innerHTML = `
-    <strong>⚠️ Error técnico</strong><br>
-    Algunas funciones pueden no estar disponibles.<br>
-    <small>Intenta recargar la página.</small>
+    <strong>${window.i18n?.t("error.title") ?? "⚠️ Technical error"}</strong><br>
+    ${window.i18n?.t("error.message") ?? "Some features may not be available."}<br>
+    <small>${window.i18n?.t("error.hint") ?? "Try reloading the page."}</small>
   `;
 
   document.body.appendChild(errorDiv);
