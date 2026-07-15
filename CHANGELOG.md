@@ -1,8 +1,26 @@
 # Changelog
 
-All notable changes to this project will be documented in this file.
+All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
-The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
+### [0.4.4](https://github.com/Mixxy-Studio/TomaNote/compare/v0.4.3...v0.4.4) (2026-07-15)
+
+
+### Bug Fixes
+
+* before last update for vite, some style was required some adjustments ([86fc048](https://github.com/Mixxy-Studio/TomaNote/commit/86fc048f3f750d5daafb23a8f48bae8052d2b9c8))
+* **ci:** bump Node.js from 18 to 22 for Astro 5 support ([8449d3e](https://github.com/Mixxy-Studio/TomaNote/commit/8449d3e7e2676b3b1357c994825521be6fd31e5a))
+* **ci:** grant write permissions for gh-pages deployment ([3b2c931](https://github.com/Mixxy-Studio/TomaNote/commit/3b2c931ed396a6d2add9dbf9f8d72cad0b525824))
+* **ci:** trigger deploy on master branch instead of main ([556252b](https://github.com/Mixxy-Studio/TomaNote/commit/556252b12b5ce9c25cc6e49e3b400428aa6670d6))
+* **deploy:** add .nojekyll to disable Jekyll and include dotfiles in gh-pages deploy ([5070514](https://github.com/Mixxy-Studio/TomaNote/commit/50705140c7cdc638d8f1800fb2c6c15c4c83cd76))
+* **deps:** Merge branch 'update-issues' into dev ([e3cd976](https://github.com/Mixxy-Studio/TomaNote/commit/e3cd9767b99b0ca9f0204e2705f495808007bf3e))
+* **deps:** patch CVE-2026-33532 and related vulnerabilities via npm overrides ([eccda37](https://github.com/Mixxy-Studio/TomaNote/commit/eccda3789edcfbf94be49301dbb15460aef6a2d7)), closes [#44](https://github.com/Mixxy-Studio/TomaNote/issues/44)
+
+## [0.4.4] - July 15, 2026
+
+### Added
+- Critical dependencies updated via dependabot: Vite and npm_and_yarn dependency group
+- Style adjustments required after the latest Vite update to maintain visual compatibility
+- Resolved CVE-2026-33532 vulnerability and related issues via npm overrides
 
 ## [0.4.3] - June 10, 2026
 
@@ -19,15 +37,6 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 - Scripts for automated roadmap translation sync and CHANGELOG.md generation
 - Removed orphaned scripts (roadmap-gen.js), unused roadmap.old-* translation keys, duplicate files deleted
 
-## [0.4.2] - April 1, 2026
-
-### Added
-- The native browser confirm() is being phased out, so a custom confirmation modal was implemented, aligned with the app's design.
-- The floating menu appeared in different positions between the web version and the installed PWA, so a dynamic script was implemented to calculate the correct position in both contexts.
-- Tests cover new and modified features. The tab closing logic was moved to a modular standalone script, and tests were added for the floating menu and tab close confirmation.
-- The 'alert' and 'trash' icons were added to provide a clearer representation of the tab closing flow for users.
-- The text editor now includes global styles for consistent rendering, especially optimized for content pasted from external web pages.
-
 ### Previous Versions
 
 <details>
@@ -37,6 +46,23 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 - Dynamic floating menu positioning, safe area insets support for iOS PWA, virtual keyboard detection, fixed positioning in standalone mode
 - Added alert and trash icons
 - 19 new tests added for confirmation, tab deletion and floating menu modules. Total: 163 passing tests
+
+</details>
+
+<details>
+<summary>[0.4.3] - June 10, 2026</summary>
+
+- All components restructured into src/features/ as self-contained modules: FloatingMenu, ContextualMenu, ModalInfo, CreateTab, CloseTabConfirmation, and Roadmap
+- Custom <dialog> element for tab deletion, replacing the native browser confirm()
+- ARIA attributes on modals, improved keyboard navigation, screen reader support
+- Google Search Console verification meta tag, BreadcrumbList and HowTo schemas, 3 new SEO views, default hreflang set to 'en', AI agent indexing (Google, GPT, Anthropic)
+- Floating menu position auto-adjusts based on install mode (PWA vs browser), tablet and mobile display corrections, pasted text preserves its original structure
+- All comments and test descriptions translated to English, contextual menu and confirmation modal translation
+- Removed outline on [contenteditable]:focus, added global dialog::backdrop, --nav-bottom adjusted to 1rem, removed redundant font styles
+- 6 icons added: close button, rocket, file-text, chevron-right, alert, and trash
+- New Roadmap tab replacing the News tab, with i18n integration and automated sync from roadmap-data.json
+- Scripts for automated roadmap translation sync and CHANGELOG.md generation
+- Removed orphaned scripts (roadmap-gen.js), unused roadmap.old-* translation keys, duplicate files deleted
 
 </details>
 
@@ -110,4 +136,3 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 - Cleaner code ready for future features
 
 </details>
-
