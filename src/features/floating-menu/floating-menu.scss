@@ -14,8 +14,14 @@
   z-index: 50;
 
   @media (min-width: 768px) {
-    right: 1.25rem;
-    bottom: 1.25rem;
+    position: static;
+    width: 56px;
+    min-width: 56px;
+    height: 100%;
+    border-radius: 0;
+    justify-content: flex-end;
+    border-left: 1px solid rgba(255, 255, 255, 0.08);
+    background: var(--tn-theme-primary);
   }
 }
 
@@ -273,6 +279,34 @@
       gap: var(--tn-spacing-btw-btns);
       opacity: 1;
       visibility: visible;
+    }
+  }
+}
+
+// =============================================================================
+// Desktop sidebar mode (≥768px)
+// The floating menu becomes a static right sidebar.
+// Buttons stack from bottom to top using flex-col-reverse.
+// =============================================================================
+
+@media (min-width: 768px) {
+  .tn-navbar {
+    // Sub-menus expand to the left of the sidebar
+    .tn-horizontal-buttons input:checked ~ .tn-navbar-btns {
+      right: calc(100% + 5px);
+      top: auto;
+      bottom: auto;
+    }
+
+    // Gap between sidebar buttons
+    .tn-navbar-btns.tn-navbar-checked {
+      gap: 10px;
+      padding: 0.5rem 0;
+    }
+
+    // Hide tooltips in sidebar mode (they'd overlap with left sidebar)
+    .group .absolute {
+      display: none;
     }
   }
 }

@@ -264,7 +264,7 @@ export class TabManager {
           </svg>
         </button>
       </label>
-      <div class="tab-list__item--content overflow-x-hidden overflow-y-scroll font-thin hidden bg-(--tn-theme-secondary) min-h-[92dvh] p-(--tn-padding-base)! border-0 outline-0 absolute top-[50px] left-[10px] h-[calc(100%-60px)] w-[calc(100%-(var(--tn-padding-base)*2))] first:mr-[10px] border-r border-(--tn-theme-secondary)! rounded-md" contenteditable="true">${content || ""}</div>
+      <div class="tab-list__item--content overflow-x-hidden overflow-y-scroll font-thin hidden bg-(--tn-theme-secondary) min-h-[92dvh] p-(--tn-padding-base)! border-0 outline-0 absolute top-[50px] left-[10px] h-[calc(100%-60px)] w-[calc(100%-(var(--tn-padding-base)*2))] md:w-[calc(100%-76px)] first:mr-[10px] border-r border-(--tn-theme-secondary)! rounded-md" contenteditable="true">${content || ""}</div>
     `;
 
     // Insert using the anchor or button as a reference
