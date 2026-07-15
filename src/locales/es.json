@@ -158,5 +158,17 @@
   "roadmap.next.1.summary": "Visualización en vivo de Markdown",
   "roadmap.next.1.description": "Escribe en markdown y ve el resultado renderizado en tiempo real directamente en tu nota.",
   "roadmap.next.2.summary": "Búsqueda global",
-  "roadmap.next.2.description": "Busca entre tus notas, ya sea por titulo o directamente contenido de la nota"
+  "roadmap.next.2.description": "Busca entre tus notas, ya sea por titulo o directamente contenido de la nota",
+  "roadmap.prev.5.summary": "Internacionalización",
+  "roadmap.prev.5.description": "Todos los comentarios y descripciones de tests traducidos al inglés, traducciones para menú contextual y modal de confirmación",
+  "roadmap.prev.6.summary": "Actualización de estilos",
+  "roadmap.prev.6.description": "Eliminado outline en [contenteditable]:focus, agregado dialog::backdrop global, ajuste de --nav-bottom a 1rem, eliminados estilos de fuente redundantes",
+  "roadmap.prev.7.summary": "Nuevos iconos",
+  "roadmap.prev.7.description": "6 iconos añadidos: botón cerrar, cohete, file-text, chevron-right, alerta y papelera",
+  "roadmap.prev.8.summary": "Roadmap",
+  "roadmap.prev.8.description": "Nueva pestaña Roadmap reemplaza la pestaña Novedades, con integración i18n y sincronización automatizada desde roadmap-data.json",
+  "roadmap.prev.9.summary": "Automatización",
+  "roadmap.prev.9.description": "Scripts para sincronización automática de traducciones del roadmap y generación de CHANGELOG.md",
+  "roadmap.prev.10.summary": "Limpieza",
+  "roadmap.prev.10.description": "Scripts huérfanos eliminados (roadmap-gen.js), claves de traducción roadmap.old-* sin uso removidas, archivos duplicados eliminados"
 }
