@@ -27,6 +27,13 @@
   line-height: 1.7;
   word-break: break-word;
   overflow-wrap: break-word;
+  width: 100%;
+  left: 0;
+
+  @media (min-width: 768px) {
+    width: calc(100% - 25px);
+    left: unset;
+  }
 
   // Vertical space between blocks in the top level of tab contents
   >*+* {
