@@ -1,5 +1,5 @@
 import { describe, it, expect, vi, beforeEach, afterEach } from "vitest";
-import { ContextMenu } from "../../ui/contextMenu.js";
+import { ContextMenu } from "../../../../features/contextual-menu/contextual-menu.js";
 
 // Mockear dependencies
 vi.mock("../../utils/emojiDetector.js", () => ({
