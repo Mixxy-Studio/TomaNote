@@ -173,4 +173,70 @@ describe("TabDragDrop", () => {
       expect(result).toBe(false);
     });
   });
+
+  describe("canPut", () => {
+    it("Permite recibir pestañas en el tabList principal", () => {
+      const mockItem = { classList: { contains: vi.fn().mockReturnValue(false) } };
+      const mockTo = { el: mockTabList };
+
+      const result = tabDragDrop.canPut(mockTo, {}, mockItem);
+
+      expect(result).toBe(true);
+    });
+
+    it("Permite recibir pestañas pinned en pinned-tabs", () => {
+      const mockItem = { classList: { contains: vi.fn().mockReturnValue(true) } };
+      const mockTo = { el: { classList: { contains: vi.fn().mockReturnValue(true) } } };
+
+      const result = tabDragDrop.canPut(mockTo, {}, mockItem);
+
+      expect(result).toBe(true);
+    });
+
+    it("Rechaza pestañas no-pinned en pinned-tabs", () => {
+      const mockItem = { classList: { contains: vi.fn().mockReturnValue(false) } };
+      const mockTo = { el: { classList: { contains: vi.fn().mockReturnValue(true) } } };
+
+      const result = tabDragDrop.canPut(mockTo, {}, mockItem);
+
+      expect(result).toBe(false);
+    });
+  });
+
+  describe("handleMove", () => {
+    it("Retorna true para permitir el movimiento", () => {
+      const result = tabDragDrop.handleMove({});
+      expect(result).toBe(true);
+    });
+  });
+
+  describe("reorderPinnedAndNormal", () => {
+    it("Separa pestañas pinned y normales, reinserta con anchor", () => {
+      const pinnedTab = { classList: { contains: (c) => c === "pinned" }, remove: vi.fn() };
+      const normalTab = { classList: { contains: () => false }, remove: vi.fn() };
+      mockTabList.querySelectorAll = vi.fn(() => [normalTab, pinnedTab]);
+      const mockAnchor = { id: "tab-list-anchor" };
+      mockTabList.querySelector = vi.fn(() => mockAnchor);
+      mockTabList.contains = vi.fn(() => true);
+
+      tabDragDrop.reorderPinnedAndNormal();
+
+      expect(pinnedTab.remove).toHaveBeenCalled();
+      expect(normalTab.remove).toHaveBeenCalled();
+      expect(mockTabList.insertBefore).toHaveBeenCalledTimes(2);
+      expect(mockTabList.insertBefore.mock.calls[0][0]).toBe(pinnedTab);
+      expect(mockTabList.insertBefore.mock.calls[1][0]).toBe(normalTab);
+    });
+
+    it("Usa appendChild como fallback si no hay referencia", () => {
+      const pinnedTab = { classList: { contains: (c) => c === "pinned" }, remove: vi.fn() };
+      const normalTab = { classList: { contains: () => false }, remove: vi.fn() };
+      mockTabList.querySelectorAll = vi.fn(() => [pinnedTab, normalTab]);
+      mockTabList.querySelector = vi.fn(() => null);
+
+      tabDragDrop.reorderPinnedAndNormal();
+
+      expect(mockTabList.appendChild).toHaveBeenCalledTimes(2);
+    });
+  });
 });
