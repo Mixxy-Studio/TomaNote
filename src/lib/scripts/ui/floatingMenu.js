@@ -102,6 +102,9 @@ export class FloatingMenu {
         }
 
         this.closeParentSubmenu(button);
+      } else if (action === "search") {
+        window.commandPalette?.open();
+        this.closeParentSubmenu(button);
       } else {
         this.handleTextAction(action, button);
       }

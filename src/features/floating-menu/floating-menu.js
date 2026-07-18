@@ -265,6 +265,20 @@ export class FloatingMenu {
   }
 
   handleBottomBarAction(action, button) {
+    if (action === "search") {
+      window.commandPalette?.open();
+      this.closeBottomBarSubmenus();
+      this.log(`📝 Bottom bar acción ejecutada: ${action}`);
+      return;
+    }
+
+    if (action === "settings") {
+      document.querySelector("dialog#info-notepad")?.showModal();
+      this.closeBottomBarSubmenus();
+      this.log(`📝 Bottom bar acción ejecutada: ${action}`);
+      return;
+    }
+
     let savedRange = this.savedSelection;
 
     if (!savedRange) {

@@ -129,6 +129,7 @@ async function initializeBasicComponents() {
   await initializeTabDragDrop();
   await initializeSettingsModal();
   await initializeCloseTabConfirmation();
+  await initializeCommandPalette();
   await initializeFloatingNavPosition();
 }
 
@@ -299,6 +300,22 @@ async function initializeFloatingNavPosition() {
     window.floatingNavPosition.init();
   } catch (error) {
     console.error("❌ Error inicializando FloatingNavPosition:", error);
+  }
+}
+
+async function initializeCommandPalette() {
+  try {
+    const { CommandPalette } = await import("../../features/command-palette/command-palette.js");
+
+    window.commandPalette = new CommandPalette({
+      debug: true,
+    });
+
+    await window.commandPalette.init();
+
+    return window.commandPalette;
+  } catch (error) {
+    console.error("❌ Error inicializando CommandPalette:", error);
   }
 }
 

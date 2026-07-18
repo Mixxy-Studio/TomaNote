@@ -18,6 +18,7 @@ export class KeyboardShortcuts {
     }
 
     this.setupEscapeKeyHandler();
+    this.setupCommandPaletteShortcut();
 
     this.log("✅ KeyboardShortcuts inicializado");
     return this;
@@ -28,6 +29,13 @@ export class KeyboardShortcuts {
       if (e.key !== "Escape") return;
 
       this.log("⌨️ Tecla ESC detectada");
+
+      // 0. Check if command palette is open
+      const commandPalette = document.getElementById("commandPalette");
+      if (commandPalette?.hasAttribute("open")) {
+        this.log("⚠️ Command Palette abierto - ignorando ESC");
+        return;
+      }
 
       // 1. Check if there is an open settings modal
       const settingsModal = document.getElementById("info-notepad");
@@ -55,6 +63,16 @@ export class KeyboardShortcuts {
 
         // Notify other modules (such as FloatingMenu)
         document.dispatchEvent(new CustomEvent("tabsChanged"));
+      }
+    });
+  }
+
+  setupCommandPaletteShortcut() {
+    document.addEventListener("keydown", (e) => {
+      if (e.ctrlKey && e.key === "k") {
+        e.preventDefault();
+        this.log("⌨️ Ctrl+K detectado - abriendo Command Palette");
+        window.commandPalette?.toggle();
       }
     });
   }

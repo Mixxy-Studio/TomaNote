@@ -28,18 +28,6 @@ const tabItems = [
   { action: "edit-name-tab", iconName: "edit", tooltip: t("context-menu.edit-name-tab"), className: "tn-edit" },
   { action: "delete-tab", iconName: "delete", tooltip: t("context-menu.delete-tab"), className: "tn-delete" },
 ];
-
-const searchItems = [
-  { action: "pin-tab", iconName: "pin", tooltip: t("context-menu.pin-tab"), className: "tn-pin" },
-  { action: "edit-name-tab", iconName: "edit", tooltip: t("context-menu.edit-name-tab"), className: "tn-edit" },
-  { action: "delete-tab", iconName: "delete", tooltip: t("context-menu.delete-tab"), className: "tn-delete" },
-];
-
-const settingItems = [
-  { action: "pin-tab", iconName: "pin", tooltip: t("context-menu.pin-tab"), className: "tn-pin" },
-  { action: "edit-name-tab", iconName: "edit", tooltip: t("context-menu.edit-name-tab"), className: "tn-edit" },
-  { action: "delete-tab", iconName: "delete", tooltip: t("context-menu.delete-tab"), className: "tn-delete" },
-];
 ---
 
 <nav id="bottom-bar" class="tn-bottom-bar hidden md:hidden" style="bottom: var(--bb-bottom, 0px); padding-bottom: var(--bb-pb, 0rem);">
@@ -53,8 +41,8 @@ const settingItems = [
     <BottomBarTab iconName="clipboard" action="content" tooltip={t("context-menu.content")} hasSubmenu={true} />
     <BottomBarTab iconName="font" action="font" tooltip={t("context-menu.font")} hasSubmenu={true} iconStrokeWidth="10" />
     <BottomBarTab iconName="tab" action="tab" tooltip={t("context-menu.tab")} hasSubmenu={true} />
-    <BottomBarTab iconName="search" action="tab" tooltip={t("context-menu.search")} hasSubmenu={true} />
-    <BottomBarTab iconName="settings" action="tab" tooltip={t("context-menu.settings")} hasSubmenu={true} />
+    <BottomBarTab iconName="search" action="search" tooltip={t("context-menu.search")} />
+    <BottomBarTab iconName="settings" action="settings" tooltip={t("context-menu.settings")} />
     <button id="bottom-bar-create-tab" class="tn-bottom-bar-btn flex flex-col items-center justify-center gap-0.5 flex-1 py-2 cursor-pointer transition-colors duration-200" aria-label={t("context-menu.new-tab")} type="button">
       <span class="tn-bottom-bar-create-icon flex justify-center items-center size-6 rounded-full bg-(--tn-theme-contrast) text-(--tn-neutral-tertiary-color)">
         <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>

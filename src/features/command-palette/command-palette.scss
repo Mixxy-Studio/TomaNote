@@ -1,0 +1,219 @@
+@use "../../styles/abstracts/Variables.scss" as vars;
+@use "../../styles/abstracts/Mixins.scss" as mixins;
+
+.command-palette {
+  position: fixed;
+  inset: 0;
+  z-index: 10000;
+  display: none;
+  border: none;
+  background: transparent;
+  padding: 0;
+  max-width: none;
+  max-height: none;
+  width: 100%;
+  height: 100%;
+
+  &::backdrop {
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(4px);
+  }
+
+  &[open] {
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    padding-top: 15dvh;
+  }
+
+  &__backdrop {
+    position: absolute;
+    inset: 0;
+  }
+
+  &__container {
+    position: relative;
+    width: 100%;
+    max-width: 560px;
+    background: var(--tn-theme-secondary);
+    border: 1px solid var(--tn-theme-contrast);
+    border-radius: 12px;
+    box-shadow:
+      0 25px 50px -12px rgba(0, 0, 0, 0.5),
+      0 0 0 1px rgba(255, 255, 255, 0.05);
+    overflow: hidden;
+    margin: 0 1rem;
+  }
+
+  &__input-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.875rem 1rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  }
+
+  &__input-icon {
+    width: 18px;
+    height: 18px;
+    color: var(--tn-neutral-secondary-color);
+    flex-shrink: 0;
+  }
+
+  &__input {
+    flex: 1;
+    background: transparent;
+    border: none;
+    outline: none;
+    color: var(--tn-neutral-tertiary-color);
+    font-family: var(--tn-font-family-default);
+    font-size: 0.95rem;
+    line-height: 1.5;
+
+    &::placeholder {
+      color: var(--tn-neutral-secondary-color);
+      opacity: 0.6;
+    }
+  }
+
+  &__kbd {
+    flex-shrink: 0;
+    padding: 0.15rem 0.45rem;
+    font-size: 0.7rem;
+    font-family: var(--tn-font-family-default);
+    color: var(--tn-neutral-secondary-color);
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 4px;
+    line-height: 1;
+  }
+
+  &__results {
+    max-height: 320px;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    padding: 0.375rem;
+
+    &::-webkit-scrollbar {
+      width: 6px;
+    }
+
+    &::-webkit-scrollbar-track {
+      background: transparent;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background: rgba(255, 255, 255, 0.15);
+      border-radius: 3px;
+    }
+  }
+
+  &__result {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    width: 100%;
+    padding: 0.625rem 0.75rem;
+    border: none;
+    border-radius: 8px;
+    background: transparent;
+    color: var(--tn-neutral-tertiary-color);
+    text-align: left;
+    cursor: pointer;
+    transition: background 0.1s ease;
+
+    &:hover,
+    &--active {
+      background: rgba(255, 255, 255, 0.08);
+    }
+
+    &--active {
+      background: rgba(255, 255, 255, 0.1);
+    }
+  }
+
+  &__result-header {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  &__result-name {
+    font-size: 0.875rem;
+    font-weight: 500;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  &__result-badge {
+    flex-shrink: 0;
+    font-size: 0.625rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    padding: 0.1rem 0.4rem;
+    border-radius: 4px;
+    font-weight: 600;
+
+    &--name {
+      background: var(--tn-theme-contrast);
+      color: var(--tn-neutral-tertiary-color);
+    }
+
+    &--content {
+      background: rgba(255, 255, 255, 0.08);
+      color: var(--tn-neutral-secondary-color);
+    }
+  }
+
+  &__result-snippet {
+    font-size: 0.78rem;
+    color: var(--tn-neutral-secondary-color);
+    line-height: 1.4;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    margin: 0;
+
+    mark {
+      background: var(--tn-theme-accent);
+      color: var(--tn-neutral-tertiary-color);
+      border-radius: 2px;
+      padding: 0 2px;
+    }
+  }
+
+  &__empty {
+    padding: 2rem 1rem;
+    text-align: center;
+    color: var(--tn-neutral-secondary-color);
+    font-size: 0.875rem;
+    opacity: 0.7;
+  }
+
+  &__no-results {
+    padding: 2rem 1rem;
+    text-align: center;
+    color: var(--tn-neutral-secondary-color);
+    font-size: 0.875rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .command-palette {
+    &[open] {
+      padding-top: 10dvh;
+    }
+
+    &__container {
+      max-width: 100%;
+      margin: 0 0.75rem;
+      border-radius: 16px;
+    }
+
+    &__results {
+      max-height: 50dvh;
+    }
+  }
+}
