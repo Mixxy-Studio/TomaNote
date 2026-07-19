@@ -236,5 +236,11 @@
   "roadmap.prev.9.summary": "Automatización",
   "roadmap.prev.9.description": "Scripts para sincronización automática de traducciones del roadmap y generación de CHANGELOG.md",
   "roadmap.prev.10.summary": "Limpieza",
-  "roadmap.prev.10.description": "Scripts huérfanos eliminados (roadmap-gen.js), claves de traducción roadmap.old-* sin uso removidas, archivos duplicados eliminados"
+  "roadmap.prev.10.description": "Scripts huérfanos eliminados (roadmap-gen.js), claves de traducción roadmap.old-* sin uso removidas, archivos duplicados eliminados",
+  "roadmap.next.3.summary": "Precarga offline",
+  "roadmap.next.3.description": "Sistema de precarga cuando falla la conexión, mostrando alertas amigables y ofreciendo acceso a versiones anteriores sin pérdida de datos.",
+  "roadmap.next.4.summary": "Service Worker Connection-recovery",
+  "roadmap.next.4.description": "Service worker para recuperación automática de conexión, cacheo inteligente y modo offline.",
+  "roadmap.next.5.summary": "Más atajos de teclado",
+  "roadmap.next.5.description": "Nuevos atajos de teclado usando left_Alt para acciones rápidas, integrados con el command palette."
 }

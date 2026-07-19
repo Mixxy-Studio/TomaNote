@@ -233,5 +233,11 @@
   "roadmap.prev.9.summary": "Automation",
   "roadmap.prev.9.description": "Scripts for automated roadmap translation sync and CHANGELOG.md generation",
   "roadmap.prev.10.summary": "Cleanup",
-  "roadmap.prev.10.description": "Removed orphaned scripts (roadmap-gen.js), unused roadmap.old-* translation keys, duplicate files deleted"
+  "roadmap.prev.10.description": "Removed orphaned scripts (roadmap-gen.js), unused roadmap.old-* translation keys, duplicate files deleted",
+  "roadmap.next.3.summary": "Offline pre-loading",
+  "roadmap.next.3.description": "Pre-loading system when connection fails, showing friendly alerts and offering access to previous versions without data loss.",
+  "roadmap.next.4.summary": "Service Worker Connection-recovery",
+  "roadmap.next.4.description": "Service worker for automatic connection recovery, intelligent caching and offline mode.",
+  "roadmap.next.5.summary": "More keyboard shortcuts",
+  "roadmap.next.5.description": "New keyboard shortcuts using left_Alt for quick actions, integrated with the command palette."
 }
