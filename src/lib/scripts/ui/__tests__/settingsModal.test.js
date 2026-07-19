@@ -299,4 +299,60 @@ describe("SettingsModal", () => {
       expect(settingsModal.langSelect).toBeDefined();
     });
   });
+
+  describe("setupDialogClosePrevention", () => {
+    it("should register cancel event listener on modal", async () => {
+      settingsModal = new SettingsModal({ debug: false });
+      await settingsModal.init();
+
+      expect(mockModal.addEventListener).toHaveBeenCalledWith(
+        "cancel",
+        expect.any(Function),
+      );
+    });
+
+    it("should prevent default on cancel event", async () => {
+      settingsModal = new SettingsModal({ debug: false });
+      await settingsModal.init();
+
+      const cancelHandler = mockModal.addEventListener.mock.calls.find(
+        (call) => call[0] === "cancel",
+      )[1];
+
+      const mockEvent = { preventDefault: vi.fn() };
+      cancelHandler(mockEvent);
+
+      expect(mockEvent.preventDefault).toHaveBeenCalled();
+    });
+
+    it("should not crash when modal is null", async () => {
+      document.getElementById = vi.fn(() => null);
+      settingsModal = new SettingsModal({ debug: false });
+      await settingsModal.init();
+
+      expect(settingsModal.modal).toBeNull();
+    });
+  });
+
+  describe("init early return", () => {
+    it("should return this when modal not found", async () => {
+      document.getElementById = vi.fn(() => null);
+      settingsModal = new SettingsModal({ debug: false });
+      const result = await settingsModal.init();
+
+      expect(result).toBe(settingsModal);
+      expect(settingsModal.modal).toBeNull();
+    });
+  });
+
+  describe("switchTab edge cases", () => {
+    it("should handle missing tab gracefully", () => {
+      settingsModal = new SettingsModal({ debug: false });
+      settingsModal.modal = mockModal;
+
+      expect(() => {
+        settingsModal.switchTab("nonexistent", mockNavItems, mockTabs);
+      }).not.toThrow();
+    });
+  });
 });
