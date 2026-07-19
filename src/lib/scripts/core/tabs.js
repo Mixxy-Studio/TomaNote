@@ -278,7 +278,7 @@ export class TabManager {
           </svg>
         </button>
       </label>
-      <div class="tab-list__item--content md:ml-10px overflow-x-hidden overflow-y-scroll font-thin hidden bg-(--tn-theme-secondary) p-(--tn-padding-base)! border-0 outline-0 absolute top-11 md:left-2.5 md:w-[calc(100%-25px)] first:mr-2.5 border-r border-(--tn-theme-secondary)! rounded-md" contenteditable="true">${content || ""}</div>
+      <div class="tab-list__item--content md:ml-10px overflow-x-hidden overflow-y-scroll font-thin hidden bg-(--tn-theme-secondary) p-(--tn-padding-base)! border-0 outline-0 absolute top-11 md:left-2.5 md:w-[calc(100%-25px)] first:mr-2.5 border-r border-(--tn-theme-secondary)! rounded-md" contenteditable="true"><div>${content || ""}</div></div>
     `;
 
     // Insert using the anchor or button as a reference
@@ -288,6 +288,20 @@ export class TabManager {
       this.tabList.insertBefore(tabElement, this.createTabButton);
     } else {
       this.tabList.appendChild(tabElement);
+    }
+
+    // Apply saved editor settings
+    const contentDiv = tabElement.querySelector(".tab-list__item--content");
+    const innerDiv = tabElement.querySelector(".tab-list__item--content > div");
+    if (innerDiv) {
+      const savedWidth = localStorage.getItem("editorWidth");
+      if (savedWidth === "stretch") innerDiv.classList.add("stretch");
+    }
+    if (contentDiv) {
+      const savedBg = localStorage.getItem("editorBackground");
+      if (savedBg && typeof savedBg === "string" && savedBg !== "flat" && savedBg !== "null") {
+        contentDiv.classList.add(`bg-${savedBg}`);
+      }
     }
 
     return tabElement;

@@ -267,6 +267,7 @@ describe("TabManager - createTabElement", () => {
 
   beforeEach(() => {
     vi.clearAllMocks();
+    localStorageMock.getItem.mockReturnValue(undefined);
     tabManager = makeTabManager();
     // Restore real createTabElement
     tabManager.createTabElement = TabManager.prototype.createTabElement;
@@ -283,7 +284,7 @@ describe("TabManager - createTabElement", () => {
     const span = element.querySelector("label span");
     expect(span.textContent).toBe("Mi Nota");
     const content = element.querySelector(".tab-list__item--content");
-    expect(content.innerHTML).toBe("<p>contenido</p>");
+    expect(content.innerHTML).toBe("<div><p>contenido</p></div>");
   });
 
   it("Agrega clase pinned si isPinned es true", () => {

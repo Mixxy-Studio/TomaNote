@@ -131,6 +131,7 @@ async function initializeBasicComponents() {
   await initializeCloseTabConfirmation();
   await initializeCommandPalette();
   await initializeFloatingNavPosition();
+  await initializeEditorSettings();
 }
 
 async function initializeTabsSystem() {
@@ -316,6 +317,17 @@ async function initializeCommandPalette() {
     return window.commandPalette;
   } catch (error) {
     console.error("❌ Error inicializando CommandPalette:", error);
+  }
+}
+
+async function initializeEditorSettings() {
+  try {
+    const { EditorSettings } = await import("./core/editorSettings.js");
+
+    window.editorSettings = new EditorSettings();
+    window.editorSettings.init();
+  } catch (error) {
+    console.error("❌ Error inicializando EditorSettings:", error);
   }
 }
 
