@@ -19,8 +19,8 @@ describe("CloseTabConfirmation", () => {
 
     mockModal = {
       querySelector: vi.fn((selector) => {
-        if (selector === '[data-action="delete"]') return mockDeleteBtn;
-        if (selector === '[data-action="cancel"]') return mockCancelBtn;
+        if (selector === "[data-action='delete']") return mockDeleteBtn;
+        if (selector === "[data-action='cancel']") return mockCancelBtn;
         return null;
       }),
       addEventListener: vi.fn(),
@@ -80,6 +80,62 @@ describe("CloseTabConfirmation", () => {
 
       const result = await promise;
       expect(result).toEqual({ confirmed: false, tabElement: null });
+    });
+  });
+
+  describe("setupEventListeners", () => {
+    it("Registra listener de click en botón delete", () => {
+      modal.setupEventListeners();
+
+      expect(mockDeleteBtn.addEventListener).toHaveBeenCalledWith("click", expect.any(Function));
+    });
+
+    it("Registra listener de click en botón cancel", () => {
+      modal.setupEventListeners();
+
+      expect(mockCancelBtn.addEventListener).toHaveBeenCalledWith("click", expect.any(Function));
+    });
+
+    it("Registra listener de cancel event en el modal", () => {
+      modal.setupEventListeners();
+
+      expect(mockModal.addEventListener).toHaveBeenCalledWith("cancel", expect.any(Function));
+    });
+
+    it("El cancel event llama handleCancel y previene default", () => {
+      let cancelHandler;
+      mockModal.addEventListener = vi.fn((event, handler) => {
+        if (event === "cancel") cancelHandler = handler;
+      });
+
+      modal.setupEventListeners();
+
+      const mockEvent = { preventDefault: vi.fn() };
+      cancelHandler(mockEvent);
+
+      expect(mockEvent.preventDefault).toHaveBeenCalled();
+      expect(mockModal.close).toHaveBeenCalled();
+    });
+  });
+
+  describe("init", () => {
+    it("Llama setupEventListeners cuando el modal existe", async () => {
+      document.getElementById = vi.fn().mockReturnValue(mockModal);
+      const setupSpy = vi.spyOn(modal, "setupEventListeners");
+
+      await modal.init();
+
+      expect(setupSpy).toHaveBeenCalled();
+    });
+
+    it("No llama setupEventListeners si el modal no existe", async () => {
+      document.getElementById = vi.fn().mockReturnValue(null);
+      modal.modal = null;
+      const setupSpy = vi.spyOn(modal, "setupEventListeners");
+
+      await modal.init();
+
+      expect(setupSpy).not.toHaveBeenCalled();
     });
   });
 });

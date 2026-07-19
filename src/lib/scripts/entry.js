@@ -14,10 +14,13 @@ export async function initNotepad() {
     // 2. Initialize basic components
     await initializeBasicComponents();
 
-    // 3. Load additional (less critical) modules
+    // 3. Initial content height calculation (after tabs + floatingNav are ready)
+    window.floatingNavPosition?.getContentHeight();
+
+    // 4. Load additional (less critical) modules
     await loadOptionalModules();
 
-    // 4. Verify that everything is working
+    // 5. Verify that everything is working
     await verifyFunctionality();
   } catch (error) {
     // Attempt minimal functionality
@@ -126,7 +129,9 @@ async function initializeBasicComponents() {
   await initializeTabDragDrop();
   await initializeSettingsModal();
   await initializeCloseTabConfirmation();
+  await initializeCommandPalette();
   await initializeFloatingNavPosition();
+  await initializeEditorSettings();
 }
 
 async function initializeTabsSystem() {
@@ -296,6 +301,33 @@ async function initializeFloatingNavPosition() {
     window.floatingNavPosition.init();
   } catch (error) {
     console.error("❌ Error inicializando FloatingNavPosition:", error);
+  }
+}
+
+async function initializeCommandPalette() {
+  try {
+    const { CommandPalette } = await import("../../features/command-palette/command-palette.js");
+
+    window.commandPalette = new CommandPalette({
+      debug: true,
+    });
+
+    await window.commandPalette.init();
+
+    return window.commandPalette;
+  } catch (error) {
+    console.error("❌ Error inicializando CommandPalette:", error);
+  }
+}
+
+async function initializeEditorSettings() {
+  try {
+    const { EditorSettings } = await import("./core/editorSettings.js");
+
+    window.editorSettings = new EditorSettings();
+    window.editorSettings.init();
+  } catch (error) {
+    console.error("❌ Error inicializando EditorSettings:", error);
   }
 }
 

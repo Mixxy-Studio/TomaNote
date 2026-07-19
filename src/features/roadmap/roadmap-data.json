@@ -1,47 +1,63 @@
 {
   "versions": [
     {
-      "id": "prev",
-      "type": "previous",
-      "versionNumber": "0.4.3",
-      "date": "2026-06-10",
+      "id": "next",
+      "type": "next",
+      "versionNumber": "0.6.0",
+      "date": "2026-0x-0x",
       "isCurrent": false,
-      "isNext": false,
+      "isNext": true,
       "items": {
         "es": [
-          { "summary": "Modularización completa", "description": "Todos los componentes se reestructuraron en src/features/ como módulos independientes: FloatingMenu, ContextualMenu, ModalInfo, CreateTab, CloseTabConfirmation y Roadmap" },
-          { "summary": "Modal de confirmación", "description": "Nuevo diálogo <dialog> personalizado para eliminar pestañas, reemplazando el obsoleto confirm() nativo del navegador" },
-          { "summary": "Mejoras de accesibilidad", "description": "Atributos ARIA en modales, navegación por teclado mejorada, soporte para lectores de pantalla" },
-          { "summary": "Optimización SEO", "description": "Meta tag de verificación de Google Search Console, esquemas BreadcrumbList y HowTo, 3 nuevas vistas SEO, hreflang por defecto en 'en', indexación para agentes IA (Google, GPT, Anthropic)" },
-          { "summary": "Correcciones de UI", "description": "Posición del menú flotante se ajusta según modo de instalación (PWA vs navegador), correcciones en tablet y móvil, texto pegado preserva su estructura original" },
-          { "summary": "Internacionalización", "description": "Todos los comentarios y descripciones de tests traducidos al inglés, traducciones para menú contextual y modal de confirmación" },
-          { "summary": "Actualización de estilos", "description": "Eliminado outline en [contenteditable]:focus, agregado dialog::backdrop global, ajuste de --nav-bottom a 1rem, eliminados estilos de fuente redundantes" },
-          { "summary": "Nuevos iconos", "description": "6 iconos añadidos: botón cerrar, cohete, file-text, chevron-right, alerta y papelera" },
-          { "summary": "Roadmap", "description": "Nueva pestaña Roadmap reemplaza la pestaña Novedades, con integración i18n y sincronización automatizada desde roadmap-data.json" },
-          { "summary": "Automatización", "description": "Scripts para sincronización automática de traducciones del roadmap y generación de CHANGELOG.md" },
-          { "summary": "Limpieza", "description": "Scripts huérfanos eliminados (roadmap-gen.js), claves de traducción roadmap.old-* sin uso removidas, archivos duplicados eliminados" }
+          { "summary": "Markdown en tiempo real", "description": "Vista previa de Markdown en tiempo real usando Milkdown, con edición WYSIWYG y soporte completo de sintaxis." },
+          { "summary": "Soporte para escritura con lápiz", "description": "Integración nativa con dispositivos táctiles y lápiz óptico para tabletas y celulares, mejorando la experiencia de escritura manuscrita." },
+          { "summary": "Sincronización en red LAN", "description": "Sincronización de notas entre dispositivos en la misma red local sin base de datos, usando el dispositivo principal como servidor." },
+          { "summary": "Precarga offline", "description": "Sistema de precarga cuando falla la conexión, mostrando alertas amigables y ofreciendo acceso a versiones anteriores sin pérdida de datos." },
+          { "summary": "Service Worker Connection-recovery", "description": "Service worker para recuperación automática de conexión, cacheo inteligente y modo offline." },
+          { "summary": "Más atajos de teclado", "description": "Nuevos atajos de teclado usando left_Alt para acciones rápidas, integrados con el command palette." }
         ],
         "en": [
-          { "summary": "Full modularization", "description": "All components restructured into src/features/ as self-contained modules: FloatingMenu, ContextualMenu, ModalInfo, CreateTab, CloseTabConfirmation, and Roadmap" },
-          { "summary": "Confirmation modal", "description": "Custom <dialog> element for tab deletion, replacing the native browser confirm()" },
-          { "summary": "Accessibility improvements", "description": "ARIA attributes on modals, improved keyboard navigation, screen reader support" },
-          { "summary": "SEO optimization", "description": "Google Search Console verification meta tag, BreadcrumbList and HowTo schemas, 3 new SEO views, default hreflang set to 'en', AI agent indexing (Google, GPT, Anthropic)" },
-          { "summary": "UI fixes", "description": "Floating menu position auto-adjusts based on install mode (PWA vs browser), tablet and mobile display corrections, pasted text preserves its original structure" },
-          { "summary": "Internationalization", "description": "All comments and test descriptions translated to English, contextual menu and confirmation modal translation" },
-          { "summary": "Style updates", "description": "Removed outline on [contenteditable]:focus, added global dialog::backdrop, --nav-bottom adjusted to 1rem, removed redundant font styles" },
-          { "summary": "New icons", "description": "6 icons added: close button, rocket, file-text, chevron-right, alert, and trash" },
-          { "summary": "Roadmap", "description": "New Roadmap tab replacing the News tab, with i18n integration and automated sync from roadmap-data.json" },
-          { "summary": "Automation", "description": "Scripts for automated roadmap translation sync and CHANGELOG.md generation" },
-          { "summary": "Cleanup", "description": "Removed orphaned scripts (roadmap-gen.js), unused roadmap.old-* translation keys, duplicate files deleted" }
+          { "summary": "Live Markdown preview", "description": "Real-time Markdown preview using Milkdown, with WYSIWYG editing and full syntax support." },
+          { "summary": "Stylus/pen input support", "description": "Native integration with touch devices and stylus for tablets and phones, improving handwritten note experience." },
+          { "summary": "LAN sync", "description": "Note synchronization between devices on the same local network without database, using the primary device as server." },
+          { "summary": "Offline pre-loading", "description": "Pre-loading system when connection fails, showing friendly alerts and offering access to previous versions without data loss." },
+          { "summary": "Service Worker Connection-recovery", "description": "Service worker for automatic connection recovery, intelligent caching and offline mode." },
+          { "summary": "More keyboard shortcuts", "description": "New keyboard shortcuts using left_Alt for quick actions, integrated with the command palette." }
         ]
       }
     },
     {
       "id": "current",
       "type": "current",
+      "versionNumber": "0.5.0",
+      "date": "2026-07-19",
+      "isCurrent": true,
+      "isNext": false,
+      "items": {
+        "es": [
+          { "summary": "Configuración del editor", "description": "Nuevo panel de configuración con control de ancho del editor y personalización de color de fondo de papel." },
+          { "summary": "Command palette", "description": "Búsqueda global con interfaz estilo Spotlight — busca notas por título o contenido instantáneamente." },
+          { "summary": "Diseño responsivo", "description": "Barra lateral izquierda en escritorio, navegación inferior en móvil, menú flotante reorganizado como barra lateral derecha." },
+          { "summary": "Sistema de temas", "description": "Variables CSS aplicadas consistentemente en UI incluyendo command palette y vistas previas." },
+          { "summary": "Tooltips inteligentes", "description": "Todos los botones ahora tienen tooltips con posicionamiento inteligente según la barra lateral." },
+          { "summary": "Cobertura de tests", "description": "455 tests pasando — cobertura expandida para configuración del editor, command palette, menú flotante y utilidades." }
+        ],
+        "en": [
+          { "summary": "Editor settings", "description": "New settings panel with editor width control and paper background color customization." },
+          { "summary": "Command palette", "description": "Global search with Spotlight-style UI — search notes by title or content instantly." },
+          { "summary": "Responsive layout", "description": "Left sidebar on desktop, bottom navigation on mobile, floating menu reorganized as right sidebar." },
+          { "summary": "Theme system", "description": "CSS variables applied consistently across UI including command palette and previews." },
+          { "summary": "Smart tooltips", "description": "All buttons now have smart tooltips with sidebar-aware positioning." },
+          { "summary": "Test coverage", "description": "455 tests passing — expanded coverage for editor settings, command palette, floating menu, and utilities." }
+        ]
+      }
+    },
+    {
+      "id": "prev",
+      "type": "previous",
       "versionNumber": "0.4.4",
       "date": "2026-07-15",
-      "isCurrent": true,
+      "isCurrent": false,
       "isNext": false,
       "items": {
         "es": [
@@ -49,58 +65,14 @@
           { "summary": "Corrección de estilos para Vite", "description": "Ajustes de estilos requeridos tras la última actualización de Vite para mantener la compatibilidad visual" },
           { "summary": "Parche de seguridad CVE-2026-33532", "description": "Resuelta vulnerabilidad CVE-2026-33532 y vulnerabilidades relacionadas mediante overrides en npm" },
           { "summary": "Internacionalización completa en páginas SEO", "description": "Las páginas Acerca de, Términos y Privacidad ahora se renderizan en el idioma del usuario mediante useTranslations()" },
-          { "summary": "Limpieza de código", "description": "Eliminado archivo duplicado contextMenu.js, strings hardcodeados en español reemplazados por claves i18n, corregido parpadeo de idioma incorrecto"
-        }],
+          { "summary": "Limpieza de código", "description": "Eliminado archivo duplicado contextMenu.js, strings hardcodeados en español reemplazados por claves i18n, corregido parpadeo de idioma incorrecto" }
+        ],
         "en": [
           { "summary": "Dependency updates", "description": "Critical dependencies updated via dependabot: Vite and npm_and_yarn dependency group" },
           { "summary": "Vite style fix", "description": "Style adjustments required after the latest Vite update to maintain visual compatibility" },
           { "summary": "Security patch CVE-2026-33532", "description": "Resolved CVE-2026-33532 vulnerability and related issues via npm overrides" },
           { "summary": "Full i18n on SEO pages", "description": "About, Terms and Privacy pages now render in the user's language via useTranslations()" },
           { "summary": "Code cleanup", "description": "Removed duplicate contextMenu.js, replaced hardcoded Spanish strings with i18n keys, fixed language flash on settings tabs" }
-        ]
-      }
-    },
-    {
-      "id": "next",
-      "type": "next",
-      "versionNumber": "0.5.0",
-      "date": "2026-0x-0x",
-      "isCurrent": false,
-      "isNext": true,
-      "items": {
-        "es": [
-          { "summary": "Keyboard shortcuts", "description": "Atajos de teclado para las acciones más comunes del app: crear nota, navegar entre notas, abrir menú y configuración, entre otros." },
-          { "summary": "Visualización en vivo de Markdown", "description": "Escribe en markdown y ve el resultado renderizado en tiempo real directamente en tu nota." },
-          { "summary": "Búsqueda global", "description": "Busca entre tus notas, ya sea por titulo o directamente contenido de la nota" }
-        ],
-        "en": [
-          { "summary": "Keyboard shortcuts", "description": "Keyboard shortcuts for the app's most common actions: creating a note, navigating between notes, opening the menu and settings, among others." },
-          { "summary": "Live Markdown preview", "description": "Write in Markdown and see the result rendered in real time directly in your note." },
-          { "summary": "Global search", "description": "Search among your notes, either by title or directly by note content." }
-        ]
-      }
-    },
-    {
-      "id": "old-042",
-      "type": "old",
-      "versionNumber": "0.4.2",
-      "date": "2026-03-27",
-      "isCurrent": false,
-      "isNext": false,
-      "isOld": true,
-      "showInTab": false,
-      "items": {
-        "es": [
-          { "summary": "Modal de confirmación", "description": "Diálogo modal personalizado para eliminar pestañas, reemplazando el obsoleto confirm() de los navegadores" },
-          { "summary": "Mejoras para móviles y PWA", "description": "Posicionamiento dinámico del menú flotante, soporte para áreas seguras en iOS PWA, detección de teclado virtual y corrección de posición en modo standalone" },
-          { "summary": "Nuevos iconos", "description": "Iconos agregados: alerta y papelera" },
-          { "summary": "Pruebas", "description": "19 nuevas pruebas añadidas para los módulos de confirmación, eliminación de pestañas y posicionamiento del menú flotante. Total: 163 pruebas exitosas" }
-        ],
-        "en": [
-          { "summary": "Confirmation modal", "description": "Custom modal dialog for tab deletion, replacing deprecated browser confirm()" },
-          { "summary": "Mobile & PWA improvements", "description": "Dynamic floating menu positioning, safe area insets support for iOS PWA, virtual keyboard detection, fixed positioning in standalone mode" },
-          { "summary": "New icons", "description": "Added alert and trash icons" },
-          { "summary": "Testing", "description": "19 new tests added for confirmation, tab deletion and floating menu modules. Total: 163 passing tests" }
         ]
       }
     },
@@ -139,6 +111,30 @@
           { "summary": "Roadmap", "description": "New Roadmap tab replacing the News tab, with i18n integration and automated sync from roadmap-data.json" },
           { "summary": "Automation", "description": "Scripts for automated roadmap translation sync and CHANGELOG.md generation" },
           { "summary": "Cleanup", "description": "Removed orphaned scripts (roadmap-gen.js), unused roadmap.old-* translation keys, duplicate files deleted" }
+        ]
+      }
+    },
+    {
+      "id": "old-042",
+      "type": "old",
+      "versionNumber": "0.4.2",
+      "date": "2026-03-27",
+      "isCurrent": false,
+      "isNext": false,
+      "isOld": true,
+      "showInTab": false,
+      "items": {
+        "es": [
+          { "summary": "Modal de confirmación", "description": "Diálogo modal personalizado para eliminar pestañas, reemplazando el obsoleto confirm() de los navegadores" },
+          { "summary": "Mejoras para móviles y PWA", "description": "Posicionamiento dinámico del menú flotante, soporte para áreas seguras en iOS PWA, detección de teclado virtual y corrección de posición en modo standalone" },
+          { "summary": "Nuevos iconos", "description": "Iconos agregados: alerta y papelera" },
+          { "summary": "Pruebas", "description": "19 nuevas pruebas añadidas para los módulos de confirmación, eliminación de pestañas y posicionamiento del menú flotante. Total: 163 pruebas exitosas" }
+        ],
+        "en": [
+          { "summary": "Confirmation modal", "description": "Custom modal dialog for tab deletion, replacing deprecated browser confirm()" },
+          { "summary": "Mobile & PWA improvements", "description": "Dynamic floating menu positioning, safe area insets support for iOS PWA, virtual keyboard detection, fixed positioning in standalone mode" },
+          { "summary": "New icons", "description": "Added alert and trash icons" },
+          { "summary": "Testing", "description": "19 new tests added for confirmation, tab deletion and floating menu modules. Total: 163 passing tests" }
         ]
       }
     },

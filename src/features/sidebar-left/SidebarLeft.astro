@@ -1,0 +1,38 @@
+---
+// src/features/sidebar-left/SidebarLeft.astro
+// Left sidebar: logo, search (placeholder), settings (placeholder)
+
+import "./sidebar-left.scss";
+import Icon from "../../components/icons/Icon.astro";
+import { getLang, useTranslations } from "../../i18n/utils";
+
+const t = useTranslations(getLang());
+---
+
+<aside class="sidebar-left hidden md:flex h-dvh!">
+  <div class="sidebar-header">
+    <Icon name="tomanote" className="text-(--tn-theme-contrast)" />
+  </div>
+  <div class="sidebar-body flex flex-col h-full justify-between">
+    <div class="sidebar-left__top">
+      <div class="group relative">
+        <button tabindex="0" aria-label={t("context-menu.search")} class="sidebar-left__btn cursor-pointer!" onclick="window.commandPalette?.open()">
+          <Icon name="search" className="text-(--tn-theme-contrast)" strokeWidth={3} />
+        </button>
+        <span data-i18n="context-menu.search" class="pointer-events-none absolute left-full ml-2 top-1/2 -translate-y-1/2 whitespace-nowrap rounded bg-(--tn-theme-primary) px-1! py-1/2! text-xs! text-(--tn-neutral-tertiary-color) opacity-0 transition-opacity group-hover:opacity-100 border border-(--tn-theme-contrast)! z-50">
+          {t("context-menu.search")}
+        </span>
+      </div>
+    </div>
+    <div class="sidebar-left__bottom">
+      <div class="group relative">
+        <button tabindex="0" aria-label={t("context-menu.settings")} class="sidebar-left__btn cursor-pointer!" onclick="event.preventDefault(); document.querySelector('dialog#info-notepad').showModal()">
+          <Icon name="settings" className="text-(--tn-theme-contrast)" strokeWidth={3} />
+        </button>
+        <span data-i18n="context-menu.settings" class="pointer-events-none absolute left-full ml-2 top-1/2 -translate-y-1/2 whitespace-nowrap rounded bg-(--tn-theme-primary) px-1! py-1/2! text-xs! text-(--tn-neutral-tertiary-color) opacity-0 transition-opacity group-hover:opacity-100 border border-(--tn-theme-contrast)! z-50">
+          {t("context-menu.settings")}
+        </span>
+      </div>
+    </div>
+  </div>
+</aside>

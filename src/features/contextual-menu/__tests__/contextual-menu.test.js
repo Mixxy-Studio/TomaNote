@@ -4,6 +4,7 @@ import { ContextMenu } from "../contextual-menu.js";
 // Mockear dependencias
 vi.mock("../../../lib/scripts/utils/emojiDetector.js", () => ({
   detectEmojiInText: vi.fn().mockReturnValue(false),
+  getRandomPinEmoji: vi.fn().mockReturnValue("🔴"),
 }));
 
 // Mock de navigator.language
@@ -58,6 +59,7 @@ describe("ContextMenu", () => {
       createTextNode: vi.fn().mockReturnValue({ nodeType: 3 }),
       body: { appendChild: vi.fn() },
       elementFromPoint: vi.fn().mockReturnValue(mockElement),
+      dispatchEvent: vi.fn(),
     };
 
     // Mock window
@@ -169,6 +171,132 @@ describe("ContextMenu", () => {
       expect(mockSelection.getRangeAt(0).collapse).toHaveBeenCalledWith(false);
       expect(mockSelection.removeAllRanges).toHaveBeenCalled();
       expect(mockSelection.addRange).toHaveBeenCalled();
+    });
+  });
+
+  describe("showTabContextMenu", () => {
+    beforeEach(async () => {
+      await contextMenu.init();
+    });
+
+    it("Establece activeTabElement y oculta items de texto", () => {
+      const mockTabLabel = {
+        closest: vi.fn().mockReturnValue({
+          classList: { contains: vi.fn().mockReturnValue(false) },
+        }),
+      };
+      const mockTextItem = { dataset: { context: "text" }, style: {} };
+      const mockTabItem = { dataset: { context: "tab" }, style: {} };
+      const mockSeparator = { style: {} };
+
+      mockElement.querySelectorAll = vi.fn((sel) => {
+        if (sel === ".context-menu__item") return [mockTextItem, mockTabItem];
+        if (sel === ".context-menu__separator") return [mockSeparator];
+        return [];
+      });
+
+      contextMenu.showTabContextMenu(mockEvent, mockTabLabel);
+
+      expect(contextMenu.activeTabElement).toBeTruthy();
+      expect(mockTabItem.style.display).toBe("block");
+      expect(mockTextItem.style.display).toBe("none");
+      expect(mockSeparator.style.display).toBe("none");
+    });
+  });
+
+  describe("showMenuAt", () => {
+    beforeEach(async () => {
+      await contextMenu.init();
+    });
+
+    it("Posiciona el menú en la posición dada", () => {
+      mockElement.offsetWidth = 200;
+      mockElement.offsetHeight = 300;
+      window.innerWidth = 1920;
+      window.innerHeight = 1080;
+
+      contextMenu.showMenuAt(100, 200);
+
+      expect(mockElement.style.display).toBe("block");
+      expect(mockElement.style.left).toBe("100px");
+      expect(mockElement.style.top).toBe("200px");
+    });
+
+    it("Ajusta posición si el menú se sale por la derecha", () => {
+      mockElement.offsetWidth = 200;
+      mockElement.offsetHeight = 100;
+      window.innerWidth = 500;
+      window.innerHeight = 1080;
+
+      contextMenu.showMenuAt(400, 100);
+
+      expect(mockElement.style.left).toBe("290px");
+    });
+
+    it("Ajusta posición si el menú se sale por abajo", () => {
+      mockElement.offsetWidth = 200;
+      mockElement.offsetHeight = 300;
+      window.innerWidth = 1920;
+      window.innerHeight = 500;
+
+      contextMenu.showMenuAt(100, 400);
+
+      expect(mockElement.style.top).toBe("190px");
+    });
+  });
+
+  describe("handleMenuAction", () => {
+    beforeEach(async () => {
+      await contextMenu.init();
+    });
+
+    it("Ignora clicks en elementos disabled", () => {
+      const hideSpy = vi.spyOn(contextMenu, "hideContextMenu");
+      const mockMenuItem = { classList: { contains: vi.fn().mockReturnValue(true) } };
+      contextMenu.handleMenuAction({ target: { closest: vi.fn().mockReturnValue(mockMenuItem) } });
+      expect(hideSpy).not.toHaveBeenCalled();
+    });
+
+    it("Ejecuta acción pin-tab si activeTabElement existe", () => {
+      const mockTabElement = {
+        classList: { contains: vi.fn().mockReturnValue(false), add: vi.fn() },
+        querySelector: vi.fn().mockReturnValue({ textContent: "test", dataset: {}, setAttribute: vi.fn() }),
+      };
+      contextMenu.activeTabElement = mockTabElement;
+      const pinTabSpy = vi.spyOn(contextMenu, "handlePinTab");
+
+      const mockMenuItem = {
+        classList: { contains: vi.fn().mockReturnValue(false) },
+        dataset: { action: "pin-tab" },
+      };
+      contextMenu.handleMenuAction({ target: { closest: vi.fn().mockReturnValue(mockMenuItem) } });
+
+      expect(pinTabSpy).toHaveBeenCalledWith(mockTabElement);
+    });
+
+    it("Ejecuta acción de texto si activeEditableElement existe", () => {
+      contextMenu.activeEditableElement = { focus: vi.fn() };
+      const handleTextActionSpy = vi.spyOn(contextMenu, "handleTextAction");
+
+      const mockMenuItem = {
+        classList: { contains: vi.fn().mockReturnValue(false) },
+        dataset: { action: "copy" },
+      };
+      contextMenu.handleMenuAction({ target: { closest: vi.fn().mockReturnValue(mockMenuItem) } });
+
+      expect(handleTextActionSpy).toHaveBeenCalledWith("copy");
+    });
+
+    it("Oculta el menú después de ejecutar la acción", () => {
+      contextMenu.activeEditableElement = { focus: vi.fn() };
+
+      const mockMenuItem = {
+        classList: { contains: vi.fn().mockReturnValue(false) },
+        dataset: { action: "copy" },
+      };
+      contextMenu.handleMenuAction({ target: { closest: vi.fn().mockReturnValue(mockMenuItem) } });
+
+      expect(mockElement.style.display).toBe("none");
     });
   });
 

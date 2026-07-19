@@ -4,6 +4,16 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## [0.5.0] - July 19, 2026
+
+### Added
+- New settings panel with editor width control and paper background color customization.
+- Global search with Spotlight-style UI — search notes by title or content instantly.
+- Left sidebar on desktop, bottom navigation on mobile, floating menu reorganized as right sidebar.
+- CSS variables applied consistently across UI including command palette and previews.
+- All buttons now have smart tooltips with sidebar-aware positioning.
+- 455 tests passing — expanded coverage for editor settings, command palette, floating menu, and utilities.
+
 ## [0.4.4] - July 15, 2026
 
 ### Added
@@ -13,32 +23,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 - About, Terms and Privacy pages now render in the user's language via useTranslations()
 - Removed duplicate contextMenu.js, replaced hardcoded Spanish strings with i18n keys, fixed language flash on settings tabs
 
-## [0.4.3] - June 10, 2026
-
-### Added
-- All components restructured into src/features/ as self-contained modules: FloatingMenu, ContextualMenu, ModalInfo, CreateTab, CloseTabConfirmation, and Roadmap
-- Custom <dialog> element for tab deletion, replacing the native browser confirm()
-- ARIA attributes on modals, improved keyboard navigation, screen reader support
-- Google Search Console verification meta tag, BreadcrumbList and HowTo schemas, 3 new SEO views, default hreflang set to 'en', AI agent indexing (Google, GPT, Anthropic)
-- Floating menu position auto-adjusts based on install mode (PWA vs browser), tablet and mobile display corrections, pasted text preserves its original structure
-- All comments and test descriptions translated to English, contextual menu and confirmation modal translation
-- Removed outline on [contenteditable]:focus, added global dialog::backdrop, --nav-bottom adjusted to 1rem, removed redundant font styles
-- 6 icons added: close button, rocket, file-text, chevron-right, alert, and trash
-- New Roadmap tab replacing the News tab, with i18n integration and automated sync from roadmap-data.json
-- Scripts for automated roadmap translation sync and CHANGELOG.md generation
-- Removed orphaned scripts (roadmap-gen.js), unused roadmap.old-* translation keys, duplicate files deleted
-
 ### Previous Versions
-
-<details>
-<summary>[0.4.2] - March 27, 2026</summary>
-
-- Custom modal dialog for tab deletion, replacing deprecated browser confirm()
-- Dynamic floating menu positioning, safe area insets support for iOS PWA, virtual keyboard detection, fixed positioning in standalone mode
-- Added alert and trash icons
-- 19 new tests added for confirmation, tab deletion and floating menu modules. Total: 163 passing tests
-
-</details>
 
 <details>
 <summary>[0.4.3] - June 10, 2026</summary>
@@ -54,6 +39,16 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 - New Roadmap tab replacing the News tab, with i18n integration and automated sync from roadmap-data.json
 - Scripts for automated roadmap translation sync and CHANGELOG.md generation
 - Removed orphaned scripts (roadmap-gen.js), unused roadmap.old-* translation keys, duplicate files deleted
+
+</details>
+
+<details>
+<summary>[0.4.2] - March 27, 2026</summary>
+
+- Custom modal dialog for tab deletion, replacing deprecated browser confirm()
+- Dynamic floating menu positioning, safe area insets support for iOS PWA, virtual keyboard detection, fixed positioning in standalone mode
+- Added alert and trash icons
+- 19 new tests added for confirmation, tab deletion and floating menu modules. Total: 163 passing tests
 
 </details>
 

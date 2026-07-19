@@ -21,6 +21,7 @@ export class SettingsModal {
 
     this.setupTabs();
     this.setupLanguageSelector();
+    this.setupDialogClosePrevention();
 
     if (this.options.debug) {
       console.log("[SettingsModal] Initialized successfully");
@@ -82,5 +83,13 @@ export class SettingsModal {
         this.modal.close();
       });
     }
+  }
+
+  setupDialogClosePrevention() {
+    if (!this.modal) return;
+
+    this.modal.addEventListener("cancel", (e) => {
+      e.preventDefault();
+    });
   }
 }

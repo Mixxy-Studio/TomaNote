@@ -1,0 +1,31 @@
+---
+import "./command-palette.scss";
+import Icon from "../../components/icons/Icon.astro";
+import { getLang, useTranslations } from "../../i18n/utils";
+
+const t = useTranslations(getLang());
+---
+
+<dialog id="commandPalette" class="command-palette">
+  <div class="command-palette__backdrop" data-action="close"></div>
+  <div class="command-palette__container">
+    <div class="command-palette__input-wrapper">
+      <Icon name="search" className="command-palette__input-icon" strokeWidth={2} />
+      <input
+        id="commandPaletteInput"
+        type="text"
+        class="command-palette__input"
+        data-i18n-placeholder="command-palette.placeholder"
+        placeholder={t("command-palette.placeholder")}
+        autocomplete="off"
+        spellcheck="false"
+      />
+      <kbd class="command-palette__kbd">ESC</kbd>
+    </div>
+    <div id="commandPaletteResults" class="command-palette__results">
+      <div class="command-palette__empty" data-i18n="command-palette.empty">
+        {t("command-palette.empty")}
+      </div>
+    </div>
+  </div>
+</dialog>

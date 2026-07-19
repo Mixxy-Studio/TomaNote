@@ -21,6 +21,7 @@ describe("FloatingMenu", () => {
 
     mockFloatingMenu = {
       addEventListener: vi.fn(),
+      querySelector: vi.fn().mockReturnValue(null),
       querySelectorAll: vi.fn().mockReturnValue([]),
     };
 
@@ -355,6 +356,107 @@ describe("FloatingMenu", () => {
       floatingMenu.handleEditNameTab(mockTabElement);
 
       expect(global.window.tabManager.startEditingTabName).not.toHaveBeenCalled();
+    });
+  });
+
+  describe("handleBottomBarAction - search", () => {
+    it("should open command palette when action is search", () => {
+      global.window = {
+        commandPalette: { open: vi.fn() },
+      };
+
+      floatingMenu.closeBottomBarSubmenus = vi.fn();
+      floatingMenu.log = vi.fn();
+
+      floatingMenu.handleBottomBarAction("search", {});
+
+      expect(global.window.commandPalette.open).toHaveBeenCalled();
+    });
+
+    it("should close bottom bar submenus after search action", () => {
+      global.window = {
+        commandPalette: { open: vi.fn() },
+      };
+
+      floatingMenu.closeBottomBarSubmenus = vi.fn();
+      floatingMenu.log = vi.fn();
+
+      floatingMenu.handleBottomBarAction("search", {});
+
+      expect(floatingMenu.closeBottomBarSubmenus).toHaveBeenCalled();
+    });
+
+    it("should not require an active editor for search", () => {
+      global.window = {
+        commandPalette: { open: vi.fn() },
+      };
+
+      floatingMenu.getActiveEditable = vi.fn().mockReturnValue(null);
+      floatingMenu.closeBottomBarSubmenus = vi.fn();
+      floatingMenu.log = vi.fn();
+
+      floatingMenu.handleBottomBarAction("search", {});
+
+      expect(global.window.commandPalette.open).toHaveBeenCalled();
+      expect(floatingMenu.getActiveEditable).not.toHaveBeenCalled();
+    });
+  });
+
+  describe("handleBottomBarAction - settings", () => {
+    it("should open settings modal when action is settings", () => {
+      const mockShowModal = vi.fn();
+      global.document.querySelector = vi.fn().mockReturnValue({ showModal: mockShowModal });
+
+      global.window = {};
+
+      floatingMenu.closeBottomBarSubmenus = vi.fn();
+      floatingMenu.log = vi.fn();
+
+      floatingMenu.handleBottomBarAction("settings", {});
+
+      expect(global.document.querySelector).toHaveBeenCalledWith("dialog#info-notepad");
+      expect(mockShowModal).toHaveBeenCalled();
+    });
+
+    it("should close bottom bar submenus after settings action", () => {
+      global.document.querySelector = vi.fn().mockReturnValue({ showModal: vi.fn() });
+
+      global.window = {};
+
+      floatingMenu.closeBottomBarSubmenus = vi.fn();
+      floatingMenu.log = vi.fn();
+
+      floatingMenu.handleBottomBarAction("settings", {});
+
+      expect(floatingMenu.closeBottomBarSubmenus).toHaveBeenCalled();
+    });
+
+    it("should not require an active editor for settings", () => {
+      global.document.querySelector = vi.fn().mockReturnValue({ showModal: vi.fn() });
+
+      global.window = {};
+
+      floatingMenu.getActiveEditable = vi.fn().mockReturnValue(null);
+      floatingMenu.closeBottomBarSubmenus = vi.fn();
+      floatingMenu.log = vi.fn();
+
+      floatingMenu.handleBottomBarAction("settings", {});
+
+      expect(global.document.querySelector).toHaveBeenCalledWith("dialog#info-notepad");
+      expect(floatingMenu.getActiveEditable).not.toHaveBeenCalled();
+    });
+
+    it("should handle missing settings modal gracefully", () => {
+      global.document.querySelector = vi.fn().mockReturnValue(null);
+
+      global.window = {};
+
+      floatingMenu.closeBottomBarSubmenus = vi.fn();
+      floatingMenu.log = vi.fn();
+
+      expect(() => {
+        floatingMenu.handleBottomBarAction("settings", {});
+      }).not.toThrow();
     });
   });
 });

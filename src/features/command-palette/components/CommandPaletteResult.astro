@@ -1,0 +1,27 @@
+---
+interface Props {
+  tabId: string;
+  tabName: string;
+  snippet: string;
+  matchType: "name" | "content";
+}
+
+const { tabId, tabName, snippet, matchType } = Astro.props;
+---
+
+<button
+  class="command-palette__result"
+  data-tab-id={tabId}
+  data-action="open-tab"
+  type="button"
+>
+  <div class="command-palette__result-header">
+    <span class="command-palette__result-name">{tabName}</span>
+    <span class={`command-palette__result-badge command-palette__result-badge--${matchType}`}>
+      {matchType === "name" ? "title" : "content"}
+    </span>
+  </div>
+  {snippet && (
+    <p class="command-palette__result-snippet" set:html={snippet} />
+  )}
+</button>

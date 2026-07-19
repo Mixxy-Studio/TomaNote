@@ -32,24 +32,20 @@ const tabButtons = [
 ];
 ---
 
-<nav class="tn-navbar" id="floating-nav" style="bottom: var(--nav-bottom, 1rem); padding-bottom: var(--nav-pb, 0rem);">
+<nav class="tn-navbar pl-2.5 w-19! -mr-2.5 h-dvh! pb-1!" id="floating-nav" style="bottom: var(--nav-bottom, 1rem); padding-bottom: var(--nav-pb, 0rem);">
   <div dir="rtl" class="tn-navbar-btns tn-navbar-checked flex flex-col-reverse items-center justify-between gap-1 h-auto">
     <CreateTab />
 
     <MainToolsButton />
 
-    <div class="max-h-0 relative overflow-hidden peer-checked/menu:overflow-visible peer-checked/menu:max-h-[300px]! max-w-[60px] transition-all duration-300 ease-in-out flex flex-col items-center justify-center gap-1">
-      {/* Content Group */}
+    <div class="tn-tools-container max-h-0 relative overflow-hidden peer-checked/menu:overflow-visible peer-checked/menu:max-h-75! max-w-15 transition-all duration-300 ease-in-out flex flex-col items-center justify-center gap-1">
       <FloatingButtonGroup id="tn-navbar__content" radioName="options" radioId="tn-open-options__content" iconName="clipboard" buttons={contentButtons} iconStrokeWidth="1.5" />
 
-      {/* Font group */}
       <FloatingButtonGroup id="tn-navbar__font" radioName="options" radioId="tn-open-options__font" iconName="font" buttons={fontButtons} iconStrokeWidth="10" />
 
-      {/* Tab Group */}
       <FloatingButtonGroup id="tn-navbar__tab" radioName="options" radioId="tn-open-options__tab" iconName="tab" buttons={tabButtons} iconStrokeWidth="1.5" />
 
-      {/* Individual Settings button */}
-      <FloatingButton action="settings" iconName="settings" tooltip={t("context-menu.settings")} className="tn-setting border-(--tn-theme-contrast)! p-4! bg-(--tn-theme-secondary)" onClick="event.preventDefault(); document.querySelector('dialog#info-notepad').showModal()" />
+      <!-- <FloatingButton action="settings" iconName="settings" tooltip={t("context-menu.settings")} className="tn-setting border-(--tn-theme-contrast)! p-4! bg-(--tn-theme-secondary)" onClick="event.preventDefault(); document.querySelector('dialog#info-notepad').showModal()" /> -->
     </div>
   </div>
 </nav>

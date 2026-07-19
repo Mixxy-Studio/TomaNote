@@ -1,7 +1,14 @@
 @use "../abstracts/Variables.scss" as vars;
+@use "../abstracts/Mixins.scss" as mix;
 @use "sass:color";
 
 .tab-list {
+  width: 100%;
+
+  // Mobile: full height para que el contenido pueda hacer scroll
+  @include mix.respond-to('md') {
+    width: unset;
+  }
 
   &__item {
 
@@ -42,6 +49,11 @@
     &--content {
       font-family: var(--font-family-notes, var(--font-family-default));
       font-weight: normal;
+      height: calc(var(--content-height) - 27px);
+
+      @media (min-width: 768px) {
+        height: 93dvh;
+      }
 
       &::-webkit-scrollbar {
         width: var(--tn-padding-base);

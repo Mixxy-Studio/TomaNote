@@ -2,7 +2,7 @@
 
 <div align="center">
 
-![Version](https://img.shields.io/badge/version-0.4.3-blue.svg)
+![Version](https://img.shields.io/badge/version-0.5.0-blue.svg)
 ![License](https://img.shields.io/badge/license-AGPL%20v3-green.svg)
 ![Status](https://img.shields.io/badge/status-active-success.svg)
 ![Mobile](https://img.shields.io/badge/mobile-responsive-success)
@@ -20,27 +20,27 @@ TomaNote is a modern, minimalist notepad that runs directly in your browser. No 
 > Want to see what's coming next?
 > Check the **Roadmap** inside the app at [tomanote.app](https://tomanote.app) ✨
 
-## 🚀 What's new — v0.4.3
+## 🚀 What's new — v0.5.0
 
-This release is a major refactor focusing on modularization, internationalization, and SEO.
+This release focuses on editor customization, a modern command palette, and major layout improvements.
 
-### 🧩 Full modularization
-All components restructured into `src/features/` as self-contained modules: FloatingMenu, ContextualMenu, ModalInfo, CreateTab, CloseTabConfirmation, and Roadmap.
+### ⚙️ Editor settings
+New Appearance tab with editor width control and paper background color customization.
 
-### 🌐 Internationalization
-Floating menu tooltips and contextual menu actions now use the i18n system. All comments and test descriptions translated to English.
+### 🔍 Command palette
+Global search with Spotlight-style UI — search notes by title or content instantly.
 
-### 🗺️ Roadmap tab
-New Roadmap tab replacing the News tab, with i18n integration and automated sync from roadmap-data.json. "View full changelog" link included.
+### 📱 Responsive layout
+Left sidebar on desktop, bottom navigation bar on mobile, floating menu reorganized as a right sidebar.
 
-### ♿ Accessibility improvements
-ARIA attributes on modals, improved keyboard navigation, and screen reader support.
+### 🎨 Theme system
+CSS variables applied consistently across UI components including command palette and previews.
 
-### 🔍 SEO optimization
-Google Search Console verification, BreadcrumbList and HowTo schemas, 3 new SEO views (About, Privacy, Terms), and AI agent indexing.
+### 📏 Tooltips
+All buttons now have smart tooltips with sidebar-aware positioning.
 
 ### 🧪 Test coverage
-All 267 tests passing — covering modularized components, i18n, and UI features.
+455 tests passing — expanded coverage for editor settings, command palette, floating menu, and utilities.
 
 ## 🛠️ Tech Stack
 

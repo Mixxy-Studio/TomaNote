@@ -12,6 +12,7 @@ export class FloatingMenu {
     };
 
     this.floatingMenu = null;
+    this.bottomBar = null;
     this.tabList = null;
     this.toolsButton = null;
     this.savedSelection = null;
@@ -23,9 +24,17 @@ export class FloatingMenu {
       this.tabList = await this.waitForElement(".tab-list");
       this.toolsButton = document.getElementById("tn-tools-button");
 
+      // Bottom bar (mobile/tablet) — may not exist on desktop-only builds
+      this.bottomBar = document.getElementById("bottom-bar");
+
       this.setupButtonHandlers();
       this.setupToolsButtonHandler();
       this.setupTabChangeListener();
+
+      if (this.bottomBar) {
+        this.setupBottomBarHandlers();
+        this.log("✅ BottomBar vinculado al FloatingMenu");
+      }
 
       this.log("✅ FloatingMenu inicializado");
       return this;
@@ -173,6 +182,188 @@ export class FloatingMenu {
     });
 
     this.log("🔧 Handler de Tools button configurado");
+  }
+
+  // ===========================================================================
+  // Bottom bar handlers (mobile/tablet)
+  // ===========================================================================
+
+  setupBottomBarHandlers() {
+    if (!this.bottomBar) return;
+
+    // Delegate clicks on submenu trigger buttons
+    this.bottomBar.addEventListener("click", (e) => {
+      const trigger = e.target.closest("[data-submenu-trigger]");
+      if (trigger) {
+        e.preventDefault();
+        this.toggleBottomBarSubmenu(trigger.dataset.submenuTrigger);
+        return;
+      }
+
+      // Delegate clicks on submenu action buttons
+      const actionButton = e.target.closest("button[data-floating-action]");
+      if (actionButton) {
+        const action = actionButton.dataset.floatingAction;
+        this.handleBottomBarAction(action, actionButton);
+        return;
+      }
+
+      // Create tab button
+      const createBtn = e.target.closest("#bottom-bar-create-tab");
+      if (createBtn) {
+        const originalBtn = document.getElementById("create-tab");
+        if (originalBtn) originalBtn.click();
+      }
+    });
+
+    // Close submenus when tapping outside
+    document.addEventListener("click", (e) => {
+      if (!this.bottomBar.contains(e.target)) {
+        this.closeBottomBarSubmenus();
+      }
+    });
+
+    // Save selection before submenu interaction (same pattern as floating menu)
+    this.bottomBar.addEventListener("mousedown", (e) => {
+      const button = e.target.closest("button[data-floating-action]");
+      if (!button) return;
+
+      const selection = window.getSelection();
+      if (selection && selection.rangeCount > 0) {
+        this.savedSelection = selection.getRangeAt(0).cloneRange();
+      }
+    });
+
+    this.log("📱 Bottom bar handlers configurados");
+  }
+
+  toggleBottomBarSubmenu(name) {
+    const panel = this.bottomBar.querySelector(`[data-submenu-panel="submenu-${name}"]`);
+    if (!panel) return;
+
+    const isOpen = panel.classList.contains("tn-bottom-bar-submenu--open");
+
+    // Close all first
+    this.closeBottomBarSubmenus();
+
+    // Toggle the target
+    if (!isOpen) {
+      panel.classList.add("tn-bottom-bar-submenu--open");
+      panel.style.maxHeight = panel.scrollHeight + "px";
+      this.log(`📱 Submenu abierto: ${name}`);
+    }
+  }
+
+  closeBottomBarSubmenus() {
+    if (!this.bottomBar) return;
+
+    const panels = this.bottomBar.querySelectorAll(".tn-bottom-bar-submenu");
+    panels.forEach((panel) => {
+      panel.classList.remove("tn-bottom-bar-submenu--open");
+      panel.style.maxHeight = "0";
+    });
+  }
+
+  handleBottomBarAction(action, button) {
+    if (action === "search") {
+      window.commandPalette?.open();
+      this.closeBottomBarSubmenus();
+      this.log(`📝 Bottom bar acción ejecutada: ${action}`);
+      return;
+    }
+
+    if (action === "settings") {
+      document.querySelector("dialog#info-notepad")?.showModal();
+      this.closeBottomBarSubmenus();
+      this.log(`📝 Bottom bar acción ejecutada: ${action}`);
+      return;
+    }
+
+    let savedRange = this.savedSelection;
+
+    if (!savedRange) {
+      const selection = window.getSelection();
+      if (selection && selection.toString().length > 0) {
+        savedRange = selection.getRangeAt(0).cloneRange();
+      }
+    }
+
+    const editable = this.getActiveEditable();
+    if (!editable) {
+      this.log("⚠️ No hay editor de contenido activo (bottom bar)");
+      return;
+    }
+
+    if (savedRange) {
+      const selection = window.getSelection();
+      selection.removeAllRanges();
+      selection.addRange(savedRange);
+      this.savedSelection = null;
+    } else {
+      editable.focus();
+    }
+
+    switch (action) {
+      case "copy":
+      case "cut":
+        document.execCommand(action, false, null);
+        break;
+
+      case "paste":
+        navigator.clipboard.readText().then((text) => {
+          const selection = window.getSelection();
+          if (selection.rangeCount > 0) {
+            const range = selection.getRangeAt(0);
+            range.deleteContents();
+            range.insertNode(document.createTextNode(text));
+            range.collapse(false);
+            selection.removeAllRanges();
+            selection.addRange(range);
+          } else {
+            editable.focus();
+            document.execCommand("insertText", false, text);
+          }
+        });
+        break;
+
+      case "undo":
+      case "redo":
+        document.execCommand(action, false, null);
+        break;
+
+      case "bold":
+        FormattingUtils.cycleBold();
+        break;
+
+      case "italic":
+      case "underline":
+        document.execCommand(action, false, null);
+        break;
+
+      case "edit-name-tab":
+      case "delete-tab":
+      case "pin-tab": {
+        const activeTab = this.getActiveTab();
+        if (!activeTab) return;
+
+        if (action === "edit-name-tab") {
+          this.handleEditNameTab(activeTab);
+        } else if (action === "delete-tab") {
+          this.handleDeleteTab(activeTab);
+        } else if (action === "pin-tab") {
+          this.handlePinTab(activeTab);
+        }
+        break;
+      }
+
+      default:
+        this.log("⚠️ Acción desconocida (bottom bar):", action);
+    }
+
+    // Close submenu after action
+    this.closeBottomBarSubmenus();
+
+    this.log(`📝 Bottom bar acción ejecutada: ${action}`);
   }
 
   handleTextAction(action, button) {
@@ -351,6 +542,7 @@ export class FloatingMenu {
       }
     });
 
+    // Mobile: hide tools button when no tab active
     if (this.toolsButton) {
       if (hasActiveTab) {
         this.toolsButton.classList.remove("tn-tools-hidden");
@@ -358,13 +550,39 @@ export class FloatingMenu {
       } else {
         this.toolsButton.classList.add("tn-tools-hidden");
         this.toolsButton.style.display = "none";
-
-        const submenuRadios = this.floatingMenu?.querySelectorAll('input[type="radio"][name="options"]');
-        submenuRadios?.forEach((radio) => (radio.checked = false));
-
-        const mainCheckbox = document.getElementById("tn-open-options");
-        if (mainCheckbox) mainCheckbox.checked = false;
       }
+    }
+
+    // Desktop: hide tools container when no tab active
+    const toolsContainer = this.floatingMenu?.querySelector(".tn-tools-container");
+    if (toolsContainer) {
+      toolsContainer.style.display = hasActiveTab ? "" : "none";
+    }
+
+    // Close sub-menus when no tab active
+    if (!hasActiveTab) {
+      const submenuRadios = this.floatingMenu?.querySelectorAll('input[type="radio"][name="options"]');
+      submenuRadios?.forEach((radio) => (radio.checked = false));
+
+      const mainCheckbox = document.getElementById("tn-open-options");
+      if (mainCheckbox) mainCheckbox.checked = false;
+
+      // Also close bottom bar submenus
+      this.closeBottomBarSubmenus();
+    }
+
+    // Bottom bar: update tab-related button states
+    if (this.bottomBar) {
+      const bbTabActions = this.bottomBar.querySelectorAll("[data-floating-action='edit-name-tab'], [data-floating-action='delete-tab']");
+      bbTabActions.forEach((btn) => {
+        if (hasActiveTab) {
+          btn.classList.remove("disabled");
+          btn.removeAttribute("disabled");
+        } else {
+          btn.classList.add("disabled");
+          btn.setAttribute("disabled", "true");
+        }
+      });
     }
 
     this.log(`🔄 Estados actualizados - Tab activa: ${hasActiveTab}, Selección: ${hasTextSelection}`);

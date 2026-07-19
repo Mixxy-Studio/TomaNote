@@ -29,29 +29,29 @@ const navItems = [
 <section id="modals">
   <dialog
     id="info-notepad"
-    class="settings-modal open:block open:opacity-100 open:scale-100 open:absolute open:top-1/2 open:left-1/2 open:-translate-1/2 sm:h-[90vh]! md:h-[80vh] lg:w-[70%] lg:max-w-[70%] h-auto md:min-h-[unset] w-[90%] max-w-[90vw] min-h-[600px] max-h-[70vh] sm:max-h-[90vh] text-(--color-text)! bg-(--tn-theme-primary-dark) overflow-hidden shadow-2xl rounded-2xl scale-100 opacity-0 hidden border-0 p-0!"
+    class="settings-modal open:block open:opacity-100 open:scale-100 open:absolute open:top-1/2 open:left-1/2 open:-translate-1/2 sm:h-[90vh]! md:h-[80vh] lg:w-[70%] lg:max-w-[70%] h-auto md:min-h-[unset] w-[90%] max-w-[90vw] min-h-150 max-h-[70vh] sm:max-h-[90vh] text-(--color-text)! bg-(--tn-theme-primary-dark) overflow-hidden shadow-2xl rounded-2xl scale-100 opacity-0 hidden border-0 p-0!"
     role="dialog"
     aria-modal="true"
     aria-labelledby="settings-title"
     aria-describedby="settings-desc">
     <div class="settings-container lg:flex-row flex h-full flex-col">
       {/* Left Sidebar */}
-      <div class="settings-sidebar lg:justify-between md:w-auto w-full bg-(--tn-theme-accent) flex flex-col min-h-auto pt-[20px]! pb-[12px]! px-[16px]!">
-        <div class="user-section border-b border-(--color-text) text-center pt-0! px-[12px]! pb-[6px]!">
+      <div class="settings-sidebar lg:justify-between md:w-auto w-full bg-(--tn-theme-accent) flex flex-col min-h-auto pt-5! pb-3! px-4!">
+        <div class="user-section border-b border-(--color-text) text-center pt-0! px-3! pb-1.5!">
           <h2 id="settings-title" class="flex items-center justify-start text-xl! font-semibold m-0! text-(--color-text)">
             <Icon name="tomanote" className="size-1 md:size-6" />
             TomaNote
           </h2>
           <p id="settings-desc" class="sr-only">Settings and preferences for TomaNote app</p>
-          <span class="version text-sm! text-(--color-text)">v 0.4.4</span>
+          <span class="version text-sm! text-(--color-text)">v 0.5.0</span>
         </div>
 
-        <nav class="settings-nav bg-(--tn-neutral-tertiary-color)/10 rounded-lg mt-[16px]! px-[5px]!">
+        <nav class="settings-nav bg-(--tn-neutral-tertiary-color)/10 rounded-lg mt-4! px-1.25!">
           {navItems.map((item) => <SettingsNavItem className={item.className || ""} tabId={item.tabId} iconName={item.iconName} labelKey={item.labelKey} />)}
         </nav>
 
         <form enctype="application/x-www-form-urlencoded" method="dialog" class="sidebar-footer">
-          <button class="save-button w-full p-[12px]! border-0 rounded-sm bg-(--tn-theme-contrast) text-(--tn-neutral-tertiary-color)! cursor-pointer text-normal! transition-all hover:bg-(--tn-theme-contrast)/85! hover flex items-center justify-center gap-2">
+          <button class="save-button w-full p-3! border-0 rounded-sm bg-(--tn-theme-contrast) text-(--tn-neutral-tertiary-color)! cursor-pointer text-normal! transition-all hover:bg-(--tn-theme-contrast)/85! hover flex items-center justify-center gap-2">
             <Icon name="check" className="size-1 md:size-6" />
             <span data-i18n="mtb.submit"></span>
           </button>
@@ -59,7 +59,7 @@ const navItems = [
       </div>
 
       {/* Main COntent */}
-      <div class="settings-content flex-1 p-[24px]! overflow-y-scroll bg-(--tn-theme-secondary)">
+      <div class="settings-content flex-1 p-6! overflow-y-scroll bg-(--tn-theme-secondary)">
         {/* "About" Tab */}
         <AboutTab />
 

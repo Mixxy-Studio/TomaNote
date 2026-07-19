@@ -123,6 +123,19 @@ describe("FormattingUtils - Ciclo de Negrita", () => {
     // Should unwrap
   });
 
-  // TThis is omitted due to the complexity of mocking DOM ranges.
-  // it('Maneja surroundContents que falla con insertNode', () => { ... }
+  it("Maneja surroundContents que falla con extractContents+insertNode", () => {
+    const testRange = {
+      commonAncestorContainer: mockTextNode,
+      surroundContents: vi.fn(() => {
+        throw new Error("Failed to execute 'surroundContents'");
+      }),
+      extractContents: vi.fn(),
+      insertNode: vi.fn(),
+    };
+
+    FormattingUtils.applyNewBold(testRange);
+
+    expect(testRange.extractContents).toHaveBeenCalled();
+    expect(testRange.insertNode).toHaveBeenCalled();
+  });
 });

@@ -203,3 +203,49 @@ hr {
 dialog::backdrop {
   background-color: rgba(0, 0, 0, .5) !important;
 }
+
+// === Editor Width ===
+.tab-list__item--content>.stretch {
+  @media (min-width: 768px) {
+    width: 60% !important;
+    margin: 0 auto;
+  }
+}
+
+// === Editor Background — Paper Styles ===
+
+.tab-list__item--content.bg-underline,
+.tab-list__item--content.bg-grid,
+.tab-list__item--content.bg-flat {
+  @media screen and (min-width: 768px) {
+    min-height: 93%;
+    background-attachment: scroll;
+  }
+}
+
+// Underline — subtle horizontal lines synced to line-height
+.tab-list__item--content.bg-underline {
+  background-image: repeating-linear-gradient(to bottom,
+      transparent 0,
+      transparent calc(var(--tn-paper-line-spacing, 27.2px) - 1px),
+      color-mix(in srgb, var(--tn-theme-accent) 20%, transparent) calc(var(--tn-paper-line-spacing, 27.2px) - 1px),
+      color-mix(in srgb, var(--tn-theme-accent) 20%, transparent) var(--tn-paper-line-spacing, 27.2px));
+  background-size: 100% var(--tn-paper-line-spacing, 27.2px);
+  background-position: 0 0;
+}
+
+// Grid — subtle squared pattern synced to line-height
+.tab-list__item--content.bg-grid {
+  background-image:
+    linear-gradient(color-mix(in srgb, var(--tn-theme-accent) 20%, transparent) 1px,
+      transparent 1px),
+    linear-gradient(90deg,
+      color-mix(in srgb, var(--tn-theme-accent) 20%, transparent) 1px,
+      transparent 1px);
+  background-size: var(--tn-paper-line-spacing, 27.2px) var(--tn-paper-line-spacing, 27.2px);
+}
+
+// Flat — no background
+.tab-list__item--content.bg-flat {
+  background-image: none;
+}

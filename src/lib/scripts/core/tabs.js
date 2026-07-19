@@ -62,6 +62,14 @@ export class TabManager {
 
       // 3. Settings events before close
       window.addEventListener("beforeunload", () => this.saveTabs());
+
+      // 4. Recalculate content height when switching tabs
+      this.tabList.addEventListener("click", (e) => {
+        if (e.target.closest(".tab-list__item label")) {
+          this.updateContentHeight();
+        }
+      });
+
       return this;
     } catch (error) {
       throw error;
@@ -106,6 +114,8 @@ export class TabManager {
     // Notifyc change of tabs
     document.dispatchEvent(new CustomEvent("tabsChanged"));
 
+    this.updateContentHeight();
+
     return tabData;
   }
 
@@ -116,6 +126,10 @@ export class TabManager {
     document.addEventListener("tabsChanged", () => {
       this.saveTabs();
     });
+  }
+
+  updateContentHeight() {
+    window.floatingNavPosition?.getContentHeight();
   }
 
   pinTab(tabElement, emoji = "📄") {
@@ -250,21 +264,21 @@ export class TabManager {
 
     tabElement.innerHTML = `
       <input type="radio" name="body-tab" id="${id}">
-      <label class="bg-(--tn-default-tertiary-color) w-[250px] flex justify-between items-center py-[7px]! pr-[5px]! pl-[10px]! rounded cursor-pointer" for="${id}" ${labelDataEmoji}>
+      <label class="bg-(--tn-default-tertiary-color) w-62.5 flex justify-between items-center py-1.75! pr-1.25! pl-2.5! rounded cursor-pointer" for="${id}" ${labelDataEmoji}>
         <span class="text-ellipsis whitespace-nowrap w-[80%] overflow-hidden z-10 text-[14px]! font-bold" ${spanDataEmoji}>${name}</span>
-        <button class="edit-name-tab border-0 outline-0 w-[20px] h-[20px] justify-center items-center hidden rounded-full" aria-label="${window.i18n?.t("tab.edit-name") ?? "Edit name"}">
+        <button class="edit-name-tab border-0 outline-0 w-5 h-5 justify-center items-center hidden rounded-full" aria-label="${window.i18n?.t("tab.edit-name") ?? "Edit name"}">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-1 w-1/2 h-1/2">
             <path d="M21.731 2.269a2.625 2.625 0 0 0-3.712 0l-1.157 1.157 3.712 3.712 1.157-1.157a2.625 2.625 0 0 0 0-3.712ZM19.513 8.199l-3.712-3.712-8.4 8.4a5.25 5.25 0 0 0-1.32 2.214l-.8 2.685a.75.75 0 0 0 .933.933l2.685-.8a5.25 5.25 0 0 0 2.214-1.32l8.4-8.4Z" />
             <path d="M5.25 5.25a3 3 0 0 0-3 3v10.5a3 3 0 0 0 3 3h10.5a3 3 0 0 0 3-3V13.5a.75.75 0 0 0-1.5 0v5.25a1.5 1.5 0 0 1-1.5 1.5H5.25a1.5 1.5 0 0 1-1.5-1.5V8.25a1.5 1.5 0 0 1 1.5-1.5h5.25a.75.75 0 0 0 0-1.5H5.25Z" />
           </svg>
         </button>
-        <button class="delete-tab border-0 outline-0 w-[20px] h-[20px] justify-center items-center hidden rounded-full" aria-label="${window.i18n?.t("tab.delete") ?? "Delete tab"}">
+        <button class="delete-tab border-0 outline-0 w-5 h-5 justify-center items-center hidden rounded-full" aria-label="${window.i18n?.t("tab.delete") ?? "Delete tab"}">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-1 w-1/2 h-1/2">
             <path fill-rule="evenodd" d="M5.47 5.47a.75.75 0 0 1 1.06 0L12 10.94l5.47-5.47a.75.75 0 1 1 1.06 1.06L13.06 12l5.47 5.47a.75.75 0 1 1-1.06 1.06L12 13.06l-5.47 5.47a.75.75 0 0 1-1.06-1.06L10.94 12 5.47 6.53a.75.75 0 0 1 0-1.06Z" clip-rule="evenodd" />
           </svg>
         </button>
       </label>
-      <div class="tab-list__item--content overflow-x-hidden overflow-y-scroll font-thin hidden bg-(--tn-theme-secondary) min-h-[92dvh] p-(--tn-padding-base)! border-0 outline-0 absolute top-[50px] left-[10px] h-[calc(100%-60px)] w-[calc(100%-(var(--tn-padding-base)*2))] first:mr-[10px] border-r border-(--tn-theme-secondary)! rounded-md" contenteditable="true">${content || ""}</div>
+      <div class="tab-list__item--content md:ml-10px overflow-x-hidden overflow-y-scroll font-thin hidden bg-(--tn-theme-secondary) p-(--tn-padding-base)! border-0 outline-0 absolute top-11 md:left-2.5 md:w-[calc(100%-25px)] first:mr-2.5 border-r border-(--tn-theme-secondary)! rounded-md" contenteditable="true"><div>${content || ""}</div></div>
     `;
 
     // Insert using the anchor or button as a reference
@@ -274,6 +288,20 @@ export class TabManager {
       this.tabList.insertBefore(tabElement, this.createTabButton);
     } else {
       this.tabList.appendChild(tabElement);
+    }
+
+    // Apply saved editor settings
+    const contentDiv = tabElement.querySelector(".tab-list__item--content");
+    const innerDiv = tabElement.querySelector(".tab-list__item--content > div");
+    if (innerDiv) {
+      const savedWidth = localStorage.getItem("editorWidth");
+      if (savedWidth === "stretch") innerDiv.classList.add("stretch");
+    }
+    if (contentDiv) {
+      const savedBg = localStorage.getItem("editorBackground");
+      if (savedBg && typeof savedBg === "string" && savedBg !== "flat" && savedBg !== "null") {
+        contentDiv.classList.add(`bg-${savedBg}`);
+      }
     }
 
     return tabElement;

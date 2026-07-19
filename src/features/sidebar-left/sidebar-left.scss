@@ -1,0 +1,68 @@
+// src/features/sidebar-left/sidebar-left.scss
+// Left sidebar styles — desktop only (≥768px)
+
+.sidebar-body {
+  border-top: 1px solid var(--tn-theme-secondary);
+  margin-top: 10px;
+  padding-top: 10px;
+}
+
+.sidebar-left {
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  width: 56px;
+  min-width: 56px;
+  height: 100%;
+  background: var(--tn-theme-primary);
+  border-right: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 0.75rem 0;
+  z-index: 40;
+  margin-top: -10px;
+  margin-left: -10px;
+}
+
+.sidebar-left__top,
+.sidebar-left__bottom {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.sidebar-left__bottom {
+  margin-bottom: 10px;
+}
+
+.sidebar-left__btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 0.5rem;
+  border: 1px solid transparent;
+  background: transparent;
+  cursor: pointer;
+  transition: background 0.15s, border-color 0.15s;
+
+  &:hover:not(:disabled) {
+    background: var(--tn-theme-secondary);
+    border-color: var(--tn-theme-contrast);
+  }
+
+  &:active:not(:disabled) {
+    transform: scale(0.92);
+  }
+
+  &:disabled {
+    opacity: 0.4;
+    cursor: default;
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--tn-theme-contrast);
+    outline-offset: 2px;
+  }
+}
+

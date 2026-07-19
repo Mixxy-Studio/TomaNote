@@ -1,0 +1,18 @@
+---
+import Icon from "../../../components/icons/Icon.astro";
+
+interface Props {
+  iconName: string;
+  action: string;
+  tooltip: string;
+  hasSubmenu?: boolean;
+  iconStrokeWidth?: string;
+  className?: string;
+}
+
+const { iconName, action, tooltip, hasSubmenu = false, iconStrokeWidth = "1.5", className = "" } = Astro.props;
+---
+
+<button class={`tn-bottom-bar-btn flex flex-col items-center justify-center gap-0.5 flex-1 py-2 cursor-pointer transition-colors duration-200 ${className}`} data-floating-action={hasSubmenu ? undefined : action} data-submenu-trigger={hasSubmenu ? action : undefined} aria-label={tooltip} type="button">
+  <Icon name={iconName} className="size-6 text-(--tn-theme-contrast)" strokeWidth={iconStrokeWidth} />
+</button>

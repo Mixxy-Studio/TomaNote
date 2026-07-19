@@ -3,21 +3,31 @@
 import Layout from "../layouts/Layout.astro";
 
 // Features
+import SidebarLeft from "../features/sidebar-left/SidebarLeft.astro";
 import FloatingMenu from "../features/floating-menu/floating-menu.astro";
+import BottomBar from "../features/bottom-bar/bottom-bar.astro";
 import ContextualMenu from "../features/contextual-menu/contextual-menu.astro";
 import Modalsinfo from "../features/modal-info/modal-info.astro";
 import CloseTabConfirmation from "../features/close-tab-confirmation/close-tab-confirmation.astro";
+import CommandPalette from "../features/command-palette/command-palette.astro";
 ---
 
 <Layout>
   <CloseTabConfirmation />
-  <div dir="ltr" class="tab-list flex flex-row justify-start items-start w-full h-full max-w-[100dvw] overflow-x-auto z-[999]">
-    <span id="tab-list-anchor" class="hidden"></span>
+  <div class="app-layout flex h-full">
+    <SidebarLeft />
+    <main class="flex-1 relative overflow-hidden min-w-0">
+      <div dir="ltr" class="tab-list flex flex-row justify-start items-start w-full h-dvh max-w-100dvw overflow-x-auto z-999 px-0 md:px-2">
+        <span id="tab-list-anchor" class="hidden"></span>
+      </div>
+    </main>
+    <FloatingMenu />
   </div>
 
+  <BottomBar />
   <Modalsinfo />
   <ContextualMenu />
-  <FloatingMenu />
+  <CommandPalette />
 </Layout>
 
 <script>
