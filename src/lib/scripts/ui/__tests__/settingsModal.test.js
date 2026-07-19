@@ -72,6 +72,7 @@ describe("SettingsModal", () => {
         if (selector === "form") return mockForm;
         return null;
       }),
+      addEventListener: vi.fn(),
       close: vi.fn(),
     };
 
