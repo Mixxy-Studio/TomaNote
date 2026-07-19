@@ -30,7 +30,6 @@ export class EditorSettings {
     this.setupWidthSelector();
     this.setupBackgroundSelector();
     this.setupFontSizeListener();
-    this.setupLabelHandlers();
     this.restoreSettings();
   }
 
@@ -69,20 +68,6 @@ export class EditorSettings {
         const selected = Array.from(fontSizeRadios).find((r) => r.checked);
         const sizeValue = selected ? selected.id.replace("option-", "").replace("-text", "") : "base";
         this.updateLineSpacing(sizeValue);
-      });
-    });
-  }
-
-  setupLabelHandlers() {
-    const labels = document.querySelectorAll('label[for^="width-"], label[for^="bg-"]');
-    labels.forEach((label) => {
-      label.addEventListener("mousedown", (e) => {
-        e.preventDefault();
-        const input = document.getElementById(label.getAttribute("for"));
-        if (input) {
-          input.checked = true;
-          input.dispatchEvent(new Event("change", { bubbles: true }));
-        }
       });
     });
   }
