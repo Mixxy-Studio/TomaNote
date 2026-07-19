@@ -37,6 +37,8 @@ export class EditorSettings {
     this.widthRadios = document.querySelectorAll('input[name="editor-width"]');
     if (!this.widthRadios.length) return;
 
+    this.preventLabelAutoScroll(this.widthRadios);
+
     this.widthRadios.forEach((radio) => {
       radio.addEventListener("change", () => {
         const selected = Array.from(this.widthRadios).find((r) => r.checked);
@@ -49,6 +51,8 @@ export class EditorSettings {
   setupBackgroundSelector() {
     this.bgRadios = document.querySelectorAll('input[name="editor-bg"]');
     if (!this.bgRadios.length) return;
+
+    this.preventLabelAutoScroll(this.bgRadios);
 
     this.bgRadios.forEach((radio) => {
       radio.addEventListener("change", () => {
@@ -93,6 +97,18 @@ export class EditorSettings {
     if (!radios) return;
     radios.forEach((radio) => {
       radio.checked = radio.id === checkedId;
+    });
+  }
+
+  preventLabelAutoScroll(radios) {
+    radios.forEach((radio) => {
+      const label = document.querySelector(`label[for="${radio.id}"]`);
+      if (!label) return;
+      label.addEventListener("click", (e) => {
+        e.preventDefault();
+        radio.checked = true;
+        radio.dispatchEvent(new Event("change", { bubbles: true }));
+      });
     });
   }
 
