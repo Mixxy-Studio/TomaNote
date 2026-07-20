@@ -77,10 +77,16 @@ function syncRoadmapLocales() {
     // Add roadmap section (or update existing)
     localeData._comment_roadmap = `Auto-generated from roadmap-data.json - Do not edit manually`;
     
-    // Merge roadmap translations (don't overwrite existing keys)
+    // Merge roadmap translations (always overwrite to stay in sync with roadmap-data.json)
+    const newKeys = new Set(Object.keys(translations[lang]));
     Object.keys(translations[lang]).forEach((key) => {
-      if (!localeData[key]) {
-        localeData[key] = translations[lang][key];
+      localeData[key] = translations[lang][key];
+    });
+
+    // Remove stale roadmap keys that no longer exist in roadmap-data.json
+    Object.keys(localeData).forEach((key) => {
+      if (key.startsWith('roadmap.') && key !== '_comment_roadmap' && !newKeys.has(key)) {
+        delete localeData[key];
       }
     });
 
